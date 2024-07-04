@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-primary{
+  background-color:coral;
+}
+.btn-primary{
+  background-color: coral;
+  color:azure;
+  font-weight: 800;
+  border: 0;
+  font-size: 18px;
+
+}
+.btn-primary:hover{
+  background-color: azure;
+  color:  coral;
+  font-weight: 800;
+  scale:calc(1.2);
+  transition: all 1s;
+   text-align: center;
+}
