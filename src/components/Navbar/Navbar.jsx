@@ -1,8 +1,38 @@
 import Image from "next/image";
-import logo from "../../app/favicon.ico"
+import logo from "../../../public/logo.png"
 import Link from "next/link";
 
 const Navbar = () => {
+  const navLinks=[
+    {
+      name:"Home",
+      path:'/'
+    },
+    {
+      name:"Build Idea",
+      path:'/build_idea'
+    },
+    {
+      name:"Chickens And Feeds",
+      path:'/chicken_and_feeds'
+    },
+    {
+      name:"Become Seller",
+      path:'/become_seller'
+    },
+    {
+      name:"FaQ",
+      path:'/faq'
+    },
+    {
+      name:"Reviews",
+      path:'/reviews'
+    },
+    {
+      name:"Contact Us",
+      path:'/contact_us'
+    },
+  ]
   return (
     <div className="navbar bg-base-200  max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
     <div className="navbar-start">
@@ -24,16 +54,14 @@ const Navbar = () => {
         <ul
           tabIndex={0}
           className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-          <li><a>Homepage</a></li>
-          <li><a>Portfolio</a></li>
-          <li><a>About</a></li>
+          {navLinks.map()}
         </ul>
       </div>
     </div>
     <div className="navbar-center">
-     <Link href={'/'} className=" flex gap-5 items-center bg-primary ">
-     <Image src={logo} alt="logo" width={40} height={40}></Image>
-     <h4 className=" text-xl font-bold">Poultry Hub</h4></Link>
+     <Link href={'/'} className=" ">
+     <Image src={logo} className=" rounded-lg " alt="logo" width={200} height={40}></Image>
+     </Link>
     </div>
     <div className="navbar-end">
       <button className="btn btn-ghost btn-circle">

@@ -3,21 +3,24 @@
 @tailwind utilities;
 
 .bg-primary{
-  background-color:coral;
+  background-color: #FFD700
+  ;
+}
+.text-primary{
+  background-color:#FFD700;
 }
 .btn-primary{
-  background-color: coral;
-  color:azure;
+  background-color: #FFD700;
+  color: black;
   font-weight: 800;
   border: 0;
   font-size: 18px;
 
 }
 .btn-primary:hover{
-  background-color: azure;
-  color:  coral;
+  background-color: #0a0a0a;
+  color:  #FFD700;
   font-weight: 800;
-  scale:calc(1.2);
-  transition: all 1s;
+  transition: all 0.2s;
    text-align: center;
 }
