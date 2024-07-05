@@ -46,13 +46,14 @@ const Banner = () => {
                     "url(https://i.postimg.cc/prhSkdzh/pexels-alexasfotos-2255459.jpg)",
                 }}
               >
-                <div className="hero-overlay bg-opacity-70"></div>
+                <div className="hero-overlay bg-black bg-opacity-80"></div>
+                {/* <div className=" bg-black w-full h-full bg-opacity-45"> </div> */}
                 <div className="hero-content   text-center">
-                  <div className="max-w-3xl">
-                    <h1 className="mb-5 text-5xl font-bold">Smart Farm Management &
-<div className=" mt-4"></div>
-                       Made Sales Easy</h1>
-                    <p className="mb-5">
+                  <div className="max-w-[90%] lg:max-w-3xl">
+                    <h1 className="mb-5 title font-black"><span className="text-primary">Smart Farm</span> Management 
+<div className=" lg:mt-2 "></div>
+                       With Creative <span className="text-primary">AI</span></h1>
+                    <p className="mb-5 description">
                     Simplify your farm operations and boost sales with our comprehensive tools. Efficiently manage livestock, inventory, tasks, and sell chickens and feed.
                     </p>
                     <button className="btn btn-primary">Get Started</button>
@@ -69,10 +70,11 @@ const Banner = () => {
                     "url(https://i.postimg.cc/Y2T27GXP/pexels-italo-melo-248867-2446695.jpg)",
                 }}
               >
-                <div className="hero-overlay bg-opacity-60"></div>
+                <div className="hero-overlay bg-opacity-60 bg-black"></div>
+                <div className=" bg-black w-full h-full bg-opacity-45"> </div>
                 <div className="hero-content   text-center">
                   <div className="max-w-md">
-                    <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                    <h1 className="mb-5 text-5xl font-black">Hello there</h1>
                     <p className="mb-5">
                       Provident cupiditate voluptatem et in. Quaerat fugiat ut
                       assumenda excepturi exercitationem quasi. In deleniti
@@ -95,7 +97,7 @@ const Banner = () => {
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content   text-center">
                   <div className="max-w-md">
-                    <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                    <h1 className="mb-5 text-5xl font-black">Hello there</h1>
                     <p className="mb-5">
                       Provident cupiditate voluptatem et in. Quaerat fugiat ut
                       assumenda excepturi exercitationem quasi. In deleniti

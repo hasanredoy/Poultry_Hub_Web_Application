@@ -1,8 +1,8 @@
-import { Manrope} from "next/font/google";
+import { Manrope, Roboto, Roboto_Condensed} from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 
-const manrope = Manrope({ subsets: ["latin"] });
+const manrope = Roboto_Condensed({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",

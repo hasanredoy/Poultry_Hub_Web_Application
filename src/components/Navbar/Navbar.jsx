@@ -81,12 +81,12 @@ useEffect(()=>{
             {showLinks ? (
               <RiMenuUnfold2Fill
                 onClick={() => setShowLinks(false)}
-                className=" text-lg text-yellow-400 md:text-2xl font-bold"
+                className=" text-lg text-yellow-400 md:text-2xl font-black"
               ></RiMenuUnfold2Fill>
             ) : (
               <RiMenuUnfoldFill
                 onClick={() => setShowLinks(true)}
-                className=" text-lg md:text-2xl font-bold"
+                className=" text-lg md:text-2xl font-black"
               ></RiMenuUnfoldFill>
             )}
           </div>
@@ -97,9 +97,9 @@ useEffect(()=>{
             >
               {navLinks.map((link) => (
                 <Link
-                  className={` text-sm lg:text-base font-medium md:font-bold hover:scale-110 hover:text-[#FFD700] ${
+                  className={` text-sm lg:text-base font-medium md:font-black hover:scale-110 hover:text-[#FFD700] ${
                     pathName === link.path
-                      ? "text-[#FFD700] font-black md:font-bold "
+                      ? "text-[#FFD700] font-black md:font-black "
                       : ""
                   } `}
                   href={link.path}
@@ -107,7 +107,7 @@ useEffect(()=>{
                 >
                    <span  className={` ${
                     pathName === link.path
-                      ? "text-[#FFD700] rounded-md bg-slate-800 px-2 font-black md:font-bold "
+                      ? "text-[#FFD700] rounded-md bg-slate-800 px-2 font-black md:font-black "
                       : ""
                   } `}>{link.name}</span>   
                 </Link>
@@ -134,7 +134,7 @@ useEffect(()=>{
       <div className=" relative flex justify-center items-center gap-3 lg:gap-5 ">
         {/* theme controller  */}
      
-        <button className="" onClick={toggleTheme}>{theme=="light"?<IoIosSunny className=" text-4xl font-bold text-yellow-400"></IoIosSunny >:<IoIosMoon className=" text-4xl font-bold "></IoIosMoon>}</button>
+        <button className="" onClick={toggleTheme}>{theme=="light"?<IoIosSunny className=" text-4xl font-black text-yellow-400"></IoIosSunny >:<IoIosMoon className=" text-4xl font-black "></IoIosMoon>}</button>
         {/* avatar  */}
         <div className="avatar online placeholder">
           <div className="bg-neutral text-neutral-content w-10 lg:w-14 rounded-full">
