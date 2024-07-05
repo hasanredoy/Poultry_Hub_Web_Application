@@ -7,8 +7,9 @@
   ;
 }
 .bg-secondary{
-  background-color: #D6D3D1 ;
+  background-color: #f4e9e3 ;
 }
+
 
 .text-primary{
 color:#FFD700;
@@ -33,4 +34,13 @@ color:#FFD700;
   font-weight: 800;
   transition: all 0.2s;
    text-align: center;
+}
+
+
+[data-theme="dark"] {
+ color: white;
+}
+[data-theme="light"] {
+ color: black;
+
 }

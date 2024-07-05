@@ -9,6 +9,8 @@ import { RiMenuUnfold2Fill } from "react-icons/ri";
 import { RiMenuUnfoldFill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { useTheme } from "@emotion/react";
+import { IoIosMoon, IoIosSunny } from "react-icons/io";
+
 
 const Navbar = () => {
   // get path name
@@ -18,10 +20,26 @@ const Navbar = () => {
 
   // theme handler
 const [theme , setTheme]=useState('light')
-const current 
 
-useEffect(()=>{},[])
-  
+//check local storage and set the local storage value in theme state
+useEffect(()=>{
+  const currentTheme= localStorage.getItem('theme') 
+  if(currentTheme){
+  setTheme(currentTheme)
+  document.documentElement.setAttribute('data-theme',currentTheme)
+  }
+},[])
+//toggle theme 
+  const toggleTheme = ()=>{
+    // make new theme opposite of default value of theme state 
+    const newTheme= theme ==="light"?"dark":"light"
+    // then set newTheme in theme state 
+    setTheme(newTheme)
+    // set newTheme as data theme
+    document.documentElement.setAttribute('data-theme',newTheme)
+  // set theme in local storage 
+    localStorage.setItem('theme',newTheme)
+  }
 
   // useEffect(()=>{
   //   localStorage.setItem('theme',theme)
@@ -61,10 +79,10 @@ useEffect(()=>{},[])
   ];
 
   return (
-    <div className=" flex justify-between items-center bg-secondary max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto py-2">
+    <div className=" flex justify-between items-center max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto py-2">
       <div className="">
         <div>
-          <div className=" cursor-pointer">
+          <div className=" cursor-pointer ">
             {showLinks ? (
               <RiMenuUnfold2Fill
                 onClick={() => setShowLinks(false)}
@@ -80,7 +98,7 @@ useEffect(()=>{},[])
           {showLinks && (
             <ul
               onMouseLeave={() => setShowLinks(false)}
-              className="bg-stone-100 flex gap-3 md:gap-8  z-[30] absolute mt-3 p-5  shadow-lg top-12 rounded-md flex-col md:flex-row "
+              className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-12 rounded-md left-0 flex-col w-60  "
             >
               {navLinks.map((link) => (
                 <Link
@@ -92,7 +110,11 @@ useEffect(()=>{},[])
                   href={link.path}
                   key={link.path}
                 >
-                  {link.name}
+                   <span  className={` ${
+                    pathName === link.path
+                      ? "text-[#FFD700] rounded-md bg-slate-800 px-2 font-black md:font-bold "
+                      : ""
+                  } `}>{link.name}</span>   
                 </Link>
               ))}
             </ul>
@@ -112,10 +134,8 @@ useEffect(()=>{},[])
       </div>
       <div className=" relative flex justify-center items-center gap-3 lg:gap-5 ">
         {/* theme controller  */}
-        <select className=" w-20 p-2 rounded-full"  id="">
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
+     
+        <button className="" onClick={toggleTheme}>{theme=="light"?<IoIosSunny className=" text-4xl font-bold text-yellow-400"></IoIosSunny >:<IoIosMoon className=" text-4xl font-bold "></IoIosMoon>}</button>
         {/* avatar  */}
         <div className="avatar online placeholder">
           <div className="bg-neutral text-neutral-content w-10 lg:w-14 rounded-full">

@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html  lang="en">
       <body className={`${manrope.className}  min-h-screen`}>
-        <nav className=" bg-secondary shadow-sm shadow-stone-900">
+        <nav className=" bg-base-300 shadow-sm shadow-base-100">
           <Navbar></Navbar>
         </nav>
         <div className=" max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
