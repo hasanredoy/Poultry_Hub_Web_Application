@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="">
       {/* banner  */}
-      <div>
+      <div className=" w-full mb-20">
         <Banner></Banner>
       </div>
     </main>

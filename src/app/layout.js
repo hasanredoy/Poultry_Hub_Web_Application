@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         <nav className=" bg-base-300 shadow-sm shadow-base-100">
           <Navbar></Navbar>
         </nav>
-        <div className=" max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
+        <div className="">
         {children}
         </div>
       </body>

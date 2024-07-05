@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import logo from "../../../public/logo.png";
+import logo from "../../app/favicon.ico";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -41,11 +41,6 @@ useEffect(()=>{
     localStorage.setItem('theme',newTheme)
   }
 
-  // useEffect(()=>{
-  //   localStorage.setItem('theme',theme)
-  //   const ls = localStorage.getItem("theme")
-  //   setDataTheme(ls)
-  // },[theme])
   // navlinks
   const navLinks = [
     {
@@ -79,14 +74,14 @@ useEffect(()=>{
   ];
 
   return (
-    <div className=" flex justify-between items-center max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto py-2">
+    <div className={` flex justify-between items-center max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto py-2 ${theme=="light"?"text-black":"text-white"}`}>
       <div className="">
         <div>
           <div className=" cursor-pointer ">
             {showLinks ? (
               <RiMenuUnfold2Fill
                 onClick={() => setShowLinks(false)}
-                className=" text-lg md:text-2xl font-bold"
+                className=" text-lg text-yellow-400 md:text-2xl font-bold"
               ></RiMenuUnfold2Fill>
             ) : (
               <RiMenuUnfoldFill
@@ -98,7 +93,7 @@ useEffect(()=>{
           {showLinks && (
             <ul
               onMouseLeave={() => setShowLinks(false)}
-              className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-12 rounded-md left-0 flex-col w-60  "
+              className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-12 rounded-l-none rounded-md left-0 flex-col w-60  "
             >
               {navLinks.map((link) => (
                 <Link
@@ -122,14 +117,18 @@ useEffect(()=>{
         </div>
       </div>
       <div className="">
-        <Link href={"/"} className=" ">
+        <Link href={"/"} className=" flex gap-2  bg-yellow-400 text-black py-2  px-3 rounded-tr-3xl rounded-bl-3xl items-center ">
+       
+        <h3 className=" text-xl font-black">Poultry </h3>
           <Image
             src={logo}
-            className=" rounded-lg  w-[120px] h-[40px] md:w-[150px] md:h-[40px] lg:w-[200px] lg:h-[40px]"
+            className=" rounded-lg  w-[120px] h-[40px] md:w-[150px] md:h-[40px] lg:w-[40px] lg:h-[40px]"
             alt="logo"
-            width={200}
+            width={40}
             height={40}
           ></Image>
+        <h3 className=" text-xl font-black">Hub </h3>
+          
         </Link>
       </div>
       <div className=" relative flex justify-center items-center gap-3 lg:gap-5 ">
