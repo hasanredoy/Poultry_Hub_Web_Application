@@ -1,12 +1,10 @@
-import Banner from "@/components/Pages/Home/Banner/Banner";
+import Main from "@/layout/Main";
 
 export default function Home() {
+
   return (
     <main className="">
-      {/* banner  */}
-      <div className=" w-full mb-20">
-        <Banner></Banner>
-      </div>
+      <Main></Main>
     </main>
   );
 }

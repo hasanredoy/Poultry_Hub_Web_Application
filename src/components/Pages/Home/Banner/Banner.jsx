@@ -16,19 +16,19 @@ import "./banner.css";
 
 const Banner = () => {
   return (
-    <header className=" p-0 m-0  bg-black ">
+    <header className=" p-0 m-0 ">
       {/* text div 
       <div className=' absolute top-4'>
         <h1>Smart Farm Management & Made Sales Easy</h1>
       </div> */}
       {/* carousel div  */}
-      <div className=" w-full min-h-screen bg-black ">
+      <div className=" w-full min-h-screen text-white">
      
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
             autoplay={{
-              delay: 2500,
+              delay: 3000,
               disableOnInteraction: false,
             }}
             pagination={{
@@ -46,14 +46,14 @@ const Banner = () => {
                     "url(https://i.postimg.cc/prhSkdzh/pexels-alexasfotos-2255459.jpg)",
                 }}
               >
-                <div className="hero-overlay bg-opacity-60"></div>
-                <div className="hero-content text-neutral-content text-center">
-                  <div className="max-w-md">
-                    <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                <div className="hero-overlay bg-opacity-70"></div>
+                <div className="hero-content   text-center">
+                  <div className="max-w-3xl">
+                    <h1 className="mb-5 text-5xl font-bold">Smart Farm Management &
+<div className=" mt-4"></div>
+                       Made Sales Easy</h1>
                     <p className="mb-5">
-                      Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                      assumenda excepturi exercitationem quasi. In deleniti
-                      eaque aut repudiandae et a id nisi.
+                    Simplify your farm operations and boost sales with our comprehensive tools. Efficiently manage livestock, inventory, tasks, and sell chickens and feed.
                     </p>
                     <button className="btn btn-primary">Get Started</button>
                   </div>
@@ -70,7 +70,7 @@ const Banner = () => {
                 }}
               >
                 <div className="hero-overlay bg-opacity-60"></div>
-                <div className="hero-content text-neutral-content text-center">
+                <div className="hero-content   text-center">
                   <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
                     <p className="mb-5">
@@ -93,7 +93,7 @@ const Banner = () => {
                 }}
               >
                 <div className="hero-overlay bg-opacity-60"></div>
-                <div className="hero-content text-neutral-content text-center">
+                <div className="hero-content   text-center">
                   <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
                     <p className="mb-5">

@@ -119,15 +119,15 @@ useEffect(()=>{
       <div className="">
         <Link href={"/"} className=" flex gap-2  bg-yellow-400 text-black py-2  px-3 rounded-tr-3xl rounded-bl-3xl items-center ">
        
-        <h3 className=" text-xl font-black">Poultry </h3>
+        <h3 className=" text-base lg:text-xl font-black">Poultry </h3>
           <Image
             src={logo}
-            className=" rounded-lg  w-[120px] h-[40px] md:w-[150px] md:h-[40px] lg:w-[40px] lg:h-[40px]"
+            className=" rounded-lg w-7 h-7  md:w-[40px] md:h-[40px]"
             alt="logo"
             width={40}
             height={40}
           ></Image>
-        <h3 className=" text-xl font-black">Hub </h3>
+        <h3 className=" text-base lg:text-xl font-black">Hub </h3>
           
         </Link>
       </div>

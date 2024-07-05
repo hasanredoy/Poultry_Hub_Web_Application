@@ -46,10 +46,10 @@ color:#FFD700;
 }
 
 /* customize h1  */
-/* h1{
+h1{
   font-size: 40px;
   font-weight: 800;
-} */
+}
 
 @media (min-width:320px) and (max-width:770px){
   h1{
