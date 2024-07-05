@@ -1,8 +1,8 @@
-import { Inter } from "next/font/google";
+import { Manrope} from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -10,10 +10,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <nav>
+    <html  lang="en">
+      <body className={`${manrope.className}  min-h-screen`}>
+        <nav className=" bg-secondary shadow-sm shadow-stone-900">
           <Navbar></Navbar>
         </nav>
         <div className=" max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">

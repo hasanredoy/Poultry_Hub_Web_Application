@@ -6,8 +6,18 @@
   background-color: #FFD700
   ;
 }
+.bg-secondary{
+  background-color: #D6D3D1 ;
+}
+
 .text-primary{
-  background-color:#FFD700;
+color:#FFD700;
+}
+.text-nav{
+color:#050505;
+}
+.text-nav:hover{
+color:#FFD700;
 }
 .btn-primary{
   background-color: #FFD700;
