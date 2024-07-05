@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html  lang="en">
-      <body className={`${manrope.className}  min-h-screen`}>
+      <body className={`${manrope.className}  min-h-screen p-0 m-0`}>
         <nav className=" bg-base-300 shadow-sm shadow-base-100">
           <Navbar></Navbar>
         </nav>
