@@ -8,12 +8,12 @@ import { useEffect, useState } from "react";
 import { RiMenuUnfold2Fill } from "react-icons/ri";
 import { RiMenuUnfoldFill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
-import { useTheme } from "@emotion/react";
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
 import { FaHome, FaQuestionCircle, FaShoppingCart } from "react-icons/fa";
 import { HiLightBulb } from "react-icons/hi";
 import { MdOutlineContactPage, MdOutlineContactSupport, MdOutlineReviews, MdPersonAddAlt1 } from "react-icons/md";
 import { GrContact } from "react-icons/gr";
+import useTheme from "@/hooks/useTheme";
 
 
 
@@ -24,29 +24,28 @@ const Navbar = () => {
   const pathName = usePathname();
   // links handler state
   const [showLinks, setShowLinks] = useState(false);
+    // theme handler
+    const [theme , setTheme]=useState('light')
 
-  // theme handler
-const [theme , setTheme]=useState('light')
-
-//check local storage and set the local storage value in theme state
-useEffect(()=>{
-  const currentTheme= localStorage.getItem('theme') 
-  if(currentTheme){
-  setTheme(currentTheme)
-  document.documentElement.setAttribute('data-theme',currentTheme)
-  }
-},[])
+    //check local storage and set the local storage value in theme state
+    useEffect(()=>{
+      const currentTheme= localStorage.getItem('theme') 
+      if(currentTheme){
+      setTheme(currentTheme)
+      document.documentElement.setAttribute('data-theme',currentTheme)
+      }
+    },[])
 //toggle theme 
-  const toggleTheme = ()=>{
-    // make new theme opposite of default value of theme state 
-    const newTheme= theme ==="light"?"dark":"light"
-    // then set newTheme in theme state 
-    setTheme(newTheme)
-    // set newTheme as data theme
-    document.documentElement.setAttribute('data-theme',newTheme)
-  // set theme in local storage 
-    localStorage.setItem('theme',newTheme)
-  }
+const toggleTheme = ()=>{
+  // make new theme opposite of default value of theme state 
+  const newTheme= theme ==="light"?"dark":"light"
+  // then set newTheme in theme state 
+  setTheme(newTheme)
+  // set newTheme as data theme
+  document.documentElement.setAttribute('data-theme',newTheme)
+// set theme in local storage 
+  localStorage.setItem('theme',newTheme)
+}
 
   // navlinks
   const navLinks = [

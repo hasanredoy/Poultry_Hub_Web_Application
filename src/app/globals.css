@@ -84,11 +84,20 @@ color:#FFD700;
   font-size: 40px;
   font-weight: 900;
 }
+/* customize subtitle  */
+.subtitle{
+  font-size: 30px;
+  font-weight: 700;
+}
 
 @media (min-width:320px) and (max-width:770px){
   .title{
     font-size: 22px;
     font-weight: 900;
+  }
+  .subtitle{
+    font-size: 18px;
+    font-weight: 600;
   }
   
 }
