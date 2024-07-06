@@ -35,3 +35,9 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+.style{
+  display: flex;
+  gap: 10xp;
+  justify-items: center;
+}

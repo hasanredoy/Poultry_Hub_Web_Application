@@ -10,6 +10,13 @@ import { RiMenuUnfoldFill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { useTheme } from "@emotion/react";
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
+import { FaHome, FaQuestionCircle, FaShoppingCart } from "react-icons/fa";
+import { HiLightBulb } from "react-icons/hi";
+import { MdOutlineContactPage, MdOutlineContactSupport, MdOutlineReviews, MdPersonAddAlt1 } from "react-icons/md";
+import { GrContact } from "react-icons/gr";
+
+
+
 
 
 const Navbar = () => {
@@ -93,11 +100,11 @@ useEffect(()=>{
           {showLinks && (
             <ul
               onMouseLeave={() => setShowLinks(false)}
-              className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-[61px] rounded-l-none rounded-md left-0 flex-col w-60 min-h-screen "
+              className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-[61px] rounded-l-none rounded-md left-0 flex-col w-60 min-h-screen bg-opacity-80 "
             >
-              {navLinks.map((link) => (
+              {navLinks.map((link, index) => (
                 <Link
-                  className={` text-sm lg:text-base font-medium md:font-black hover:scale-110 hover:text-[#FFD700] ${
+                  className={` text-sm lg:text-base font-medium md:font-black hover:scale-110 hover:text-[#FFD700] hover:bg-slate-800 hover:px-2 hover:rounded-md ${
                     pathName === link.path
                       ? "text-[#FFD700] font-black md:font-black "
                       : ""
@@ -105,11 +112,19 @@ useEffect(()=>{
                   href={link.path}
                   key={link.path}
                 >
-                   <span  className={` ${
+                   <span  className={` flex gap-2 items-center ${
                     pathName === link.path
                       ? "text-[#FFD700] rounded-md bg-slate-800 px-2 font-black md:font-black "
                       : ""
-                  } `}>{link.name}</span>   
+                  } `}>
+                    {index==0&&<FaHome></FaHome>}
+                    {index==1&&<HiLightBulb className="text-2xl"></HiLightBulb>}
+                    {index==2&&<FaShoppingCart className=""></FaShoppingCart>}
+                    {index==3&&<MdPersonAddAlt1 className=" text-xl"></MdPersonAddAlt1>}
+                    {index==4&&<FaQuestionCircle className=" text-xl"></FaQuestionCircle>}
+                    {index==5&&<GrContact className=" text-xl"></GrContact>}
+                    {index==6&&<MdOutlineContactSupport className=" text-xl"></MdOutlineContactSupport>}
+                    {link.name}</span>   
                 </Link>
               ))}
             </ul>
