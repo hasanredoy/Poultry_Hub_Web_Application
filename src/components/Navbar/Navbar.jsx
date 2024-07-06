@@ -74,7 +74,7 @@ useEffect(()=>{
   ];
 
   return (
-    <div className={` flex justify-between items-center max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto py-2 ${theme=="light"?"text-black":"text-white"} mb-0`}>
+    <div className={` flex justify-between items-center max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto py-2 ${theme=="light"?"text-black":"text-white"}  mb-0`}>
       <div className="">
         <div>
           <div className=" cursor-pointer ">
@@ -93,7 +93,7 @@ useEffect(()=>{
           {showLinks && (
             <ul
               onMouseLeave={() => setShowLinks(false)}
-              className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-12 rounded-l-none rounded-md left-0 flex-col w-60  "
+              className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-[61px] rounded-l-none rounded-md left-0 flex-col w-60 min-h-screen "
             >
               {navLinks.map((link) => (
                 <Link

@@ -29,15 +29,43 @@ color:#FFD700;
   font-weight: 900;
   border: 0;
   font-size: 18px;
+  padding: 8px 15px;
+  border-radius: 10px;
+
 
 }
 /* edit hover of primary button */
 .btn-primary:hover{
   background-color: #0a0a0a;
-  color:  #FFD700;
+  color:  #f6f6f5;
   font-weight: 900;
   transition: all 0.2s;
    text-align: center;
+   padding: 8px 15px;
+   border-radius: 10px;
+}
+
+@media (min-width:300px) and (max-width:700px) {
+  /* edit primary button */
+.btn-primary{
+  background-color: #FFD700;
+  color: black;
+  font-weight: 700;
+  border: 0;
+  font-size: 14px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  
+}
+/* edit hover of primary button */
+.btn-primary:hover{
+  background-color: #0a0a0a;
+  color:  #f8f7f4;
+  font-weight: 900;
+  padding: 7px 12px;
+  transition: all 0.2s;
+   text-align: center;
+}
 }
 
 /* set all text color black */
@@ -72,8 +100,8 @@ color:#FFD700;
 
 @media (min-width:320px) and (max-width:770px){
   .description{
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 13px;
+    font-weight: 300;
   }
   
 }
