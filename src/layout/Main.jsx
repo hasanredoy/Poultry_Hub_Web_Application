@@ -1,5 +1,6 @@
 'use client'
-import Banner from "@/components/Pages/Home/Banner/Banner";
+import Banner from "@/Pages/Home/Banner/Banner";
+import BuyProduct from "@/Pages/Home/BuyProduct/BuyProduct";
 import { useEffect, useState } from "react";
 
 export default function Main() {
@@ -18,6 +19,9 @@ useEffect(()=>{
       {/* banner  */}
       <div className=" w-full mb-20 ">
         <Banner></Banner>
+      </div>
+      <div className=" w-full ">
+        <BuyProduct></BuyProduct>
       </div>
     </main>
   );
