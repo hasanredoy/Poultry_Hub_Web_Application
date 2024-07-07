@@ -7,8 +7,8 @@ const OurSuccess = () => {
       <header>
         <Heading subHeading={"Our Journey"} title={"All of our Achievement"} />
       </header>
-     <div className=" flex w-full justify-center items-center">
-     <section className=" w-[50%] box-border lg:w-[80%] mx-auto px-0 lg:px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mt-20 my-10 text-center">
+     <div className=" flex w-full  justify-center items-center">
+     <section className=" w-[50%] box-border md:w-[100%] md:ml-14 lg:ml-0 lg:w-[80%] mx-auto px-0 lg:px-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 mt-20 my-10 text-center">
         {/* our users */}
         <div className=" relative h-56 w-56">
              {/* empty */}
@@ -52,7 +52,7 @@ const OurSuccess = () => {
             <div className="bg-[#f4f0dc] bg-opacity-50 h-full w-full text-black "></div>
           </div>
         {/* our sales */}
-        <div className=" relative h-56 w-56">
+        <div className="  relative h-56 w-56">
              {/* empty */}
           <div className=" p-3 border border-yellow-700 flex-col w-44 h-44  rotate-45 ">
             <div className="bg-[#f8ea9c] bg-opacity-50 h-full w-full text-black "></div>

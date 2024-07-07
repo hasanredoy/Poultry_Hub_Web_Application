@@ -19,14 +19,14 @@ const BuyProduct = () => {
   return (
     <section className={` my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto `}>
       <Heading subHeading={'Welcome To Our Farm'} title={"Buy Fresh Organic Chicken , Eggs and Natural Feed"}></Heading>
-      <section className=' flex gap-10 flex-col lg:flex-row mt-10 '>
+      <section className=' flex gap-8 md:gap-4 lg:gap-10 flex-col md:flex-row mt-10 '>
         {/* img div  */}
        <div className='flex-1 '>
        <div className=' z-40 grid grid-cols-1 lg:grid-cols-2 gap-5 gap-y-6 relative '>
            <div>
             
            <Image
-            src={farmer} className=' w-full  lg:bg-white h-full lg:h-[210px]' width={500} height={500} alt=' farmer banner'></Image>
+            src={farmer} className=' w-full  lg:bg-white h-full lg:h-[210px]' width={500} height={600} alt=' farmer banner'></Image>
            </div>
            <Image
             src={farmer2} className=' w-full  hidden lg:block  bg-white h-[210px]' width={500} height={500} alt=' farmer banner2'></Image>
@@ -51,7 +51,7 @@ const BuyProduct = () => {
           <h3 className=' subtitle'>Chicken feed from nature base factory  </h3>
           <p> You can buy chicken feed from our store those feeds are came from nature base factory. We bet our feeds are best.   </p>
          </div>
-         <div className=' border-l-8 bg-yellow-300  border-yellow-600 shadow-lg p-5 rounded-lg mt-4'>
+         <div className=' hidden lg:block border-l-8 bg-yellow-300  border-yellow-600 shadow-lg p-5 rounded-lg mt-4'>
           <h3 className=' subtitle'>Best in quality </h3>
           <p>We ensure quality and quantity of our product. All of our farmer have pass a complex test before listing any product in our store.  </p>
          </div>
