@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 :root {
-  color: black;
+  background-color: rgb(234, 252, 225);
+  color: #050505;
 }
 
 [data-theme='dark'] {
