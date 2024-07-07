@@ -1,16 +1,74 @@
-import Heading from '@/components/custom/Heading/Heading';
-import React from 'react';
+import Heading from "@/components/custom/Heading/Heading";
+import React from "react";
 
 const OurSuccess = () => {
   return (
-    <main>
-      <header><Heading subHeading={'Our Journey'} title={'All of our Achievement'}/></header>
-      <section>
+    <main className="my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
+      <header>
+        <Heading subHeading={"Our Journey"} title={"All of our Achievement"} />
+      </header>
+      <section className=" w-[80%] mx-auto px-5 grid grid-cols-5 my-10 justify-center items-center text-center">
         {/* our users */}
-        <div className=' w-40 h-40 bg-yellow-600 text-black rounded-t-full  '>
-          <h3>66</h3>
-          <p>Farmer and Client are using our platform/shop.</p>
+        <div className=" relative h-56 w-56">
+             {/* empty */}
+          <div className=" p-3 border-2 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
+            <div className="bg-[#f8ea9c] bg-opacity-50 h-full w-full text-black "></div>
+          </div>
+          
+          <div className=" absolute top-[20%]  z-40  p-3 border-2 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
+            <div className="bg-[#FFD700] h-full w-full text-black ">
+              <div className=" -rotate-45 flex pt-10 flex-col w-full h-full ">
+                <h3 className=" text-xl font-bold ">66</h3>
+                <p className=" text-lg font-bold">Farmer and Client.</p>
+              </div>
+            </div>
+          </div>
+       
         </div>
+            {/* empty */}
+            <div className=" p-3 border border-yellow-700 flex-col w-44 h-44  rotate-45 ">
+            <div className="bg-[#f5efd2] bg-opacity-50 h-full w-full text-black "></div>
+          </div>
+        {/* our listed item  */}
+        <div className=" z-40 relative h-56 w-56">
+             {/* empty */}
+          <div className=" absolute top-[20%] p-3 border-2 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
+            <div className="bg-[#f8ea9c] bg-opacity-50 h-full w-full text-black "></div>
+          </div>
+          
+          <div className="  z-40  p-3 border-2 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
+            <div className="bg-[#FFD700] h-full w-full text-black ">
+              <div className=" -rotate-45 flex pt-10 flex-col w-full h-full ">
+                <h3 className=" text-xl font-bold ">66</h3>
+                <p className=" text-lg font-bold">Farmer and Client.</p>
+              </div>
+            </div>
+          </div>
+       
+        </div>
+            {/* empty */}
+            <div className=" p-3 border z-10 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
+            <div className="bg-[#f4f0dc] bg-opacity-50 h-full w-full text-black "></div>
+          </div>
+        {/* our sales */}
+        <div className=" relative h-56 w-56">
+             {/* empty */}
+          <div className=" p-3 border border-yellow-700 flex-col w-44 h-44  rotate-45 ">
+            <div className="bg-[#f8ea9c] bg-opacity-50 h-full w-full text-black "></div>
+          </div>
+          
+          <div className=" absolute top-[20%]  z-40  p-3 border-2 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
+            <div className="bg-[#FFD700] h-full w-full text-black ">
+              <div className=" -rotate-45  flex pt-10 flex-col w-full h-full ">
+                <h3 className=" text-xl font-bold ">100+</h3>
+                <p className=" text-lg font-bold">Monthly Sales</p>
+              </div>
+            </div>
+          </div>
+       
+        </div>
+
+        
       </section>
     </main>
   );

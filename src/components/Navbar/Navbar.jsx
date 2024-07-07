@@ -80,7 +80,7 @@ const toggleTheme = ()=>{
   ];
 
   return (
-    <div className={` flex justify-between items-center max-w-[95%] overflow-hidden lg:max-w-[85%]  mx-auto py-2 ${theme=="light"?"text-black":"text-white"}  mb-0`}>
+    <nav className={` flex justify-between items-center max-w-[95%] overflow-hidden lg:max-w-[85%]  mx-auto py-2 ${theme=="light"?"text-black":"text-white"}  mb-0`}>
       <div className="">
         <div>
           <div className=" cursor-pointer ">
@@ -156,7 +156,7 @@ const toggleTheme = ()=>{
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

@@ -95,6 +95,9 @@ color:#FFD700;
 p{
   font-size: 18px;
 }
+.roundDiv{
+  border-radius: 35% 130px  35% 140px;
+}
 
 @media (min-width:320px) and (max-width:770px){
   .title{
@@ -123,3 +126,5 @@ p{
   }
   
 }
+
+
