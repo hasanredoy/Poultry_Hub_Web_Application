@@ -2,9 +2,11 @@
 import Heading from '@/components/custom/Heading/Heading';
 import React, { useEffect, useState } from 'react';
 import farmer from "../../../../public/farmer/male-farmer-holding-egg-from-his-farm.jpg"
+import farmer2 from "../../../../public/farmer/young-farmer-taking-care-his-business.jpg"
+import farmer3 from "../../../../public/farmer/photorealistic-scene-poultry-farm-with-people-chickens.jpg"
+import feed from "../../../../public/farmer/CHICKENGRAINMIX_CORNFARM-X_0803729d-8bb9-4f49-b2d1-6ec930b2a8d7_1500x1500.webp"
 import Image from 'next/image';
-import { FaMoon } from 'react-icons/fa';
-import { IoSunnySharp } from "react-icons/io5";
+
 
 
 const BuyProduct = () => {
@@ -18,9 +20,15 @@ const BuyProduct = () => {
       <Heading subHeading={'Welcome To Our Farm'} title={"Buy Fresh Organic Chicken , Eggs and Natural Feed"}></Heading>
       <section className=' flex gap-10 flex-col lg:flex-row mt-5 '>
         {/* img div  */}
-        <div className=' flex-1'>
+        <div className=' flex-1 grid grid-cols-2 gap-5 '>
            <Image
-            src={farmer} width={500} height={500} alt=' farmer banner'></Image>
+            src={farmer} className=' w-full  bg-white h-[200px]' width={500} height={500} alt=' farmer banner'></Image>
+           <Image
+            src={farmer2} className=' w-full  bg-white h-[200px]' width={500} height={500} alt=' farmer banner2'></Image>
+           <Image
+            src={farmer3} className=' w-full  bg-white h-[200px]' width={500} height={500} alt=' farmer banner3'></Image>
+           <Image
+            src={feed} className=' w-full  bg-white h-[200px]' width={500} height={100} alt=' feed'></Image>
         </div>
         {/* text div  */}
        <div
