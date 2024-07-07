@@ -7,7 +7,8 @@ const OurSuccess = () => {
       <header>
         <Heading subHeading={"Our Journey"} title={"All of our Achievement"} />
       </header>
-      <section className=" w-[80%] mx-auto px-5 grid grid-cols-5 my-10 justify-center items-center text-center">
+     <div className=" flex w-full justify-center items-center">
+     <section className=" w-[50%] box-border lg:w-[80%] mx-auto px-0 lg:px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 my-10 text-center">
         {/* our users */}
         <div className=" relative h-56 w-56">
              {/* empty */}
@@ -16,9 +17,9 @@ const OurSuccess = () => {
           </div>
           
           <div className=" absolute top-[20%]  z-40  p-3 border-2 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
-            <div className="bg-[#FFD700] h-full w-full text-black ">
+            <div className="bg-[#e2c001] h-full w-full text-black ">
               <div className=" -rotate-45 flex pt-10 flex-col w-full h-full ">
-                <h3 className=" text-xl font-bold ">66</h3>
+                <h3 className=" text-xl font-bold ">66+</h3>
                 <p className=" text-lg font-bold">Farmer and Client.</p>
               </div>
             </div>
@@ -26,7 +27,7 @@ const OurSuccess = () => {
        
         </div>
             {/* empty */}
-            <div className=" p-3 border border-yellow-700 flex-col w-44 h-44  rotate-45 ">
+            <div className=" hidden lg:block p-3 border border-yellow-700 flex-col w-44 h-44  rotate-45 ">
             <div className="bg-[#f5efd2] bg-opacity-50 h-full w-full text-black "></div>
           </div>
         {/* our listed item  */}
@@ -37,17 +38,17 @@ const OurSuccess = () => {
           </div>
           
           <div className="  z-40  p-3 border-2 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
-            <div className="bg-[#FFD700] h-full w-full text-black ">
+            <div className="bg-[#e2c001] h-full w-full text-black ">
               <div className=" -rotate-45 flex pt-10 flex-col w-full h-full ">
-                <h3 className=" text-xl font-bold ">66</h3>
-                <p className=" text-lg font-bold">Farmer and Client.</p>
+                <h3 className=" text-xl font-bold ">40+</h3>
+                <p className=" text-lg font-bold">Listed Item.</p>
               </div>
             </div>
           </div>
        
         </div>
             {/* empty */}
-            <div className=" p-3 border z-10 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
+            <div className=" hidden lg:block p-3 border z-10 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
             <div className="bg-[#f4f0dc] bg-opacity-50 h-full w-full text-black "></div>
           </div>
         {/* our sales */}
@@ -58,7 +59,7 @@ const OurSuccess = () => {
           </div>
           
           <div className=" absolute top-[20%]  z-40  p-3 border-2 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
-            <div className="bg-[#FFD700] h-full w-full text-black ">
+            <div className="bg-[#e2c001] h-full w-full text-black ">
               <div className=" -rotate-45  flex pt-10 flex-col w-full h-full ">
                 <h3 className=" text-xl font-bold ">100+</h3>
                 <p className=" text-lg font-bold">Monthly Sales</p>
@@ -70,6 +71,7 @@ const OurSuccess = () => {
 
         
       </section>
+     </div>
     </main>
   );
 };
