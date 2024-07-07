@@ -1,6 +1,7 @@
 'use client'
 import Banner from "@/Pages/Home/Banner/Banner";
 import BuyProduct from "@/Pages/Home/BuyProduct/BuyProduct";
+import OurSuccess from "@/Pages/Home/OurSuccess/OurSuccess";
 
 export default function Main() {
 
@@ -12,6 +13,9 @@ export default function Main() {
       </div>
       <div className=" w-full ">
         <BuyProduct></BuyProduct>
+      </div>
+      <div>
+        <OurSuccess></OurSuccess>
       </div>
     </main>
   );
