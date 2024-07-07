@@ -1,6 +1,7 @@
 'use client'
 import Banner from "@/Pages/Home/Banner/Banner";
 import BuyProduct from "@/Pages/Home/BuyProduct/BuyProduct";
+import GenerateIdea from "@/Pages/Home/GenerateIdea/GenerateIdea";
 import OurSuccess from "@/Pages/Home/OurSuccess/OurSuccess";
 
 export default function Main() {
@@ -16,6 +17,9 @@ export default function Main() {
       </div>
       <div>
         <OurSuccess></OurSuccess>
+      </div>
+      <div>
+        <GenerateIdea></GenerateIdea>
       </div>
     </main>
   );
