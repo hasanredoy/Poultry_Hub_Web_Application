@@ -28,7 +28,7 @@ const OurSuccess = () => {
         </div>
             {/* empty */}
             <div className=" hidden lg:block p-3 border border-yellow-700 flex-col w-44 h-44  rotate-45 ">
-            <div className="bg-[#f5efd2] bg-opacity-50 h-full w-full text-black "></div>
+            <div className=" bg-opacity-50 h-full w-full text-black "></div>
           </div>
         {/* our listed item  */}
         <div className=" z-40 relative h-56 w-56">
@@ -49,7 +49,7 @@ const OurSuccess = () => {
         </div>
             {/* empty */}
             <div className=" hidden lg:block p-3 border z-10 border-yellow-700 flex-col w-44 h-44  rotate-45 ">
-            <div className="bg-[#f4f0dc] bg-opacity-50 h-full w-full text-black "></div>
+            <div className=" bg-opacity-50 h-full w-full text-black "></div>
           </div>
         {/* our sales */}
         <div className="  relative h-56 w-56">
