@@ -1,8 +1,15 @@
 import Heading from '@/components/custom/Heading/Heading';
 import React from 'react';
 import testimonial from '../../../../public/testimonial/3149085_463108-PFPNOC-400.jpg'
+import { useQuery } from '@tanstack/react-query';
 
 const Testimonial = () => {
+  const {data:reviews=[]}=useQuery({
+    queryKey:['reviews'],
+    queryFn:async()=>{
+      const {data}
+    }
+  })
   return (
     <main>
       <Heading subHeading={'Hear'}  title={'What our Client and Sellers Says '}></Heading>
@@ -13,7 +20,7 @@ const Testimonial = () => {
       {/* review section  section  */}
         
       <section>
-
+        
       </section>
 
     </main>
