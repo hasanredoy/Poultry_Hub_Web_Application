@@ -7,8 +7,8 @@ const OurSuccess = () => {
       <header>
         <Heading subHeading={"Our Journey"} title={"All of our Achievement"} />
       </header>
-     <div className=" flex w-full  justify-center items-center">
-     <section className=" w-[50%] box-border md:w-[100%] md:ml-14 lg:ml-0 lg:w-[80%] mx-auto px-0 lg:px-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 mt-20 my-10 text-center">
+     <div className=" w-full flex justify-center">
+     <section className=" w-[50%]  md:w-[100%] ml-0  md:ml-14 lg:ml-28 mx-auto px-0 lg:px-5 flex justify-center items-center mt-20 my-10 text-center">
         {/* our users */}
         <div className=" relative h-56 w-56">
              {/* empty */}

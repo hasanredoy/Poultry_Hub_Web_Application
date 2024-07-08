@@ -57,7 +57,7 @@ const BuyProduct = () => {
          </div>
        </div>
       </section>
-    <div className=' text-center mt-10'>
+    <div className=' text-center mt-4'>
     <button className=' mx-auto btn-primary'>Buy Now</button>
 
     </div>
