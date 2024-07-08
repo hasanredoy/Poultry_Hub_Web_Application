@@ -3,6 +3,7 @@ import Banner from "@/Pages/Home/Banner/Banner";
 import BuyProduct from "@/Pages/Home/BuyProduct/BuyProduct";
 import GenerateIdea from "@/Pages/Home/GenerateIdea/GenerateIdea";
 import OurSuccess from "@/Pages/Home/OurSuccess/OurSuccess";
+import Testimonial from "@/Pages/Home/Testimonial/Testimonial";
 import {
   QueryClient,
   QueryClientProvider,
@@ -30,6 +31,9 @@ export default function Main() {
       </div>
       <div>
         <GenerateIdea></GenerateIdea>
+      </div>
+      <div>
+        <Testimonial></Testimonial>
       </div>
     </main>
     </QueryClientProvider>
