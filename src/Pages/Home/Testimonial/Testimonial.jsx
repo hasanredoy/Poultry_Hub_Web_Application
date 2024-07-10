@@ -4,15 +4,17 @@ import testimonial from '../../../../public/testimonial/3149085_463108-PFPNOC-40
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Image from 'next/image';
+import useAxios from '@/hooks/useAxios';
 
-const url = `${import.meta.env.base_url}/api/reviews`
-console.log(url);
+// const url = `${import.meta.env.base_url}/api/reviews`
+// console.log(url);
+const axiosURL = useAxios()
 const Testimonial = () => {
   
   const {data:reviews=[]}=useQuery({
     queryKey:['reviews'],
     queryFn:async()=>{
-      const {data}=axios.get(url)
+      const {data}=axiosURL.get("/api/reviews")
       console.log(data);
       return result;
     }

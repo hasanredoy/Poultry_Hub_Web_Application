@@ -1,9 +1,9 @@
 const { default: axios } = require("axios");
 
 const axiosURL = axios.create({
-  baseURL:process.env.base_url
+  baseURL:process.env.Base_URL
 })
-console.log(process.env.base_url);
+console.log(process.env.Base_URL);
 const useAxios = () => {
   return (
     axiosURL
