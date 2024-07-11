@@ -3,6 +3,17 @@ const nextConfig = {
     env: {
       customKey: 'my-value',
     },
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+           hostname: "**",
+          port: '',
+          pathname: '/**',
+        },
+       
+      ],
+  },
   
 };
 
