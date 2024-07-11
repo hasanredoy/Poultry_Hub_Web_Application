@@ -1,7 +1,5 @@
-import { Rtt } from '@mui/icons-material';
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-
 
 let db
 export const connectDB = async()=>{

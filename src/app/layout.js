@@ -1,6 +1,6 @@
 import { Manrope, Roboto, Roboto_Condensed} from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
+require('dotenv').config()
 
 const manrope = Roboto_Condensed({ subsets: ["latin"] });
 

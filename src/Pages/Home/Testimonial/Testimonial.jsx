@@ -4,22 +4,13 @@ import testimonial from '../../../../public/testimonial/3149085_463108-PFPNOC-40
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Image from 'next/image';
-import useAxios from '@/hooks/useAxios';
+import useFetchData from '@/hooks/useFetchData';
 
-// const url = `${import.meta.env.base_url}/api/reviews`
-// console.log(url);
-const axiosURL = useAxios()
+
 const Testimonial = () => {
-  
-  const {data:reviews=[]}=useQuery({
-    queryKey:['reviews'],
-    queryFn:async()=>{
-      const res= await axiosURL.get("/api/reviews")
-      console.log(res.data);
-      return res.data.result;
-    }
-  })
-  console.log({reviews});
+
+  const [data] = useFetchData('/api/reviews')
+  console.log(data);
   return (
     <main>
       <Heading subHeading={'Hear'}  title={'What our Client and Sellers Says '}></Heading>

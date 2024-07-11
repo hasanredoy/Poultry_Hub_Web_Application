@@ -1,11 +1,10 @@
-import axios from "axios"
-const axiosURL = axios.create({
-  baseURL:"http://localhost:3000"
+import axios from "axios";
+
+const axiosHook = axios.create({
+  baseURL: process.env.Base_Url
 })
 const useAxios = () => {
-  return (
-    axiosURL
-  );
+  return axiosHook;
 };
 
 export default useAxios;
