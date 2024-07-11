@@ -1,8 +1,7 @@
 import axios from "axios"
 const axiosURL = axios.create({
-  baseURL:process.env.Base_URL
+  baseURL:"http://localhost:3000"
 })
-console.log(process.env.Base_URL);
 const useAxios = () => {
   return (
     axiosURL

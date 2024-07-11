@@ -14,9 +14,9 @@ const Testimonial = () => {
   const {data:reviews=[]}=useQuery({
     queryKey:['reviews'],
     queryFn:async()=>{
-      const {data}=axios.get("http://localhost:3000/api/reviews")
-      console.log(data);
-      return result;
+      const res= await axiosURL.get("/api/reviews")
+      console.log(res.data);
+      return res.data.result;
     }
   })
   console.log({reviews});
