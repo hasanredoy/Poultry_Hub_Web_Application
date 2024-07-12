@@ -26,6 +26,7 @@ const OurPartners = () => {
         title={"Here all of our loved Partners"}
       ></Heading>
       <section className="mt-10 h-[320px] bg-base-100 ">
+        
       <Swiper
           slidesPerView={3}
           spaceBetween={30}
