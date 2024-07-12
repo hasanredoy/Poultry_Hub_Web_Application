@@ -4,6 +4,7 @@ import BecomeSeller from "@/Pages/Home/BecomeSeller/BecomeSeller";
 import BuyProduct from "@/Pages/Home/BuyProduct/BuyProduct";
 import FaQ from "@/Pages/Home/FaQ/FaQ";
 import GenerateIdea from "@/Pages/Home/GenerateIdea/GenerateIdea";
+import OurPartners from "@/Pages/Home/OurPartners/OurPartners";
 import OurSuccess from "@/Pages/Home/OurSuccess/OurSuccess";
 import Testimonial from "@/Pages/Home/Testimonial/Testimonial";
 import {
@@ -39,6 +40,9 @@ export default function Main() {
       </section>
       <section>
         <BecomeSeller></BecomeSeller>
+      </section>
+      <section>
+        <OurPartners></OurPartners>
       </section>
       <section>
         <FaQ></FaQ>

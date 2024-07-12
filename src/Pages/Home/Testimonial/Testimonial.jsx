@@ -27,14 +27,14 @@ const Testimonial = () => {
         
       <section className=' w-[60%] h-[335px] shadow-lg shadow-gray-400'>
       <Carousel className=' ' showArrows={true} infiniteLoop={true} showThumbs={false} autoPlay >
-        {reviews.map(review=><div key={review._id} className="max-w-2xl h-[335px] text-black rounded-md   p-8 sm:flex sm:space-x-6">
+        {reviews.map(review=><div key={review._id} className="max-w-2xl h-[335px]rounded-md   p-8 sm:flex sm:space-x-6">
 	<div className="flex-shrink-0 rounded-full w-14  h-14 ">
 		<Image src={review.image} alt="user" height={50} width={50} className="object-cover object-center w-14 h-14  rounded-full " />
 	</div>
 	<div className="flex flex-col space-y-4">
 		<section className=' flex justify-between'>
     <div className=' flex flex-col gap-2 text-start '>
-			<h2 className="text-2xl font-semibold">{review.name}</h2>
+			<h2 className="text-2xl font-semibold">{review?.username}</h2>
 			<span className="text-base text-green-600  ">{moment(review?.postedTime).startOf('day').fromNow()}</span>
 		</div>
     <h2 className=' text-2xl gap-2 font-bold flex '>{review.rating}<FaStar className=' text-xl font-bold text-yellow-400 mt-1'></FaStar></h2>
@@ -44,13 +44,11 @@ const Testimonial = () => {
 			<p className=' flex gap-2'><FaQuoteLeft className=' text-2xl '></FaQuoteLeft>{review?.description}<FaQuoteRight className=' text-2xl '></FaQuoteRight></p>
 		</div>
     <div className="divider"></div>
-    <div className='  flex justify-start'>
-    <button type="button" className="relative px-4 py-1 overflow-hidden font-semibold rounded-full bg-orange-200 ">#Customer Satisfied
+    <div className='  flex gap-5'>
+    
+        {review?.tags?.map(tag=> <button key={tag} type="button" className="relative px-4 py-1 overflow-hidden font-semibold rounded-full bg-yellow-400 text-black ">#{tag}
 	
-</button>
-  <button type="button" className="relative rounded-full px-4 py-1 ml-4 overflow-hidden font-semibold  bg-orange-200 text-gray-900">#Best Product Quality
-
-</button>
+</button>)}
     </div>
 	</div>
 </div>)}
