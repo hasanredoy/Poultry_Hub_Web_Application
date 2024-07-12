@@ -11,11 +11,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-
-import "./styles.css";
+import './ourPartner.css'
 
 // import required modules
-import { FreeMode, Pagination } from "swiper/modules";
+import { Autoplay, FreeMode, Pagination } from "swiper/modules";
 
 const OurPartners = () => {
   const partners = useGetData("/api/partners");
@@ -26,22 +25,27 @@ const OurPartners = () => {
         subHeading={"Our Partners"}
         title={"Here all of our loved Partners"}
       ></Heading>
-      <section className=" grid grid-cols-2 gap-5 lg:grid-cols-3 mt-10 ">
+      <section className="mt-10 h-[320px] bg-base-100 ">
       <Swiper
           slidesPerView={3}
           spaceBetween={30}
+          autoplay={{
+            delay: 2500,
+            pauseOnMouseEnter:true
+          }}
           freeMode={true}
+          loop={true}
           pagination={{
             clickable: true,
           }}
-          modules={[FreeMode, Pagination]}
+          modules={[FreeMode, Pagination,Autoplay]}
           className="mySwiper"
         >
         {partners[0]?.map((partner) => (
             <SwiperSlide>
                <div
             key={partner?._id}
-            className="flex relative flex-col p-3 bg-base-300 shadow rounded-lg "
+            className="flex relative flex-col p-3 bg-base-300 shadow rounded-lg max-h-[300px] min-h-[300px] text-start "
           >
             <div className=" px-5 mb-5">
               <Image
@@ -49,18 +53,19 @@ const OurPartners = () => {
                 width={200}
                 height={200}
                 alt="partner image"
-                className=" rounded-lg bg-white w-full h-28 max-h-28 min-h-28 "
+                className=" rounded-lg bg-white w-full h-28 max-h-28 min-h-28 p-6 "
               />
             </div>
             <div>
               <h2 className="text-xl font-semibold">{partner?.name}</h2>
-              <h6>{partner?.description}</h6>
+              <h6 className=" text-base">{partner?.description}</h6>
             </div>
             <div className=" flex justify-end bottom-1 absolute right-1  ">
               <Link
                 title="Visit"
                 className=" hover:cursor-pointer hover:bg-slate-100 p-2 rounded-full"
                 href={partner?.website}
+                target="_blank"
               >
                 <FaLocationArrow className=" text-yellow-500 text-2xl"></FaLocationArrow>
               </Link>
