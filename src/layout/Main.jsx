@@ -1,5 +1,6 @@
 'use client'
 import Banner from "@/Pages/Home/Banner/Banner";
+import BecomeSeller from "@/Pages/Home/BecomeSeller/BecomeSeller";
 import BuyProduct from "@/Pages/Home/BuyProduct/BuyProduct";
 import GenerateIdea from "@/Pages/Home/GenerateIdea/GenerateIdea";
 import OurSuccess from "@/Pages/Home/OurSuccess/OurSuccess";
@@ -20,21 +21,24 @@ export default function Main() {
     
     <main className="">
       {/* banner  */}
-      <div className=" w-full mb-20 ">
+      <section className=" w-full mb-20 ">
         <Banner></Banner>
-      </div>
-      <div className="">
+      </section>
+      <section className="">
         <BuyProduct></BuyProduct>
-      </div>
-      <div className="">
+      </section>
+      <section className="">
         <OurSuccess></OurSuccess>
-      </div>
-      <div>
+      </section>
+      <section>
         <GenerateIdea></GenerateIdea>
-      </div>
-      <div>
+      </section>
+      <section>
         <Testimonial></Testimonial>
-      </div>
+      </section>
+      <section>
+        <BecomeSeller></BecomeSeller>
+      </section>
     </main>
     </QueryClientProvider>
   );
