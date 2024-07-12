@@ -2,6 +2,7 @@
 import Banner from "@/Pages/Home/Banner/Banner";
 import BecomeSeller from "@/Pages/Home/BecomeSeller/BecomeSeller";
 import BuyProduct from "@/Pages/Home/BuyProduct/BuyProduct";
+import FaQ from "@/Pages/Home/FaQ/FaQ";
 import GenerateIdea from "@/Pages/Home/GenerateIdea/GenerateIdea";
 import OurSuccess from "@/Pages/Home/OurSuccess/OurSuccess";
 import Testimonial from "@/Pages/Home/Testimonial/Testimonial";
@@ -38,6 +39,9 @@ export default function Main() {
       </section>
       <section>
         <BecomeSeller></BecomeSeller>
+      </section>
+      <section>
+        <FaQ></FaQ>
       </section>
     </main>
     </QueryClientProvider>
