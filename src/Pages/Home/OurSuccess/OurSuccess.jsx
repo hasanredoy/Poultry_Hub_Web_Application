@@ -3,7 +3,7 @@ import React from "react";
 
 const OurSuccess = () => {
   return (
-    <main className="my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
+    <main className="my-20 mt-28 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
       <header>
         <Heading subHeading={"Our Journey"} title={"All of our Achievement"} />
       </header>

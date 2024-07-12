@@ -23,10 +23,10 @@ export default function Main() {
       <div className=" w-full mb-20 ">
         <Banner></Banner>
       </div>
-      <div className=" w-full ">
+      <div className="">
         <BuyProduct></BuyProduct>
       </div>
-      <div>
+      <div className="">
         <OurSuccess></OurSuccess>
       </div>
       <div>

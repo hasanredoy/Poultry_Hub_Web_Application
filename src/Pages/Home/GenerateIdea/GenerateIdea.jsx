@@ -8,10 +8,10 @@ const GenerateIdea = () => {
       <Heading subHeading={'Get a Idea'} title={"Build a Smart farm With Us"}></Heading>
       <section className=" flex flex-col lg:flex-row gap-20 mt-10 mb-24">
         {/* image div  */}
-        <div className=" relative flex-1 border-b-4 border-r-4 border-gray-400 overflow-hidden shadow-lg shadow-neutral-900 grid grid-cols-2">
+        <div className=" relative flex-1  overflow-hidden  grid grid-cols-2">
            <Image className=" w-[310px]   hidden lg:block " src={AI} height={500} width={600}  alt="AI"></Image>
-           <div className=" bg-yellow-50 w-[310px]   hidden lg:block "></div>
-           <div className=" bg-yellow-50 w-[300px]   hidden lg:block "></div>
+           <div className=" w-[310px]   hidden lg:block "></div>
+           <div className=" w-[300px]   hidden lg:block "></div>
            <Image className=" w-full bg-slate-200   " src={farm} height={400} width={400} alt="Farm"></Image>
         </div>
         {/* text div */}

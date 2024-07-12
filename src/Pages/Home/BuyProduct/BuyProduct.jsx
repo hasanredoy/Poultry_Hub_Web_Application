@@ -17,7 +17,8 @@ const BuyProduct = () => {
 
 // console.log(theme);
   return (
-    <section className={` my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto `}>
+ <main className='bg-green-100  '>
+     <section className={` my-20 py-3 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto `}>
       <Heading subHeading={'Welcome To Our Farm'} title={"Buy Fresh Organic Chicken , Eggs and Natural Feed"}></Heading>
       <section className=' flex gap-8 md:gap-4 lg:gap-10 flex-col md:flex-row mt-10 '>
         {/* img div  */}
@@ -26,16 +27,16 @@ const BuyProduct = () => {
            <div>
             
            <Image
-            src={farmer} className=' w-full  lg:bg-white h-full lg:h-[210px]' width={500} height={600} alt=' farmer banner'></Image>
+            src={farmer} className=' w-full  lg:bg-white h-full lg:h-[222px]' width={500} height={600} alt=' farmer banner'></Image>
            </div>
            <Image
-            src={farmer2} className=' w-full  hidden lg:block  bg-white h-[210px]' width={500} height={500} alt=' farmer banner2'></Image>
+            src={farmer2} className=' w-full  hidden lg:block  bg-white h-[222px]' width={500} height={500} alt=' farmer banner2'></Image>
            <Image
-            src={organic} className='absolute lg:w-[100px] lg:h-[100px] w-[50px] h-[50px] top-0 lg:top-[38%] right-4 left-auto lg:right-auto lg:left-[43%]' width={200} height={200} alt=' farmer banner2'></Image>
+            src={organic} className='absolute lg:w-[100px] lg:h-[100px] w-[50px] h-[50px] top-0 lg:top-[38%] right-4 left-auto lg:right-auto lg:left-[41%]' width={200} height={200} alt=' farmer banner2'></Image>
            <Image
-            src={farmer3} className=' w-full hidden lg:block  bg-white h-[210px]' width={500} height={500} alt=' farmer banner3'></Image>
+            src={farmer3} className=' w-full hidden lg:block  bg-white h-[222px]' width={500} height={500} alt=' farmer banner3'></Image>
            <Image
-            src={feed} className=' w-full  hidden lg:block  bg-white h-[210px]' width={500} height={100} alt=' feed'></Image>
+            src={feed} className=' w-full  hidden lg:block  bg-white h-[222px]' width={500} height={100} alt=' feed'></Image>
         </div>
        </div>
         {/* text div  */}
@@ -43,26 +44,27 @@ const BuyProduct = () => {
        className='flex-1 text-neutral-800'
        >
          
-         <div className=' border-l-8 border-yellow-600 bg-yellow-100 shadow-lg p-5 rounded-lg'>
+         <div className=' border-l-8 border-yellow-400 shadow-lg p-5 rounded-lg'>
           <h3 className=' subtitle'> 100 % organic eggs and chicken </h3>
           <p>All of our chickens and eggs are came from neutral poultry farm. You can trust our sellers  100 % because we ensure the neutrality of our seller before we make theme seller.   </p>
          </div>
-         <div className=' border-l-8 bg-yellow-200 border-yellow-600 shadow-lg p-5 rounded-lg mt-4'>
+         <div className=' border-l-8  border-yellow-400 shadow-lg p-5 rounded-lg mt-4'>
           <h3 className=' subtitle'>Chicken feed from nature base factory  </h3>
           <p> You can buy chicken feed from our store those feeds are came from nature base factory. We bet our feeds are best.   </p>
          </div>
-         <div className=' hidden lg:block border-l-8 bg-yellow-300  border-yellow-600 shadow-lg p-5 rounded-lg mt-4'>
+         <div className=' hidden lg:block border-l-8 bg- border-yellow-400 shadow-lg p-5 rounded-lg mt-4'>
           <h3 className=' subtitle'>Best in quality </h3>
           <p>We ensure quality and quantity of our product. All of our farmer have pass a complex test before listing any product in our store.  </p>
          </div>
        </div>
       </section>
-    <div className=' text-center mt-4'>
+    <div className=' text-center mt-8'>
     <button className=' mx-auto btn-primary'>Buy Now</button>
 
     </div>
     </section>
 
+ </main>
   );
 };
 

@@ -21,7 +21,7 @@ const Testimonial = () => {
       <section className=' flex flex-col lg:flex-row mt-10 '>
         {/* image section  */}
       <section className=' w-[40%] flex-1'> 
-      <Image className=" w-[400px] h-[335px] rounded-md " src={testimonial} height={400} width={400} alt="testimonial"></Image>
+      <Image className=" w-[420px] h-[335px] rounded-md " src={testimonial} height={400} width={400} alt="testimonial"></Image>
       </section>
       {/* review section  section  */}
         
