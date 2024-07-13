@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 
 
-const Login = () => {
+const Register = () => {
   return (
     <main className="hero  min-h-screen  max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
   <div className="hero-content flex-col lg:flex-row">
@@ -25,14 +25,14 @@ const Login = () => {
           </label>
           <input type="password" placeholder="password" className="input input-bordered" required />
           <label className="label">
-            <a href="#" className="text-base link link-hover">Forgot password?</a>
+            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
           </label>
         </div>
         <div className="form-control mt-6">
           <button className="btn btn-primary">Login</button>
         </div>
       </form>
-      <Link href={'/register'} className=' py-3 flex  justify-center gap-2  text-lg text-center font-medium'>New in Poultry Hub? Please  <span className=' font-bold text-blue-700'>Register</span>.</Link>
+      <Link href={'/login'} className=' py-3 flex  justify-center gap-2  text-lg text-center font-medium'>Already Poultry Hub member? Please  <span className=' font-bold text-blue-700'>Login</span>.</Link>
     </div>
   </div>
 
@@ -40,4 +40,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

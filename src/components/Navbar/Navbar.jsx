@@ -20,7 +20,7 @@ import { GrContact } from "react-icons/gr";
 
 const Navbar = () => {
 
-const user = false
+const user = true
   // get path name
   const pathName = usePathname();
   console.log(pathName);
@@ -154,11 +154,19 @@ const toggleTheme = ()=>{
         <button className="" onClick={toggleTheme}>{theme=="light"?<IoIosSunny className=" text-4xl font-black text-yellow-400"></IoIosSunny >:<IoIosMoon className=" text-4xl font-black "></IoIosMoon>}</button>
    {
     pathName=='/login'|| <>
-      {user?<div className="avatar online placeholder">
+      {user?
+      <div className="dropdown dropdown-hover">
+      <div tabIndex={0} role="button" className="btn m-1">Hover</div>
+      <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+       <li>hello</li>
+      </ul>
+      <div className="avatar online placeholder">
       <div className="bg-neutral text-neutral-content w-10 lg:w-14 rounded-full">
         <span className="text-sm">AI</span>
       </div>
-    </div>:<Link href={'/login'}>
+    </div>
+    </div>
+    :<Link href={'/login'}>
     <button className=" btn-primary">Login</button>
     </Link>}
     </>
