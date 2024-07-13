@@ -4,7 +4,7 @@ import logo from '../../app/favicon.ico'
 
 const Footer = () => {
   return (
-    <footer className="px-4 divide-y bg-base-300 ">
+    <footer className="px-4  bg-base-300 ">
       <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
         <div className="lg:w-1/3">
      
@@ -23,8 +23,8 @@ const Footer = () => {
        </Link>
     
         </div>
-        <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 lg:grid-cols-4 justify-evenly">
-          <div className="space-y-3 col-span-2">
+        <div className="grid grid-cols-2 text-xs lg:text-sm gap-x-3 gap-y-8 lg:w-2/3 md:grid-cols-4 justify-evenly  items-center">
+          <div className="space-y-3 lg:col-span-2 text-center md:text-start">
             <h3 className="tracking-wide   subtitle">Important Links</h3>
             <ul className="space-y-1">
               <li>
@@ -50,7 +50,7 @@ const Footer = () => {
              
             </ul>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-3  text-center md:text-start">
             <h3 className="tracking-wide   subtitle">About</h3>
             <ul className="space-y-1">
             <li>
@@ -76,9 +76,9 @@ const Footer = () => {
             </ul>
           </div>
           
-          <div className="space-y-3">
+          <div className="space-y-3  text-center md:text-start col-span-2 lg:col-span-1">
             <div className="  subtitle">Social media</div>
-            <div className="flex justify-start space-x-3">
+            <div className="flex justify-center  lg:justify-start space-x-3 ">
                <Link
                 rel="noopener noreferrer"
                 href="#"
@@ -127,8 +127,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <div className="divider divide-gray-400"></div>
       <div className="py-6 text-sm text-center text- -400">
-        © 1968 Company Co. All rights reserved.
+        © 2024 Poultry Hub. All rights reserved.
       </div>
     </footer>
   );
