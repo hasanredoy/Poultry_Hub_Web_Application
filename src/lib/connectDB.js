@@ -20,6 +20,6 @@ const client = new MongoClient(uri, {
   return db
 } catch (error) {
   console.log(error);
-//  return []
+ return []
 }
 }

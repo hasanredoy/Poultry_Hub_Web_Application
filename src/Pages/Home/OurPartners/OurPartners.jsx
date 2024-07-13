@@ -1,9 +1,7 @@
 import Heading from "@/components/custom/Heading/Heading";
-import useGetData from "@/hooks/useGetData";
 import Image from "next/image";
 import Link from "next/link";
 import { FaLocationArrow } from "react-icons/fa";
-import { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -17,7 +15,7 @@ import './ourPartner.css'
 import { Autoplay, FreeMode, Pagination } from "swiper/modules";
 
 const OurPartners = () => {
-  const partners = useGetData("/api/partners");
+  const partners = []
   // console.log(partners[0]);
   return (
     <main className="my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">

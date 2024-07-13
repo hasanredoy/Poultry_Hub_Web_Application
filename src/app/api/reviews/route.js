@@ -2,8 +2,8 @@ import { connectDB } from "@/lib/connectDB"
 import { NextResponse } from "next/server"
 
 export const GET=async()=>{
-  const db = await connectDB()
   try {
+    const db = await connectDB()
     // console.log('hello');
   const reviewsCollections = await db.collection('reviews')
   // console.log({reviewsCollections});

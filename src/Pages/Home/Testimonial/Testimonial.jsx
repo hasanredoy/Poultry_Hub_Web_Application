@@ -12,7 +12,7 @@ import { FaQuoteLeft, FaQuoteRight, FaStar } from 'react-icons/fa';
 
 const Testimonial = () => { 
   // get reviews data 
-  const [reviews] = useGetData('/api/reviews')
+  const reviews =[]
   console.log(reviews);
   return (
     <main className='my-20 max-w-[95%] lg:max-w-[85%] mx-auto' >
