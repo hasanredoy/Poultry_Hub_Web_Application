@@ -7,6 +7,7 @@ import GenerateIdea from "@/Pages/Home/GenerateIdea/GenerateIdea";
 import OurPartners from "@/Pages/Home/OurPartners/OurPartners";
 import OurSuccess from "@/Pages/Home/OurSuccess/OurSuccess";
 import Testimonial from "@/Pages/Home/Testimonial/Testimonial";
+import WhyChooseUs from "@/Pages/Home/WhyChooseUs/WhyChooseUs";
 import {
   QueryClient,
   QueryClientProvider,
@@ -46,6 +47,9 @@ export default function Main() {
       </section>
       <section>
         <FaQ></FaQ>
+      </section>
+      <section>
+        <WhyChooseUs></WhyChooseUs>
       </section>
     </main>
     </QueryClientProvider>

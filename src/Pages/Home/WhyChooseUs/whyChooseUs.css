@@ -1,0 +1,22 @@
+#talkbubble {
+  width: 300px;
+  height: 120px;
+  /* background: rgb(251, 251, 10); */
+  background-image: linear-gradient(to right, rgba(240, 240, 40, 0.662), rgba(231, 231, 1, 0.584) ,rgba(255, 166, 0, 0.71));
+  position: relative;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  rotate: -1deg;
+}
+#talkbubble:before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  bottom: 26px;
+  width: 0;
+  height: 0;
+  border-top: 16px solid transparent;
+  border-right: 26px solid rgb(209, 189, 3);
+  border-bottom: 16px solid transparent;
+}
