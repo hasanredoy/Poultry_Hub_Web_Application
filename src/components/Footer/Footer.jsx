@@ -5,10 +5,10 @@ import logo from '../../app/favicon.ico'
 const Footer = () => {
   return (
     <footer className="px-4  bg-base-300 ">
-      <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
-        <div className="lg:w-1/3">
+      <div className="container flex flex-col justify-between py-5 lg:py-10 mx-auto space-y-8 md:flex-row lg:space-y-0">
+        <div className="lg:w-[26%] flex justify-center lg:justify-start items-center">
      
-          <Link href={"/"} className=" w-44  flex gap-2  bg-yellow-400 text-black py-2  px-3 rounded-tr-3xl rounded-bl-3xl items-center ">
+          <Link href={"/"} className=" w-44 justify-center lg:justify-start items-center  flex gap-2  bg-yellow-400 text-black py-2  px-3 rounded-tr-3xl rounded-bl-3xl">
        
        <h3 className=" text-base lg:text-xl font-black">Poultry </h3>
          <Image
@@ -23,8 +23,8 @@ const Footer = () => {
        </Link>
     
         </div>
-        <div className="grid grid-cols-2 text-xs lg:text-sm gap-x-3 gap-y-8 lg:w-2/3 md:grid-cols-4 justify-evenly  items-center">
-          <div className="space-y-3 lg:col-span-2 text-center md:text-start">
+        <div className="grid grid-cols-2 text-xs lg:text-sm gap-x-3 gap-y-8 lg:w-[70%] md:grid-cols-3 lg:grid-cols-4 justify-evenly md:gap-10 lg:gap-0  ">
+          <div className="space-y-3 col-span-1 lg:col-span-2 text-center md:text-start">
             <h3 className="tracking-wide   subtitle">Important Links</h3>
             <ul className="space-y-1">
               <li>
@@ -50,7 +50,7 @@ const Footer = () => {
              
             </ul>
           </div>
-          <div className="space-y-3  text-center md:text-start">
+          <div className="space-y-3 col-span-1  text-center md:text-start">
             <h3 className="tracking-wide   subtitle">About</h3>
             <ul className="space-y-1">
             <li>
@@ -76,9 +76,9 @@ const Footer = () => {
             </ul>
           </div>
           
-          <div className="space-y-3  text-center md:text-start col-span-2 lg:col-span-1">
+          <div className="space-y-3  text-center md:text-start lg:col-span-1">
             <div className="  subtitle">Social media</div>
-            <div className="flex justify-center  lg:justify-start space-x-3 ">
+            <div className="flex justify-center  md:justify-start space-x-3 ">
                <Link
                 rel="noopener noreferrer"
                 href="#"
@@ -127,8 +127,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="divider divide-gray-400"></div>
-      <div className="py-6 text-sm text-center text- -400">
+      <div className=" w-full h-[1px] bg-gray-400 my-1"></div>
+      <div className="py-4 text-base text-center ">
         © 2024 Poultry Hub. All rights reserved.
       </div>
     </footer>
