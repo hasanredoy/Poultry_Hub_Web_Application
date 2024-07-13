@@ -1,6 +1,7 @@
 import Heading from "@/components/custom/Heading/Heading";
 import useGetData from "@/hooks/useGetData";
 import './whyChooseUs.css'
+import Image from "next/image";
 
 const WhyChooseUs = () => {
   // load why_choose_us data 
@@ -11,9 +12,15 @@ const WhyChooseUs = () => {
       <div>
         <Heading subHeading={"Find Out"} title={'Why Choose Us..'}></Heading>
       </div>
-      <section className=" flex justify-evenly">
-        {aboutUs?.map(about=><div id="talkbubble" className="">
-
+      <section className=" mt-10 flex justify-evenly gap-5">
+        {aboutUs?.map((about,index)=><div  key={about?._id} id={index==1&&'talkbubble'} >
+            <div className={`${index!==2?" bubble":'vubble'} p-4 gap-2 flex-col flex justify-center items-center `}>
+            <Image src={about?.icon} alt="about us " height={50} width={50}></Image>
+             <div className=" text-center text-black">
+              <h3 className=" subtitle">{about?.title}</h3>
+              <h6>{about?.description.slice(0,40)}</h6>
+             </div>
+            </div>
         </div>)}
       </section>
     </main>
