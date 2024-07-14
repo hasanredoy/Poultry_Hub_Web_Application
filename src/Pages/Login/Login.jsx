@@ -12,16 +12,18 @@ const Login = () => {
       <Image src={login_banner} alt='login banner imge' height={700} width={700}/>
     </div>
     <div className="flex-1 card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+    <h3 className=' text-center subtitle pt-3'>Please Login</h3>
+
       <form className="card-body">
         <div className="form-control">
           <label className="label">
-            <span className="subtitle ">Email</span>
+            <span className=" description ">Email</span>
           </label>
           <input type="email" placeholder="email" className="input input-bordered" required />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="subtitle ">Password</span>
+            <span className=" description ">Password</span>
           </label>
           <input type="password" placeholder="password" className="input input-bordered" required />
           <label className="label">
