@@ -54,6 +54,7 @@ color:#fe6702;
    text-align: center;
    padding: 8px 15px;
    border-radius: 10px;
+   border: 1px solid #fe6702;
 }
 /* edit outline button */
 .btn-outline{

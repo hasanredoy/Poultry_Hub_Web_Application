@@ -7,11 +7,11 @@ import Link from 'next/link';
 const Register = () => {
   return (
     <main className="hero  min-h-screen  max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
-  <div className="hero-content flex-col lg:flex-row-reverse">
+  <div className="hero-content flex-col w-full md:flex-row-reverse">
     <div className=" flex-1 lg:text-left w-full min-h-screen h-full">
       <Image src={signUp_banner} className=' h-[400px] w-full lg:h-full' alt='login banner imge' height={700} width={800}/>
     </div>
-    <div className="flex-1 card bg-base-200 w-full max-w-2xl lg:max-w-md  ">
+    <div className="flex-1 card bg-base-200 w-full max-w-2xl lg:max-w-md shrink-0 ">
       <h3 className=' text-center text-base font-bold lg:text-xl pt-3'>Please Register</h3>
       <form className="card-body">
         {/* Name div  */}
@@ -49,7 +49,7 @@ const Register = () => {
         <h6 className=' text-sm'>Accept Our Terms & Conditions </h6>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">SignUp</button>
+          <button className="btn btn-primary">Register</button>
         </div>
       </form>
       <Link href={'/login'} className=' py-3 flex  justify-center gap-2  text-sm lg:text-base text-center font-medium'>Already Poultry Hub member? Please  <span className=' font-bold text-blue-700'>Login.</span></Link>
