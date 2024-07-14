@@ -1,10 +1,14 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import logo from '../../app/favicon.ico'
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  // get path name 
+  const pathName = usePathname()
   return (
-    <footer className="px-4  bg-base-300 ">
+    <footer className={`${pathName=='/login'?'hidden':'flex'} ${pathName=='/register'?'hidden':'flex'}px-4  bg-base-300 `}>
       <div className="container flex flex-col justify-between py-5 lg:py-10 mx-auto space-y-8 md:flex-row lg:space-y-0">
         <div className="lg:w-[26%] flex justify-center lg:justify-start items-center">
      
