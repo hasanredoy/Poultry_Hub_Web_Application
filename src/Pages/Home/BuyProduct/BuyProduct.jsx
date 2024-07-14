@@ -56,12 +56,10 @@ const BuyProduct = () => {
           <h3 className=' subtitle'>Best in quality </h3>
           <p>We ensure quality and quantity of our product. All of our farmer have pass a complex test before listing any product in our store.  </p>
          </div>
+    <button className=' mx-auto mt-8 btn-primary'>Buy  Now</button>
        </div>
       </section>
-    <div className=' text-center mt-8'>
-    <button className=' mx-auto btn-primary'>Buy Now</button>
 
-    </div>
     </section>
 
  </main>

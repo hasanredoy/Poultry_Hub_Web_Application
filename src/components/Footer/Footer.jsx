@@ -12,19 +12,19 @@ const Footer = () => {
       <div className="container flex flex-col justify-between py-5 lg:py-10 mx-auto space-y-8 md:flex-row lg:space-y-0">
         <div className="lg:w-[26%] flex justify-center lg:justify-start items-center">
      
-          <Link href={"/"} className=" w-44 justify-center lg:justify-start items-center  flex gap-2  bg-yellow-400 text-black py-2  px-3 rounded-tr-3xl rounded-bl-3xl">
-       
-       <h3 className=" text-base lg:text-xl font-black">Poultry </h3>
-         <Image
-           src={logo}
-           className=" rounded-lg w-7 h-7  md:w-[40px] md:h-[40px]"
-           alt="logo"
-           width={40}
-           height={40}
-         ></Image>
-       <h3 className=" text-base lg:text-xl font-black">Hub </h3>
-         
-       </Link>
+        <Link href={"/"} className=" flex gap-2  bg-[#fa7b26] text-white py-1  px-2 rounded-full items-center ">
+   
+   <Image
+     src={logo}
+     className=" rounded-lg w-7 h-7  md:w-[30px] md:h-[30px]"
+     alt="logo"
+     width={40}
+     height={40}
+   ></Image>
+ <h3 className=" text-sm lg:text-lg font-black">Poultry </h3>
+ <h3 className=" text-sm lg:text-lg font-black">Hub </h3>
+   
+ </Link>
     
         </div>
         <div className="grid grid-cols-2 text-xs lg:text-sm gap-x-3 gap-y-8 lg:w-[70%] md:grid-cols-3 lg:grid-cols-4 justify-evenly md:gap-10 lg:gap-0  ">

@@ -5,7 +5,7 @@ import Image from "next/image";
 const FaQ = () => {
   return (
     <main className="my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
-      <section className="bg-base-200  my-10 rounded-md ">
+      <section className="  my-10 rounded-md ">
         <div className="container flex flex-col justify-center p-4 mx-auto md:p-8">
           <div>
             <Heading

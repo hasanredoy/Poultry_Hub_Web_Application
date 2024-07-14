@@ -84,6 +84,7 @@ const toggleTheme = ()=>{
 
   return (
   <nav className={` flex justify-between items-center max-w-[95%] overflow-hidden lg:max-w-[85%]  mx-auto py-2 ${theme=="light"?"text-black":"text-white"}  mb-0 ${pathName=='/login'?'hidden':'flex'} ${pathName=='/register'?'hidden':'flex'}`} >
+  {/* nav bar start */}
   <div className="">
     <div>
       <div className=" cursor-pointer ">
@@ -133,6 +134,7 @@ const toggleTheme = ()=>{
       )}
     </div>
   </div>
+  {/* nav center */}
   <div className="relative">
     <Link href={"/"} className=" flex gap-2  bg-[#fa7b26] text-white py-1  px-2 rounded-full items-center ">
    
@@ -148,6 +150,7 @@ const toggleTheme = ()=>{
       
     </Link>
   </div>
+  {/* nav end */}
   <div className=" relative flex justify-center items-center gap-3 lg:gap-5 ">
     {/* theme controller  */}
  

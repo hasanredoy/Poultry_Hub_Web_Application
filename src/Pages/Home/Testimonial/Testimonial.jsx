@@ -46,7 +46,7 @@ const Testimonial = () => {
     <div className="divider"></div>
     <div className='  flex gap-5'>
     
-        {review?.tags?.map(tag=> <button key={tag} type="button" className="relative px-4 py-1 overflow-hidden font-semibold rounded-full bg-yellow-400 text-black ">#{tag}
+        {review?.tags?.map(tag=> <button key={tag} type="button" className="relative px-4 py-1 overflow-hidden font-semibold rounded-full bg-primary    -400 text-black ">#{tag}
 	
 </button>)}
     </div>
