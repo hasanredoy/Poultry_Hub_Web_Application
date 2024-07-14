@@ -56,22 +56,20 @@ const toggleTheme = ()=>{
       name: "Home",
       path: "/",
     },
-    {
-      name: "Build Idea",
-      path: "/build_idea",
-    },
-    {
+     {
       name: "Chickens And Feeds",
       path: "/chicken_and_feeds",
     },
     {
+      name: "Build Idea",
+      path: "/build_idea",
+    },
+   
+    {
       name: "Become Seller",
       path: "/become_seller",
     },
-    {
-      name: "FaQ",
-      path: "/faq",
-    },
+   
     {
       name: "Reviews",
       path: "/reviews",
@@ -103,7 +101,7 @@ const toggleTheme = ()=>{
       {showLinks && (
         <ul
           onMouseLeave={() => setShowLinks(false)}
-          className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-[40px] rounded-l-none rounded-md left-0 flex-col w-60 min-h-screen bg-opacity-80 "
+          className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-[40px] rounded-l-none rounded-md left-0 flex-col w-48 md:w-60 min-h-screen bg-opacity-80 "
         >
           {navLinks.map((link, index) => (
             <Link
@@ -115,18 +113,18 @@ const toggleTheme = ()=>{
               href={link.path}
               key={link.path}
             >
-               <span  className={` flex gap-2 items-center ${
+               <span  className={` flex gap-2  items-center ${
                 pathName === link.path
                   ? "text-[#FFD700] rounded-md bg-slate-800 px-2 font-black md:font-black "
                   : ""
               } `}>
-                {index==0&&<FaHome></FaHome>}
-                {index==1&&<HiLightBulb className="text-2xl"></HiLightBulb>}
-                {index==2&&<FaShoppingCart className=""></FaShoppingCart>}
-                {index==3&&<MdPersonAddAlt1 className=" text-xl"></MdPersonAddAlt1>}
-                {index==4&&<FaQuestionCircle className=" text-xl"></FaQuestionCircle>}
-                {index==5&&<GrContact className=" text-xl"></GrContact>}
-                {index==6&&<MdOutlineContactSupport className=" text-xl"></MdOutlineContactSupport>}
+                {index==0&&<FaHome className="  text-lg lg:text-xl"></FaHome>}
+                {index==2&&<HiLightBulb className=" text-lg lg:text-xl"></HiLightBulb>}
+                {index==1&&<FaShoppingCart className=" text-lg lg:text-xl"></FaShoppingCart>}
+                {index==3&&<MdPersonAddAlt1 className="  text-lg lg:text-xl"></MdPersonAddAlt1>}
+                
+                {index==4&&<GrContact className="  text-lg lg:text-xl"></GrContact>}
+                {index==5&&<MdOutlineContactSupport className="  text-lg lg:text-xl"></MdOutlineContactSupport>}
                 {link.name}</span>   
             </Link>
           ))}
