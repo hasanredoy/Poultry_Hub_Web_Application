@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       <nav className=" bg-base-300 bg-opacity-80 fixed w-full z-50  top-0 shadow">
           <Navbar></Navbar>
         </nav>
-        <div className="mt-[72px]  ">
+        <div className="mt-[54px] lg:mt-[68px]  ">
         {children}
         </div>
         <footer>

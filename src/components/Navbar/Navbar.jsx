@@ -90,7 +90,7 @@ const toggleTheme = ()=>{
         {showLinks ? (
           <RiMenuUnfold2Fill
             onClick={() => setShowLinks(false)}
-            className=" text-lg text-yellow-400 md:text-2xl font-black"
+            className=" text-lg text-[#fe6702]   -400 md:text-2xl font-black"
           ></RiMenuUnfold2Fill>
         ) : (
           <RiMenuUnfoldFill
@@ -133,32 +133,34 @@ const toggleTheme = ()=>{
       )}
     </div>
   </div>
-  <div className="">
-    <Link href={"/"} className=" flex gap-2  bg-yellow-400 text-black py-2  px-3 rounded-tr-3xl rounded-bl-3xl items-center ">
+  <div className="relative">
+    <Link href={"/"} className=" flex gap-2  bg-[#fa7b26] text-white py-1  px-2 rounded-full items-center ">
    
-    <h3 className=" text-base lg:text-xl font-black">Poultry </h3>
       <Image
         src={logo}
-        className=" rounded-lg w-7 h-7  md:w-[40px] md:h-[40px]"
+        className=" rounded-lg w-7 h-7  md:w-[30px] md:h-[30px]"
         alt="logo"
         width={40}
         height={40}
       ></Image>
-    <h3 className=" text-base lg:text-xl font-black">Hub </h3>
+    <h3 className=" text-sm lg:text-lg font-black">Poultry </h3>
+    <h3 className=" text-sm lg:text-lg font-black">Hub </h3>
       
     </Link>
   </div>
   <div className=" relative flex justify-center items-center gap-3 lg:gap-5 ">
     {/* theme controller  */}
  
-    <button title="Change Theme" className="" onClick={toggleTheme}>{theme=="light"?<IoIosSunny className=" text-4xl font-black text-gray-800"></IoIosSunny >:<IoIosMoon className=" text-4xl font-black "></IoIosMoon>}</button>
+    <button title="Change Theme" className="" onClick={toggleTheme}>{theme=="light"?<IoIosSunny className=" text-xl lg:text-4xl font-black text-gray-800"></IoIosSunny >:<IoIosMoon className=" text-xl lg:text-4xl font-black "></IoIosMoon>}</button>
 {
 pathName=='/login'&&pathName=='/register'|| <>
   {user?
   <div className="dropdown dropdown-hover">
   <div role="button" className="avatar online placeholder">
   <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[50] w-52 p-2 shadow">
-   <Link></Link>
+   <Link href={'/'}>
+   
+   </Link>
   </ul>
   <div className="bg-neutral text-neutral-content w-10 lg:w-14 rounded-full">
     <span className="text-sm">AI</span>
@@ -171,7 +173,7 @@ pathName=='/login'&&pathName=='/register'|| <>
 </Link>
 <div className=" hidden lg:block border h-full border-gray-400 w-1 min-h-14 mx-2"> </div>
   <Link href={'/register'}>
-<button className="  hidden lg:block border text-yellow-500 hover:bg-yellow-400  border-yellow-400 hover:text-black rounded-md px-4 py-[5px] ">Register</button>
+<button className="  hidden lg:block btn-outline">Register</button>
 </Link>
   </div>}
 </>

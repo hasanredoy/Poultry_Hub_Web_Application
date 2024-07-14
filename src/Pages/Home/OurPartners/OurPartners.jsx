@@ -66,7 +66,7 @@ const OurPartners = () => {
                 href={partner?.website}
                 target="_blank"
               >
-                <FaLocationArrow className=" text-yellow-500 text-2xl"></FaLocationArrow>
+                <FaLocationArrow className=" text-[#fe6702]   -500 text-2xl"></FaLocationArrow>
               </Link>
             </div>
           </div></SwiperSlide>

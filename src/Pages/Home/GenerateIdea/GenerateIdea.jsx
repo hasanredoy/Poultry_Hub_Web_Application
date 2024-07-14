@@ -16,7 +16,7 @@ const GenerateIdea = () => {
         </div>
         {/* text div */}
         <div className=" flex-1">
-            <h1 className=" subtitle mb-5"><span className=" text-yellow-400">20+</span> Successful Idea Generated so far </h1>
+            <h1 className=" subtitle mb-5"><span className=" text-[#fe6702]   -400">20+</span> Successful Idea Generated so far </h1>
             <p>We are working along with you to manage your farm in a smarter way then anyone thought before. </p>
             <p>With a great journey with farmers we explore and learned what is the best idea for your farm. If you starting a company you can generate idea from us for free. </p>
             <p>Why your waiting for let's start building a smart farm?</p>

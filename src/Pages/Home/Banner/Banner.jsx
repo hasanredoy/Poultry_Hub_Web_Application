@@ -71,9 +71,9 @@ const Banner = () => {
                   "url(https://i.postimg.cc/FHj221q0/highquality-chicken-farm-committed-superior-poultry-products.jpg)",
               }}
             >
-              <div className="hero-overlay bg-yellow-600 bg-opacity-30"></div>
+              <div className="hero-overlay bg-green-600 bg-opacity-40"></div>
               <div className="hero-content   text-center">
-                <div className="max-w-[90%] py-3 rounded-md lg:max-w-xl bg-black bg-opacity-20">
+                <div className="max-w-[90%] py-3 rounded-md lg:max-w-xl bg-black bg-opacity-30">
                   <h1 className="mb-5 title font-black">
                     <span className="text-primary">Smart Farm</span> Management{" "}
                     {/* <div className=" lg:mt-2 "></div> */}
@@ -98,10 +98,10 @@ const Banner = () => {
                   "url(https://i.postimg.cc/Y2T27GXP/pexels-italo-melo-248867-2446695.jpg)",
               }}
             >
-              <div className="hero-overlay bg-opacity-30 bg-red-900"></div>
+              <div className="hero-overlay bg-opacity-30 bg-green-600"></div>
 
               <div className="hero-content   text-center">
-                <div className="max-w-[90%] py-3 lg:max-w-xl bg-black bg-opacity-20 rounded-md">
+                <div className="max-w-[90%] py-3 lg:max-w-xl bg-black bg-opacity-30 rounded-md">
                   <h1 className="mb-5 title font-black">
                     <span className="text-primary">Profitable </span>
                     Sales for {" "}

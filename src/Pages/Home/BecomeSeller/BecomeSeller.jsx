@@ -14,7 +14,7 @@ const BecomeSeller = () => {
     {/* text section  */}
      <section className=" flex-1">
       <h1 className=" subtitle mb-5">
-       <span className="text-yellow-500">21+</span> Farmers are selling. 
+       <span className="text-[#fe6702]   -500">21+</span> Farmers are selling. 
       </h1>
       <p>Start selling in our shop , every day new products are listed in our shop. </p>
       <p>You can trust us , over 21 farmers trusted us and selling their products in our shop, and they never been scammed because our security of selling and listing product is in next level.</p>

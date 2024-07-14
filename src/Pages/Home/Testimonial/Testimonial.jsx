@@ -37,7 +37,7 @@ const Testimonial = () => {
 			<h2 className="text-2xl font-semibold">{review?.username}</h2>
 			<span className="text-base text-green-600  ">{moment(review?.postedTime).startOf('day').fromNow()}</span>
 		</div>
-    <h2 className=' text-2xl gap-2 font-bold flex '>{review.rating}<FaStar className=' text-xl font-bold text-yellow-400 mt-1'></FaStar></h2>
+    <h2 className=' text-2xl gap-2 font-bold flex '>{review.rating}<FaStar className=' text-xl font-bold text-[#fe6702]   -400 mt-1'></FaStar></h2>
     </section>
     <div className="divider"></div>
 		<div className="space-y-1">

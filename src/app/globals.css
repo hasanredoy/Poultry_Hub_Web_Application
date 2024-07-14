@@ -15,7 +15,7 @@
 
 /* edit primary background */
 .bg-primary{
-  background-color: #FFD700
+  background-color: #fe6702
   ;
 }
 /* edit secondary background */
@@ -25,19 +25,19 @@
 
 /* edit primary text  */
 .text-primary{
-color:#FFD700;
+color:#fe6702;
 }
 .text-nav{
 color:#050505;
 }
 .text-nav:hover{
-color:#FFD700;
+color:#fe6702;
 }
 /* edit primary button */
 .btn-primary{
-  background-color: #FFD700;
-  color: black;
-  font-weight: 900;
+  background-color: #fe6702;
+  color: rgb(255, 251, 251);
+  font-weight: 800;
   border: 0;
   font-size: 14px;
   padding: 8px 15px;
@@ -47,40 +47,37 @@ color:#FFD700;
 }
 /* edit hover of primary button */
 .btn-primary:hover{
-  background-color: #0a0a0a;
-  color:  #f6f6f5;
-  font-weight: 900;
+  background-color: #fdf0f0;
+  color:  #fe6702;
+  font-weight: 800;
   transition: all 0.2s;
    text-align: center;
    padding: 8px 15px;
    border-radius: 10px;
 }
-
-@media (min-width:300px) and (max-width:700px) {
-  /* edit primary button */
-.btn-primary{
-  background-color: #FFD700;
-  color: black;
-  font-weight: 700;
-  border: 0;
-  font-size: 12px;
-  padding: 7px 12px;
+/* edit outline button */
+.btn-outline{
+    border: 1px solid #fe6702;
+  color: #fe6702;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 8px 15px;
   border-radius: 10px;
 
-  
+
 }
-/* edit hover of primary button */
-.btn-primary:hover{
-  background-color: #0a0a0a;
-  color:  #f8f7f4;
-  font-weight: 900;
-  padding: 7px 12px;
+/* edit hover of outline button */
+.btn-outline:hover{
+  background-color: #fe6702;
+  color:  #fefefe;
+  font-weight: 800;
   transition: all 0.2s;
+  border: 1px solid #fe6702;
+
    text-align: center;
+   padding: 8px 15px;
+   border-radius: 10px;
 }
-}
-
-
 
 /* customize title  */
 .title{
@@ -89,16 +86,19 @@ color:#FFD700;
 }
 /* customize subtitle  */
 .subtitle{
-  font-size: 23px;
+  font-size: 21px;
   font-weight: 700;
 }
 p{
-  font-size: 18px;
-}
-.roundDiv{
-  border-radius: 35% 130px  35% 140px;
+  font-size: 16px;
 }
 
+
+/* customize paragraph  */
+.description{
+  font-size: 17px;
+  font-weight: 400;
+}
 @media (min-width:320px) and (max-width:770px){
   .title{
     font-size: 22px;
@@ -111,20 +111,57 @@ p{
   p{
     font-size: 14px;
   }
-  
-}
-/* customize paragraph  */
-.description{
-  font-size: 17px;
-  font-weight: 400;
-}
-
-@media (min-width:320px) and (max-width:770px){
   .description{
     font-size: 13px;
     font-weight: 300;
   }
   
+    /* edit primary button */
+.btn-primary{
+  background-color: #fe6702;
+  color: rgb(252, 251, 251);
+  font-weight: 700;
+  border: 0;
+  font-size: 12px;
+  padding: 7px 12px;
+  border-radius: 10px;
+
+  
 }
+/* edit hover of primary button */
+.btn-primary:hover{
+  background-color: #fdfcfc;
+  color:  #fe6702;
+  font-weight: 700;
+  padding: 7px 12px;
+  transition: all 0.2s;
+   text-align: center;
+}
+.btn-outline{
+    border: 1px solid #fe6702;
+  color: #fe6702;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 7px 12px;
+  border-radius: 10px;
+
+
+}
+/* edit hover of outline button */
+.btn-outline:hover{
+  background-color: #fe6702;
+  color:  #fefefe;
+  font-weight: 700;
+  transition: all 0.2s;
+  border: 1px solid #fe6702;
+
+   text-align: center;
+   padding: 7px 12px;
+   border-radius: 10px;
+}
+}
+
+
+
 
 
