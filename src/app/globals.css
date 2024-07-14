@@ -40,6 +40,7 @@ color:#fe6702;
   font-weight: 800;
   border: 0;
   font-size: 14px;
+  border: 1px solid #fe6702;
   padding: 8px 15px;
   border-radius: 10px;
 
@@ -47,7 +48,7 @@ color:#fe6702;
 }
 /* edit hover of primary button */
 .btn-primary:hover{
-  background-color: #fdf0f0;
+  background-color: #ffff;
   color:  #fe6702;
   font-weight: 800;
   transition: all 0.2s;
@@ -70,7 +71,7 @@ color:#fe6702;
 /* edit hover of outline button */
 .btn-outline:hover{
   background-color: #fe6702;
-  color:  #fefefe;
+  color: white;
   font-weight: 800;
   transition: all 0.2s;
   border: 1px solid #fe6702;
@@ -131,7 +132,7 @@ p{
 }
 /* edit hover of primary button */
 .btn-primary:hover{
-  background-color: #fdfcfc;
+  background-color: white;
   color:  #fe6702;
   font-weight: 700;
   padding: 7px 12px;
@@ -151,7 +152,7 @@ p{
 /* edit hover of outline button */
 .btn-outline:hover{
   background-color: #fe6702;
-  color:  #fefefe;
+  color: white;
   font-weight: 700;
   transition: all 0.2s;
   border: 1px solid #fe6702;

@@ -48,7 +48,7 @@ const Banner = () => {
               <div className="hero-overlay bg-green-800 bg-opacity-50"></div>
 
               <div className="hero-content   text-center">
-                <div className="max-w-[90%] py-3 lg:max-w-xl rounded-md bg-black bg-opacity-20">
+                <div className="max-w-[100%] md:max-w-[80%] p-5 lg:max-w-xl rounded-md bg-black bg-opacity-20">
                   <h1 className="mb-5 title font-black">
                     Get <span className="text-primary">Fresh </span>
                     Chickens & Feed
@@ -73,7 +73,7 @@ const Banner = () => {
             >
               <div className="hero-overlay bg-green-600 bg-opacity-40"></div>
               <div className="hero-content   text-center">
-                <div className="max-w-[90%] py-3 rounded-md lg:max-w-xl bg-black bg-opacity-30">
+                <div className="max-w-[100%] md:max-w-[80%] p-5 rounded-md lg:max-w-xl bg-black bg-opacity-30">
                   <h1 className="mb-5 title font-black">
                     <span className="text-primary">Smart Farm</span> Management{" "}
                     {/* <div className=" lg:mt-2 "></div> */}
@@ -101,7 +101,7 @@ const Banner = () => {
               <div className="hero-overlay bg-opacity-30 bg-green-600"></div>
 
               <div className="hero-content   text-center">
-                <div className="max-w-[90%] py-3 lg:max-w-xl bg-black bg-opacity-30 rounded-md">
+                <div className="max-w-[100%] md:max-w-[80%] p-5 lg:max-w-xl bg-black bg-opacity-30 rounded-md">
                   <h1 className="mb-5 title font-black">
                     <span className="text-primary">Profitable </span>
                     Sales for {" "}

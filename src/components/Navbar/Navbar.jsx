@@ -9,9 +9,9 @@ import { RiMenuUnfold2Fill } from "react-icons/ri";
 import { RiMenuUnfoldFill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
-import { FaHome, FaQuestionCircle, FaShoppingCart } from "react-icons/fa";
+import { FaHome, FaQuestionCircle, FaShoppingCart, FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { HiLightBulb } from "react-icons/hi";
-import { MdOutlineContactPage, MdOutlineContactSupport, MdOutlineReviews, MdPersonAddAlt1 } from "react-icons/md";
+import { MdDashboard, MdOutlineContactPage, MdOutlineContactSupport, MdOutlineReviews, MdPersonAddAlt1 } from "react-icons/md";
 import { GrContact } from "react-icons/gr";
 
 
@@ -20,7 +20,7 @@ import { GrContact } from "react-icons/gr";
 
 const Navbar = () => {
 
-const user = false
+const user = true
   // get path name
   const pathName = usePathname();
   console.log(pathName);
@@ -83,7 +83,7 @@ const toggleTheme = ()=>{
   ];
 
   return (
-  <nav className={` flex justify-between items-center max-w-[95%] overflow-hidden lg:max-w-[85%]  mx-auto py-2 ${theme=="light"?"text-black":"text-white"}  mb-0 ${pathName=='/login'?'hidden':'flex'} ${pathName=='/register'?'hidden':'flex'}`} >
+  <nav className={` flex justify-between items-center max-w-[95%]  lg:max-w-[85%]  mx-auto py-2 ${theme=="light"?"text-black":"text-white"}  mb-0 ${pathName=='/login'?'hidden':'flex'} ${pathName=='/register'?'hidden':'flex'}`} >
   {/* nav bar start */}
   <div className="">
     <div>
@@ -103,7 +103,7 @@ const toggleTheme = ()=>{
       {showLinks && (
         <ul
           onMouseLeave={() => setShowLinks(false)}
-          className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-[61px] rounded-l-none rounded-md left-0 flex-col w-60 min-h-screen bg-opacity-80 "
+          className="bg-base-300 flex gap-3 md:gap-6  z-[30] absolute mt-3 p-5  shadow-lg top-[40px] rounded-l-none rounded-md left-0 flex-col w-60 min-h-screen bg-opacity-80 "
         >
           {navLinks.map((link, index) => (
             <Link
@@ -154,34 +154,34 @@ const toggleTheme = ()=>{
   <div className=" relative flex justify-center items-center gap-3 lg:gap-5 ">
     {/* theme controller  */}
  
-    <button title="Change Theme" className="" onClick={toggleTheme}>{theme=="light"?<IoIosSunny className=" text-xl lg:text-4xl font-black text-gray-800"></IoIosSunny >:<IoIosMoon className=" text-xl lg:text-4xl font-black "></IoIosMoon>}</button>
-{
-pathName=='/login'&&pathName=='/register'|| <>
-  {user?
-  <div className="dropdown dropdown-hover">
+    <button title="Change Theme" className="" onClick={toggleTheme}>{theme=="light"?<IoIosSunny className=" text-xl lg:text-2xl font-black text-gray-800"></IoIosSunny >:<IoIosMoon className=" text-xl lg:text-2xl font-black "></IoIosMoon>}</button>
+{user?
+  <div className="dropdown dropdown-hover relative">
   <div role="button" className="avatar online placeholder">
-  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[50] w-52 p-2 shadow">
-   <Link href={'/'}>
-   
-   </Link>
-  </ul>
-  <div className="bg-neutral text-neutral-content w-10 lg:w-14 rounded-full">
+
+  <div className="bg-neutral text-neutral-content w-10 rounded-full">
     <span className="text-sm">AI</span>
   </div>
+  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded z-[40] w-40 flex items-center -left-28 top-[42px] absolute p-2 shadow flex-col gap-2">
+ 
+   <Link href={'/'}>
+      <button className=" btn-primary flex items-center gap-2"><MdDashboard></MdDashboard> Dashboard </button>
+   </Link>
+   <Link href={'/'}>
+      <button className=" btn-primary w-28 flex items-center gap-2"><FaSignOutAlt></FaSignOutAlt> LogOut</button>
+   </Link>
+  </ul>
 </div>
 </div>
 :<div className=" flex gap-2 flex-row-reverse items-center ">
   <Link href={'/login'}>
-<button className=" btn-primary">Login</button>
+<button className=" btn-primary flex items-center gap-2"> <FaSignInAlt></FaSignInAlt> Login</button>
 </Link>
-<div className=" hidden lg:block border h-full border-gray-400 w-1 min-h-14 mx-2"> </div>
+<div className=" hidden lg:block border h-full border-gray-400 w-1 min-h-10 mx-2"> </div>
   <Link href={'/register'}>
-<button className="  hidden lg:block btn-outline">Register</button>
+<button className="  hidden lg:flex btn-outline  items-center gap-2"><FaSignInAlt></FaSignInAlt> Register</button>
 </Link>
   </div>}
-</>
- 
-}
   </div>
 </nav>
   );

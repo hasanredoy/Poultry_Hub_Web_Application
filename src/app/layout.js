@@ -16,10 +16,10 @@ export default function RootLayout({ children }) {
   return (
     <html  lang="en">
       <body className={`${manrope.className}   min-h-screen p-0 m-0`}>
-      <nav className=" bg-base-300 bg-opacity-80 fixed w-full z-50  top-0 shadow">
+      <nav className=" bg-base-300 bg-opacity-80 fixed w-full z-50  top-0 shadow shadow-neutral-500">
           <Navbar></Navbar>
         </nav>
-        <div className="mt-[54px] lg:mt-[68px]  ">
+        <div className="mt-[54px] lg:mt-[54px]  ">
         {children}
         </div>
         <footer>
