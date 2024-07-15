@@ -35,7 +35,7 @@ const ContactUs = () => {
       <div className="divider"></div>
       {/* message section  */}
         
-      <section className=" my-10 ">
+      <section id="contact" className=" my-10 ">
         {/* import custom heading  */}
         <Heading
           subHeading={"Feel Free "}

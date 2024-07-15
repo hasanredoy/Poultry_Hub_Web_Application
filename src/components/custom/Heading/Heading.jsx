@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 
 const Heading = ({title,subHeading}) => {
