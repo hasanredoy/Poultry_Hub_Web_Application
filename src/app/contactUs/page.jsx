@@ -7,7 +7,7 @@ import { FaBuilding, FaClock, FaLocationArrow } from "react-icons/fa";
 import { MdHome, MdLocationPin, MdMail, MdPhone, MdStreetview } from "react-icons/md";
 const ContactUs = () => {
   return (
-    <main className=" my-28 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
+    <main className=" my-10 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
       {/* banner section  */}
       <section className="hero ">
         <div className="hero-content flex-col lg:flex-row-reverse">
@@ -52,7 +52,7 @@ const ContactUs = () => {
           />
           {/* form div  */}
           <div className="card bg-base-200 w-full max-w-md shrink-0 ">
-            <h3 className="subtitle text-center pt-2">Leave a Message</h3>
+            <h3 className="subtitle text-center pt-2">Send a Message</h3>
             <form className="card-body">
               {/* subject div  */}
               <div className="form-control">
@@ -114,7 +114,7 @@ const ContactUs = () => {
             </p>
             
           </div>
-          <div className="divider divider-vertical md:divider-horizontal">or</div>
+          <div className="divider divider-vertical md:divider-horizontal lg:mx-10">or</div>
           {/*direct contact  section  */}
         <div className="  ">
             <h1 className="subtitle">Direct Contact</h1>
