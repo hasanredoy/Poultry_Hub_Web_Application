@@ -154,8 +154,8 @@ const toggleTheme = ()=>{
  
     <button title="Change Theme" className="" onClick={toggleTheme}>{theme=="light"?<IoIosSunny className=" text-xl lg:text-2xl font-black text-gray-800"></IoIosSunny >:<IoIosMoon className=" text-xl lg:text-2xl font-black "></IoIosMoon>}</button>
 {user?
-  <div className="dropdown dropdown-hover relative">
-  <div role="button" className="avatar online placeholder">
+  <details className="  relative">
+  <summary role="button" className="avatar dropdown online placeholder">
 
   <div className="bg-neutral text-neutral-content w-10 rounded-full">
     <span className="text-sm">AI</span>
@@ -169,8 +169,8 @@ const toggleTheme = ()=>{
       <button className=" btn-primary w-28 flex items-center gap-2"><FaSignOutAlt></FaSignOutAlt> LogOut</button>
    </Link>
   </ul>
-</div>
-</div>
+</summary>
+</details>
 :<div className=" flex gap-2 flex-row-reverse items-center ">
   <Link href={'/login'}>
 <button className=" btn-primary flex items-center gap-2"> <FaSignInAlt></FaSignInAlt> Login</button>
