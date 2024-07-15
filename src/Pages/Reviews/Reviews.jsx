@@ -2,21 +2,68 @@
 import Heading from "@/components/custom/Heading/Heading";
 import moment from "moment";
 import Image from "next/image";
-import { FaQuoteLeft, FaQuoteRight, FaStar } from "react-icons/fa";
+import { FaLocationArrow, FaQuoteLeft, FaQuoteRight, FaStar } from "react-icons/fa";
+// import star rating
+import { Rating } from '@smastrom/react-rating'
+
+import '@smastrom/react-rating/style.css'
+import { useState } from "react";
+
 const Reviews = () => {
   const reviews = [1, 1, 11, 1, 1, 1];
+  // handler for star rating
+  const [rating, setRating] = useState(0) // Initial value
+
+  console.log(rating);
+  
   return (
-    <div className=" flex flex-col md:flex-row">
+    <div className=" flex flex-col gap-5 md:flex-row">
       {/* aside for feed back form    */}
-      <aside className=" w-[30%]"></aside>
+      <aside className=" w-full lg:w-[30%] ">
+         {/* form div  */}
+         <div className="card bg-base-200 w-full max-w-md shrink-0 ">
+            <h3 className="subtitle text-center pt-2">Leave a Feedback</h3>
+            <form className="card-body">
+              {/* subject div  */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="text-sm lg:text-base font-bold">
+                    Rating*
+                  </span>
+                </label>
+                <div className=" ">
+                <Rating style={{ maxWidth: 250 }}  isRequired value={rating} onChange={setRating} />
+                </div>
+              </div> 
+              {/* message div  */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="text-sm lg:text-base font-bold">
+                    Feedback*
+                  </span>
+                </label>
+                <textarea
+                  name="message"
+                  className=" textarea "
+                  id=""
+                ></textarea>
+              </div>
+              <div className="form-control mt-6">
+                <button className="btn flex items-center gap-2 btn-primary">
+                  Leave
+                </button>
+              </div>
+            </form>
+          </div>
+      </aside>
       {/* reviews section  */}
-      <section className=" w-[68%] bg-gray-200">
+      <section className=" w-full lg:w-[68%] ">
         <Heading
           subHeading={"How We Are?"}
           title={"Hear What Our Users Says!"}
         ></Heading>
         {/* map reviews    */}
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           {reviews.map((review, index) => (
             <div
               key={index}
