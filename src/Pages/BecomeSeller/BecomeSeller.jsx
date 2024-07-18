@@ -52,7 +52,7 @@ const BecomeSeller = () => {
         />
           </div>
           {/* form div  */}
-          <div className="card bg-base-200 w-full max-w-md shrink-0 ">
+          <div id="seller" className="card bg-base-200 w-full rounded-none max-w-md shrink-0 ">
             <h3 className="subtitle text-center pt-2">Fill the form</h3>
             <form className="card-body">
               {/* name div  */}

@@ -76,7 +76,7 @@ const toggleTheme = ()=>{
     },
     {
       name: "Contact Us",
-      path: "/contact-us",
+      path: "/contact_us",
     },
   ];
 
