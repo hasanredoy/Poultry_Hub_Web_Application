@@ -9,7 +9,7 @@ const BecomeSeller = () => {
       {/* image section  */}
       <section className=" flex-1 relative">
         <div className="w-full h-full absolute bg-green-800 bg-opacity-20"></div>
-      <Image src={seller} className=" z-40" alt=" seller image" width={500} height={500}></Image>
+      <Image src={seller} className=" w-full z-40" alt=" seller image" width={500} height={500}></Image>
     </section>
     {/* text section  */}
      <section className=" flex-1">

@@ -101,6 +101,30 @@ p{
   font-size: 17px;
   font-weight: 400;
 }
+
+.btn-prompt{
+  padding: 5px 15px;
+  border: 2px solid grey;
+  border-radius: 20px;
+  background-color: whitesmoke;
+  color: black;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.btn-prompt:hover{
+  padding: 5px 15px;
+  border: 2px solid #fe6702;
+  border-radius: 20px;
+  background-color: #fe6702;
+  color: whitesmoke;
+  font-size: 17px;
+  font-weight: 700;
+}
+
 @media (min-width:320px) and (max-width:770px){
   .title{
     font-size: 22px;
