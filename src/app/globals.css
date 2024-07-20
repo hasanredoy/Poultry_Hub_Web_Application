@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  background-color: rgb(254, 253, 252);
+  background-color: #fefdfc;
   color: #050505;
 }
 
@@ -12,6 +12,11 @@
   background-color: rgb(7, 7, 7);
 }
 
+@layer base{
+   .conditionalBg{
+    @apply bg-[#fefdfc] dark:bg-gray-300
+   }
+}
 
 /* edit primary background */
 .bg-primary{

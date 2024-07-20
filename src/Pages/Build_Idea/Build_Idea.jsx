@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import bannerImage from '../../../public/generateIdea/ai-cloud-concept-with-robot-arm.jpg'
 import { FaLocationArrow } from 'react-icons/fa';
-import aiIcon from '../../../public/generateIdea/chatbot.png'
+import aiIcon from '../../../public/generateIdea/chatbot-0.png'
 
 const Build_Idea = () => {
   return (
@@ -26,7 +26,7 @@ const Build_Idea = () => {
  {/* input section  */}
      <section className=' mt-14 flex gap-6 items-center justify-center'>
      <div className=' ='>
-     <Image src={aiIcon} width={40} height={40} alt='ai chatbot icon' className=' '></Image>
+     <Image src={aiIcon} width={50} height={50} alt='ai chatbot icon' className=''></Image>
      </div>
      <div className="join flex-1">
        

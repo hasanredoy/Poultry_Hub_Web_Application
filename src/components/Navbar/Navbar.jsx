@@ -105,6 +105,7 @@ const toggleTheme = ()=>{
         >
           {navLinks.map((link, index) => (
             <Link
+            onClick={()=>setShowLinks(!showLinks)}
               className={` text-sm lg:text-base font-medium md:font-black hover:scale-110 hover:text-[#FFD700] hover:bg-slate-800 hover:px-2 hover:rounded-md ${
                 pathName === link.path
                   ? "text-[#FFD700] font-black md:font-black "
