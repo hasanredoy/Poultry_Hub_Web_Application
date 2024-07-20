@@ -1,13 +1,16 @@
 import { connectDB } from "@/lib/connectDB"
+import { NextResponse } from "next/server";
 
-export const GET =async()=>{
+export const GET=async()=>{
   try {
-    const db = connectDB()
+    const db = await connectDB()
     const itemsCollection = await db.collection('All_Items')
+    console.log('hello');  
     const result = await itemsCollection.find().toArray()
-    return Response.json({result}) 
+    console.log('hellp');
+    return NextResponse.json({result}) 
   } catch (error) {
-    return Response.json({error}) 
+    return NextResponse.json({error}) 
     
   }
 }
