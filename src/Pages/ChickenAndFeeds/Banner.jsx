@@ -1,11 +1,13 @@
 
+
 const Banner = () => {
   return (
     <section
-    className="hero min-h-screen"
+    className="hero min-h-screen bg-cover"
     style={{
-      backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+      backgroundImage:`url(https://i.postimg.cc/28dw0cjr/78312775-l8vo-xcof-230925.jpg)`,
     }}>
+     
     <div className="hero-overlay bg-opacity-60"></div>
     <div className="hero-content text-neutral-content text-center">
       <div className="max-w-md">

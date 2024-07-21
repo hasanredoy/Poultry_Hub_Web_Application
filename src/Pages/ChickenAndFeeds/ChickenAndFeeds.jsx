@@ -2,6 +2,7 @@
 import useAxios from "@/hooks/useAxios";
 import { useEffect, useState } from "react";
 import Banner from "./Banner";
+
 // get custom axios hook
 const axiosHook =useAxios()
 // load all chicken and feeds data
@@ -26,11 +27,12 @@ const ChickenAndFeeds = () => {
   // console.log({allChickenAndFeeds});
 
   return (
-    <main>
+    <main >
       {/* banner  */}
-      <section className="my-28 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
+      <section >
         <Banner></Banner>
       </section>
+   
     </main>
   );
 };
