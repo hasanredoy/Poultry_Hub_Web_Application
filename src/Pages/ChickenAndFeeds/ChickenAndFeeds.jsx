@@ -46,13 +46,16 @@ const ChickenAndFeeds = () => {
           </div>
           <ul
             tabIndex={0}
-            className="dropdown-content menu bg-base-100 rounded-box z-[40] w-52 p-2 shadow"
+            className="dropdown-content menu bg-base-200 rounded z-[40] w-38 p-2 shadow ml-10"
           >
             <li>
-              <a>Item 1</a>
+              <a>Chickens</a>
             </li>
             <li>
-              <a>Item 2</a>
+              <a>Chicks</a>
+            </li>
+            <li>
+              <a>Feed</a>
             </li>
           </ul>
         </div>
