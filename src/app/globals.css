@@ -20,8 +20,7 @@
 
 /* edit primary background */
 .bg-primary{
-  background-color: #fe6702
-  ;
+  background-color: #fe6702;
 }
 /* edit secondary background */
 .bg-secondary{
@@ -130,6 +129,31 @@ p{
   font-weight: 700;
 }
 
+/* edit primary button */
+.btn-card{
+  background-color: #fe6702;
+  color: rgb(255, 251, 251);
+  font-weight: 800;
+  /* border: 10px 10px solid gray; */
+  font-size: 14px;
+  /* border: 1px solid #fe6702; */
+  padding: 8px 15px;
+  border-radius: 10px;
+
+
+}
+/* edit hover of primary button */
+.btn-card:hover{
+  background-color: #ffff;
+  color:  #fe6702;
+  font-weight: 800;
+  transition: all 0.2s;
+   text-align: center;
+   padding: 8px 15px;
+   border-radius: 10px;
+   
+}
+
 @media (min-width:320px) and (max-width:770px){
   .title{
     font-size: 22px;
@@ -161,6 +185,26 @@ p{
 }
 /* edit hover of primary button */
 .btn-primary:hover{
+  background-color: white;
+  color:  #fe6702;
+  font-weight: 700;
+  padding: 7px 12px;
+  transition: all 0.2s;
+   text-align: center;
+}
+    /* edit primary button */
+.btn-card{
+  background-color: #fe6702;
+  color: rgb(252, 251, 251);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 7px 12px;
+  border-radius: 10px;
+
+  
+}
+/* edit hover of primary button */
+.btn-card:hover{
   background-color: white;
   color:  #fe6702;
   font-weight: 700;
