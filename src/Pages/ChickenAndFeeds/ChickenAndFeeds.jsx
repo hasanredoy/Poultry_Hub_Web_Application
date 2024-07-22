@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Banner from "./Banner";
 import Heading from "@/components/custom/Heading/Heading";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import Card from "./Card";
 
 // get custom axios hook
 const axiosHook = useAxios();
@@ -19,16 +20,16 @@ const ChickenAndFeeds = () => {
   // state for all chicken and feed
   const [allChickenAndFeeds, setAllChickenAndFeeds] = useState([]);
 
-  // useEffect(() => {
-  //   //function for call loadAllItems
-  //   const loader = async () => {
-  //     const data = await loadAllItems();
-  //     // console.log({data});
-  //     setAllChickenAndFeeds(data);
-  //   };
-  //   loader();
-  // }, []);
-  // console.log({allChickenAndFeeds});
+  useEffect(() => {
+    //function for call loadAllItems
+    const loader = async () => {
+      const data = await loadAllItems();
+      console.log(data);
+      setAllChickenAndFeeds(data);
+    };
+    loader();
+  }, []);
+  console.log({allChickenAndFeeds});
 
   return (
     <main>
@@ -53,6 +54,12 @@ const ChickenAndFeeds = () => {
   </ul>
 </details>
      
+      </section>
+
+      {/* card section  */}
+      <section>
+        {allChickenAndFeeds.map((items,index)=><Card key={items?._id} items={items}></Card>
+        )}
       </section>
     </main>
   );
