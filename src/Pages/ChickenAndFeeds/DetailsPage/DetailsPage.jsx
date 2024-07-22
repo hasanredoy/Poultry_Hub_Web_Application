@@ -2,8 +2,10 @@
 
 import useAxios from "@/hooks/useAxios";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
+import { FaArrowLeft, FaStar } from "react-icons/fa";
+import { GoArrowLeft } from "react-icons/go";
 
 // get custom axios hook
 const axiosHook = useAxios();
@@ -28,16 +30,19 @@ const DetailsPage = ({id}) => {
     }, []);
     console.log({singleItem});
   return (
-    <section className="  card bg-base-200 h-[400px shadow border  my-10 max-w-[95%] lg:max-w-[85%] mx-auto ">
-    <figure>
+    <section className=" relative  flex flex-row  card bg-base-200 shadow   my-20 max-w-[95%] lg:max-w-[85%] mx-auto ">
+    <figure className=" flex-1">
+      <Link className=" absolute left-1 top-1" href={'/chicken_and_feeds'}>
+      <GoArrowLeft className=" text-2xl font-bold cursor-pointer " ></GoArrowLeft>
+      </Link>
       <Image
       width={500} height={500}
-        className=" w-[90%] h-[350px]"
+        className=" w-[90%] h-[400px]"
         src={singleItem?.image}
         alt={singleItem?.name}
       />
     </figure>
-    <div className="card-body">
+    <div className="card-body flex-1">
       <h2 className="card-title">{singleItem?.name}</h2>
       <p>
         {singleItem?.description}{" "}
