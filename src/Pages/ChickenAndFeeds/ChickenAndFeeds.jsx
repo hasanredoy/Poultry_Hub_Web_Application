@@ -38,11 +38,11 @@ const ChickenAndFeeds = () => {
         <Banner></Banner>
       </section>
       {/* filter and heading section */}
-      <section className=" my-28 max-w-[95%] lg:max-w-[85%] mx-auto">
-        <Heading
+      <section className=" my-10 max-w-[95%] lg:max-w-[85%] mx-auto">
+        {/* <Heading
           subHeading={"Welcome"}
           title={"Buy your favorite item. "}
-        ></Heading>
+        ></Heading> */}
         {/* filter drop down  */}
         <details className="dropdown">
   <summary onClick={()=>setArrowUp(!arrowUp)} className="btn bg-neutral-700 text-white border-none hover:bg-neutral-200 hover:text-neutral-950 m-1">Filter by {arrowUp?<IoIosArrowDown className=" text-xl"></IoIosArrowDown>:<IoIosArrowUp className=" text-xl"></IoIosArrowUp>} </summary>
@@ -57,7 +57,7 @@ const ChickenAndFeeds = () => {
       </section>
 
       {/* card section  */}
-      <section className=" grid grid-cols-2 gap-10 max-w-[95%] lg:max-w-[85%] mx-auto">
+      <section className=" my-10 grid grid-cols-2 gap-10 max-w-[95%] lg:max-w-[85%] mx-auto">
         {allChickenAndFeeds?.map((items,index)=><Card key={items?._id} items={items}></Card>
         )}
       </section>
