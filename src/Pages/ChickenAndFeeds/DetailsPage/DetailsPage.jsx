@@ -1,11 +1,13 @@
 'use client'
 
 import useAxios from "@/hooks/useAxios";
+import { Rating } from "@smastrom/react-rating";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaStar } from "react-icons/fa";
 import { GoArrowLeft } from "react-icons/go";
+import '@smastrom/react-rating/style.css'
 
 // get custom axios hook
 const axiosHook = useAxios();
@@ -18,6 +20,8 @@ const loadSingleItem = async (id) => {
 const DetailsPage = ({id}) => {
     // state for all chicken and feed
     const [singleItem, setSingleItem] = useState({});
+  // handler for star rating
+  const [rating, setRating] = useState(0) // Initial value
 
     useEffect(() => {
       //function for call loadAllItems
@@ -30,25 +34,25 @@ const DetailsPage = ({id}) => {
     }, []);
     console.log({singleItem});
   return (
-    <section className=" relative  flex flex-row  card bg-base-200 shadow   my-20 max-w-[95%] lg:max-w-[85%] mx-auto ">
-    <figure className=" flex-1">
+    <section className=" relative  flex flex-row bg-base-100 shadow   my-20 max-w-[95%] lg:max-w-[85%] mx-auto ">
+    <figure className=" flex-1 flex justify-center  mt-10">
       <Link className=" absolute left-1 top-1" href={'/chicken_and_feeds'}>
       <GoArrowLeft className=" text-2xl font-bold cursor-pointer " ></GoArrowLeft>
       </Link>
       <Image
       width={500} height={500}
-        className=" w-[90%] h-[400px]"
+        className=" w-[90%] h-[400px] rounded-md"
         src={singleItem?.image}
         alt={singleItem?.name}
       />
     </figure>
     <div className="card-body flex-1">
-      <h2 className="card-title">{singleItem?.name}</h2>
+      <h2 className="text-xl font-bold">{singleItem?.name}</h2>
       <p>
         {singleItem?.description}{" "}
         
       </p>
-      <h5 className=" my-3 text-lg ">
+      <h5 className=" my-3 text-base ">
         Listed By:{" "}
         <span className=" font-bold">{singleItem?.seller}</span>
       </h5>
@@ -59,7 +63,7 @@ const DetailsPage = ({id}) => {
           Price :{" "}
           <span className="  text-primary font-bold">{singleItem?.price} $ </span>
         </h5>
-        <h5 className=" flex justify-start ml-40 flex-1 ">
+        <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
           {singleItem.category == "Eggs" ? "Quantity" : "Weight"} :{" "}
           <span className=" text-primary font-bold">{singleItem?.weight}</span>
         </h5>
@@ -72,7 +76,7 @@ const DetailsPage = ({id}) => {
             <FaStar></FaStar>
           </span>
         </h5>
-        <h5 className=" flex justify-start ml-40 flex-1 ">
+        <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
           Total Ratings :{" "}
           <span className=" text-primary font-bold">
             {singleItem?.totalRating}
@@ -86,7 +90,7 @@ const DetailsPage = ({id}) => {
             {singleItem?.listingDate}
           </span>
         </h5>
-        <h5 className=" flex justify-start ml-40 flex-1 ">
+        <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
           Valid Till :{" "}
           <span className=" text-primary font-bold">{singleItem?.expireDate}</span>
         </h5>
@@ -102,6 +106,11 @@ const DetailsPage = ({id}) => {
           Add to Cart
         </button>
       </div>
+      <div className="divider"></div>
+      <div className=" my-5  flex flex-col gap-3 items-center justify-center w-full ">
+          <h3 className=" text-lg font-bold">What was your opinion on this product?  </h3>
+                <Rating style={{ maxWidth: 250 }}  isRequired value={rating} onChange={setRating} />
+                </div>
     </div>
   </section>
   );

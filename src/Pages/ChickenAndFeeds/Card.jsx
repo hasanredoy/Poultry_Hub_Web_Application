@@ -15,7 +15,7 @@ const Card = ({ items }) => {
         <h2 className="card-title">{items?.name}</h2>
         <p>
           {items?.description?.slice(0, 150)}{" "}
-          <Link href={"#"} className=" hover:underline text-blue-700 font-bold">
+          <Link href={`chicken_and_feeds/${items?._id}`} className=" hover:underline text-blue-700 font-bold">
             See More..
           </Link>
         </p>
@@ -30,26 +30,15 @@ const Card = ({ items }) => {
             Price :{" "}
             <span className="  text-primary font-bold">{items?.price} $ </span>
           </h5>
-          <h5 className=" flex justify-start ml-40 flex-1 ">
-            {items.category == "Eggs" ? "Quantity" : "Weight"} :{" "}
-            <span className=" text-primary font-bold">{items?.weight}</span>
-          </h5>
-        </div>
-        <div className=" flex justify-between my-1 ">
-          <h5 className="flex flex-1 items-center gap-2">
-            Ratings :{" "}
+          <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
+          Rating:{' '} {' '}
             <span className=" text-primary font-bold flex items-center gap-2">
               {items?.rating}
               <FaStar></FaStar>
             </span>
           </h5>
-          <h5 className=" flex justify-start ml-40 flex-1 ">
-            Total Ratings :{" "}
-            <span className=" text-primary font-bold">
-              {items?.totalRating}
-            </span>
-          </h5>
         </div>
+       
         <div className=" flex justify-between my-1 ">
           <h5 className="  flex-1 ">
             Listed in :{" "}
@@ -62,12 +51,7 @@ const Card = ({ items }) => {
             <span className=" text-primary font-bold">{items?.expireDate}</span>
           </h5>
         </div>
-        <div className=" flex justify-between my-1 ">
-          <h5 className="flex-1 ">
-            Total Sell :{" "}
-            <span className=" text-primary font-bold">{items?.totalSell}</span>
-          </h5>
-        </div>
+    
         <div className="card-actions justify-center ">
           <button className=" btn-card border-b-4   border-gray-300">
             Add to Cart
