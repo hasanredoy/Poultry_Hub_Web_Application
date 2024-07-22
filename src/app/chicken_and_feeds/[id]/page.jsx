@@ -1,8 +1,12 @@
+'use client'
+import DetailsPage from "@/Pages/ChickenAndFeeds/DetailsPage/DetailsPage";
+import { useParams } from "next/navigation";
 
 const page = () => {
+  const {id} = useParams()
   return (
     <div>
-      dynamic page 
+      <DetailsPage id={id}></DetailsPage>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 
 const Card = ({ items }) => {
   return (
-    <Link href={items?._id} title="click" className=" hover:scale-105 hover:border-[#fe6702] card bg-base-200 h-[400px shadow border ">
+    <Link href={`chicken_and_feeds/${items?._id}`} title="click" className=" hover:scale-105 hover:border-[#fe6702] card bg-base-200 h-[400px shadow border ">
       <figure>
         <img
           className=" w-[90%] h-[350px]"

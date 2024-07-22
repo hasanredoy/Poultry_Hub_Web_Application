@@ -1,7 +1,6 @@
 import Heading from '@/components/custom/Heading/Heading';
 import testimonial from '../../../../public/testimonial/3149085_463108-PFPNOC-400.jpg'
 import Image from 'next/image';
-import useGetData from '@/hooks/useGetData';
 
  import moment from "moment"
 // import required modules

@@ -1,5 +1,4 @@
 import Heading from "@/components/custom/Heading/Heading";
-import useGetData from "@/hooks/useGetData";
 import "./whyChooseUs.css";
 import Image from "next/image";
 import useAxios from "@/hooks/useAxios";
