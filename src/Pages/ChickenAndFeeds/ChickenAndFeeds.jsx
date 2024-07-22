@@ -57,8 +57,8 @@ const ChickenAndFeeds = () => {
       </section>
 
       {/* card section  */}
-      <section>
-        {allChickenAndFeeds.map((items,index)=><Card key={items?._id} items={items}></Card>
+      <section className=" grid grid-cols-2 gap-10 max-w-[95%] lg:max-w-[85%] mx-auto">
+        {allChickenAndFeeds?.map((items,index)=><Card key={items?._id} items={items}></Card>
         )}
       </section>
     </main>

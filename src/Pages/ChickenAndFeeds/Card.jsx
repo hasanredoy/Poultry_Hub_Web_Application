@@ -1,15 +1,15 @@
 
-const Card = () => {
+const Card = ({items}) => {
   return (
-    <section className="card bg-base-100 w-96 shadow-xl">
+    <section className="card bg-base-100 h-[400px shadow-xl">
   <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes" />
+    <img className=" w-[90%] h-[350px]"
+      src={items?.image}
+      alt={items?.name} />
   </figure>
   <div className="card-body">
-    <h2 className="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
+    <h2 className="card-title">{items?.name}</h2>
+    <p>{items?.description?.slice(0,150)}</p>
     <div className="card-actions justify-end">
       <button className="btn btn-primary">Buy Now</button>
     </div>
