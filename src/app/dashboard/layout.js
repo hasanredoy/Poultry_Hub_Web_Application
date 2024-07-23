@@ -2,11 +2,13 @@ import DashboardSidebar from "@/Pages/Dashboard/DashboardSidebar";
 
 export default function DashboardLayout({ children }) {
   return(
-    <main className=" flex  justify-between m-0 p-0">
-    <DashboardSidebar></DashboardSidebar>
-    <div>
+    <body className=" flex m-0 p-0">
+     <sidebar className={'w-[20%]'}>
+     <DashboardSidebar></DashboardSidebar>
+     </sidebar>
+    <main className={'w-[76%]'}>
       {children}
-    </div>
     </main>
+    </body>
   )
 }

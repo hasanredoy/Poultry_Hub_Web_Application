@@ -23,9 +23,9 @@ const ChickenAndFeeds = () => {
   useEffect(() => {
     //function for call loadAllItems
     const loader = async () => {
-      const data = await loadAllItems();
-      console.log(data);
-      setAllChickenAndFeeds(data);
+      // const data = await loadAllItems();
+      // console.log(data);
+      // setAllChickenAndFeeds(data);
     };
     loader();
   }, []);

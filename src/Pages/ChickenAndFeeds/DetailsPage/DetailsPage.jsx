@@ -26,9 +26,9 @@ const DetailsPage = ({id}) => {
     useEffect(() => {
       //function for call loadAllItems
       const loader = async () => {
-        const data = await loadSingleItem(id);
-        console.log(data);
-        setSingleItem(data);
+        // const data = await loadSingleItem(id);
+        // console.log(data);
+        // setSingleItem(data);
       };
       loader();
     }, []);
