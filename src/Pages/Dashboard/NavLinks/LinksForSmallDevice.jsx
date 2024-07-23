@@ -60,7 +60,7 @@ const LinksForSmallDevice = () => {
       <div
         className={` ${
           menu ? "block" : "hidden"
-        } absolute z-40 w-[60%] min-h-svh    pt-8  bg-base-300 `}
+        } absolute z-40 w-[60%] md:w-[40%] min-h-svh pt-8 md:pt-11  bg-base-300 `}
       >
         <div className=" h-full flex max-h-screen flex-col justify-evenly">
           <div className=" flex-1">
