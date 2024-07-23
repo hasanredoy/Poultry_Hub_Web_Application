@@ -34,7 +34,7 @@ const DetailsPage = ({id}) => {
     }, []);
     console.log({singleItem});
   return (
-    <section className=" relative  flex flex-row bg-base-100 shadow   my-20 max-w-[95%] lg:max-w-[85%] mx-auto ">
+    <section className=" relative  flex flex-row bg-warning bg-opacity-1npm install @mui/material @emotion/react @emotion/styled0 shadow   my-20 max-w-[95%] lg:max-w-[85%] mx-auto ">
     <figure className=" flex-1 flex justify-center  mt-10">
       <Link className=" absolute left-1 top-1" href={'/chicken_and_feeds'}>
       <GoArrowLeft className=" text-2xl font-bold cursor-pointer " ></GoArrowLeft>

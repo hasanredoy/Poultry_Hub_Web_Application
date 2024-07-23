@@ -81,7 +81,7 @@ const toggleTheme = ()=>{
   ];
 
   return (
-  <nav className={` flex justify-between items-center max-w-[95%]  lg:max-w-[85%]  mx-auto py-2 ${theme=="light"?"text-black":"text-white"}  mb-0 ${pathName=='/login'?'hidden':'flex'} ${pathName=='/register'?'hidden':'flex'}`} >
+  <nav className={` flex justify-between items-center max-w-[95%]  lg:max-w-[85%]  mx-auto py-2 ${theme=="light"?"text-black":"text-white"}  mb-0 ${pathName=='/login'?'hidden':'flex'} ${pathName=='/register'?'hidden':'flex'}  ${pathName=='/dashboard'?'hidden':''}`}  >
   {/* nav bar start */}
   <div className="">
     <div>
