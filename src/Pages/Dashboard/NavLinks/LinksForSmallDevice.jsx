@@ -115,40 +115,40 @@ const LinksForSmallDevice = () => {
             {/* admin links */}
             <Link
               href={"/dashboard"}
-              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                  ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               <FaHome></FaHome>Admin Home
             </Link>
             <Link
               href={"/dashboard/profile"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/profile"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               <FaUser></FaUser> My Profile
             </Link>
             <Link
               href={"/dashboard/all_users"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/all_users"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               <FaUsers></FaUsers>All Users{" "}
             </Link>
             <Link
               href={"/dashboard/all_items"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/all_items"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               {" "}
@@ -156,10 +156,10 @@ const LinksForSmallDevice = () => {
             </Link>
             <Link
               href={"/dashboard/add_item"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/add_item"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               {" "}
@@ -172,40 +172,40 @@ const LinksForSmallDevice = () => {
             {/* user links */}
             <Link
               href={"/dashboard"}
-              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               <FaHome></FaHome>User Home
             </Link>
             <Link
               href={"/dashboard/profile"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/profile"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               <FaUser></FaUser> My Profile
             </Link>
             <Link
               href={"/dashboard/my_cart"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/my_cart"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               <FaShoppingCart></FaShoppingCart>My Cart <span></span>
             </Link>
             <Link
               href={"/dashboard/payment_history"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/payment_history"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               {" "}
@@ -218,40 +218,40 @@ const LinksForSmallDevice = () => {
             {/* seller links */}
             <Link
               href={"/dashboard/seller"}
-              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/seller"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               <FaHome></FaHome>Home
             </Link>
             <Link
               href={"/dashboard"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               <FaUser></FaUser> My Profile
             </Link>
             <Link
               href={"/dashboard/my_cart"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/my_listedItem"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               <FaShoppingCart></FaShoppingCart>My Listed Item <span></span>
             </Link>
             <Link
               href={"/dashboard/payment_history"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/payment_history"
-                  ? "text-[#f86502] bg-white rounded-r-md"
-                  : "text-[#f86502]"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
               }`}
             >
               {" "}
@@ -265,37 +265,37 @@ const LinksForSmallDevice = () => {
           <div className=" px-5 ">
         <Link
           href={"/"}
-          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 text-[#f86502]"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2  "}
         >
           <FaHome></FaHome>Back Home
         </Link>
         <Link
           href={"/chicken_and_feeds"}
-          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 text-[#f86502] my-3"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2   my-3"}
         >
           <AiFillProduct></AiFillProduct> All Products
         </Link>
         <Link
           href={"/build_idea"}
-          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 text-[#f86502] my-3"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2   my-3"}
         >
           <FaLightbulb></FaLightbulb> Build Idea
         </Link>
         <Link
           href={"/become_seller"}
-          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 text-[#f86502] my-3"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2   my-3"}
         >
           <MdPersonAdd></MdPersonAdd> Become Seller
         </Link>
         <Link
           href={"/contact"}
-          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 my-3 text-[#f86502]"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 my-3  "}
         >
           <MdOutlineContactSupport></MdOutlineContactSupport>Contact
         </Link>
         <Link
           href={"/reviews"}
-          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 my-3 text-[#f86502]"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 my-3  "}
         >
           {" "}
           <FaStar></FaStar>Reviews
@@ -303,7 +303,7 @@ const LinksForSmallDevice = () => {
         <h3
           onClick={handleLogOut}
           className={
-            " cursor-pointer flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 my-3 text-[#f86502]"
+            " cursor-pointer flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 my-3  "
           }
         >
           {" "}

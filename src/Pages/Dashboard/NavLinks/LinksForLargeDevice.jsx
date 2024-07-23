@@ -99,7 +99,6 @@ return (
                 )}
               </button>
             </section>
-        <div className="divider divider-accent"></div>
         {role == "admin" && (
           <>
             {/* admin links */}
