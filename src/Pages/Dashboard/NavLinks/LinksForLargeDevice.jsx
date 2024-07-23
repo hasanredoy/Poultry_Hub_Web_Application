@@ -76,69 +76,69 @@ return (
     <div className=" h-[calc(100dvh-30px)] flex max-h-screen flex-col ">
       <div className="">
         {/* profile and theme controller  */}
-        <section>
-          <div className="flex items-center p-2 space-x-4">
-            <img
-              src=""
-              alt=""
-              className="w-12 h-12 rounded-full bg-gray-500"
-            />
-            <div>
-              <h2 className="text-lg font-bold text-black">
-                Leroy Jenkins
-              </h2>
-            </div>
-          </div>
-          {/* theme controller  */}
+        <section className=" border-b border-gray-900 pb-2 mb-4 flex justify-between px-1 ">
+              <div className="flex items-center p-1 space-x-4">
+                <img
+                  src=""
+                  alt=""
+                  className=" w-8 h-8 md:w-12 md:h-12 rounded-full bg-gray-500"
+                />
+                <div>
+                  <h2 className=" text-sm lg:text-lg font-bold ">
+                    Leroy Jenkins
+                  </h2>
+                </div>
+              </div>
+              {/* theme controller  */}
 
-          <button title="Change Theme" className="" onClick={toggleTheme}>
-            {theme == "light" ? (
-              <IoIosSunny className=" text-xl lg:text-2xl font-black text-gray-800"></IoIosSunny>
-            ) : (
-              <IoIosMoon className=" text-xl lg:text-2xl font-black "></IoIosMoon>
-            )}
-          </button>
-        </section>
+              <button title="Change Theme" className="" onClick={toggleTheme}>
+                {theme == "light" ? (
+                  <IoIosSunny className=" text-xl lg:text-2xl font-black text-gray-800"></IoIosSunny>
+                ) : (
+                  <IoIosMoon className=" text-xl lg:text-2xl font-black "></IoIosMoon>
+                )}
+              </button>
+            </section>
         <div className="divider divider-accent"></div>
         {role == "admin" && (
           <>
             {/* admin links */}
             <Link
               href={"/dashboard"}
-              className={`flex items-center font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ? " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               <FaHome></FaHome>Admin Home
             </Link>
             <Link
               href={"/dashboard/profile"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/profile"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ? " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               <FaUser></FaUser> My Profile
             </Link>
             <Link
               href={"/dashboard/all_users"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/all_users"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ? " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               <FaUsers></FaUsers>All Users{" "}
             </Link>
             <Link
               href={"/dashboard/all_items"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/all_items"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ? " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               {" "}
@@ -146,10 +146,10 @@ return (
             </Link>
             <Link
               href={"/dashboard/add_item"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/add_item"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               {" "}
@@ -162,40 +162,40 @@ return (
             {/* user links */}
             <Link
               href={"/dashboard"}
-              className={`flex items-center font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               <FaHome></FaHome>User Home
             </Link>
             <Link
               href={"/dashboard/profile"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/profile"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               <FaUser></FaUser> My Profile
             </Link>
             <Link
               href={"/dashboard/my_cart"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/my_cart"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               <FaShoppingCart></FaShoppingCart>My Cart <span></span>
             </Link>
             <Link
               href={"/dashboard/payment_history"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/payment_history"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               {" "}
@@ -208,40 +208,40 @@ return (
             {/* seller links */}
             <Link
               href={"/dashboard/seller"}
-              className={`flex items-center font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/seller"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               <FaHome></FaHome>Home
             </Link>
             <Link
               href={"/dashboard"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               <FaUser></FaUser> My Profile
             </Link>
             <Link
               href={"/dashboard/my_cart"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/my_listedItem"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               <FaShoppingCart></FaShoppingCart>My Listed Item <span></span>
             </Link>
             <Link
               href={"/dashboard/payment_history"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-black  hover:rounded-r-md px-5 mr-4 ${
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/payment_history"
-                  ? "text-black bg-white rounded-r-md"
-                  : "text-black"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
               }`}
             >
               {" "}
@@ -255,37 +255,37 @@ return (
       <div className=" px-5 ">
         <Link
           href={"/"}
-          className={"flex items-center font-bold gap-2 text-black"}
+          className={"flex hover:text-[#f86502] items-center font-bold gap-2  "}
         >
           <FaHome></FaHome>Back Home
         </Link>
         <Link
           href={"/chicken_and_feeds"}
-          className={"flex items-center font-bold gap-2 text-black my-3"}
+          className={"flex hover:text-[#f86502] items-center font-bold gap-2   my-3"}
         >
           <AiFillProduct></AiFillProduct> All Products
         </Link>
         <Link
           href={"/build_idea"}
-          className={"flex items-center font-bold gap-2 text-black my-3"}
+          className={"flex hover:text-[#f86502] items-center font-bold gap-2   my-3"}
         >
           <FaLightbulb></FaLightbulb> Build Idea
         </Link>
         <Link
           href={"/become_seller"}
-          className={"flex items-center font-bold gap-2 text-black my-3"}
+          className={"flex hover:text-[#f86502] items-center font-bold gap-2   my-3"}
         >
           <MdPersonAdd></MdPersonAdd> Become Seller
         </Link>
         <Link
           href={"/contact"}
-          className={"flex items-center font-bold gap-2 my-3 text-black"}
+          className={"flex hover:text-[#f86502] items-center font-bold gap-2 my-3  "}
         >
           <MdOutlineContactSupport></MdOutlineContactSupport>Contact
         </Link>
         <Link
           href={"/reviews"}
-          className={"flex items-center font-bold gap-2 my-3 text-black"}
+          className={"flex hover:text-[#f86502] items-center font-bold gap-2 my-3  "}
         >
           {" "}
           <FaStar></FaStar>Reviews
@@ -293,7 +293,7 @@ return (
         <h3
           onClick={handleLogOut}
           className={
-            " cursor-pointer flex items-center font-bold gap-2 my-3 text-black"
+            " cursor-pointer hover:text-[#f86502] flex items-center font-bold gap-2 my-3  "
           }
         >
           {" "}

@@ -4,7 +4,6 @@ import {
   FaHome,
   FaLightbulb,
   FaList,
-  FaMoon,
   FaPlus,
   FaShoppingCart,
   FaSignOutAlt,
@@ -13,9 +12,6 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { MdOutlineContactSupport, MdPersonAdd } from "react-icons/md";
-import { TiThMenu } from "react-icons/ti";
-import { LuMonitorSmartphone } from "react-icons/lu";
-import { IoSunnySharp } from "react-icons/io5";
 import { MdAddShoppingCart } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
 import { usePathname } from "next/navigation";
@@ -23,6 +19,8 @@ import { IoIosMoon, IoIosSunny } from "react-icons/io";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { RiMenuUnfold2Fill } from "react-icons/ri";
+import { RiMenuUnfoldFill } from "react-icons/ri";
 const LinksForSmallDevice = () => {
   const pathname = usePathname();
   // state for theme
@@ -77,29 +75,27 @@ const LinksForSmallDevice = () => {
       {/* sidebar */}
       <button
         onClick={() => setMenu(!menu)}
-        className={`${
-          theme === "light" ? "text-black" : "text-black"
-        } z-50 lg:hidden text-2xl  fixed`}
+        className={` z-50 lg:hidden text-2xl top-0.5 left-1  fixed`}
       >
-        <TiThMenu></TiThMenu>
+       {menu?<RiMenuUnfold2Fill></RiMenuUnfold2Fill>:<RiMenuUnfoldFill></RiMenuUnfoldFill>}
       </button>
       <div
         className={` ${
           menu ? "block" : "hidden"
-        } absolute z-40 w-[60%] min-h-svh   px-5 pt-4  bg-[#f86502] `}
+        } absolute z-40 w-[60%] min-h-svh    pt-6  bg-base-300 `}
       >
         <div className=" h-full flex max-h-screen flex-col justify-evenly">
           <div className=" flex-1">
             {/* profile and theme controller  */}
-            <section>
-              <div className="flex items-center p-2 space-x-4">
+            <section className=" border-b border-gray-900 pb-2 mb-4 flex justify-between px-1 ">
+              <div className="flex items-center p-1 space-x-4">
                 <img
                   src=""
                   alt=""
-                  className="w-12 h-12 rounded-full bg-gray-500"
+                  className=" w-8 h-8 md:w-12 md:h-12 rounded-full bg-gray-500"
                 />
                 <div>
-                  <h2 className="text-lg font-bold text-black">
+                  <h2 className=" text-sm lg:text-lg font-bold ">
                     Leroy Jenkins
                   </h2>
                 </div>
@@ -114,126 +110,206 @@ const LinksForSmallDevice = () => {
                 )}
               </button>
             </section>
-            {role ? (
-              <>
-                {/* admin links */}
-                <Link
-                  href={"/dashboard/adminHome"}
-                  className={"flex items-center font-bold gap-2 text-black"}
-                >
-                  <FaHome></FaHome>Admin Home
-                </Link>
-                <Link
-                  href={"/dashboard/profile"}
-                  className={
-                    "flex items-center font-bold gap-2 text-black my-3"
-                  }
-                >
-                  <FaUser></FaUser> My Profile
-                </Link>
-                <Link
-                  href={"/dashboard/allUsers"}
-                  className={
-                    "flex items-center font-bold gap-2 my-3 text-black"
-                  }
-                >
-                  <FaUsers></FaUsers>All Users{" "}
-                </Link>
-                <Link
-                  href={"/dashboard/allItems"}
-                  className={
-                    "flex items-center font-bold gap-2 my-3 text-black"
-                  }
-                >
-                  {" "}
-                  <FaList></FaList>All Items
-                </Link>
-                <Link
-                  href={"/dashboard/addItems"}
-                  className={
-                    "flex items-center font-bold gap-2 my-3 text-black"
-                  }
-                >
-                  {" "}
-                  <MdAddShoppingCart></MdAddShoppingCart>Add Items
-                </Link>
-              </>
-            ) : (
-              <>
-                {/* user links */}
-                <Link
-                  href={"/dashboard/userHome"}
-                  className={"flex items-center font-bold gap-2 text-black"}
-                >
-                  <FaHome></FaHome>User Home
-                </Link>
-                <Link
-                  href={"/dashboard/profile"}
-                  className={
-                    "flex items-center font-bold gap-2 text-black my-3"
-                  }
-                >
-                  <FaUser></FaUser> My Profile
-                </Link>
-                <Link
-                  href={"/dashboard/myCart"}
-                  className={
-                    "flex items-center font-bold gap-2 my-3 text-black"
-                  }
-                >
-                  <FaShoppingCart></FaShoppingCart>My Cart{" "}
-                  <span>{userCart?.length}</span>
-                </Link>
-                <Link
-                  href={"/dashboard/paymentHistory"}
-                  className={
-                    "flex items-center font-bold gap-2 my-3 text-black"
-                  }
-                >
-                  {" "}
-                  <FaHistory></FaHistory>Payment History
-                </Link>
-              </>
-            )}
+            {role == "admin" && (
+          <>
+            {/* admin links */}
+            <Link
+              href={"/dashboard"}
+              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              <FaHome></FaHome>Admin Home
+            </Link>
+            <Link
+              href={"/dashboard/profile"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/profile"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              <FaUser></FaUser> My Profile
+            </Link>
+            <Link
+              href={"/dashboard/all_users"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/all_users"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              <FaUsers></FaUsers>All Users{" "}
+            </Link>
+            <Link
+              href={"/dashboard/all_items"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/all_items"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              {" "}
+              <FaList></FaList>All Items
+            </Link>
+            <Link
+              href={"/dashboard/add_item"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/add_item"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              {" "}
+              <MdAddShoppingCart></MdAddShoppingCart>Add Item
+            </Link>
+          </>
+        )}
+        {role == "user" && (
+          <>
+            {/* user links */}
+            <Link
+              href={"/dashboard"}
+              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              <FaHome></FaHome>User Home
+            </Link>
+            <Link
+              href={"/dashboard/profile"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/profile"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              <FaUser></FaUser> My Profile
+            </Link>
+            <Link
+              href={"/dashboard/my_cart"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/my_cart"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              <FaShoppingCart></FaShoppingCart>My Cart <span></span>
+            </Link>
+            <Link
+              href={"/dashboard/payment_history"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/payment_history"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              {" "}
+              <FaHistory></FaHistory>Payment History
+            </Link>
+          </>
+        )}
+        {role == "seller" && (
+          <>
+            {/* seller links */}
+            <Link
+              href={"/dashboard/seller"}
+              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/seller"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              <FaHome></FaHome>Home
+            </Link>
+            <Link
+              href={"/dashboard"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              <FaUser></FaUser> My Profile
+            </Link>
+            <Link
+              href={"/dashboard/my_cart"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/my_listedItem"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              <FaShoppingCart></FaShoppingCart>My Listed Item <span></span>
+            </Link>
+            <Link
+              href={"/dashboard/payment_history"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:text-[#f86502]  hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/payment_history"
+                  ? "text-[#f86502] bg-white rounded-r-md"
+                  : "text-[#f86502]"
+              }`}
+            >
+              {" "}
+              <FaPlus></FaPlus> List a item
+            </Link>
+          </>
+        )}
           </div>
-          {/* static links  */}
           <div className="divider"></div>
-          <div>
-            <Link
-              href={"/"}
-              className={"flex items-center font-bold gap-2 text-black"}
-            >
-              <FaHome></FaHome> Home
-            </Link>
-            <Link
-              href={"/allGadgets"}
-              className={"flex items-center font-bold gap-2 text-black my-3"}
-            >
-              <LuMonitorSmartphone></LuMonitorSmartphone>All Gadgets
-            </Link>
-            <Link
-              href={"/contact"}
-              className={"flex items-center font-bold gap-2 my-3 text-black"}
-            >
-              <MdOutlineContactSupport></MdOutlineContactSupport>Contact
-            </Link>
-            <Link
-              href={"/reviews"}
-              className={"flex items-center font-bold gap-2 my-3 text-black"}
-            >
-              {" "}
-              <FaStar></FaStar>Reviews
-            </Link>
-            <h3
-              onClick={handleLogOut}
-              className={
-                " cursor-pointer flex items-center font-bold gap-2 my-3 text-black"
-              }
-            >
-              {" "}
-              <FaSignOutAlt></FaSignOutAlt>Logout
-            </h3>
-          </div>
+          {/* static links  */}
+          <div className=" px-5 ">
+        <Link
+          href={"/"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 text-[#f86502]"}
+        >
+          <FaHome></FaHome>Back Home
+        </Link>
+        <Link
+          href={"/chicken_and_feeds"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 text-[#f86502] my-3"}
+        >
+          <AiFillProduct></AiFillProduct> All Products
+        </Link>
+        <Link
+          href={"/build_idea"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 text-[#f86502] my-3"}
+        >
+          <FaLightbulb></FaLightbulb> Build Idea
+        </Link>
+        <Link
+          href={"/become_seller"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 text-[#f86502] my-3"}
+        >
+          <MdPersonAdd></MdPersonAdd> Become Seller
+        </Link>
+        <Link
+          href={"/contact"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 my-3 text-[#f86502]"}
+        >
+          <MdOutlineContactSupport></MdOutlineContactSupport>Contact
+        </Link>
+        <Link
+          href={"/reviews"}
+          className={"flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 my-3 text-[#f86502]"}
+        >
+          {" "}
+          <FaStar></FaStar>Reviews
+        </Link>
+        <h3
+          onClick={handleLogOut}
+          className={
+            " cursor-pointer flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 my-3 text-[#f86502]"
+          }
+        >
+          {" "}
+          <FaSignOutAlt></FaSignOutAlt>Logout
+        </h3>
+      </div>
         </div>
       </div>
     </section>

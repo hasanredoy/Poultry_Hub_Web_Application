@@ -31,6 +31,9 @@
 .text-primary{
 color:#fe6702;
 }
+.text-primary:hover{
+color:#fe6702;
+}
 .text-nav{
 color:#050505;
 }
