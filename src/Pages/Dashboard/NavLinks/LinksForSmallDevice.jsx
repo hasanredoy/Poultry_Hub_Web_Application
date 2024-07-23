@@ -23,29 +23,7 @@ import { RiMenuUnfold2Fill } from "react-icons/ri";
 import { RiMenuUnfoldFill } from "react-icons/ri";
 const LinksForSmallDevice = () => {
   const pathname = usePathname();
-  // state for theme
-  const [theme, setTheme] = useState("light");
 
-  //check local storage and set the local storage value in theme state
-  useEffect(() => {
-    const currentTheme = localStorage.getItem("theme");
-    if (currentTheme) {
-      setTheme(currentTheme);
-      document.documentElement.setAttribute("data-theme", currentTheme);
-    }
-  }, []);
-  // get theme from use theme hook
-  //toggle theme
-  const toggleTheme = () => {
-    // make new theme opposite of default value of theme state
-    const newTheme = theme === "light" ? "dark" : "light";
-    // then set newTheme in theme state
-    setTheme(newTheme);
-    // set newTheme as data theme
-    document.documentElement.setAttribute("data-theme", newTheme);
-    // set theme in local storage
-    localStorage.setItem("theme", newTheme);
-  };
   const role = "user";
   const [menu, setMenu] = useState(false);
   const handleLogOut = () => {
@@ -75,14 +53,14 @@ const LinksForSmallDevice = () => {
       {/* sidebar */}
       <button
         onClick={() => setMenu(!menu)}
-        className={` z-50 lg:hidden text-2xl top-0.5 left-1  fixed`}
+        className={` z-50 lg:hidden text-2xl  left-4 md:left-8 top-2 md:top-4  fixed`}
       >
        {menu?<RiMenuUnfold2Fill></RiMenuUnfold2Fill>:<RiMenuUnfoldFill></RiMenuUnfoldFill>}
       </button>
       <div
         className={` ${
           menu ? "block" : "hidden"
-        } absolute z-40 w-[60%] min-h-svh    pt-6  bg-base-300 `}
+        } absolute z-40 w-[60%] min-h-svh    pt-8  bg-base-300 `}
       >
         <div className=" h-full flex max-h-screen flex-col justify-evenly">
           <div className=" flex-1">
@@ -100,15 +78,7 @@ const LinksForSmallDevice = () => {
                   </h2>
                 </div>
               </div>
-              {/* theme controller  */}
-
-              <button title="Change Theme" className="" onClick={toggleTheme}>
-                {theme == "light" ? (
-                  <IoIosSunny className=" text-xl lg:text-2xl font-black text-gray-800"></IoIosSunny>
-                ) : (
-                  <IoIosMoon className=" text-xl lg:text-2xl font-black "></IoIosMoon>
-                )}
-              </button>
+           
             </section>
             {role == "admin" && (
           <>

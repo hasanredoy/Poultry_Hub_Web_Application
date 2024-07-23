@@ -24,29 +24,7 @@ import Link from "next/link";
 
 const LinksForLargeDevice = () => {
 const pathname = usePathname()
-  // state for theme 
-  const [theme , setTheme]=useState('light')
 
-//check local storage and set the local storage value in theme state
-useEffect(()=>{
-  const currentTheme= localStorage.getItem('theme') 
-  if(currentTheme){
-  setTheme(currentTheme)
-  document.documentElement.setAttribute('data-theme',currentTheme)
-  }
-},[])
-  // get theme from use theme hook
-//toggle theme 
-const toggleTheme = ()=>{
-  // make new theme opposite of default value of theme state 
-  const newTheme= theme ==="light"?"dark":"light"
-  // then set newTheme in theme state 
-  setTheme(newTheme)
-  // set newTheme as data theme
-  document.documentElement.setAttribute('data-theme',newTheme)
-// set theme in local storage 
-  localStorage.setItem('theme',newTheme)
-}
 const role='user'
 const [menu, setMenu] = useState(false);
 const handleLogOut = () => {
@@ -89,15 +67,7 @@ return (
                   </h2>
                 </div>
               </div>
-              {/* theme controller  */}
-
-              <button title="Change Theme" className="" onClick={toggleTheme}>
-                {theme == "light" ? (
-                  <IoIosSunny className=" text-xl lg:text-2xl font-black text-gray-800"></IoIosSunny>
-                ) : (
-                  <IoIosMoon className=" text-xl lg:text-2xl font-black "></IoIosMoon>
-                )}
-              </button>
+             
             </section>
         {role == "admin" && (
           <>
