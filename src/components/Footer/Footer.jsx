@@ -7,8 +7,11 @@ import { usePathname } from "next/navigation";
 const Footer = () => {
   // get path name 
   const pathName = usePathname()
+  if(pathName=='/login'||pathName=='/register'||pathName=='/dashboard'||pathName.includes('/dashboard/')){
+    return null
+   }
   return (
-    <footer className={`${pathName=='/login'?'hidden':''} ${pathName=='/register'?'hidden':''} ${pathName=='/dashboard'?'hidden':''} px-4  bg-base-300 `}>
+    <footer className={` px-4  bg-base-300 `}>
       <div className="container flex flex-col justify-between py-5 lg:py-10 mx-auto space-y-8 md:flex-row lg:space-y-0">
         <div className="lg:w-[26%] flex justify-center lg:justify-start items-center">
      

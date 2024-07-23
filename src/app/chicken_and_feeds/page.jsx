@@ -2,7 +2,7 @@ import ChickenAndFeeds from "@/Pages/ChickenAndFeeds/ChickenAndFeeds";
 
 const Chicken_and_feeds = () => {
   return (
-    <main>
+    <main className="mt-[54px] lg:mt-[54px]  " >
       <ChickenAndFeeds></ChickenAndFeeds>
     </main>
   );

@@ -3,7 +3,7 @@ import Main from "@/layout/Main";
 export default function Home() {
 
   return (
-    <main className="">
+    <main className=" mt-[54px] lg:mt-[54px]  ">
        
       <Main></Main>
      
