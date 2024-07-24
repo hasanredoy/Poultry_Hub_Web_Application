@@ -1,4 +1,4 @@
-
+'use client'
 import DashboardSidebar from "@/Pages/Dashboard/DashboardSidebar";
 import DashboardNav from "@/Pages/Dashboard/DashboardNav/DashboardNav";
 export default function DashboardLayout({ children }) {
@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }) {
           <sidebar className={' w-0 lg:w-[25%]'}>
      <DashboardSidebar></DashboardSidebar>
      </sidebar>
-    <section className={'w-[98%] mx-auto min-h-screen lg:mx-0 lg:w-[74%]'}>
+    <section className={'w-[98%] overflow-auto mx-auto min-h-screen lg:mx-0 lg:w-[74%]'}>
      <DashboardNav></DashboardNav>
       {children}
     </section>
