@@ -1,11 +1,16 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { FaPen } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaPen } from "react-icons/fa";
+// import react number input
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 const page = () => {
   // state for from modal
   const [modal, setModal] = useState(false);
+  // state show and hide password
+  const [showPass, setShowPass]=useState(false)
 
   //  get user
   const user = {
@@ -14,6 +19,7 @@ const page = () => {
     phone: "+934990898",
     image: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
   };
+  const [value, setValue] = useState(user?.phone);
   return (
     <section className="   flex flex-col justify-center items-center ">
       {/* avatar section  */} {/* from section  */}
@@ -37,9 +43,10 @@ const page = () => {
                 {user?.name ? user.name : "User"}
               </span>
             </h3>
-            <button 
-            onClick={()=>setModal(!modal)}
-            className=" btn btn-neutral text-white flex items-center gap-3">
+            <button
+              onClick={() => setModal(!modal)}
+              className=" btn btn-neutral text-white flex items-center gap-3"
+            >
               <FaPen></FaPen>
               Update Profile
             </button>
@@ -50,7 +57,12 @@ const page = () => {
           <h3 className=" text-center text-base font-bold lg:text-xl pt-3">
             Update your profile
           </h3>
-          <button onClick={()=>setModal(!modal)} className=" btn btn-circle text-xl font-semibold  absolute right-1 top-1 ">X</button>
+          <button
+            onClick={() => setModal(!modal)}
+            className=" btn btn-circle text-xl font-semibold  absolute right-1 top-1 "
+          >
+            X
+          </button>
           <form className="card-body">
             {/* Name div  */}
             <div className="form-control">
@@ -61,6 +73,7 @@ const page = () => {
               </label>
               <input
                 type="text"
+                defaultValue={user?.name}
                 placeholder="Full Name"
                 className="input input-bordered"
                 required
@@ -73,11 +86,11 @@ const page = () => {
                   Phone Number
                 </span>
               </label>
-              <input
-                type="number"
-                placeholder="Your Phone Number"
-                className="input input-bordered"
-                required
+              <PhoneInput
+              className=" input input-bordered"
+                placeholder="Enter phone number"
+                value={value}
+                onChange={setValue}
               />
             </div>
             {/* email div  */}
@@ -89,28 +102,32 @@ const page = () => {
               </label>
               <input
                 type="email"
+                defaultValue={user?.email}
                 placeholder="Email"
                 className="input input-bordered"
                 required
               />
             </div>
             {/* password div  */}
-            <div className="form-control">
+            <div className="form-control relative">
               <label className="label">
                 <span className="   text-sm font-bold lg:text-base ">
-                  Enter your Password
+                  Enter your password to continue
                 </span>
               </label>
               <input
-                type="password"
+                type={showPass?"text":"password"}
                 placeholder="Password"
                 className="input input-bordered"
                 required
               />
+            <a onClick={()=>setShowPass(!showPass)} className=" absolute top-14 right-5 ">
+              {showPass?<FaEye></FaEye>:<FaEyeSlash></FaEyeSlash>}
+            </a>
             </div>
 
             <div className="form-control mt-6">
-              <button className="btn btn-neutral text-white">Update</button>
+              <button className="btn btn-primary">Update</button>
             </div>
           </form>
         </section>
