@@ -69,13 +69,106 @@ return (
               </div>
              
             </section>
-        {role == "admin" && (
+       
+        {role == "user" && (
+          <>
+            {/* user links */}
+            <Link
+              href={"/dashboard/user_home"}
+              className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/user_home"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
+              }`}
+            >
+              <FaHome></FaHome>User Home
+            </Link>
+            <Link
+              href={"/dashboard"}
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
+              }`}
+            >
+              <FaUser></FaUser> My Profile
+            </Link>
+            <Link
+              href={"/dashboard/my_cart"}
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/my_cart"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
+              }`}
+            >
+              <FaShoppingCart></FaShoppingCart>My Cart <span></span>
+            </Link>
+            <Link
+              href={"/dashboard/payment_history"}
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/payment_history"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
+              }`}
+            >
+              {" "}
+              <FaHistory></FaHistory>Payment History
+            </Link>
+          </>
+        )}
+        {role == "seller" && (
+          <>
+            {/* seller links */}
+            <Link
+              href={"/dashboard/seller_home"}
+              className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/seller_home"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
+              }`}
+            >
+              <FaHome></FaHome>Home
+            </Link>
+            <Link
+              href={"/dashboard"}
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
+              }`}
+            >
+              <FaUser></FaUser> My Profile
+            </Link>
+            <Link
+              href={"/dashboard/my_cart"}
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/my_listedItem"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
+              }`}
+            >
+              <FaShoppingCart></FaShoppingCart>My Listed Item <span></span>
+            </Link>
+            <Link
+              href={"/dashboard/payment_history"}
+              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/payment_history"
+                  ?  " text-black  bg-white rounded-r-md"
+                   : "  "
+              }`}
+            >
+              {" "}
+              <FaPlus></FaPlus> List a item
+            </Link>
+          </>
+        )}
+ {role == "admin" && (
           <>
             {/* admin links */}
             <Link
-              href={"/dashboard"}
+              href={"/dashboard/admin_home"}
               className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard"
+                pathname == "/dashboard/admin_home"
                   ? " text-black  bg-white rounded-r-md"
                    : "  "
               }`}
@@ -83,9 +176,9 @@ return (
               <FaHome></FaHome>Admin Home
             </Link>
             <Link
-              href={"/dashboard/profile"}
+              href={"/dashboard"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/profile"
+                pathname == "/dashboard"
                   ? " text-black  bg-white rounded-r-md"
                    : "  "
               }`}
@@ -126,98 +219,7 @@ return (
             </Link>
           </>
         )}
-        {role == "user" && (
-          <>
-            {/* user links */}
-            <Link
-              href={"/dashboard"}
-              className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard"
-                  ?  " text-black  bg-white rounded-r-md"
-                   : "  "
-              }`}
-            >
-              <FaHome></FaHome>User Home
-            </Link>
-            <Link
-              href={"/dashboard/profile"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/profile"
-                  ?  " text-black  bg-white rounded-r-md"
-                   : "  "
-              }`}
-            >
-              <FaUser></FaUser> My Profile
-            </Link>
-            <Link
-              href={"/dashboard/my_cart"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/my_cart"
-                  ?  " text-black  bg-white rounded-r-md"
-                   : "  "
-              }`}
-            >
-              <FaShoppingCart></FaShoppingCart>My Cart <span></span>
-            </Link>
-            <Link
-              href={"/dashboard/payment_history"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/payment_history"
-                  ?  " text-black  bg-white rounded-r-md"
-                   : "  "
-              }`}
-            >
-              {" "}
-              <FaHistory></FaHistory>Payment History
-            </Link>
-          </>
-        )}
-        {role == "seller" && (
-          <>
-            {/* seller links */}
-            <Link
-              href={"/dashboard/seller"}
-              className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/seller"
-                  ?  " text-black  bg-white rounded-r-md"
-                   : "  "
-              }`}
-            >
-              <FaHome></FaHome>Home
-            </Link>
-            <Link
-              href={"/dashboard"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard"
-                  ?  " text-black  bg-white rounded-r-md"
-                   : "  "
-              }`}
-            >
-              <FaUser></FaUser> My Profile
-            </Link>
-            <Link
-              href={"/dashboard/my_cart"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/my_listedItem"
-                  ?  " text-black  bg-white rounded-r-md"
-                   : "  "
-              }`}
-            >
-              <FaShoppingCart></FaShoppingCart>My Listed Item <span></span>
-            </Link>
-            <Link
-              href={"/dashboard/payment_history"}
-              className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/payment_history"
-                  ?  " text-black  bg-white rounded-r-md"
-                   : "  "
-              }`}
-            >
-              {" "}
-              <FaPlus></FaPlus> List a item
-            </Link>
-          </>
-        )}
+
       </div>
       <div className="flex-1 divider"></div>
       {/* static links  */}

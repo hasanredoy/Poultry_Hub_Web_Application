@@ -84,9 +84,9 @@ const LinksForSmallDevice = () => {
           <>
             {/* admin links */}
             <Link
-              href={"/dashboard"}
+              href={"/dashboard/admin_home"}
               className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard"
+                pathname == "/dashboard/admin_home"
                   ? " text-black bg-white rounded-r-md"
                   : " "
               }`}
@@ -94,9 +94,9 @@ const LinksForSmallDevice = () => {
               <FaHome></FaHome>Admin Home
             </Link>
             <Link
-              href={"/dashboard/profile"}
+              href={"/dashboard"}
               className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/profile"
+                pathname == "/dashboard"
                    ? " text-black bg-white rounded-r-md"
                   : " "
               }`}
@@ -141,9 +141,9 @@ const LinksForSmallDevice = () => {
           <>
             {/* user links */}
             <Link
-              href={"/dashboard"}
+              href={"/dashboard/user_home"}
               className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard"
+                pathname == "/dashboard/user_home"
                    ? " text-black bg-white rounded-r-md"
                   : " "
               }`}
@@ -151,9 +151,9 @@ const LinksForSmallDevice = () => {
               <FaHome></FaHome>User Home
             </Link>
             <Link
-              href={"/dashboard/profile"}
+              href={"/dashboard"}
               className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/profile"
+                pathname == "/dashboard"
                    ? " text-black bg-white rounded-r-md"
                   : " "
               }`}
@@ -187,9 +187,9 @@ const LinksForSmallDevice = () => {
           <>
             {/* seller links */}
             <Link
-              href={"/dashboard/seller"}
+              href={"/dashboard/seller_home"}
               className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/seller"
+                pathname == "/dashboard/seller_home"
                    ? " text-black bg-white rounded-r-md"
                   : " "
               }`}

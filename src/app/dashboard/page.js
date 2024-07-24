@@ -46,11 +46,11 @@ const page = () => {
           </div>
         </section>
       ) : (
-        <section className=" relative my-5  flex-1 card bg-base-300 border w-full max-w-2xl lg:max-w-md shrink-0 ">
+        <section className=" relative mt-5  flex-1 card bg-base-300 border w-full max-w-2xl lg:max-w-md shrink-0 ">
           <h3 className=" text-center text-base font-bold lg:text-xl pt-3">
             Update your profile
           </h3>
-          <h3 className=" btn btn-circle text-xl font-semibold text-red-600 absolute right-1 top-1 ">X</h3>
+          <button onClick={()=>setModal(!modal)} className=" btn btn-circle text-xl font-semibold  absolute right-1 top-1 ">X</button>
           <form className="card-body">
             {/* Name div  */}
             <div className="form-control">
