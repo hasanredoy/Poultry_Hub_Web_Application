@@ -27,6 +27,7 @@ const UserCart = () => {
   return (
     <main className=" my-10">
    <Heading subHeading={'Welcome'} title={"Have a look at your cart"}></Heading>
+	 <h1 className="text-xl ml-8 my-5 font-bold ">Total Items: {userData?.length}</h1>
    {/* table section  */}
 	<section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto ">
 		<table className="w-full p-6 text-base text-left whitespace-nowrap">
@@ -45,7 +46,7 @@ const UserCart = () => {
 				</tr>
 			</thead>
 			<tbody className="border-b text-sm ">
-		{ userData.map((data , index)=>	<tr>
+		{ userData.map((data , index)=>	<tr className="border-b" key={index}>
 					<td className="px-3 border-r border-gray-400">
              <Image src={data?.image} width={40} height={40} alt={data?.name}></Image>
           </td>

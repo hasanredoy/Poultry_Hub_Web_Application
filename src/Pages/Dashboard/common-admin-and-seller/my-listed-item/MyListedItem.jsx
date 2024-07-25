@@ -31,6 +31,8 @@ const MyListedItem = () => {
         title={"Have a look at your listed item"}
       ></Heading>
       {/* table section  */}
+      <h1 className="text-xl ml-8 my-5 font-bold ">Total Items: {userData?.length}</h1>
+      <h1 className="text-xl font-bold ">Total Revenue: {revenue}</h1>
       <section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto ">
         <table className="w-full p-6 text-base text-center whitespace-nowrap">
           <thead>
@@ -47,7 +49,7 @@ const MyListedItem = () => {
           </thead>
           <tbody className="border-b text-sm ">
             {userData.map((data, index) => (
-              <tr>
+              <tr className="border-b" key={index}>
                 <td className="px-3 border-r border-gray-400">
                   <Image
                     src={data?.image}
