@@ -11,6 +11,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import {
+  MdChecklist,
   MdOutlineContactSupport,
   MdPersonAdd,
   MdPlaylistAdd,
@@ -24,7 +25,7 @@ import Link from "next/link";
 const LinksForLargeDevice = () => {
   const pathname = usePathname();
 
-  const role = "seller";
+  const role = "admin";
   const handleLogOut = () => {
     Swal.fire({
       //   title: "Are you sure?",
@@ -214,7 +215,7 @@ const LinksForLargeDevice = () => {
                 }`}
               >
                 {" "}
-                <MdAddShoppingCart></MdAddShoppingCart>Add Item
+                <MdPlaylistAdd className="text-xl"></MdPlaylistAdd> Add Item
               </Link>
               <Link
                 href={"/dashboard/my_listed_item"}
@@ -224,7 +225,7 @@ const LinksForLargeDevice = () => {
                     : "  "
                 }`}
               >
-                <FaList></FaList> My Listed Item <span></span>
+                <MdChecklist></MdChecklist> My Listed Item <span></span>
               </Link>
             </>
           )}

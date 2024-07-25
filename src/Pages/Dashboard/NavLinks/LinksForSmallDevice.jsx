@@ -11,7 +11,7 @@ import {
   FaUser,
   FaUsers,
 } from "react-icons/fa";
-import { MdOutlineContactSupport, MdPersonAdd, MdPlaylistAdd } from "react-icons/md";
+import { MdChecklist, MdOutlineContactSupport, MdPersonAdd, MdPlaylistAdd } from "react-icons/md";
 import { MdAddShoppingCart } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
 import { usePathname } from "next/navigation";
@@ -227,7 +227,7 @@ const LinksForSmallDevice = () => {
               }`}
             >
               {" "}
-              <MdAddShoppingCart></MdAddShoppingCart>Add Item
+              <MdPlaylistAdd></MdPlaylistAdd> Add Item
             </Link>
             <Link
               href={"/dashboard/my_listed_item"}
@@ -237,7 +237,7 @@ const LinksForSmallDevice = () => {
                   : " "
               }`}
             >
-              <FaList></FaList> My Listed Item <span></span>
+              <MdChecklist></MdChecklist> My Listed Item <span></span>
             </Link>
           </>
         )}
