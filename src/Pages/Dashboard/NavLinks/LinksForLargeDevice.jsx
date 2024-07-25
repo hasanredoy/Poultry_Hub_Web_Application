@@ -12,7 +12,7 @@ import {
   FaUser,
   FaUsers,
 } from "react-icons/fa";
-import { MdOutlineContactSupport, MdPersonAdd } from "react-icons/md";
+import { MdOutlineContactSupport, MdPersonAdd, MdPlaylistAdd } from "react-icons/md";
 
 import { MdAddShoppingCart } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
@@ -147,10 +147,10 @@ return (
                    : "  "
               }`}
             >
-              <FaShoppingCart></FaShoppingCart>My Listed Item <span></span>
+              <FaList></FaList> My Listed Item <span></span>
             </Link>
             <Link
-              href={"/dashboard/list_item"}
+              href={"/dashboard/add_item"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/payment_history"
                   ?  " text-black  bg-white rounded-r-md"
@@ -158,7 +158,7 @@ return (
               }`}
             >
               {" "}
-              <MdFormatListBulletedAdd></MdFormatListBulletedAdd> List a item
+              <MdPlaylistAdd className="text-2xl"></MdPlaylistAdd> List a item
             </Link>
           </>
         )}

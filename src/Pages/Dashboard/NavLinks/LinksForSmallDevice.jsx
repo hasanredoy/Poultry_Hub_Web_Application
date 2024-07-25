@@ -11,7 +11,7 @@ import {
   FaUser,
   FaUsers,
 } from "react-icons/fa";
-import { MdOutlineContactSupport, MdPersonAdd } from "react-icons/md";
+import { MdOutlineContactSupport, MdPersonAdd, MdPlaylistAdd } from "react-icons/md";
 import { MdAddShoppingCart } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
 import { usePathname } from "next/navigation";
@@ -215,10 +215,10 @@ const LinksForSmallDevice = () => {
                   : " "
               }`}
             >
-              <FaShoppingCart></FaShoppingCart>My Listed Item <span></span>
+              <FaList></FaList> My Listed Item <span></span>
             </Link>
             <Link
-              href={"/dashboard/list_item"}
+              href={"/dashboard/add_item"}
               className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/list_item"
                    ? " text-black bg-white rounded-r-md"
@@ -226,7 +226,7 @@ const LinksForSmallDevice = () => {
               }`}
             >
               {" "}
-              <MdFormatListBulletedAdd></MdFormatListBulletedAdd> List a item
+              <MdPlaylistAdd className=" "></MdPlaylistAdd> List a item
             </Link>
           </>
         )}
