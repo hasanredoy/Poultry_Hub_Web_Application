@@ -50,7 +50,7 @@ const handleLogOut = () => {
 };  
 
 return (
-    <div className={` hidden lg:block  min-h-screen   pt-4  bg-base-300 `}>
+    <div className={` hidden lg:block min-h-screen lg:min-h-[1000px] pt-4  bg-base-300 `}>
     <div className=" h-[calc(100dvh-30px)] flex max-h-screen flex-col ">
       <div className="">
         {/* profile and theme controller  */}

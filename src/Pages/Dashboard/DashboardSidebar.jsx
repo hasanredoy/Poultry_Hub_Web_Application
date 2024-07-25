@@ -5,7 +5,7 @@ import LinksForSmallDevice from "./NavLinks/LinksForSmallDevice";
 const DashboardSidebar = () => {
 
   return (
-    <div className=" w-full">
+    <div className=" w-full h-full">
      {/* links for small devices */}
      <div className=" block lg:hidden">
      <LinksForSmallDevice></LinksForSmallDevice>
