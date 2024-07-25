@@ -18,6 +18,7 @@ import { usePathname } from "next/navigation";
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { MdFormatListBulletedAdd } from "react-icons/md";
 
 import { RiMenuUnfold2Fill } from "react-icons/ri";
 import { RiMenuUnfoldFill } from "react-icons/ri";
@@ -217,15 +218,15 @@ const LinksForSmallDevice = () => {
               <FaShoppingCart></FaShoppingCart>My Listed Item <span></span>
             </Link>
             <Link
-              href={"/dashboard/payment_history"}
+              href={"/dashboard/list_item"}
               className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/payment_history"
+                pathname == "/dashboard/list_item"
                    ? " text-black bg-white rounded-r-md"
                   : " "
               }`}
             >
               {" "}
-              <FaPlus></FaPlus> List a item
+              <MdFormatListBulletedAdd></MdFormatListBulletedAdd> List a item
             </Link>
           </>
         )}

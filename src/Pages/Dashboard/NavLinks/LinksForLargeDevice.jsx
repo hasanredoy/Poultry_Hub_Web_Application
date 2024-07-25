@@ -17,7 +17,7 @@ import { MdOutlineContactSupport, MdPersonAdd } from "react-icons/md";
 import { MdAddShoppingCart } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
 import { usePathname } from "next/navigation";
-import { IoIosMoon, IoIosSunny } from "react-icons/io";
+import { MdFormatListBulletedAdd } from "react-icons/md";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -25,7 +25,7 @@ import Link from "next/link";
 const LinksForLargeDevice = () => {
 const pathname = usePathname()
 
-const role='user'
+const role='seller'
 const [menu, setMenu] = useState(false);
 const handleLogOut = () => {
   Swal.fire({
@@ -150,7 +150,7 @@ return (
               <FaShoppingCart></FaShoppingCart>My Listed Item <span></span>
             </Link>
             <Link
-              href={"/dashboard/payment_history"}
+              href={"/dashboard/list_item"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/payment_history"
                   ?  " text-black  bg-white rounded-r-md"
@@ -158,7 +158,7 @@ return (
               }`}
             >
               {" "}
-              <FaPlus></FaPlus> List a item
+              <MdFormatListBulletedAdd></MdFormatListBulletedAdd> List a item
             </Link>
           </>
         )}

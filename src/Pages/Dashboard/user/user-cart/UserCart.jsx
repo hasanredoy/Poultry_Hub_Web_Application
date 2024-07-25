@@ -27,8 +27,8 @@ const UserCart = () => {
   return (
     <main className=" my-10">
    <Heading subHeading={'Welcome'} title={"Have a look at your cart"}></Heading>
-   <div className="container p-2 mx-auto sm:p-4 ">
-	<div className="overflow-x-auto w-[90%] bg-base-100 mx-auto ">
+   {/* table section  */}
+	<section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto ">
 		<table className="w-full p-6 text-base text-left whitespace-nowrap">
  
 			<thead>
@@ -53,7 +53,7 @@ const UserCart = () => {
 						<p>{data?.name}</p>
 					</td>
 					<td className="px-3 py-2 border-r border-gray-400">
-						<p className="">{data?.price}</p>
+						<p className="">{data?.price}$</p>
 					</td>
 					<td className="px-3 py-2 border-r border-gray-400">
 						<p>{data?.bookingDate}</p>
@@ -75,8 +75,8 @@ const UserCart = () => {
 			</tbody>
 	
 		</table>
-	</div>
-</div>
+	</section>
+
     </main>
   );
 };
