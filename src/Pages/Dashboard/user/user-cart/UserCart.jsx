@@ -1,4 +1,6 @@
 import Heading from "@/components/custom/Heading/Heading";
+import Image from "next/image";
+import { FaTrash } from "react-icons/fa";
 
 const UserCart = () => {
    //  get user
@@ -25,57 +27,47 @@ const UserCart = () => {
   return (
     <main className=" my-10">
    <Heading subHeading={'Welcome'} title={"Have a look at your cart"}></Heading>
-   <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
-	<h2 className="mb-4 text-2xl font-semibold leading-tight">Contacts</h2>
-	<div className="overflow-x-auto">
-		<table className="w-full p-6 text-xs text-left whitespace-nowrap">
-			<colgroup>
-				<col className="w-5" />
-				<col />
-				<col />
-				<col />
-				<col />
-				<col />
-				<col className="w-5" />
-			</colgroup>
+   <div className="container p-2 mx-auto sm:p-4 ">
+	<div className="overflow-x-auto w-[90%] bg-base-100 mx-auto ">
+		<table className="w-full p-6 text-base text-left whitespace-nowrap">
+ 
 			<thead>
-				<tr className="dark:bg-gray-300">
-					<th className="p-3">A-Z</th>
-					<th className="p-3">Name</th>
-					<th className="p-3">Job title</th>
-					<th className="p-3">Phone</th>
-					<th className="p-3">Email</th>
-					<th className="p-3">Address</th>
+				<tr className=" border-b border-gray-900">
+					<th className="p-3 border-r border-gray-300">Image</th>
+					<th className="p-3 border-r border-gray-300">Item Name</th>
+					<th className="p-3 border-r border-gray-300">Price</th>
+					<th className="p-3 border-r border-gray-300">Booking Date</th>
+					<th className="p-3 border-r border-gray-300">Category</th>
+					<th className="p-3 border-r border-gray-300">Email</th>
 					<th className="p-3">
-						<span className="sr-only">Edit</span>
+						Action
 					</th>
 				</tr>
 			</thead>
-			<tbody className="border-b ">
+			<tbody className="border-b text-sm ">
 		{ userData.map((data , index)=>	<tr>
-					<td className="px-3 text-2xl font-medium dark:text-gray-600">{index+1}</td>
-					<td className="px-3 py-2">
-						<p>Alex Bridges</p>
+					<td className="px-3 border-r border-gray-400">
+             <Image src={data?.image} width={40} height={40} alt={data?.name}></Image>
+          </td>
+					<td className="px-3 py-2 border-r border-gray-400">
+						<p>{data?.name}</p>
+					</td>
+					<td className="px-3 py-2 border-r border-gray-400">
+						<p className="">{data?.price}</p>
+					</td>
+					<td className="px-3 py-2 border-r border-gray-400">
+						<p>{data?.bookingDate}</p>
+					</td>
+					<td className="px-3 py-2 border-r border-gray-400">
+						<p>{data?.category}</p>
+					</td>
+					<td className="px-3 py-2 border-r border-gray-400">
+						<p>{data?.email}</p>
+						
 					</td>
 					<td className="px-3 py-2">
-						<span>Administrative Services Manager</span>
-						<p className="dark:text-gray-600">Smilectronics</p>
-					</td>
-					<td className="px-3 py-2">
-						<p>555-238-9890</p>
-					</td>
-					<td className="px-3 py-2">
-						<p>alex@bridges.com</p>
-					</td>
-					<td className="px-3 py-2">
-						<p>Hooivelden 117, Kortrijk</p>
-						<p className="dark:text-gray-600">Belgium</p>
-					</td>
-					<td className="px-3 py-2">
-						<button type="button" title="Open details" className="p-1 rounded-full dark:text-gray-400 hover:dark:bg-gray-300 focus:dark:bg-gray-300">
-							<svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
-								<path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"></path>
-							</svg>
+						<button  className="btn text-red-600">
+				     <FaTrash></FaTrash>
 						</button>
 					</td>
 				</tr>
