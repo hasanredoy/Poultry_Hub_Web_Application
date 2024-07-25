@@ -4,8 +4,6 @@ import {
   FaHome,
   FaLightbulb,
   FaList,
-  FaMoon,
-  FaPlus,
   FaShoppingCart,
   FaSignOutAlt,
   FaStar,
@@ -17,16 +15,12 @@ import { MdOutlineContactSupport, MdPersonAdd, MdPlaylistAdd } from "react-icons
 import { MdAddShoppingCart } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
 import { usePathname } from "next/navigation";
-import { MdFormatListBulletedAdd } from "react-icons/md";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const LinksForLargeDevice = () => {
 const pathname = usePathname()
 
 const role='seller'
-const [menu, setMenu] = useState(false);
 const handleLogOut = () => {
   Swal.fire({
     //   title: "Are you sure?",
@@ -77,7 +71,7 @@ return (
               href={"/dashboard/user_home"}
               className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/user_home"
-                  ?  " text-black  bg-white rounded-r-md"
+                  ?  " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -87,7 +81,7 @@ return (
               href={"/dashboard"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard"
-                  ?  " text-black  bg-white rounded-r-md"
+                  ?  " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -97,7 +91,7 @@ return (
               href={"/dashboard/my_cart"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/my_cart"
-                  ?  " text-black  bg-white rounded-r-md"
+                  ?  " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -107,7 +101,7 @@ return (
               href={"/dashboard/payment_history"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/payment_history"
-                  ?  " text-black  bg-white rounded-r-md"
+                  ?  " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -123,7 +117,7 @@ return (
               href={"/dashboard/seller_home"}
               className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/seller_home"
-                  ?  " text-black  bg-white rounded-r-md"
+                  ?  " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -133,17 +127,17 @@ return (
               href={"/dashboard"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard"
-                  ?  " text-black  bg-white rounded-r-md"
+                  ?  " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
               <FaUser></FaUser> My Profile
             </Link>
             <Link
-              href={"/dashboard/my_cart"}
+              href={"/dashboard/my_listedItem"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/my_listedItem"
-                  ?  " text-black  bg-white rounded-r-md"
+                  ?  " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -152,8 +146,8 @@ return (
             <Link
               href={"/dashboard/add_item"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/payment_history"
-                  ?  " text-black  bg-white rounded-r-md"
+                pathname == "/dashboard/add_item"
+                  ?  " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -169,7 +163,7 @@ return (
               href={"/dashboard/admin_home"}
               className={`flex items-center font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/admin_home"
-                  ? " text-black  bg-white rounded-r-md"
+                  ? " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -179,7 +173,7 @@ return (
               href={"/dashboard"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard"
-                  ? " text-black  bg-white rounded-r-md"
+                  ? " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -189,7 +183,7 @@ return (
               href={"/dashboard/all_users"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/all_users"
-                  ? " text-black  bg-white rounded-r-md"
+                  ? " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -199,7 +193,7 @@ return (
               href={"/dashboard/all_items"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/all_items"
-                  ? " text-black  bg-white rounded-r-md"
+                  ? " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >
@@ -210,7 +204,7 @@ return (
               href={"/dashboard/add_item"}
               className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/add_item"
-                  ?  " text-black  bg-white rounded-r-md"
+                  ?  " text-primary  bg-white rounded-r-md"
                    : "  "
               }`}
             >

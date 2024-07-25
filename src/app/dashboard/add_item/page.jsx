@@ -1,4 +1,4 @@
-import AddItem from "@/Pages/Dashboard/common/add-item/AddItem";
+import AddItem from "@/Pages/Dashboard/common-admin-and-seller/add-item/AddItem";
 
 const page = () => {
   return (
