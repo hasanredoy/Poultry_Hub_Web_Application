@@ -1,9 +1,8 @@
+import SellerHome from "@/Pages/Dashboard/seller/seller-home/SellerHome";
 
 const page = () => {
   return (
-    <div>
-      
-    </div>
+    <SellerHome></SellerHome>
   );
 };
 
