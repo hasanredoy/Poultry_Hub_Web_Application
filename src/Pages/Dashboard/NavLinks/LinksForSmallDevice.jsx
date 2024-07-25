@@ -81,63 +81,7 @@ const LinksForSmallDevice = () => {
               </div>
            
             </section>
-            {role == "admin" && (
-          <>
-            {/* admin links */}
-            <Link
-              href={"/dashboard/admin_home"}
-              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/admin_home"
-                  ? " text-black bg-white rounded-r-md"
-                  : " "
-              }`}
-            >
-              <FaHome></FaHome>Admin Home
-            </Link>
-            <Link
-              href={"/dashboard"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard"
-                   ? " text-black bg-white rounded-r-md"
-                  : " "
-              }`}
-            >
-              <FaUser></FaUser> My Profile
-            </Link>
-            <Link
-              href={"/dashboard/all_users"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/all_users"
-                   ? " text-black bg-white rounded-r-md"
-                  : " "
-              }`}
-            >
-              <FaUsers></FaUsers>All Users{" "}
-            </Link>
-            <Link
-              href={"/dashboard/all_items"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/all_items"
-                   ? " text-black bg-white rounded-r-md"
-                  : " "
-              }`}
-            >
-              {" "}
-              <FaList></FaList>All Items
-            </Link>
-            <Link
-              href={"/dashboard/add_item"}
-              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/add_item"
-                   ? " text-black bg-white rounded-r-md"
-                  : " "
-              }`}
-            >
-              {" "}
-              <MdAddShoppingCart></MdAddShoppingCart>Add Item
-            </Link>
-          </>
-        )}
+        
         {role == "user" && (
           <>
             {/* user links */}
@@ -208,9 +152,9 @@ const LinksForSmallDevice = () => {
               <FaUser></FaUser> My Profile
             </Link>
             <Link
-              href={"/dashboard/my_cart"}
+              href={"/dashboard/my_listed_item"}
               className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/my_listedItem"
+                pathname == "/dashboard/my_listed_item"
                    ? " text-black bg-white rounded-r-md"
                   : " "
               }`}
@@ -220,13 +164,80 @@ const LinksForSmallDevice = () => {
             <Link
               href={"/dashboard/add_item"}
               className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
-                pathname == "/dashboard/list_item"
+                pathname == "/dashboard/add_item"
                    ? " text-black bg-white rounded-r-md"
                   : " "
               }`}
             >
               {" "}
               <MdPlaylistAdd className=" "></MdPlaylistAdd> List a item
+            </Link>
+          </>
+        )}
+            {role == "admin" && (
+          <>
+            {/* admin links */}
+            <Link
+              href={"/dashboard/admin_home"}
+              className={`flex items-center text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/admin_home"
+                  ? " text-black bg-white rounded-r-md"
+                  : " "
+              }`}
+            >
+              <FaHome></FaHome>Admin Home
+            </Link>
+            <Link
+              href={"/dashboard"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
+              }`}
+            >
+              <FaUser></FaUser> My Profile
+            </Link>
+            <Link
+              href={"/dashboard/all_users"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/all_users"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
+              }`}
+            >
+              <FaUsers></FaUsers>All Users{" "}
+            </Link>
+            <Link
+              href={"/dashboard/all_items"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/all_items"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
+              }`}
+            >
+              {" "}
+              <FaList></FaList>All Items
+            </Link>
+            <Link
+              href={"/dashboard/add_item"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/add_item"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
+              }`}
+            >
+              {" "}
+              <MdAddShoppingCart></MdAddShoppingCart>Add Item
+            </Link>
+            <Link
+              href={"/dashboard/my_listed_item"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/my_listed_item"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
+              }`}
+            >
+              <FaList></FaList> My Listed Item <span></span>
             </Link>
           </>
         )}
