@@ -28,6 +28,7 @@ const Register = () => {
 
   const imageURL = postImage(imageUrl, API);
   // console.log(imageURL);
+
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -60,7 +61,7 @@ const Register = () => {
 
   return (
     <main className="hero  min-h-screen  max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
-      <div className="hero-content flex-col w-full md:flex-row-reverse">
+      <section className="hero-content flex-col w-full md:flex-row-reverse">
         <div className=" flex-1 lg:text-left w-full min-h-screen h-full">
           <Image
             src={signUp_banner}
@@ -160,6 +161,7 @@ const Register = () => {
               <input
                 type="checkbox"
                 name="remember"
+                required
                 aria-label="bbb"
                 className="mr-1 rounded-sm focus:dark:ring-violet-600 focus:dark:border-violet-600 focus:ring-2 dark:accent-violet-600"
               />
@@ -177,7 +179,7 @@ const Register = () => {
             <span className=" font-bold text-blue-700">Login.</span>
           </Link>
         </div>
-      </div>
+      </section>
       <Toaster />
     </main>
   );
