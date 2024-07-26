@@ -8,21 +8,25 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { postImage } from "@/hooks/postImage";
 import useAxios from "@/hooks/useAxios";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-
-// get axios hook 
-const axiosHook = useAxios()
+// get axios hook
+const axiosHook = useAxios();
 
 const Register = () => {
   // get imgbb api key
   const API = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
-// console.log({API}); 
+  // console.log({API});
+  // stat for phone number
   const [phone, setPhone] = useState();
-  const [imageUrl , setImageUrl]=useState('')
-// console.log(imageUrl);
+  // stat for image url
+  const [imageUrl, setImageUrl] = useState("");
+  // console.log(imageUrl);
+  // state show and hide password
+  const [showPass, setShowPass] = useState(false);
 
-  const imageURL =postImage(imageUrl,API)
+  const imageURL = postImage(imageUrl, API);
   // console.log(imageURL);
   const handleRegister = (e) => {
     e.preventDefault();
@@ -30,8 +34,13 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    if(password.length<6){
-
+    if (!phone||phone.length<5) {
+      console.log('jekjhf');
+      return toast.error("Number is not valid");
+      
+    }
+    if (password.length < 6) {
+      return toast.error("password must be 6 or more");
     }
     const userData = {
       name,
@@ -39,15 +48,14 @@ const Register = () => {
       phone,
       imageURL,
       password,
-      role:'user',
-      registerDate:new Date()    
-    }
-console.log(userData);
-if(!imageURL)return
-      axiosHook.post('/api/register',userData)
-      .then(res=>{
-        console.log(res.data);
-      })
+      role: "user",
+      registerDate: new Date(),
+    };
+    console.log(userData);
+    if (!imageURL) return;
+    axiosHook.post("/api/register", userData).then((res) => {
+      console.log(res.data);
+    });
   };
 
   return (
@@ -62,7 +70,7 @@ if(!imageURL)return
             width={800}
           />
         </div>
-        <div className="flex-1 card bg-base-200 w-full max-w-3xl lg:max-w-md shrink-0 ">
+        <div className="flex-1 card w-full bg-base-200 max-w-xl lg:max-w-xl shrink-0 ">
           <h3 className=" text-center text-base font-bold lg:text-xl pt-3">
             Please Register
           </h3>
@@ -77,7 +85,7 @@ if(!imageURL)return
               <input
                 type="text"
                 placeholder="Full Name"
-                name={'name'}
+                name={"name"}
                 className="input input-bordered"
                 required
               />
@@ -93,6 +101,7 @@ if(!imageURL)return
                 className=" input input-bordered"
                 placeholder="Enter phone number"
                 value={phone}
+              
                 onChange={setPhone}
               />
             </div>
@@ -104,8 +113,11 @@ if(!imageURL)return
                 </span>
               </label>
               <input
-              onChange={(event)=>setImageUrl(event.target.files[0])}
-              type="file" required className=" file-input file-input-bordered" />
+                onChange={(event) => setImageUrl(event.target.files[0])}
+                type="file"
+                required
+                className=" file-input file-input-bordered"
+              />
             </div>
             {/* email div  */}
             <div className="form-control">
@@ -123,19 +135,25 @@ if(!imageURL)return
               />
             </div>
             {/* password div  */}
-            <div className="form-control">
+            <div className="form-control relative">
               <label className="label">
                 <span className="   text-sm font-bold lg:text-base ">
                   Password
                 </span>
               </label>
               <input
-                type="password"
+                type={showPass ? "text" : "password"}
                 placeholder="Password"
                 className="input input-bordered"
                 required
                 name="password"
               />
+              <a
+                onClick={() => setShowPass(!showPass)}
+                className=" absolute top-14 right-5 "
+              >
+                {showPass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
+              </a>
             </div>
             {/* check box div  */}
             <div className=" flex gap-2 mt-3">
@@ -160,6 +178,7 @@ if(!imageURL)return
           </Link>
         </div>
       </div>
+      <Toaster />
     </main>
   );
 };
