@@ -1,8 +1,12 @@
 "use client";
 import Image from "next/image";
-import listedItem from "../../../../../public/dashboard_icons/to-do.png";
-import customerFeedback from "../../../../../public/dashboard_icons/review.png";
+import adminListedItem from "../../../../../public/dashboard_icons/to-do.png";
+import totalReviews from "../../../../../public/dashboard_icons/review.png";
 import sell from "../../../../../public/dashboard_icons/sell.png";
+import totalItem from "../../../../../public/dashboard_icons/product-selling.png";
+import totalUsers from "../../../../../public/dashboard_icons/users.png";
+import totalRevenue from "../../../../../public/dashboard_icons/financial-statement.png";
+
 
 
 // import bar chart
@@ -30,21 +34,24 @@ const AdminHome = () => {
   };
   // get user stats
   const sellerStats = {
-    listedItem: 5,
-    customerFeedback: 2,
-    totalSell: 3,
+    totalItem: 5,
+    totalReviews: 2,
+    totalSell: 10,
     decline: 2,
+    totalUsers:10,
+    totalRevenue:300,
+    adminListedItem:3
   };
 
   // chart data 
   const chartData = [
     {
-      name: "Listed Item",
-      count: sellerStats?.listedItem,
+      name: "Total Item",
+      count: sellerStats?.totalItem,
     },
     {
-      name: "Customer Feedback",
-      count: sellerStats?.customerFeedback,
+      name: "Total Reviews",
+      count: sellerStats?.totalReviews,
     },
     {
       name: "Total Sell",
@@ -54,8 +61,17 @@ const AdminHome = () => {
       name: "Order Declines",
       count: sellerStats?.decline,
     },
+    {
+      name: "Your Item",
+      count: sellerStats?.adminListedItem,
+    },
+    {
+      name: "Total User",
+      count: sellerStats?.totalUsers,
+    },
+ 
   ];
-const barChartLength =  parseInt(chartData.length)*150 
+const barChartLength =  parseInt(chartData.length)*120 
 // console.log(barChartLength);
 
 // pie chart 
@@ -85,42 +101,42 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
       {/* stats section  */}
       <section className="p-6 my-6  flex items-center">
         <div className="w-[90%] grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-3">
-          {/* stat 1 listedItem */}
-          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 bg-slate-400 text-black ">
+          {/* stat 1 totalItem */}
+          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 bg-slate-200 shadow border text-black ">
             <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4  -violet-400">
               <Image
-                alt=" listedItem image"
+                alt=" totalItem image"
                 width={40}
                 height={40}
-                src={listedItem}
+                src={totalItem}
               ></Image>
             </div>
             <div className="flex flex-col justify-center align-middle">
-              <p className="capitalize"> Total listed item</p>
+              <p className="capitalize"> Total item</p>
               <h1 className="text-3xl font-bold leading-none">
-                {sellerStats?.listedItem}
+                {sellerStats?.totalItem}
               </h1>
             </div>
           </div>
-          {/* stat 2 customerFeedback  */}
-          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-fuchsia-200 text-neutral-900 ">
+          {/* stat 2 totalReviews  */}
+          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-orange-100 shadow border text-neutral-900 ">
             <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4  -violet-400">
               <Image
-                alt=" customerFeedback image"
+                alt=" totalReviews image"
                 width={40}
                 height={40}
-                src={customerFeedback}
+                src={totalReviews}
               ></Image>
             </div>
             <div className="flex flex-col justify-center align-middle">
-              <p className="capitalize">Feedback</p>
+              <p className="capitalize">Total Reviews</p>
               <h1 className="text-3xl font-bold leading-none">
-                {sellerStats?.customerFeedback}
+                {sellerStats?.totalReviews}
               </h1>
             </div>
           </div>
           {/* stat 3 sell  */}
-          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-emerald-100 text-neutral-900">
+          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-emerald-100 shadow border text-neutral-900">
             <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4  -violet-400">
               <Image
                 alt="sell image"
@@ -136,12 +152,63 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
               </h1>
             </div>
           </div>
+          {/* stat 4 admin listed item  */}
+          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-emerald-100 shadow border text-neutral-900">
+            <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4  -violet-400">
+              <Image
+                alt="admin listed item image"
+                width={40}
+                height={40}
+                src={adminListedItem}
+              ></Image>
+            </div>
+            <div className="flex flex-col justify-center align-middle">
+              <p className="capitalize">Your Listed Item</p>
+              <h1 className="text-3xl font-bold leading-none">
+                {sellerStats?.adminListedItem}
+              </h1>
+            </div>
+          </div>
+          {/* stat 5 users  */}
+          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-orange-100 shadow border text-neutral-900">
+            <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4  -violet-400">
+              <Image
+                alt="users state image"
+                width={40}
+                height={40}
+                src={totalUsers}
+              ></Image>
+            </div>
+            <div className="flex flex-col justify-center align-middle">
+              <p className="capitalize">Total Users</p>
+              <h1 className="text-3xl font-bold leading-none">
+                {sellerStats?.totalUsers}
+              </h1>
+            </div>
+          </div>
+          {/* stat 6 revenue  */}
+          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  bg-slate-200 shadow border text-neutral-900">
+            <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4  -violet-400">
+              <Image
+                alt="total revenue image"
+                width={40}
+                height={40}
+                src={totalRevenue}
+              ></Image>
+            </div>
+            <div className="flex flex-col justify-center align-middle">
+              <p className="capitalize">Total Revenue</p>
+              <h1 className="text-3xl font-bold leading-none">
+                {sellerStats?.totalRevenue} $
+              </h1>
+            </div>
+          </div>
         </div>
       </section>
       {/* user info section */}
       <h3 className=" my-5 text-xl font-bold text-center"> Your Activities</h3>
       {/* user order info charts  section */}
-      <section className=" text-black w-full flex items-center mx-5 overflow-auto justify-center">
+      <section className=" text-black w-full flex items-center mx-5 overflow-auto justify-center pl-24">
         <div>
         <BarChart
           width={barChartLength}
