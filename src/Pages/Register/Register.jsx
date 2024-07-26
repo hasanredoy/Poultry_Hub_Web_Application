@@ -1,61 +1,139 @@
-import Image from 'next/image';
-import signUp_banner from '../../../public/sign-up.png';
-import React from 'react';
-import Link from 'next/link';
-
+"use client";
+import Image from "next/image";
+import signUp_banner from "../../../public/sign-up.png";
+import { useRef, useState } from "react";
+import Link from "next/link";
+// import react number input
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import usePostImage from "@/hooks/usePostImage";
 
 const Register = () => {
+  const [phone, setPhone] = useState();
+  const imageRef = useRef()
+  const image = imageRef?.current?.files[0]
+  console.log({image});
+  const imageURL =usePostImage(image)
+  console.log(imageURL);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+  };
+
   return (
     <main className="hero  min-h-screen  max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
-  <div className="hero-content flex-col w-full md:flex-row-reverse">
-    <div className=" flex-1 lg:text-left w-full min-h-screen h-full">
-      <Image src={signUp_banner} className=' h-[400px] w-full lg:h-full' alt='login banner imge' height={700} width={800}/>
-    </div>
-    <div className="flex-1 card bg-base-200 w-full max-w-2xl lg:max-w-md shrink-0 ">
-      <h3 className=' text-center text-base font-bold lg:text-xl pt-3'>Please Register</h3>
-      <form className="card-body">
-        {/* Name div  */}
-        <div className="form-control">
-          <label className="label">
-            <span className="   text-sm font-bold lg:text-base ">Full Name</span>
-          </label>
-          <input type="text" placeholder="Full Name" className="input input-bordered" required />
+      <div className="hero-content flex-col w-full md:flex-row-reverse">
+        <div className=" flex-1 lg:text-left w-full min-h-screen h-full">
+          <Image
+            src={signUp_banner}
+            className=" h-[400px] w-full lg:h-full"
+            alt="register banner image"
+            height={700}
+            width={800}
+          />
         </div>
-        {/* Phone number div  */}
-        <div className="form-control">
-          <label className="label">
-            <span className="   text-sm font-bold lg:text-base ">Phone Number</span>
-          </label>
-          <input type="number" placeholder="Your Phone Number" className="input input-bordered" required />
+        <div className="flex-1 card bg-base-200 w-full max-w-2xl lg:max-w-md shrink-0 ">
+          <h3 className=" text-center text-base font-bold lg:text-xl pt-3">
+            Please Register
+          </h3>
+          <form className="card-body">
+            {/* Name div  */}
+            <div className="form-control">
+              <label className="label">
+                <span className="   text-sm font-bold lg:text-base ">
+                  Full Name
+                </span>
+              </label>
+              <input
+                type="text"
+                placeholder="Full Name"
+                name={'name'}
+                className="input input-bordered"
+                required
+              />
+            </div>
+            {/* Phone number div  */}
+            <div className="form-control">
+              <label className="label">
+                <span className="   text-sm font-bold lg:text-base ">
+                  Phone Number
+                </span>
+              </label>
+              <PhoneInput
+                className=" input input-bordered"
+                placeholder="Enter phone number"
+                value={phone}
+                onChange={setPhone}
+              />
+            </div>
+            {/* photo div  */}
+            <div className="form-control">
+              <label className="label">
+                <span className="   text-sm font-bold lg:text-base ">
+                  Photo
+                </span>
+              </label>
+              <input
+              ref={imageRef}
+              type="file" required  />
+            </div>
+            {/* email div  */}
+            <div className="form-control">
+              <label className="label">
+                <span className="   text-sm font-bold lg:text-base ">
+                  Email
+                </span>
+              </label>
+              <input
+                type="email"
+                placeholder="Email"
+                className="input input-bordered"
+                required
+                name="email"
+              />
+            </div>
+            {/* password div  */}
+            <div className="form-control">
+              <label className="label">
+                <span className="   text-sm font-bold lg:text-base ">
+                  Password
+                </span>
+              </label>
+              <input
+                type="password"
+                placeholder="Password"
+                className="input input-bordered"
+                required
+                name="password"
+              />
+            </div>
+            {/* check box div  */}
+            <div className=" flex gap-2 mt-3">
+              <input
+                type="checkbox"
+                name="remember"
+                aria-label="bbb"
+                className="mr-1 rounded-sm focus:dark:ring-violet-600 focus:dark:border-violet-600 focus:ring-2 dark:accent-violet-600"
+              />
+              <h6 className=" text-sm">Accept Our Terms & Conditions </h6>
+            </div>
+            <div className="form-control mt-6">
+              <button className="btn btn-primary">Register</button>
+            </div>
+          </form>
+          <Link
+            href={"/login"}
+            className=" py-3 flex  justify-center gap-2  text-sm lg:text-base text-center font-medium"
+          >
+            Already Poultry Hub member? Please{" "}
+            <span className=" font-bold text-blue-700">Login.</span>
+          </Link>
         </div>
-        {/* email div  */}
-        <div className="form-control">
-          <label className="label">
-            <span className="   text-sm font-bold lg:text-base ">Email</span>
-          </label>
-          <input type="email" placeholder="Email" className="input input-bordered" required />
-        </div>
-        {/* password div  */}
-        <div className="form-control">
-          <label className="label">
-            <span className="   text-sm font-bold lg:text-base ">Password</span>
-          </label>
-          <input type="password" placeholder="Password" className="input input-bordered" required />
-         
-        </div>
-        {/* check box div  */}
-        <div  className=' flex gap-2 mt-3' >
-        <input type="checkbox" name="remember" aria-label="bbb" className="mr-1 rounded-sm focus:dark:ring-violet-600 focus:dark:border-violet-600 focus:ring-2 dark:accent-violet-600" />
-        <h6 className=' text-sm'>Accept Our Terms & Conditions </h6>
-        </div>
-        <div className="form-control mt-6">
-          <button className="btn btn-primary">Register</button>
-        </div>
-      </form>
-      <Link href={'/login'} className=' py-3 flex  justify-center gap-2  text-sm lg:text-base text-center font-medium'>Already Poultry Hub member? Please  <span className=' font-bold text-blue-700'>Login.</span></Link>
-    </div>
-  </div>
-
+      </div>
     </main>
   );
 };

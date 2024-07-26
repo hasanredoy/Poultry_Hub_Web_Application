@@ -206,7 +206,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
         </div>
       </section>
       {/* user info section */}
-      <h3 className=" my-5 text-xl font-bold text-center"> Your Activities</h3>
+      <h3 className=" my-5 text-xl font-bold text-center">All Activities</h3>
       {/* user order info charts  section */}
       <section className=" text-black w-full flex items-center mx-5 overflow-auto justify-center pl-24">
         <div>
@@ -221,6 +221,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
             bottom: 5,
           }}
         >
+          
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
