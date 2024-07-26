@@ -6,14 +6,17 @@ import Link from "next/link";
 // import react number input
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import usePostImage from "@/hooks/usePostImage";
+import { postImage } from "@/hooks/postImage";
+
 
 const Register = () => {
+  const API = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
+console.log({API}); 
   const [phone, setPhone] = useState();
-  const imageRef = useRef()
-  const image = imageRef?.current?.files[0]
-  console.log({image});
-  const imageURL =usePostImage(image)
+  const [imageUrl , setImageUrl]=useState('')
+// console.log(imageUrl);
+
+  const imageURL =postImage(imageUrl,API)
   console.log(imageURL);
   const handleRegister = (e) => {
     e.preventDefault();
@@ -78,7 +81,7 @@ const Register = () => {
                 </span>
               </label>
               <input
-              ref={imageRef}
+              onChange={(event)=>setImageUrl(event.target.files[0])}
               type="file" required  />
             </div>
             {/* email div  */}

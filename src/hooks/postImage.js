@@ -1,0 +1,25 @@
+'use client'
+import axios from "axios";
+import { useState } from "react";
+
+// const API = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
+// console.log({API}); 
+export const postImage = (image,API) => {
+  console.log(image);
+  const [imageURL , setImageURL]=useState()
+  const imageData = new FormData();
+  imageData.append("image", image);
+ try {
+    axios.post(`https://api.imgbb.com/1/upload?key=${API}`,imageData)
+      .then((res) => {
+        console.log(res.data);
+       setImageURL(res.data?.data?.display_url)
+      });
+  
+  console.log(imageURL);
+ } catch (error) {
+console.log(error);
+}
+return imageURL
+};
+

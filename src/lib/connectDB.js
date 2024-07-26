@@ -6,7 +6,7 @@ export const connectDB = async()=>{
   if(db)return db
   try {
   const uri = process.env.URI;
-  console.log({uri});
+  // console.log({uri});
 
 
 const client = new MongoClient(uri, {
