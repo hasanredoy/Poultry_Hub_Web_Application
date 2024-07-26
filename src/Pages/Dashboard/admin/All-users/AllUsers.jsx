@@ -72,7 +72,7 @@ const AllUsers = () => {
               <td className="px-3 py-2 border-r border-gray-400">
                 <p>{user?.registerDate}</p>
               </td>
-              <td className="px-3 py-2 flex gap-2">
+              <td className="px-3 py-2 flex gap-4">
                 <button title="Make Admin" className="btn btn-primary">
                  {role!=='admin'?<span className=" flex items-center gap-2"> <IoMdPersonAdd></IoMdPersonAdd> Make Admin </span>:"Admin"} 
                 </button>
