@@ -7,24 +7,47 @@ import Link from "next/link";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { postImage } from "@/hooks/postImage";
+import useAxios from "@/hooks/useAxios";
+import toast, { Toaster } from 'react-hot-toast';
 
+
+// get axios hook 
+const axiosHook = useAxios()
 
 const Register = () => {
+  // get imgbb api key
   const API = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
-console.log({API}); 
+// console.log({API}); 
   const [phone, setPhone] = useState();
   const [imageUrl , setImageUrl]=useState('')
 // console.log(imageUrl);
 
   const imageURL =postImage(imageUrl,API)
-  console.log(imageURL);
+  // console.log(imageURL);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const photo = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    if(password.length<6){
+
+    }
+    const userData = {
+      name,
+      email,
+      phone,
+      imageURL,
+      password,
+      role:'user',
+      registerDate:new Date()    
+    }
+console.log(userData);
+if(!imageURL)return
+      axiosHook.post('/api/register',userData)
+      .then(res=>{
+        console.log(res.data);
+      })
   };
 
   return (
@@ -39,11 +62,11 @@ console.log({API});
             width={800}
           />
         </div>
-        <div className="flex-1 card bg-base-200 w-full max-w-2xl lg:max-w-md shrink-0 ">
+        <div className="flex-1 card bg-base-200 w-full max-w-3xl lg:max-w-md shrink-0 ">
           <h3 className=" text-center text-base font-bold lg:text-xl pt-3">
             Please Register
           </h3>
-          <form className="card-body">
+          <form onSubmit={handleRegister} className="card-body">
             {/* Name div  */}
             <div className="form-control">
               <label className="label">
@@ -82,7 +105,7 @@ console.log({API});
               </label>
               <input
               onChange={(event)=>setImageUrl(event.target.files[0])}
-              type="file" required  />
+              type="file" required className=" file-input file-input-bordered" />
             </div>
             {/* email div  */}
             <div className="form-control">
