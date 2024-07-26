@@ -10,11 +10,15 @@ import { postImage } from "@/hooks/postImage";
 import useAxios from "@/hooks/useAxios";
 import toast, { Toaster } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import { FiLoader } from "react-icons/fi";
 
 // get axios hook
 const axiosHook = useAxios();
 
 const Register = () => {
+  // state to handle loading 
+  const [loading , setLoading]=useState(false)
   // get imgbb api key
   const API = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
   // console.log({API});
@@ -28,8 +32,9 @@ const Register = () => {
 
   const imageURL = postImage(imageUrl, API);
   // console.log(imageURL);
-
+const router = useRouter()
   const handleRegister = (e) => {
+    setLoading(true)
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -56,6 +61,14 @@ const Register = () => {
     if (!imageURL) return;
     axiosHook.post("/api/register", userData).then((res) => {
       console.log(res.data);
+      setLoading(false)
+      if(res.data?.result?.message=='user exist'){
+        toast.success("Email already in use")
+      }
+      if(res.data?.result?.insertedId){
+        router.push("/login")
+        toast.success("Register Successful ")
+      }
     });
   };
 
@@ -168,7 +181,7 @@ const Register = () => {
               <h6 className=" text-sm">Accept Our Terms & Conditions </h6>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Register</button>
+              <button disabled={loading} className="btn btn-primary">{loading?<FiLoader className=" loading-infinity text-2xl font-bold text-black"></FiLoader>:"Register "}</button>
             </div>
           </form>
           <Link

@@ -1,5 +1,5 @@
 import { connectDB } from "@/lib/connectDB";
-
+import bcrypt from "bcrypt";
 const { default: NextAuth } = require("next-auth/next");
 
 const handler  = NextAuth({
@@ -28,7 +28,23 @@ const handler  = NextAuth({
         const db = await connectDB()
         // get users collection
         const usersCollection= await db.collection('users')
-        
+        // get current user 
+        const currentUser = await usersCollection.findOne({email})
+       //return null if not user
+        if(!currentUser){
+          return null
+        }
+        // match password 
+        const matchedPass = bcrypt.compareSync(password , currentUser?.password)
+         //return null if pass didn't match
+         if(!matchedPass){
+          return null
+        }
+        // if everything ok return current user
+        return currentUser
+      },
+      pages:{
+        signIn:'/login'
       }
     })
   ]
