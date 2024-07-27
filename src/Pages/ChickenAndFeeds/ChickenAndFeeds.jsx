@@ -2,11 +2,10 @@
 import useAxios from "@/hooks/useAxios";
 import { useEffect, useState } from "react";
 import Banner from "./Banner";
-import Heading from "@/components/custom/Heading/Heading";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import Card from "./Card";
-import Image from "next/image";
-import noDataFound from '../../../public/all-items/no_data_found.png'
+import Skeleton from "@/components/custom/Skeleton/Skeleton";
+import DataNotFound from "@/components/custom/DataNotFound/DataNotFound";
 
 // get custom axios hook
 const axiosHook = useAxios();
@@ -60,15 +59,19 @@ console.log({filterValue});
             )}{" "}
           </summary>
           <ul className="menu dropdown-content bg-base-200 rounded z-[40] w-32 p-2 shadow ml-10">
+            {/* chicken  */}
             <a onClick={()=>setFilterValue('Chicken')} className={`${filterValue=='Chicken'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
               Chickens
             </a>
-            <a onClick={()=>setFilterValue('Baby Chicks')}  className={`${filterValue=='Baby Chicks'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
+            {/* chicks  */}
+            <a onClick={()=>setFilterValue('Baby Chick')}  className={`${filterValue=='Baby Chicks'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
               Baby Chicks
             </a>
+            {/* eggs  */}
             <a onClick={()=>setFilterValue('Eggs')}  className={`${filterValue=='Eggs'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
               Eggs
             </a>
+            {/* feed */}
             <a  onClick={()=>setFilterValue('Feed')}   className={`${filterValue=='Feed'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
               Feeds
             </a>
@@ -79,10 +82,9 @@ console.log({filterValue});
         </details>
       </section>
         {/* if items in loading return skeleton */}
-        {allChickenAndFeeds[0].name=='loading'?<span className=" text-4xl">loading</span>:<>
-      {allChickenAndFeeds.length==0&&<div className=" flex justify-center items-center w-full h-screen">
-        <Image src={noDataFound} alt="no data found" width={600} height={600}></Image>
-        </div>}
+        {allChickenAndFeeds[0]?.name=='loading'?<Skeleton></Skeleton>:<>
+        {/* return no data found image if no data founded */}
+      {allChickenAndFeeds.length==0&&<DataNotFound></DataNotFound>}
       {/* card section  */}
       <section className=" my-10  grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[95%] lg:max-w-[85%] mx-auto">
         {allChickenAndFeeds?.map((items, index) => (
