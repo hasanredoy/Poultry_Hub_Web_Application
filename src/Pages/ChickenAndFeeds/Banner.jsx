@@ -20,7 +20,7 @@ const Banner = () => {
           type="text"
           placeholder="search your wisdom.."
           className="input input-bordered join-item bg-white text-black font-bold" />
-        <button className="btn btn-primary join-item">Search</button>
+        <button className="btn btn-info join-item">Search</button>
       </div>
       </div>
     </div>

@@ -53,11 +53,11 @@ const BuyProduct = () => {
           <h3 className=' subtitle'>Chicken feed from nature base factory  </h3>
           <p> You can buy chicken feed from our store those feeds are came from nature base factory. We bet our feeds are best.   </p>
          </div>
-         <div className=' bg-base-200 shadow shadow-gray-400  hidden lg:block border-l-8 bg- border-[#fe6702] p-5 rounded-lg mt-4'>
+         <div className=' bg-base-200 shadow shadow-gray-400  hidden lg:block border-l-8 bg- border-[#fe6702] p-5 rounded-lg mt-4 mb-5'>
           <h3 className=' subtitle'>Best in quality </h3>
           <p>We ensure quality and quantity of our product. All of our farmer have pass a complex test before listing any product in our store.  </p>
          </div>
-         <Link href={'/chicken_and_feeds'} className=" btn-primary">Buy NoW</Link>
+         <Link href={'/chicken_and_feeds'} className=" btn-primary mt-10">Buy NoW</Link>
          </div>
       </section>
 

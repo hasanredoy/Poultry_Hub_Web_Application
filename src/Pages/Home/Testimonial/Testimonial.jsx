@@ -8,6 +8,7 @@ import React from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { FaQuoteLeft, FaQuoteRight, FaStar } from 'react-icons/fa';
+import Link from 'next/link';
 
 const Testimonial = () => { 
   // get reviews data 
@@ -54,9 +55,13 @@ const Testimonial = () => {
                 
                 
             </Carousel>
+          
       </section>
       </section>
+  <div className=' flex justify-center'>
+  <Link href={'/reviews'} className=" btn-primary mt-10 ">See All</Link>
 
+  </div>
     </main>
   );
 };

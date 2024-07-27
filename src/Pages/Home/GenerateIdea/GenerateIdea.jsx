@@ -22,7 +22,7 @@ const GenerateIdea = () => {
             <p>With a great journey with farmers we explore and learned what is the best idea for your farm. If you starting a company you can generate idea from us for free. </p>
             <p>Why your waiting for let's start building a smart farm?</p>
               <div className="mt-10">
-                <Link href={'/build_idea'} className=" btn-primary">Generate Idea</Link>
+                <Link href={'/generate_idea'} className=" btn-primary">Generate Idea</Link>
              
               </div>
         </div>
