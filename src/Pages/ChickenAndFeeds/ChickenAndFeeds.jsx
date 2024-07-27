@@ -10,12 +10,14 @@ import DataNotFound from "@/components/custom/DataNotFound/DataNotFound";
 // get custom axios hook
 const axiosHook = useAxios();
 // load all chicken and feeds data
-const loadAllItems = async (filter) => {
-  const res = await axiosHook.get(`/api/all_items?filter=${filter}`);
+const loadAllItems = async (filter,search) => {
+  const res = await axiosHook.get(`/api/all_items?filter=${filter}&search=${search}`);
   // console.log(res?.data?.result);
   return res?.data?.result;
 };
 const ChickenAndFeeds = () => {
+  // state to handle search
+  const [search , setSearch]=useState('')
   // state to control up arrow and down arrow
   const [arrowUp, setArrowUp] = useState(true);
   // state for all chicken and feed
@@ -25,19 +27,19 @@ const ChickenAndFeeds = () => {
   useEffect(() => {
     //function for call loadAllItems
     const loader = async () => {
-      const data = await loadAllItems(filterValue);
+      const data = await loadAllItems(filterValue,search);
       console.log(data);
       setAllChickenAndFeeds(data);
     };
     loader();
-  }, [filterValue]);
+  }, [filterValue,search]);
   // console.log({ allChickenAndFeeds });
-console.log({filterValue});
+console.log({search});
   return (
     <main>
       {/* banner  */}
       <section>
-        <Banner></Banner>
+        <Banner  setSearch={setSearch}></Banner>
       </section>
       {/* filter and heading section */}
       <section className=" my-10 max-w-[95%] lg:max-w-[85%] mx-auto">
@@ -88,7 +90,7 @@ console.log({filterValue});
       {/* card section  */}
       <section className=" my-10  grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[95%] lg:max-w-[85%] mx-auto">
         {allChickenAndFeeds?.map((items, index) => (
-          <Card key={items?._id} items={items}></Card>
+          <Card  key={items?._id} items={items}></Card>
         ))}
       </section>
       </>}

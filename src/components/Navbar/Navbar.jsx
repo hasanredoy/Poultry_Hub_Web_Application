@@ -17,8 +17,6 @@ import useGetUser from "@/hooks/useGetUser";
 
 
 
-
-
 const Navbar = () => {
 
 const user = useGetUser()
@@ -52,7 +50,7 @@ const toggleTheme = ()=>{
   localStorage.setItem('theme',newTheme)
 }
 
-  // navlinks
+  // nav links
   const navLinks = [
     {
       name: "Home",

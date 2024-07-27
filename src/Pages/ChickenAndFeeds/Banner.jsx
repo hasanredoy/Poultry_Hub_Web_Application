@@ -1,6 +1,6 @@
 
 
-const Banner = () => {
+const Banner = ({setSearch}) => {
   return (
     <section
     className="hero min-h-[calc(100dvh-100px)] bg-cover"
@@ -17,6 +17,7 @@ const Banner = () => {
         </p>
         <div className="join">
         <input
+          onBlur={(e)=>setSearch(e.target?.value)}
           type="text"
           placeholder="search your wisdom.."
           className="input input-bordered join-item bg-white text-black font-bold" />
