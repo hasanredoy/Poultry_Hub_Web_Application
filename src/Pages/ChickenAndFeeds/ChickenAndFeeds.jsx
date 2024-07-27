@@ -15,22 +15,23 @@ const loadAllItems = async () => {
   return res?.data?.result;
 };
 const ChickenAndFeeds = () => {
-  // state to control up arrow and down arrow 
-  const [arrowUp , setArrowUp]=useState(true)
+  // state to control up arrow and down arrow
+  const [arrowUp, setArrowUp] = useState(true);
   // state for all chicken and feed
   const [allChickenAndFeeds, setAllChickenAndFeeds] = useState([]);
+  const [filterValue , setFilterValue]=useState('')
 
   useEffect(() => {
     //function for call loadAllItems
     const loader = async () => {
-      // const data = await loadAllItems();
-      // console.log(data);
-      // setAllChickenAndFeeds(data);
+      const data = await loadAllItems();
+      console.log(data);
+      setAllChickenAndFeeds(data);
     };
     loader();
   }, []);
-  console.log({allChickenAndFeeds});
-
+  // console.log({ allChickenAndFeeds });
+console.log({filterValue});
   return (
     <main>
       {/* banner  */}
@@ -45,21 +46,39 @@ const ChickenAndFeeds = () => {
         ></Heading> */}
         {/* filter drop down  */}
         <details className="dropdown">
-  <summary onClick={()=>setArrowUp(!arrowUp)} className="btn bg-neutral-700 text-white border-none hover:bg-neutral-200 hover:text-neutral-950 m-1">Filter by {arrowUp?<IoIosArrowDown className=" text-xl"></IoIosArrowDown>:<IoIosArrowUp className=" text-xl"></IoIosArrowUp>} </summary>
-  <ul className="menu dropdown-content bg-base-200 rounded z-[40] w-32 p-2 shadow ml-10">
-    <li className="text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-stone-500 font-bold mb-2">Chickens</li>
-    <li className="text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-stone-500 font-bold mb-2">Chicks</li>
-    <li className="text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-stone-500 font-bold mb-2">Eggs</li>
-    <li className="text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-stone-500 font-bold mb-2">Feeds</li>
-  </ul>
-</details>
-     
+          <summary
+            onClick={() => setArrowUp(!arrowUp)}
+            className="btn bg-neutral-700 text-white border-none hover:bg-neutral-200 hover:text-neutral-950 m-1"
+          >
+            Filter by{" "}
+            {arrowUp ? (
+              <IoIosArrowDown className=" text-xl"></IoIosArrowDown>
+            ) : (
+              <IoIosArrowUp className=" text-xl"></IoIosArrowUp>
+            )}{" "}
+          </summary>
+          <ul className="menu dropdown-content bg-base-200 rounded z-[40] w-32 p-2 shadow ml-10">
+            <a onClick={()=>setFilterValue('Chicken')} className={`${filterValue=='Chicken'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
+              Chickens
+            </a>
+            <a onClick={()=>setFilterValue('Chicks')}  className={`${filterValue=='Chicks'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
+              Chicks
+            </a>
+            <a onClick={()=>setFilterValue('Eggs')}  className={`${filterValue=='Eggs'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
+              Eggs
+            </a>
+            <a  onClick={()=>setFilterValue('Feeds')}   className={`${filterValue=='Feeds'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
+              Feeds
+            </a>
+          </ul>
+        </details>
       </section>
 
       {/* card section  */}
       <section className=" my-10  grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[95%] lg:max-w-[85%] mx-auto">
-        {allChickenAndFeeds?.map((items,index)=><Card key={items?._id} items={items}></Card>
-        )}
+        {allChickenAndFeeds?.map((items, index) => (
+          <Card key={items?._id} items={items}></Card>
+        ))}
       </section>
     </main>
   );
