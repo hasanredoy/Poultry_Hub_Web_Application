@@ -13,6 +13,7 @@ import { FaHome, FaQuestionCircle, FaShoppingCart, FaSignInAlt, FaSignOutAlt, Fa
 import { HiLightBulb } from "react-icons/hi";
 import { MdDashboard, MdOutlineContactPage, MdOutlineContactSupport, MdOutlineReviews, MdPersonAddAlt1 } from "react-icons/md";
 import { GrContact } from "react-icons/gr";
+import useGetUser from "@/hooks/useGetUser";
 
 
 
@@ -20,10 +21,11 @@ import { GrContact } from "react-icons/gr";
 
 const Navbar = () => {
 
-const user = true
+const user = useGetUser()
+// console.log(user);
   // get path name
   const pathName = usePathname();
-  console.log(pathName);
+  // console.log(pathName);
   // links handler state
   const [showLinks, setShowLinks] = useState(false);
     // theme handler
@@ -160,8 +162,8 @@ const toggleTheme = ()=>{
   <details className="  relative">
   <summary role="button" className="avatar dropdown online placeholder">
 
-  <div className="bg-neutral text-neutral-content w-10 rounded-full">
-    <span className="text-sm">AI</span>
+  <div className=" w-10 rounded-full">
+    <Image src={user?.image} alt="user image" width={50} height={50}/>
   </div>
   <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded z-[40] w-40 flex items-center -left-28 top-[42px] absolute p-2 shadow flex-col gap-2">
  

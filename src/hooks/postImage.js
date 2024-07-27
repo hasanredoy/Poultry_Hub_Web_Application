@@ -4,9 +4,10 @@ import { useState } from "react";
 
 // const API = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
 // console.log({API}); 
-export const postImage = (image,API) => {
+export const postImage = (image,API,setLoading) => {
   // console.log(image);
-  const [imageURL , setImageURL]=useState()
+  const [imageURL , setImageURL]=useState(null)
+
   const imageData = new FormData();
   imageData.append("image", image);
  try {
@@ -20,6 +21,7 @@ export const postImage = (image,API) => {
   // console.log(imageURL);
  } catch (error) {
 console.log(error);
+setLoading(false)
 }
 return imageURL
 };

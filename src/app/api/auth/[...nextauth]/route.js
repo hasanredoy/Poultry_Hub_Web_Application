@@ -1,6 +1,8 @@
 import { connectDB } from "@/lib/connectDB";
-import bcrypt from "bcrypt";
-const { default: NextAuth } = require("next-auth/next");
+const bcrypt = require('bcryptjs');
+import NextAuth from "next-auth/next";
+import CredentialsProvider from "next-auth/providers/credentials";
+
 
 const handler  = NextAuth({
   // jwt verification and max age 
@@ -18,8 +20,10 @@ const handler  = NextAuth({
         password:{}
       },
       // validate user
-      async authorized(credentials){
+      async authorize (credentials){
+        // console.log('hello');
         const {email,password}=credentials
+        // console.log({email,password});
         // check if not email or password return null
         if(!email||!password){
           return null
@@ -30,6 +34,7 @@ const handler  = NextAuth({
         const usersCollection= await db.collection('users')
         // get current user 
         const currentUser = await usersCollection.findOne({email})
+        // console.log({currentUser});
        //return null if not user
         if(!currentUser){
           return null

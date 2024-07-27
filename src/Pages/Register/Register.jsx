@@ -30,10 +30,12 @@ const Register = () => {
   // state show and hide password
   const [showPass, setShowPass] = useState(false);
 
-  const imageURL = postImage(imageUrl, API);
+  const imageURL = postImage(imageUrl, API,setLoading);
+
   // console.log(imageURL);
 const router = useRouter()
   const handleRegister = (e) => {
+   try {
     setLoading(true)
     e.preventDefault();
     const form = e.target;
@@ -70,7 +72,12 @@ const router = useRouter()
         toast.success("Register Successful ")
       }
     });
+   } catch (error) {
+    setLoading(false)
+    console.log(error);
+   }
   };
+
 
   return (
     <main className="hero  min-h-screen  max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
@@ -181,7 +188,7 @@ const router = useRouter()
               <h6 className=" text-sm">Accept Our Terms & Conditions </h6>
             </div>
             <div className="form-control mt-6">
-              <button disabled={loading} className="btn btn-primary">{loading?<FiLoader className=" loading-infinity text-2xl font-bold text-black"></FiLoader>:"Register "}</button>
+              <button disabled={loading} className="btn btn-primary">{loading?<FiLoader className=" animate-spin   text-2xl font-bold text-black"></FiLoader>:"Register "}</button>
             </div>
           </form>
           <Link

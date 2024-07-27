@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 export const POST=async(request)=>{
   const userData = await request.json()
-  console.log(userData);
+  // console.log(userData);
   try {
     const db = await connectDB()
     // console.log('hello');
@@ -21,7 +21,7 @@ export const POST=async(request)=>{
     phone:userData.phone,
     registerDate:userData.registerDate,
     role:userData.role,
-    imageURL:userData.imageURL,
+    image:userData.imageURL,
     password:hashedPass
   }
   if(checkUser){
