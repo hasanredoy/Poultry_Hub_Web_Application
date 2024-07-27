@@ -63,8 +63,8 @@ const toggleTheme = ()=>{
       path: "/chicken_and_feeds",
     },
     {
-      name: "Build Idea",
-      path: "/build_idea",
+      name: "Generate Idea",
+      path: "/generate_idea",
     },
    
     {

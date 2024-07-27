@@ -13,6 +13,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 // import banner css
 import "./banner.css";
+import Link from "next/link";
 
 const Banner = () => {
   return (
@@ -56,7 +57,7 @@ const Banner = () => {
                   <p className="mb-5 description">
                   We take care of yor health buy fresh chickens and feed directly from trusted farms and suppliers. Enjoy peace of mind knowing your farm is equipped with the freshest products available
                   </p>
-                  <button className=" btn-primary">Buy NoW</button>
+                  <Link href={'/chicken_and_feeds'} className=" btn-primary">Buy NoW</Link>
                 </div>
               </div>
             </div>
@@ -84,7 +85,8 @@ const Banner = () => {
                     comprehensive tools. Efficiently manage livestock,
                     inventory, tasks, and sell chickens and feed.
                   </p>
-                  <button className=" btn-primary">Generate Idea</button>
+                  <Link href={'/chicken_and_feeds'} className=" btn-primary">Buy NoW</Link>
+
                 </div>
               </div>
             </div>
@@ -113,7 +115,8 @@ const Banner = () => {
                     feed for best price in our website. We ensure safety of your
                     sales.
                   </p>
-                  <button className=" btn-primary">Start Selling</button>
+                  <Link href={'/chicken_and_feeds'} className=" btn-primary">Buy NoW</Link>
+
                 </div>
               </div>
             </div>

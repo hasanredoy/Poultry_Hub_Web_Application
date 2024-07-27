@@ -3,7 +3,7 @@ import bannerImage from '../../../public/generateIdea/ai-cloud-concept-with-robo
 import { FaLocationArrow } from 'react-icons/fa';
 import aiIcon from '../../../public/generateIdea/chatbot-0.png'
 
-const Build_Idea = () => {
+const Generate_Idea = () => {
   return (
     <main className='my-28 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto flex gap-10 '>
       {/* image section  */}
@@ -42,4 +42,4 @@ const Build_Idea = () => {
   );
 };
 
-export default Build_Idea;
+export default Generate_Idea;

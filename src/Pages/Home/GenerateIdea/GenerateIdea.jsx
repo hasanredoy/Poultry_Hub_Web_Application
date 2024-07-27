@@ -2,6 +2,7 @@ import Heading from "@/components/custom/Heading/Heading";
 import AI from "../../../../public/generateIdea/ai-cloud-concept-with-robot-arm.jpg"
 import farm from "../../../../public/generateIdea/brown-chickens-farm.jpg"
 import Image from "next/image";
+import Link from "next/link";
 const GenerateIdea = () => {
   return (
     <main className="my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
@@ -21,7 +22,8 @@ const GenerateIdea = () => {
             <p>With a great journey with farmers we explore and learned what is the best idea for your farm. If you starting a company you can generate idea from us for free. </p>
             <p>Why your waiting for let's start building a smart farm?</p>
               <div className="mt-10">
-                <button className=" btn-primary">Build Idea</button>
+                <Link href={'/build_idea'} className=" btn-primary">Generate Idea</Link>
+             
               </div>
         </div>
       </section>

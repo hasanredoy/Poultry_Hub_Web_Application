@@ -7,6 +7,7 @@ import farmer3 from "../../../../public/farmer/photorealistic-scene-poultry-farm
 import feed from "../../../../public/farmer/CHICKENGRAINMIX_CORNFARM-X_0803729d-8bb9-4f49-b2d1-6ec930b2a8d7_1500x1500.webp"
 import organic from "../../../../public/farmer/organic_5167647.png"
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 
@@ -56,8 +57,8 @@ const BuyProduct = () => {
           <h3 className=' subtitle'>Best in quality </h3>
           <p>We ensure quality and quantity of our product. All of our farmer have pass a complex test before listing any product in our store.  </p>
          </div>
-    <button className=' mx-auto mt-8 btn-primary'>Buy  Now</button>
-       </div>
+         <Link href={'/chicken_and_feeds'} className=" btn-primary">Buy NoW</Link>
+         </div>
       </section>
 
     </section>
