@@ -5,6 +5,8 @@ import Banner from "./Banner";
 import Heading from "@/components/custom/Heading/Heading";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import Card from "./Card";
+import Image from "next/image";
+import noDataFound from '../../../public/all-items/no_data_found.png'
 
 // get custom axios hook
 const axiosHook = useAxios();
@@ -18,7 +20,7 @@ const ChickenAndFeeds = () => {
   // state to control up arrow and down arrow
   const [arrowUp, setArrowUp] = useState(true);
   // state for all chicken and feed
-  const [allChickenAndFeeds, setAllChickenAndFeeds] = useState([]);
+  const [allChickenAndFeeds, setAllChickenAndFeeds] = useState([{name:'loading'}]);
   const [filterValue , setFilterValue]=useState('')
 
   useEffect(() => {
@@ -76,13 +78,18 @@ console.log({filterValue});
           </ul>
         </details>
       </section>
-
+        {/* if items in loading return skeleton */}
+        {allChickenAndFeeds[0].name=='loading'?<span className=" text-4xl">loading</span>:<>
+      {allChickenAndFeeds.length==0&&<div className=" flex justify-center items-center w-full h-screen">
+        <Image src={noDataFound} alt="no data found" width={600} height={600}></Image>
+        </div>}
       {/* card section  */}
       <section className=" my-10  grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[95%] lg:max-w-[85%] mx-auto">
         {allChickenAndFeeds?.map((items, index) => (
           <Card key={items?._id} items={items}></Card>
         ))}
       </section>
+      </>}
     </main>
   );
 };
