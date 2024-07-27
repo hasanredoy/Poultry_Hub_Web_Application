@@ -9,8 +9,8 @@ import Card from "./Card";
 // get custom axios hook
 const axiosHook = useAxios();
 // load all chicken and feeds data
-const loadAllItems = async () => {
-  const res = await axiosHook.get(`/api/all_items`);
+const loadAllItems = async (filter) => {
+  const res = await axiosHook.get(`/api/all_items?filter=${filter}`);
   // console.log(res?.data?.result);
   return res?.data?.result;
 };
@@ -24,12 +24,12 @@ const ChickenAndFeeds = () => {
   useEffect(() => {
     //function for call loadAllItems
     const loader = async () => {
-      const data = await loadAllItems();
+      const data = await loadAllItems(filterValue);
       console.log(data);
       setAllChickenAndFeeds(data);
     };
     loader();
-  }, []);
+  }, [filterValue]);
   // console.log({ allChickenAndFeeds });
 console.log({filterValue});
   return (
@@ -61,14 +61,17 @@ console.log({filterValue});
             <a onClick={()=>setFilterValue('Chicken')} className={`${filterValue=='Chicken'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
               Chickens
             </a>
-            <a onClick={()=>setFilterValue('Chicks')}  className={`${filterValue=='Chicks'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
-              Chicks
+            <a onClick={()=>setFilterValue('Baby Chicks')}  className={`${filterValue=='Baby Chicks'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
+              Baby Chicks
             </a>
             <a onClick={()=>setFilterValue('Eggs')}  className={`${filterValue=='Eggs'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
               Eggs
             </a>
-            <a  onClick={()=>setFilterValue('Feeds')}   className={`${filterValue=='Feeds'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
+            <a  onClick={()=>setFilterValue('Feed')}   className={`${filterValue=='Feed'&&'bg-gray-300 text-[#fe6702]'} text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
               Feeds
+            </a>
+            <a  onClick={()=>setFilterValue('')}   className={` text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}>
+              Clear All Filter
             </a>
           </ul>
         </details>
