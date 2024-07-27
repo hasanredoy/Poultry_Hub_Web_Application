@@ -7,20 +7,30 @@ import Card from "./Card";
 import Skeleton from "@/components/custom/Skeleton/Skeleton";
 import DataNotFound from "@/components/custom/DataNotFound/DataNotFound";
 import usePagination from "@/hooks/usePagination";
+import Pagination from "@/components/custom/Pagination/Pagination";
 
 // get custom axios hook
 const axiosHook = useAxios();
 // load all chicken and feeds data
-const loadAllItems = async (filter, search) => {
+const loadAllItems = async (filter, search,page,size) => {
   const res = await axiosHook.get(
-    `/api/all_items?filter=${filter}&search=${search}`
+    `/api/all_items?filter=${filter}&search=${search}&page=${page}&size=${size}`
   );
   // console.log(res?.data?.result);
   return res?.data?.result;
 };
+const loadAllItemsCount = async (filter, search) => {
+  const res = await axiosHook.get(
+    `/api/count/all_items`
+  );
+  // console.log(res?.data?.result);
+  return res?.data?.count;
+};
 const ChickenAndFeeds = () => {
   // state to handleCurrent page 
-  const [currentPage,setCurrentPage]=useState()
+  const [currentPage,setCurrentPage]=useState(0)
+  // state to handle count 
+  const [count,setCount]=useState(0)
   // state to handle search
   const [search, setSearch] = useState("");
   // state to control up arrow and down arrow
@@ -31,19 +41,28 @@ const ChickenAndFeeds = () => {
   ]);
   const [filterValue, setFilterValue] = useState("");
   // call pagination
-  const totalPage = usePagination(18, 8);
-  console.log(totalPage);
+  const [totalPage,pages] = usePagination(count, 8);
+  
   useEffect(() => {
     //function for call loadAllItems
     const loader = async () => {
-      const data = await loadAllItems(filterValue, search);
+      const data = await loadAllItems(filterValue, search, currentPage,8);
       // console.log(data);
       setAllChickenAndFeeds(data);
     };
     loader();
-  }, [filterValue, search]);
-  // console.log({ allChickenAndFeeds });
-  // console.log({search});
+  }, [filterValue, search,currentPage]);
+
+  useEffect(() => {
+    //function for call loadAllItemsCount
+    const loader = async () => {
+      const data = await loadAllItemsCount();
+      // console.log(data);
+      setCount(data);
+    };
+    loader();
+  }, [currentPage]);
+  console.log(allChickenAndFeeds);
   return (
     <main>
       {/* banner  */}
@@ -124,6 +143,7 @@ const ChickenAndFeeds = () => {
               <Card key={items?._id} items={items}></Card>
             ))}
           </section>
+          {allChickenAndFeeds.length>7&&<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage}></Pagination>}
         </>
       )}
     </main>

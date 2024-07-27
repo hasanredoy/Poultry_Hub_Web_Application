@@ -6,6 +6,13 @@ export const GET=async(request)=>{
   const filter = await request.nextUrl.searchParams.get('filter')
   const search = await request.nextUrl.searchParams.get('search')
   
+  const page = await request.nextUrl.searchParams.get('page')
+  
+  const size = await request.nextUrl.searchParams.get('size')
+  console.log({page,size});
+  const parsedPage = parseInt(page)
+  const parsedSize = parseInt(size)
+  
   try {
     const db = await connectDB()
     const itemsCollection = await db.collection('All_Items')
@@ -24,7 +31,8 @@ export const GET=async(request)=>{
         ]
       }
     }  
-    const result = await itemsCollection.find(query).toArray()
+    const result = await itemsCollection.find(query).limit(parsedSize).skip(parsedPage*parsedSize).toArray()
+    console.log({result},'from server');
     return NextResponse.json({result}) 
   } catch (error) {
     return NextResponse.json({error}) 
