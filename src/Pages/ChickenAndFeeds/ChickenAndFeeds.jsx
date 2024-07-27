@@ -12,7 +12,7 @@ import Pagination from "@/components/custom/Pagination/Pagination";
 // get custom axios hook
 const axiosHook = useAxios();
 // load all chicken and feeds data
-const loadAllItems = async (filter, search,page,size) => {
+const loadAllItems = async (filter,search,page,size) => {
   const res = await axiosHook.get(
     `/api/all_items?filter=${filter}&search=${search}&page=${page}&size=${size}`
   );
@@ -46,12 +46,12 @@ const ChickenAndFeeds = () => {
   useEffect(() => {
     //function for call loadAllItems
     const loader = async () => {
-      const data = await loadAllItems(filterValue, search, currentPage,8);
+      const data = await loadAllItems(filterValue,search,currentPage,8);
       // console.log(data);
       setAllChickenAndFeeds(data);
     };
     loader();
-  }, [filterValue, search,currentPage]);
+  }, [filterValue,search,currentPage]);
 
   useEffect(() => {
     //function for call loadAllItemsCount
@@ -63,6 +63,7 @@ const ChickenAndFeeds = () => {
     loader();
   }, [currentPage]);
   console.log(allChickenAndFeeds);
+  console.log(filterValue);
   return (
     <main>
       {/* banner  */}
@@ -96,7 +97,7 @@ const ChickenAndFeeds = () => {
             </a>
             {/* chicks  */}
             <a
-              onClick={() => setFilterValue("Baby Chick")}
+              onClick={() => setFilterValue("Baby Chicks")}
               className={`${
                 filterValue == "Baby Chicks" && "bg-gray-300 text-[#fe6702]"
               } text-base pl-2 hover:bg-gray-300 hover: cursor-pointer hover:text-[#fe6702] font-bold mb-2`}
@@ -143,7 +144,7 @@ const ChickenAndFeeds = () => {
               <Card key={items?._id} items={items}></Card>
             ))}
           </section>
-          {allChickenAndFeeds.length>7&&<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage}></Pagination>}
+          {allChickenAndFeeds.length>0&&<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages}></Pagination>}
         </>
       )}
     </main>
