@@ -144,7 +144,7 @@ const ChickenAndFeeds = () => {
               <Card key={items?._id} items={items}></Card>
             ))}
           </section>
-          {allChickenAndFeeds.length>0&&<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages}></Pagination>}
+          {<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages}></Pagination>}
         </>
       )}
     </main>

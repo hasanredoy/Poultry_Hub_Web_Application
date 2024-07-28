@@ -14,6 +14,7 @@ import { HiLightBulb } from "react-icons/hi";
 import { MdDashboard, MdOutlineContactPage, MdOutlineContactSupport, MdOutlineReviews, MdPersonAddAlt1 } from "react-icons/md";
 import { GrContact } from "react-icons/gr";
 import useGetUser from "@/hooks/useGetUser";
+import { signOut } from "next-auth/react";
 
 
 
@@ -85,7 +86,7 @@ const toggleTheme = ()=>{
   return (
   <nav className={` flex justify-between items-center max-w-[95%]  lg:max-w-[85%]  mx-auto py-2 ${theme=="light"?"text-black":"text-white"}  mb-0`}  >
   {/* nav bar start */}
-  <div className="">
+  <div className=" flex gap-10 items-center ">
     <div>
       <div className=" cursor-pointer ">
         {showLinks ? (
@@ -134,6 +135,8 @@ const toggleTheme = ()=>{
         </ul>
       )}
     </div>
+    <Link href={'/dashboard/my_cart'} className="text-xl bg-white text-black p-2 px-3 rounded-full hover:bg-black hover:text-white ">
+    <FaShoppingCart ></FaShoppingCart></Link>
   </div>
   {/* nav center */}
   <div className="relative  flex justify-center flex-1">
@@ -168,9 +171,8 @@ const toggleTheme = ()=>{
    <Link href={'/dashboard'}>
       <button className=" btn-primary flex items-center gap-2"><MdDashboard></MdDashboard> Dashboard </button>
    </Link>
-   <Link href={'/'}>
-      <button className=" btn-primary w-28 flex items-center gap-2"><FaSignOutAlt></FaSignOutAlt> LogOut</button>
-   </Link>
+
+      <button onClick={()=>signOut()}  className=" btn-primary w-28 flex items-center gap-2"><FaSignOutAlt></FaSignOutAlt> LogOut</button>
   </ul>
 </summary>
 </details>
