@@ -111,10 +111,10 @@ const Login = () => {
           <GoogleLogin/>
           <Link
             href={"/register"}
-            className=" py-3 flex  justify-center gap-2 text-sm lg:text-lg text-center font-medium"
+            className=" py-3 flex  justify-center gap-2 text-sm lg:text-base text-center "
           >
             New in Poultry Hub? Please{" "}
-            <span className=" font-bold text-blue-700">Register</span>.
+            <span className=" font-semibold text-blue-700">Register</span>.
           </Link>
         </div>
       </div>

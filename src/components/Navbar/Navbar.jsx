@@ -160,11 +160,11 @@ const toggleTheme = ()=>{
  
     <button title="Change Theme" className="" onClick={toggleTheme}>{theme=="light"?<IoIosSunny className=" text-xl lg:text-2xl font-black text-gray-800"></IoIosSunny >:<IoIosMoon className=" text-xl lg:text-2xl font-black "></IoIosMoon>}</button>
 {user?
-  <details className="  relative">
+  <details className=" pt-1  relative">
   <summary role="button" className="avatar dropdown online placeholder">
 
-  <div className=" w-10 rounded-full">
-    <Image src={user?.image} alt="user image" width={50} height={50}/>
+  <div className=" w-8 h-8 rounded-full">
+    <Image src={user?.image} alt="user image" className="w-10 h-8" width={40} height={40}/>
   </div>
   <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded z-[40] w-40 flex items-center -left-28 top-[42px] absolute p-2 shadow flex-col gap-2">
  

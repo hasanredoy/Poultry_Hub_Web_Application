@@ -26,6 +26,9 @@ const PostOnCart = ({ cart }) => {
     axiosHook.post("/api/cart", cartData).then((res) => {
       setResponse(res.data?.result);
       console.log(res.data);
+      if(res?.data?.result?.insertedId){
+        toast.success(`${cart?.name} added to cart`)
+      }
     });
   };
 

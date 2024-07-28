@@ -68,7 +68,7 @@ const ChickenAndFeeds = () => {
     loader();
   }, [currentPage]);
 
-console.log(allChickenAndFeeds);
+// console.log(allChickenAndFeeds);
 
   
   return (

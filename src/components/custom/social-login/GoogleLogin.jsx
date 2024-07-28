@@ -7,7 +7,7 @@ const GoogleLogin = () => {
   }
   return (
     <div className=" flex justify-center my-5 ">
-      <button className=" btn border-gray-500 flex items-center"> Continue With <FcGoogle className=" text-2xl"></FcGoogle></button>
+      <button onClick={GoogleLogin} className=" btn border-gray-500 flex items-center"> Continue With <FcGoogle className=" text-2xl"></FcGoogle></button>
     </div>
   );
 };
