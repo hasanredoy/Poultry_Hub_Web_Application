@@ -8,6 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FiLoader } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import GoogleLogin from "@/components/custom/social-login/GoogleLogin";
 
 const Login = () => {
   // state to handle loading
@@ -26,7 +27,7 @@ const Login = () => {
     const res = await signIn("credentials", {
       email,
       password,
-      redirect: true,
+      redirect: false,
     });
     if (res) {
       setLoading(false);
@@ -106,6 +107,8 @@ const Login = () => {
               </button>
             </div>
           </form>
+          <div className="divider">or</div>
+          <GoogleLogin/>
           <Link
             href={"/register"}
             className=" py-3 flex  justify-center gap-2 text-sm lg:text-lg text-center font-medium"

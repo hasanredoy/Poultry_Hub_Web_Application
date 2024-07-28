@@ -2,7 +2,7 @@ import { connectDB } from "@/lib/connectDB";
 const bcrypt = require('bcryptjs');
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import GoogleProvider from 'next-auth/providers/google'
 
 const handler  = NextAuth({
   // jwt verification and max age 
@@ -48,11 +48,19 @@ const handler  = NextAuth({
         // if everything ok return current user
         return currentUser
       },
-      pages:{
-        signIn:'/login'
-      }
+
+    }),
+    GoogleProvider({
+      clientId:process.env.NEXT_GOOGLE_CLIENT_ID,
+      clientSecret:process.env.NEXT_GOOGLE_CLIENT_SECRET,
     })
-  ]
+  ],
+  callbacks:{
+
+  },
+  pages:{
+    signIn:'/login'
+  }
 
 
 })
