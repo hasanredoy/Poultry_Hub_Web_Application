@@ -6,7 +6,7 @@ const axiosHook = useAxios()
 // function to load cart
 const loadCart= async(email)=>{
  const {data}=await axiosHook.get(`/api/cart?email=${email}`)
- console.log(data,'cart');
+ console.log(data);
  return data?.result
 }
 const useUserCart = () => {
@@ -16,12 +16,12 @@ const useUserCart = () => {
   const user = useGetUser()
   useEffect(()=>{
     const loader = async()=>{
-      const cartData = await loadCart(user.email)
+      const cartData = await loadCart(user?.email)
       setCart(cartData)
     }
     loader()
-  },[])
- console.log({cart});
+  },[user?.email])
+ console.log(cart);
   return [cart]
 };
 

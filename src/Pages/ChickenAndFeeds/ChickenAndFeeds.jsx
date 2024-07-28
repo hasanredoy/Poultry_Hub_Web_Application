@@ -72,7 +72,7 @@ const ChickenAndFeeds = () => {
 
   
   return (
-    <main>
+    <main className="mt-2">
       {/* banner  */}
       <section>
         <Banner setSearch={setSearch}></Banner>

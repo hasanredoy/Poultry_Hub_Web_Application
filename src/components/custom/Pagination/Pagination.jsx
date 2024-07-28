@@ -20,7 +20,7 @@ const Pagination = ({ totalPage, currentPage, setCurrentPage,pages }) => {
       </button>
       <div className=" flex gap-3">
         {totalPage.map((page, index) => (
-          <button title={`page ${page+1}`} onClick={() => setCurrentPage(page)} className={`btn mx-3 ${page==currentPage&&"btn-primary"} `}>
+          <button key={index} title={`page ${page+1}`} onClick={() => setCurrentPage(page)} className={`btn mx-3 ${page==currentPage&&"btn-primary"} `}>
             {index+1}
           </button>
         ))}

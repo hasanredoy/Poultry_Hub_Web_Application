@@ -22,9 +22,8 @@ export const GET = async (request) => {
 };
 export const POST = async (request) => {
   // get cart data
-  const cartData = request.json()
+  const cartData =await request.json()
 
- 
   try {
     const db = await connectDB();
     const cartsCollection = await db.collection("carts");
