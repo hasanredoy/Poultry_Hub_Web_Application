@@ -1,6 +1,7 @@
 import PostOnCart from "@/components/custom/postOnCart/PostOnCart";
 import Link from "next/link";
-import { FaStar } from "react-icons/fa";
+import { FaChartLine, FaRegCalendarPlus, FaRegCalendarTimes, FaStar } from "react-icons/fa";
+import { MdOutlineReviews } from "react-icons/md";
 
 const Card = ({ item }) => {
   return (
@@ -29,30 +30,35 @@ const Card = ({ item }) => {
         <div className=" flex justify-between my-1 ">
           <h5 className=" flex-1">
             Price :{" "}
-            <span className="  text-primary font-bold">{item?.price} $ </span>
+            <span className="    font-bold">
+              {item?.price} ${" "}
+            </span>
           </h5>
           <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
-          Rating:{' '} {' '}
-            <span className=" text-primary font-bold flex item-center gap-2">
-              {item?.rating}
-              <FaStar></FaStar>
+            {item.category == "Eggs" ? "Quantity" : "Weight"} :{" "}
+            <span className="   font-bold">
+              {item?.weight}
             </span>
           </h5>
         </div>
-       
         <div className=" flex justify-between my-1 ">
-          <h5 className="  flex-1 ">
-            Listed in :{" "}
-            <span className=" text-primary font-bold">
-              {item?.listingDate}
+          <h5 className="flex flex-1 items-center gap-2">
+            Ratings :{" "}
+            <span className="   font-bold flex single items-center gap-2">
+              {item?.rating}
+              <FaStar className=" pb-1"></FaStar>
             </span>
           </h5>
-          <h5 className=" flex justify-start ml-40 flex-1 ">
-            Valid Till :{" "}
-            <span className=" text-primary font-bold">{item?.expireDate}</span>
+          <h5 className="flex-1 ml-40 flex gap-2 ">
+            Total Sell :{" "}
+            <span className="gap-2 flex justify-center items-center font-bold">
+              {item?.totalSell}
+              <FaChartLine></FaChartLine>
+            </span>
           </h5>
         </div>
-    
+     
+
         <div className="card-actions justify-between mt-10 ">
           <Link href={`chicken_and_feeds/${item?._id}`}  className=" btn-outline "> View Details</Link >
          <PostOnCart cart={item}></PostOnCart>

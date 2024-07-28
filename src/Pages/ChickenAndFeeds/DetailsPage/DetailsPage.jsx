@@ -5,10 +5,12 @@ import { Rating } from "@smastrom/react-rating";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaArrowLeft, FaStar } from "react-icons/fa";
+import {FaCalendar, FaChartLine, FaRegCalendarPlus, FaRegCalendarTimes, FaStar } from "react-icons/fa";
 import { GoArrowLeft } from "react-icons/go";
 import "@smastrom/react-rating/style.css";
 import toast, { Toaster } from "react-hot-toast";
+import PostOnCart from "@/components/custom/postOnCart/PostOnCart";
+import { MdOutlineReviews } from "react-icons/md";
 
 // get custom axios hook
 const axiosHook = useAxios();
@@ -70,58 +72,60 @@ const DetailsPage = ({ id }) => {
         <div className=" flex justify-between my-1 ">
           <h5 className=" flex-1">
             Price :{" "}
-            <span className="  text-primary font-bold">
+            <span className="    font-bold">
               {singleItem?.price} ${" "}
             </span>
           </h5>
           <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
             {singleItem.category == "Eggs" ? "Quantity" : "Weight"} :{" "}
-            <span className=" text-primary font-bold">
+            <span className="   font-bold">
               {singleItem?.weight}
             </span>
           </h5>
         </div>
         <div className=" flex justify-between my-1 ">
-          <h5 className="flex flex-1 singleItem-center gap-2">
+          <h5 className="flex flex-1 items-center gap-2">
             Ratings :{" "}
-            <span className=" text-primary font-bold flex singleItem-center gap-2">
+            <span className="   font-bold flex single items-center gap-2">
               {singleItem?.rating}
-              <FaStar></FaStar>
+              <FaStar className=" pb-1"></FaStar>
             </span>
           </h5>
           <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
             Total Ratings :{" "}
-            <span className=" text-primary font-bold">
-              {singleItem?.totalRating}
+            <span className="   gap-2 flex justify-center items-center font-bold">
+              {singleItem?.totalRating} 
+              <MdOutlineReviews className=" "></MdOutlineReviews>
             </span>
           </h5>
         </div>
         <div className=" flex justify-between my-1 ">
-          <h5 className="  flex-1 ">
+          <h5 className="  flex-1 flex gap-1 ">
             Listed in :{" "}
-            <span className=" text-primary font-bold">
+            <span className=" gap-2 flex justify-center items-center font-bold">
               {singleItem?.listingDate}
+              <FaRegCalendarPlus></FaRegCalendarPlus>
             </span>
           </h5>
           <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
             Valid Till :{" "}
-            <span className=" text-primary font-bold">
+            <span className="  gap-2 flex justify-center items-center font-bold ">
               {singleItem?.expireDate}
+              <FaRegCalendarTimes></FaRegCalendarTimes>
             </span>
           </h5>
         </div>
         <div className=" flex justify-between my-1 ">
-          <h5 className="flex-1 ">
+          <h5 className="flex-1 flex gap-2 ">
             Total Sell :{" "}
-            <span className=" text-primary font-bold">
+            <span className="gap-2 flex justify-center items-center font-bold">
               {singleItem?.totalSell}
+              <FaChartLine></FaChartLine>
             </span>
           </h5>
         </div>
         <div className="card-actions justify-center ">
-          <button className=" btn-card border-b-4   border-gray-300">
-            Add to Cart
-          </button>
+          <PostOnCart cart={singleItem} ></PostOnCart>
         </div>
         <div className="divider"></div>
         <div
