@@ -8,6 +8,7 @@ import Skeleton from "@/components/custom/Skeleton/Skeleton";
 import DataNotFound from "@/components/custom/DataNotFound/DataNotFound";
 import usePagination from "@/hooks/usePagination";
 import Pagination from "@/components/custom/Pagination/Pagination";
+import useGetUser from "@/hooks/useGetUser";
 
 // get custom axios hook
 const axiosHook = useAxios();
@@ -43,6 +44,10 @@ const ChickenAndFeeds = () => {
   // call pagination
   const [totalPage,pages] = usePagination(count, 8);
   
+  // get user 
+  const user = useGetUser()
+
+
   useEffect(() => {
     //function for call loadAllItems
     const loader = async () => {
@@ -62,8 +67,10 @@ const ChickenAndFeeds = () => {
     };
     loader();
   }, [currentPage]);
-  console.log(allChickenAndFeeds);
-  console.log(filterValue);
+
+console.log(allChickenAndFeeds);
+
+  
   return (
     <main>
       {/* banner  */}
@@ -140,8 +147,8 @@ const ChickenAndFeeds = () => {
           {allChickenAndFeeds.length == 0 && <DataNotFound></DataNotFound>}
           {/* card section  */}
           <section className=" my-10  grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[95%] lg:max-w-[85%] mx-auto">
-            {allChickenAndFeeds?.map((items, index) => (
-              <Card key={items?._id} items={items}></Card>
+            {allChickenAndFeeds?.map((item, index) => (
+              <Card key={item?._id} item={item}></Card>
             ))}
           </section>
           {<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages}></Pagination>}
