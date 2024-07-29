@@ -1,14 +1,13 @@
 "use client";
 import Heading from "@/components/custom/Heading/Heading";
+import Pagination from "@/components/custom/Pagination/Pagination";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import usePagination from "@/hooks/usePagination";
-import useUserCart from "@/hooks/useUserCart";
-import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import swal from "sweetalert";
-import { Pagination } from "swiper/modules";
 
 const axiosHook = useAxios();
 // function to load cart
@@ -32,9 +31,9 @@ const UserCart = () => {
 	// current page state 
 	const [currentPage ,setCurrentPage]=useState(0)
 	// cart count state 
-	const [count , setCount] =useState(5)
+	const [count , setCount] =useState(0)
 	  // call pagination
-		const [totalPage,pages] = usePagination(count, 8);
+		const [totalPage,pages] = usePagination(count,8);
   
   //  get user
   const user = useGetUser();
@@ -135,8 +134,8 @@ const UserCart = () => {
           </tbody>
         </table>
       </section>
-			<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages}></Pagination>
-    </main>
+		 {cart&&<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages}></Pagination>}
+    </main> 
   );
 };
 
