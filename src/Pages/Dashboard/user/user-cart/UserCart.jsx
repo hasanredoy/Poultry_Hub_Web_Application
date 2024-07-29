@@ -2,11 +2,13 @@
 import Heading from "@/components/custom/Heading/Heading";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
+import usePagination from "@/hooks/usePagination";
 import useUserCart from "@/hooks/useUserCart";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import swal from "sweetalert";
+import { Pagination } from "swiper/modules";
 
 const axiosHook = useAxios();
 // function to load cart
@@ -15,15 +17,28 @@ const loadCart = async (email) => {
   //  console.log(data);
   return data?.result;
 };
+// function to load cart count
+const loadCartCount = async (email) => {
+  const { data } = await axiosHook.get(`/api/count/cart?email=${email}`);
+  //  console.log(data);
+  return data?.count;
+};
 
 const UserCart = () => {
   //  state to handle refetch
   const [refetch, setRefetch] = useState(0);
   // cart state
   const [cart, setCart] = useState([]);
+	// current page state 
+	const [currentPage ,setCurrentPage]=useState(0)
+	// cart count state 
+	const [count , setCount] =useState(5)
+	  // call pagination
+		const [totalPage,pages] = usePagination(count, 8);
+  
   //  get user
   const user = useGetUser();
-  // get user
+	// effect to call cart 
   useEffect(() => {
     const loader = async () => {
       const cartData = await loadCart(user?.email);
@@ -31,7 +46,15 @@ const UserCart = () => {
     };
     loader();
   }, [user, refetch]);
-  console.log(cart);
+	// effect to call cart count 
+  useEffect(() => {
+    const loader = async () => {
+      const cartCount = await loadCartCount(user?.email);
+      setCount(cartCount);
+    };
+    loader();
+  }, [user, refetch]);
+  console.log(count);
   const handleDelete = (name, id) => {
     swal({
       title: "Are you sure?",
@@ -112,6 +135,7 @@ const UserCart = () => {
           </tbody>
         </table>
       </section>
+			<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages}></Pagination>
     </main>
   );
 };
