@@ -18,13 +18,13 @@ const useUserCart = (email) => {
   const user = useGetUser()
   useEffect(()=>{
     const loader = async()=>{
-      const cartData = await loadCart(email)
+      const cartData = await loadCart(user?.email)
       setCart(cartData)
     }
     loader()
-  },[email])
-//  console.log(cart);
-  return [cart]
+  },[user?.email])
+ console.log(cart);
+  return cart
 };
 
 export default useUserCart;
