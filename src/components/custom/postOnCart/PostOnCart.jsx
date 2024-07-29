@@ -4,9 +4,10 @@ import useAxios from "../../../hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import useUserCart from "@/hooks/useUserCart";
 
 const PostOnCart = ({ cart }) => {
-  const user = useGetUser();
+  const user = useGetUser()
   const router = useRouter()
   const axiosHook = useAxios();
   const cartData = {
@@ -19,14 +20,12 @@ const PostOnCart = ({ cart }) => {
     category: cart?.category,
   };
   // console.log(cartData);
-  const [response, setResponse] = useState();
   const handlePost = () => {
     if(!user){
       toast.error('Please login to make purchase')
       return router.push('/login')
     }
     axiosHook.post("/api/cart", cartData).then((res) => {
-      setResponse(res.data?.result);
       // console.log(res.data);
       if(res?.data?.result?.insertedId){
         toast.success(`${cart?.name} added to cart`)

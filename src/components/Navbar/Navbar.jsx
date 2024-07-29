@@ -42,8 +42,7 @@ const Navbar = () => {
   const [theme, setTheme] = useState("light");
 
   // get user cart
-  const [cart]= useUserCart()
-  console.log(cart);
+  const [cart]= useUserCart(user?.email)
 
   //check local storage and set the local storage value in theme state
   useEffect(() => {
