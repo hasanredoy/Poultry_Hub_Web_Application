@@ -15,6 +15,8 @@ const PostOnCart = ({ cart }) => {
     id: cart?._id,
     price: cart?.price,
     itemName: cart?.name,
+    bookingDate: new Date(),
+    category: cart?.category,
   };
   // console.log(cartData);
   const [response, setResponse] = useState();

@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from "react";
 import useAxios from "./useAxios";
 import useGetUser from "./useGetUser";
@@ -9,18 +10,18 @@ const loadCart= async(email)=>{
  console.log(data);
  return data?.result
 }
-const useUserCart = () => {
+const useUserCart = (email) => {
   // cart state
   const [cart,setCart]=useState([])
   // get user 
   const user = useGetUser()
   useEffect(()=>{
     const loader = async()=>{
-      const cartData = await loadCart(user?.email)
+      const cartData = await loadCart(email)
       setCart(cartData)
     }
     loader()
-  },[user?.email])
+  },[email])
  console.log(cart);
   return [cart]
 };
