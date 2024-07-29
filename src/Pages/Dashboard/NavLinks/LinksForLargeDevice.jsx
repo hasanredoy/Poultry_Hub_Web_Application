@@ -21,13 +21,17 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import useGetUserRole from "@/hooks/useGetUserRole";
+import swal from "sweetalert";
+import useGetUser from "@/hooks/useGetUser";
 
 const LinksForLargeDevice = () => {
   const pathname = usePathname();
-
-  const role = "admin";
+  const user = useGetUser()
+  const role = useGetUserRole(user?.email)
+  console.log(role);
   const handleLogOut = () => {
-    Swal.fire({
+    swal.fire({
       //   title: "Are you sure?",
       //   text: "You Want to Logout",
       //   icon: "warning",

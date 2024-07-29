@@ -11,27 +11,40 @@ import { usePathname } from "next/navigation";
 import { IoIosMoon, IoIosSunny } from "react-icons/io";
 import {
   FaHome,
-  FaQuestionCircle,
   FaShoppingCart,
   FaSignInAlt,
   FaSignOutAlt,
-  FaUser,
 } from "react-icons/fa";
 import { HiLightBulb } from "react-icons/hi";
 import {
   MdDashboard,
-  MdOutlineContactPage,
   MdOutlineContactSupport,
-  MdOutlineReviews,
   MdOutlineShoppingCart,
   MdPersonAddAlt1,
 } from "react-icons/md";
 import { GrContact } from "react-icons/gr";
 import useGetUser from "@/hooks/useGetUser";
 import { signOut } from "next-auth/react";
-import useUserCart from "@/hooks/useUserCart";
+import swal from "sweetalert";
+import useAxios from "@/hooks/useAxios";
+import PostOnCart from "../custom/postOnCart/PostOnCart";
+
+const axiosHook = useAxios();
+// function to load cart
+const loadCart = async (email) => {
+  const { data } = await axiosHook.get(`/api/cart?email=${email}`);
+  //  console.log(data);
+  return data?.result;
+};
+
 
 const Navbar = () => {
+  //  state to handle refetch
+  const [refetch, setRefetch] = useState(0);
+  // cart state
+  const [cart, setCart] = useState([]);
+
+
   const user = useGetUser();
   // console.log(user);
   // get path name
@@ -41,8 +54,14 @@ const Navbar = () => {
   // theme handler
   const [theme, setTheme] = useState("light");
 
-  // get user cart
-  const [cart]= useUserCart()
+	// effect to call cart 
+  useEffect(() => {
+    const loader = async () => {
+      const cartData = await loadCart(user?.email);
+      setCart(cartData);
+    };
+    loader();
+  }, [user, refetch]);
 
   //check local storage and set the local storage value in theme state
   useEffect(() => {
@@ -94,6 +113,29 @@ const Navbar = () => {
       path: "/contact_us",
     },
   ];
+
+  const handleLogOut = ()=>{
+    swal({
+    title: "Are you sure?",
+    text: "You Wanna logout",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      signOut()
+      swal("logged out!", {
+        icon: "success",
+      });
+    } else {
+      swal("canceled!");
+    }
+  });
+  }
+  
+
+
   if (
     pathName == "/login" ||
     pathName == "/register" ||
@@ -202,7 +244,9 @@ const Navbar = () => {
       {/* nav end */}
       <div className=" relative flex justify-center items-center gap-3 lg:gap-5 ">
         {/* theme controller  */}
-
+       <div className=" hidden">
+       <PostOnCart setRefetch={setRefetch} refetch={refetch} ></PostOnCart>
+       </div>
         <button title="Change Theme" className="" onClick={toggleTheme}>
           {theme == "light" ? (
             <IoIosSunny className=" text-xl lg:text-2xl font-black text-gray-800"></IoIosSunny>
@@ -236,7 +280,7 @@ const Navbar = () => {
                 </Link>
 
                 <button
-                  onClick={() => signOut()}
+                  onClick={handleLogOut}
                   className=" btn-primary w-28 flex items-center gap-2"
                 >
                   <FaSignOutAlt></FaSignOutAlt> LogOut

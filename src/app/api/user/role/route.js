@@ -6,7 +6,7 @@ export const GET=async(request)=>{
  console.log(email,'role route');
   try {
     const db = await connectDB()
-    const usersCollection = await db.collection('partners')
+    const usersCollection = await db.collection('users')
     const result = await usersCollection.findOne({email})
     const role = await result?.role
     console.log({result});

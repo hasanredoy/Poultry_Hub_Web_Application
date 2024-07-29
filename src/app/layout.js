@@ -1,9 +1,10 @@
-import {Roboto_Condensed} from "next/font/google";
+import { Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import AuthProvider from "@/services/AuthProvider";
-require('dotenv').config()
+import ContextProvider from "@/services/ContextProvider";
+require("dotenv").config();
 
 const manrope = Roboto_Condensed({ subsets: ["latin"] });
 
@@ -13,21 +14,20 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
   return (
-    <html  lang="en">
+    <html lang="en">
       <body className={`${manrope.className}   min-h-screen p-0 m-0`}>
         <AuthProvider>
-      <nav className=" bg-base-300 bg-opacity-80 fixed w-full z-50  top-0 shadow shadow-neutral-500">
-          <Navbar></Navbar>
-        </nav>
-        <div >
-        {children}
-        </div>
-        <footer>
-        <Footer></Footer>
-      </footer>
-      </AuthProvider>
+          <ContextProvider>
+            <nav className=" bg-base-300 bg-opacity-80 fixed w-full z-50  top-0 shadow shadow-neutral-500">
+              <Navbar></Navbar>
+            </nav>
+            <div>{children}</div>
+            <footer>
+              <Footer></Footer>
+            </footer>
+          </ContextProvider>
+        </AuthProvider>
       </body>
     </html>
   );

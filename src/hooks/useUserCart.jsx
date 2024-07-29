@@ -23,7 +23,7 @@ const useUserCart = (email) => {
     }
     loader()
   },[user?.email])
- console.log(cart);
+//  console.log(cart);
   return cart
 };
 

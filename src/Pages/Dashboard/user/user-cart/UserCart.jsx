@@ -53,7 +53,7 @@ const UserCart = () => {
     };
     loader();
   }, [user, refetch]);
-  console.log(count);
+  // console.log(count);
   const handleDelete = (name, id) => {
     swal({
       title: "Are you sure?",

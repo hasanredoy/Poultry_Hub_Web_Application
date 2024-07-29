@@ -1,15 +1,18 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useAxios from "../../../hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import useUserCart from "@/hooks/useUserCart";
+import { GeneralContext } from "@/services/ContextProvider";
 
-const PostOnCart = ({ cart }) => {
+const PostOnCart = ({ cart,setRefetch,refetch }) => {
   const user = useGetUser()
   const router = useRouter()
   const axiosHook = useAxios();
+  const {name}=useContext(GeneralContext)
+  console.log(name);
   const cartData = {
     name: user?.name,
     email: user?.email,
@@ -28,6 +31,7 @@ const PostOnCart = ({ cart }) => {
     axiosHook.post("/api/cart", cartData).then((res) => {
       // console.log(res.data);
       if(res?.data?.result?.insertedId){
+        setRefetch(refetch+1)
         toast.success(`${cart?.name} added to cart`)
       }
     });

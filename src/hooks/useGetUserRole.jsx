@@ -5,6 +5,7 @@ import useAxios from "./useAxios";
 const axiosHook = useAxios()
 const loadUserRole =async(email)=>{
       const {data}=await axiosHook.get(`/api/user/role?email=${email}`)
+      console.log({data});
       return data?.role
 }
 const useGetUserRole = (email) => {
