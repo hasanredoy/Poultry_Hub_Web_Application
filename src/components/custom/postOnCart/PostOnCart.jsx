@@ -7,12 +7,12 @@ import { useRouter } from "next/navigation";
 import useUserCart from "@/hooks/useUserCart";
 import { GeneralContext } from "@/services/ContextProvider";
 
-const PostOnCart = ({ cart,setRefetch,refetch }) => {
+const PostOnCart = ({ cart}) => {
   const user = useGetUser()
   const router = useRouter()
   const axiosHook = useAxios();
-  const {name}=useContext(GeneralContext)
-  console.log(name);
+  const {carts,refetch,setRefetch}=useContext(GeneralContext)
+  // console.log({carts});
   const cartData = {
     name: user?.name,
     email: user?.email,

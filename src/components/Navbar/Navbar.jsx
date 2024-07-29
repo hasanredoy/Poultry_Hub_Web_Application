@@ -2,7 +2,7 @@
 import Image from "next/image";
 import logo from "../../app/favicon.ico";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 // import hamburgers
 import { RiMenuUnfold2Fill } from "react-icons/ri";
@@ -26,27 +26,18 @@ import { GrContact } from "react-icons/gr";
 import useGetUser from "@/hooks/useGetUser";
 import { signOut } from "next-auth/react";
 import swal from "sweetalert";
-import useAxios from "@/hooks/useAxios";
-import PostOnCart from "../custom/postOnCart/PostOnCart";
+import { GeneralContext } from "@/services/ContextProvider";
 
-const axiosHook = useAxios();
-// function to load cart
-const loadCart = async (email) => {
-  const { data } = await axiosHook.get(`/api/cart?email=${email}`);
-  //  console.log(data);
-  return data?.result;
-};
+
 
 
 const Navbar = () => {
-  //  state to handle refetch
-  const [refetch, setRefetch] = useState(0);
-  // cart state
-  const [cart, setCart] = useState([]);
-
 
   const user = useGetUser();
-  // console.log(user);
+
+  //get cart 
+  const {carts} =useContext(GeneralContext)
+  // console.log(carts);
   // get path name
   const pathName = usePathname();
   // links handler state
@@ -54,14 +45,7 @@ const Navbar = () => {
   // theme handler
   const [theme, setTheme] = useState("light");
 
-	// effect to call cart 
-  useEffect(() => {
-    const loader = async () => {
-      const cartData = await loadCart(user?.email);
-      setCart(cartData);
-    };
-    loader();
-  }, [user, refetch]);
+
 
   //check local storage and set the local storage value in theme state
   useEffect(() => {
@@ -218,8 +202,8 @@ const Navbar = () => {
        {
         user&&<Link
         href={"/dashboard/my_cart"}
-        className="text-xl bg-gray-100  text-black p-2 px-3 rounded-full hover:bg-gray-300 relative "
-      > <span className="text-red-600 font-bold text-sm -top-0 right-1 absolute">{cart?.length}</span>
+        className="text-xl bg-gray-100  text-black p-2 px-4 rounded-full hover:bg-gray-300 relative "
+      > <span className="text-red-600 font-bold text-sm -top-0 right-0 absolute">{carts}</span>
         <MdOutlineShoppingCart></MdOutlineShoppingCart>
       </Link>
        }
@@ -244,9 +228,7 @@ const Navbar = () => {
       {/* nav end */}
       <div className=" relative flex justify-center items-center gap-3 lg:gap-5 ">
         {/* theme controller  */}
-       <div className=" hidden">
-       <PostOnCart setRefetch={setRefetch} refetch={refetch} ></PostOnCart>
-       </div>
+
         <button title="Change Theme" className="" onClick={toggleTheme}>
           {theme == "light" ? (
             <IoIosSunny className=" text-xl lg:text-2xl font-black text-gray-800"></IoIosSunny>

@@ -1,6 +1,7 @@
 "use client";
 import Heading from "@/components/custom/Heading/Heading";
 import Pagination from "@/components/custom/Pagination/Pagination";
+import Skeleton from "@/components/custom/Skeleton/Skeleton";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import usePagination from "@/hooks/usePagination";
@@ -11,9 +12,9 @@ import swal from "sweetalert";
 
 const axiosHook = useAxios();
 // function to load cart
-const loadCart = async (email) => {
-  const { data } = await axiosHook.get(`/api/cart?email=${email}`);
-  //  console.log(data);
+const loadCart = async (email,page) => {
+  const { data } = await axiosHook.get(`/api/cart?email=${email}&size=${6}&page=${page}`);
+   console.log(data);
   return data?.result;
 };
 // function to load cart count
@@ -31,20 +32,21 @@ const UserCart = () => {
 	// current page state 
 	const [currentPage ,setCurrentPage]=useState(0)
 	// cart count state 
-	const [count , setCount] =useState(0)
+	const [count , setCount] =useState(5)
 	  // call pagination
-		const [totalPage,pages] = usePagination(count,8);
+		const [totalPage,pages] = usePagination(count, 6);
   
   //  get user
   const user = useGetUser();
 	// effect to call cart 
   useEffect(() => {
     const loader = async () => {
-      const cartData = await loadCart(user?.email);
+      const cartData = await loadCart(user?.email,currentPage);
+      // console.log(cartData);
       setCart(cartData);
     };
     loader();
-  }, [user, refetch]);
+  }, [user, refetch,currentPage]);
 	// effect to call cart count 
   useEffect(() => {
     const loader = async () => {
@@ -53,7 +55,7 @@ const UserCart = () => {
     };
     loader();
   }, [user, refetch]);
-  // console.log(count);
+  console.log(cart);
   const handleDelete = (name, id) => {
     swal({
       title: "Are you sure?",
@@ -77,6 +79,9 @@ const UserCart = () => {
       }
     });
   };
+  if(!cart){
+    return <Skeleton></Skeleton>
+  }
   return (
     <main className=" my-10">
       <Heading
@@ -84,7 +89,7 @@ const UserCart = () => {
         title={"Have a look at your cart"}
       ></Heading>
       <h1 className="text-xl ml-8 my-5 font-bold ">
-        Total Items: {cart?.length}
+        Total Items: {count}
       </h1>
       {/* table section  */}
       <section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto px-5 ">
@@ -101,7 +106,8 @@ const UserCart = () => {
             </tr>
           </thead>
           <tbody className="border-b text-sm ">
-            {cart.map((data, index) => (
+        
+            {cart?.map((data, index) => (
               <tr className="border-b" key={index}>
                 <td className="px-3 border-r border-gray-400">
                   <h3>{index + 1}</h3>
@@ -134,7 +140,7 @@ const UserCart = () => {
           </tbody>
         </table>
       </section>
-		 {cart&&<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages}></Pagination>}
+		 {cart&&	<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages}></Pagination>}
     </main> 
   );
 };
