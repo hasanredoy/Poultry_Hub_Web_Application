@@ -44,9 +44,9 @@ const axiosHook = useAxios()
   }
   
   return (
-    <div className=" flex flex-col gap-5 md:flex-row">
+    <div className=" flex flex-col mt-5 gap-5 md:flex-row">
       {/* aside for feed back form    */}
-      <aside className=" w-full lg:w-[30%] ">
+      <aside className=" w-full lg:w-[30%] static lg:fixed z-30 ">
          {/* form div  */}
          <div className="card bg-base-200 w-full max-w-md shrink-0 ">
             <h3 className="subtitle text-center pt-2">Leave a Feedback</h3>
@@ -96,18 +96,18 @@ const axiosHook = useAxios()
           </div>
       </aside>
       {/* reviews section  */}
-      <section className=" w-full lg:w-[68%] ">
+      <section className=" w-full lg:ml-[35%] lg:w-[68%] ">
         <Heading
           subHeading={"How We Are?"}
           title={"Hear What Our Users Says!"}
         ></Heading>
         {/* map reviews    */}
         {
-          reviews.length>0?<div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          reviews.length>0?<div className="grid mt-5 grid-cols-1 lg:grid-cols-2 gap-5">
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="relative max-w-2xl h-[300px] rounded-md bg-base-100 border-gray-400 border  p-8 sm:flex sm:space-x-6"
+              className="relative max-w-2xl rounded-md bg-base-100 shadow-md border-gray-300 border  p-4 sm:flex sm:space-x-6"
             >
              
               <div className="flex-shrink-0 rounded-full w-14  h-14 ">
@@ -121,11 +121,11 @@ const axiosHook = useAxios()
               {review?.email==user?.email&&<button title="delete" className=" btn text-red-500"><FaTrashAlt></FaTrashAlt></button>}
               </div>
               </div>
-              <div className="flex flex-col space-y-4">
+              <div className="flex flex-col space-y-3">
                 <section className=" flex justify-between">
                   <div className=" flex flex-col gap-2 text-start ">
-                    <h2 className="text-2xl font-semibold">
-                      {review?.username}
+                    <h2 className="text-xl font-semibold">
+                      {review?.username} <span className=" text-base font-normal">{user?.name==review?.username&&"(you)"}</span>
                     </h2>
                     <span className="text-base text-green-600  ">
                       {moment(review?.postedDate).startOf("seconds").fromNow()}
@@ -136,7 +136,7 @@ const axiosHook = useAxios()
                     <FaStar className=" text-xl font-bold text-[#fe6702]    mt-1"></FaStar>
                   </h2>
                 </section>
-                <div className="divider"></div>
+                <div className="divider my-1"></div>
                 <div className="space-y-1">
                   <p className=" flex gap-2">
                     <FaQuoteLeft className=" text-lg "></FaQuoteLeft>
@@ -150,7 +150,7 @@ const axiosHook = useAxios()
                     <button
                       key={index}
                       type="button"
-                      className="relative px-4 py-1 overflow-hidden font-semibold rounded-full bg-primary    -400 text-black "
+                      className="relative px-4 py-1 overflow-hidden font-semibold rounded-full bg-primary  text-white "
                     >
                       #{tag}
                     </button>
