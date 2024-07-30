@@ -2,7 +2,7 @@
 import Heading from "@/components/custom/Heading/Heading";
 import moment from "moment";
 import Image from "next/image";
-import { FaChessKing, FaLocationArrow, FaQuoteLeft, FaQuoteRight, FaStar, FaTrashAlt } from "react-icons/fa";
+import {  FaQuoteLeft, FaQuoteRight, FaStar, FaTrashAlt } from "react-icons/fa";
 // import star rating
 import { Rating } from '@smastrom/react-rating'
 
@@ -13,17 +13,20 @@ import useGetUser from "@/hooks/useGetUser";
 import useAxios from "@/hooks/useAxios";
 import toast, { Toaster } from "react-hot-toast";
 import Skeleton from "@/components/custom/Skeleton/Skeleton";
+import swal from "sweetalert";
 
 const Reviews = () => {
   // get reviews 
-  const {reviews} = useContext(GeneralContext)
-  console.log(reviews);
+  const {reviews,refetchReview, setRefetchReview} = useContext(GeneralContext)
+  // console.log(reviews);
   // handler for star rating
   const [rating, setRating] = useState(0) // Initial value
 // get user
   const user = useGetUser()
-  console.log(rating);
+  // console.log(rating);
 const axiosHook = useAxios()
+
+// handler to post user review
   const handleReview =async(e)=>{
    e.preventDefault()
     const reviewData ={
@@ -35,18 +38,44 @@ const axiosHook = useAxios()
       tags:[e.target?.satisfied?.value],
       description:e.target?.description?.value
     }
-    console.log(reviewData);
+    // console.log(reviewData);
     const res = await axiosHook.post('/api/reviews',reviewData)
-    console.log(res.data);
+    // console.log(res.data);
     if(res.data?.result?.insertedId){
+      setRefetchReview(refetchReview+1)
       toast.success('Thank you for your feedback')
     }
   }
+ // handler to delete user review 
+ const handleDelete = (id) => {
+  swal({
+    title: "Are you sure?",
+    text: `You want to remove your feedback!`,
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      axiosHook.delete(`/api/reviews?id=${id}`).then((res) => {
+        if (res.data?.result?.deletedCount > 0) {
+          setRefetchReview(refetchReview+1)
+          swal(`Feedback has been removed!`, {
+            icon: "success",
+          });
+        }
+      });
+    } else {
+      swal("Item is safe!");
+    }
+  });
+};
+
+
   
   return (
     <div className=" flex flex-col mt-5 gap-5 md:flex-row">
       {/* aside for feed back form    */}
-      <aside className=" w-full lg:w-[30%] static lg:fixed z-30 ">
+      <aside className=" w-full lg:w-[30%] ">
          {/* form div  */}
          <div className="card bg-base-200 w-full max-w-md shrink-0 ">
             <h3 className="subtitle text-center pt-2">Leave a Feedback</h3>
@@ -96,7 +125,7 @@ const axiosHook = useAxios()
           </div>
       </aside>
       {/* reviews section  */}
-      <section className=" w-full lg:ml-[35%] lg:w-[68%] ">
+      <section className=" w-full lg:w-[68%] ">
         <Heading
           subHeading={"How We Are?"}
           title={"Hear What Our Users Says!"}
@@ -118,7 +147,7 @@ const axiosHook = useAxios()
                   width={50}
                   className="object-cover object-center w-14 h-14  rounded-full "
                 /> <div className=" pt-5">
-              {review?.email==user?.email&&<button title="delete" className=" btn text-red-500"><FaTrashAlt></FaTrashAlt></button>}
+              {review?.email==user?.email&&<button onClick={()=>handleDelete(review?._id)} title="delete" className=" btn text-red-500"><FaTrashAlt></FaTrashAlt></button>}
               </div>
               </div>
               <div className="flex flex-col space-y-3">
@@ -136,12 +165,12 @@ const axiosHook = useAxios()
                     <FaStar className=" text-xl font-bold text-[#fe6702]    mt-1"></FaStar>
                   </h2>
                 </section>
-                <div className="divider my-1"></div>
+                <div className="divider"></div>
                 <div className="space-y-1">
-                  <p className=" flex gap-2">
-                    <FaQuoteLeft className=" text-lg "></FaQuoteLeft>
-                    {review?.description}
-                    <FaQuoteRight className=" text-lg "></FaQuoteRight>
+                  <p className=" flex  gap-3">
+                    <FaQuoteLeft className=" text-sm "></FaQuoteLeft>
+                   <span className=" flex-1">  {review?.description}</span>
+                 
                   </p>
                 </div>
                 <div className="divider"></div>

@@ -22,8 +22,8 @@ export default function RootLayout({ children }) {
             <nav className=" bg-base-300 bg-opacity-80 fixed w-full z-50  top-0 shadow shadow-neutral-500">
               <Navbar></Navbar>
             </nav>
-            <div>{children}</div>
-            <footer>
+            <main className="z-30">{children}</main>
+            <footer className="z-50">
               <Footer></Footer>
             </footer>
           </ContextProvider>

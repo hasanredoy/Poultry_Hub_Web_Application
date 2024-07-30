@@ -19,8 +19,10 @@ const loadReviews = async () => {
 };
 
 const ContextProvider = ({ children }) => {
-  //  state to handle refetch
+  //  state to handle cart refetch
   const [refetch, setRefetch] = useState(0);
+  //  state to handle reviews refetch
+  const [refetchReview, setRefetchReview] = useState(0);
   // cart state
   const [cart, setCart] = useState([]);
   // reviews state
@@ -42,14 +44,14 @@ const ContextProvider = ({ children }) => {
       setReviews(reviewsData);
     };
     loader();
-  }, []);
-  console.log(reviews);
+  }, [refetchReview]);
+  // console.log(reviews);
   const contextInfo = {
     carts: cart,
     refetch,
     setRefetch,
     user,
-    reviews
+    reviews,refetchReview, setRefetchReview
   };
   return (
     <GeneralContext.Provider value={contextInfo}>

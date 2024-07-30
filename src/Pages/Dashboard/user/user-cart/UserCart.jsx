@@ -61,7 +61,7 @@ const UserCart = () => {
   const handleDelete = (name, id) => {
     swal({
       title: "Are you sure?",
-      text: `You want to deleted ${name}!`,
+      text: `You want to delete ${name}!`,
       icon: "warning",
       buttons: true,
       dangerMode: true,
