@@ -24,36 +24,37 @@ import Link from "next/link";
 import useGetUserRole from "@/hooks/useGetUserRole";
 import swal from "sweetalert";
 import useGetUser from "@/hooks/useGetUser";
+import Image from "next/image";
+import { signOut } from "next-auth/react";
 
 const LinksForLargeDevice = () => {
   const pathname = usePathname();
   const user = useGetUser()
   const role = useGetUserRole(user?.email)
   console.log(role);
-  const handleLogOut = () => {
-    swal.fire({
-      //   title: "Are you sure?",
-      //   text: "You Want to Logout",
-      //   icon: "warning",
-      //   showCancelButton: true,
-      //   confirmButtonColor: "#039396",
-      //   cancelButtonColor: "#d33",
-      //   confirmButtonText: "Yes, Logout"
-      // }).then((result) => {
-      //   if (result.isConfirmed) {
-      //     logOut()
-      //     .then(()=>{
-      //       Swal.fire({
-      //         title: "Logged Out Successfully",
-      //         icon: "success"
-      //       });
-      //     })
-      //   }
-    });
-  };
+  const handleLogOut = ()=>{
+    swal({
+    title: "Are you sure?",
+    text: "You Wanna logout",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      signOut()
+      swal("logged out!", {
+        icon: "success",
+      });
+    } else {
+      swal("canceled!");
+    }
+  });
+  }
+  
 
   return (
-    <div
+    <section
       className={` hidden lg:block min-h-screen lg:min-h-[1000px] pt-4  bg-base-300 `}
     >
       <div className=" h-[calc(100dvh-30px)] flex max-h-screen flex-col ">
@@ -61,14 +62,16 @@ const LinksForLargeDevice = () => {
           {/* profile and theme controller  */}
           <section className=" border-b border-gray-900 pb-2 mb-4 flex justify-between px-1 ">
             <div className="flex items-center p-1 space-x-4">
-              <img
-                src=""
-                alt=""
-                className=" w-8 h-8 md:w-12 md:h-12 rounded-full bg-gray-500"
+              <Image
+                src={user?.image}
+                alt="profile image"
+                width={40}
+                height={40}
+                className=" w-8 h-8 md:w-12 md:h-12 rounded-full "
               />
               <div>
                 <h2 className=" text-sm lg:text-lg font-bold ">
-                  Leroy Jenkins
+                 {user?.name}
                 </h2>
               </div>
             </div>
@@ -297,7 +300,7 @@ const LinksForLargeDevice = () => {
           </h3>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import useAxios from "./useAxios";
+import useGetUser from "./useGetUser";
 
 const axiosHook = useAxios()
 const loadUserRole =async(email)=>{
@@ -9,17 +10,18 @@ const loadUserRole =async(email)=>{
       return data?.role
 }
 const useGetUserRole = (email) => {
+  const user=useGetUser()
   // state user role 
   const [role, setRole ]=useState()
   useEffect(()=>{
     //make loader to call user role func
     const loader =async ()=>{
-      const userRole = await loadUserRole(email);
+      const userRole = await loadUserRole(user?.email);
       console.log(userRole);
       setRole(userRole)
     }
     loader()
-  },[email])
+  },[user?.email,user])
   console.log(role);
   return [role]
 };

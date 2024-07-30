@@ -14,18 +14,16 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { useContext } from "react";
+import { GeneralContext } from "@/services/ContextProvider";
 
 const UserHome = () => {
+  const {carts,user}=useContext(GeneralContext)
   //  get user
-  const user = {
-    name: "Mr X",
-    email: "hello@gmail.com",
-    phone: "+934990898",
-    image: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-  };
+
   // get user stats
   const userStats = {
-    cart: 5,
+    cart: carts,
     reviews: 2,
     payments: 3,
     decline: 2,

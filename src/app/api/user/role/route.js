@@ -9,6 +9,7 @@ export const GET=async(request)=>{
     const usersCollection = await db.collection('users')
     const result = await usersCollection.findOne({email})
     const role = await result?.role
+    console.log({role});
     // console.log({result});
     return NextResponse.json({role})
   } catch (error) {

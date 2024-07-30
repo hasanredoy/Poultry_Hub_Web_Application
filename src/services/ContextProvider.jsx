@@ -31,7 +31,8 @@ const ContextProvider = ({children}) => {
   const contextInfo ={
     carts:cart,
     refetch,
-    setRefetch
+    setRefetch,
+    user
   }
   return (
     <GeneralContext.Provider value={contextInfo}>
