@@ -2,7 +2,7 @@
 import Heading from "@/components/custom/Heading/Heading";
 import moment from "moment";
 import Image from "next/image";
-import { FaChessKing, FaLocationArrow, FaQuoteLeft, FaQuoteRight, FaStar } from "react-icons/fa";
+import { FaChessKing, FaLocationArrow, FaQuoteLeft, FaQuoteRight, FaStar, FaTrashAlt } from "react-icons/fa";
 // import star rating
 import { Rating } from '@smastrom/react-rating'
 
@@ -12,6 +12,7 @@ import { GeneralContext } from "@/services/ContextProvider";
 import useGetUser from "@/hooks/useGetUser";
 import useAxios from "@/hooks/useAxios";
 import toast, { Toaster } from "react-hot-toast";
+import Skeleton from "@/components/custom/Skeleton/Skeleton";
 
 const Reviews = () => {
   // get reviews 
@@ -101,12 +102,14 @@ const axiosHook = useAxios()
           title={"Hear What Our Users Says!"}
         ></Heading>
         {/* map reviews    */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        {
+          reviews.length>0?<div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="max-w-2xl h-[300px] rounded-md bg-base-100 border-gray-400 border  p-8 sm:flex sm:space-x-6"
+              className="relative max-w-2xl h-[300px] rounded-md bg-base-100 border-gray-400 border  p-8 sm:flex sm:space-x-6"
             >
+             
               <div className="flex-shrink-0 rounded-full w-14  h-14 ">
                 <Image
                   src={review?.image}
@@ -114,7 +117,9 @@ const axiosHook = useAxios()
                   height={50}
                   width={50}
                   className="object-cover object-center w-14 h-14  rounded-full "
-                />
+                /> <div className=" pt-5">
+              {review?.email==user?.email&&<button title="delete" className=" btn text-red-500"><FaTrashAlt></FaTrashAlt></button>}
+              </div>
               </div>
               <div className="flex flex-col space-y-4">
                 <section className=" flex justify-between">
@@ -123,7 +128,7 @@ const axiosHook = useAxios()
                       {review?.username}
                     </h2>
                     <span className="text-base text-green-600  ">
-                      {moment(review?.postedDate).startOf("day").fromNow()}
+                      {moment(review?.postedDate).startOf("seconds").fromNow()}
                     </span>
                   </div>
                   <h2 className=" text-2xl gap-2 font-bold flex ">
@@ -154,7 +159,8 @@ const axiosHook = useAxios()
               </div>
             </div>
           ))}
-        </div>
+        </div>:<Skeleton></Skeleton>
+        }
       </section>
       <Toaster></Toaster>
     </div>
