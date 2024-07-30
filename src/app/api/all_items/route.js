@@ -9,7 +9,7 @@ export const GET = async (request) => {
   const page = (await request.nextUrl.searchParams.get("page")) || "0";
 
   const size = (await request.nextUrl.searchParams.get("size")) || "8";
-  console.log({ queryFilter });
+  // console.log({ queryFilter });
   const parsedPage = parseInt(page);
   const parsedSize = parseInt(size);
 

@@ -21,7 +21,7 @@ const loadCart = async (email,page) => {
 const loadCartCount = async (email) => {
   const { data } = await axiosHook.get(`/api/count/cart?email=${email}`);
   //  console.log(data);
-  return data?.count;
+  return data;
 };
 
 const UserCart = () => {
@@ -32,7 +32,8 @@ const UserCart = () => {
 	// current page state 
 	const [currentPage ,setCurrentPage]=useState(0)
 	// cart count state 
-	const [count , setCount] =useState(5)
+	const [count , setCount] =useState(0)
+	const [price , setPrice] =useState(0)
 	  // call pagination
 		const [totalPage,pages] = usePagination(count, 6);
   
@@ -51,11 +52,12 @@ const UserCart = () => {
   useEffect(() => {
     const loader = async () => {
       const cartCount = await loadCartCount(user?.email);
-      setCount(cartCount);
+      setCount(cartCount?.count);
+      setPrice(cartCount?.price)
     };
     loader();
   }, [user, refetch]);
-  console.log(cart);
+  // console.log(price);
   const handleDelete = (name, id) => {
     swal({
       title: "Are you sure?",
@@ -88,9 +90,12 @@ const UserCart = () => {
         subHeading={"Welcome"}
         title={"Have a look at your cart"}
       ></Heading>
-      <h1 className="text-xl ml-8 my-5 font-bold ">
-        Total Items: {count}
+     <section className=" flex justify-between my-5 px-5">
+     <h1 className="text-xl ml-8 my-5 font-bold ">
+        Total Price: {price} $
       </h1>
+      <button className="btn btn-primary">Pay Now</button>
+     </section>
       {/* table section  */}
       <section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto px-5 ">
         <table className="w-full p-6 text-base text-left whitespace-nowrap">
