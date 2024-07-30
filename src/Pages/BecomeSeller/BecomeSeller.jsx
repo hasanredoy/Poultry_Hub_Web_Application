@@ -5,12 +5,39 @@ import seller from '../../../public/seller/happy-farmer-hens-organic-eggs-600nw-
 import seller2 from '../../../public/seller/seller-image.jpg'
 import Image from "next/image";
 import useGetUser from "@/hooks/useGetUser";
+import useAxios from "@/hooks/useAxios";
+import toast, { Toaster } from "react-hot-toast";
+
+// function to load cart
+const loadSeller = async (email) => {
+  const { data } = await axiosHook.get(`/api/seller?email=${email}`);
+  //  console.log(data);
+  return data?.result;
+};
 
 const BecomeSeller = () => {
+  // get user 
   const user = useGetUser()
+  // get axiosHook
+  const axiosHook = useAxios()
 
-  const handleSeller=()=>{
-    
+  // handler for post seller req 
+  const handleSeller=async(e)=>{
+     e.preventDefault()
+     const sellerInfo = {
+      name:user?.name,
+      email:user?.email,
+      photo:user?.image,
+      date:new Date(),
+      company:e.target?.company?.value,
+      description:e.target?.description?.value,
+      status:'pending'
+     }
+     const res = await axiosHook.post('/api/seller',sellerInfo)
+     console.log(res.data);
+     if(res.data.result.insertedId){
+       toast.success('Your request is under process, please wait!')
+     }
   }
   return (
     <div>
@@ -60,7 +87,7 @@ const BecomeSeller = () => {
           {/* form div  */}
           <div id="seller" className="card bg-base-200 w-full rounded-none max-w-xl border border-gray-300 shrink-0 ">
             <h3 className="subtitle text-center pt-2">Fill the form</h3>
-            <form className="card-body">
+            <form onSubmit={handleSeller} className="card-body">
               {/* name div  */}
               <div className="form-control">
                 <label className="label">
@@ -116,6 +143,7 @@ const BecomeSeller = () => {
                 <textarea
                   name="description"
                   className=" textarea "
+                  placeholder="write here__"
                   id=""
                 ></textarea>
               </div>
@@ -128,6 +156,7 @@ const BecomeSeller = () => {
           </div>
         </div>
       </section>
+      <Toaster/>
     </div>
   );
 };
