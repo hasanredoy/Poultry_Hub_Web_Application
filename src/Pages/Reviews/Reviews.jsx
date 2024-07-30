@@ -7,7 +7,7 @@ import {  FaQuoteLeft, FaQuoteRight, FaStar, FaTrashAlt } from "react-icons/fa";
 import { Rating } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GeneralContext } from "@/services/ContextProvider";
 import useGetUser from "@/hooks/useGetUser";
 import useAxios from "@/hooks/useAxios";
@@ -17,19 +17,29 @@ import swal from "sweetalert";
 import usePagination from "@/hooks/usePagination";
 import Pagination from "@/components/custom/Pagination/Pagination";
 
+// function to load reviews count
+const axiosHook = useAxios()
+const loadReviews = async (email) => {
+  const { data } = await axiosHook.get(`/api/count/reviews`);
+  //  console.log(data);
+  return data?.count;
+};
+
+
 const Reviews = () => {
   // get reviews 
   const {reviews,refetchReview, setRefetchReview,currentPage,setCurrentPage} = useContext(GeneralContext)
+// count state 
+const [count , setCount ]=useState(0)
 
   // handler for star rating
   const [rating, setRating] = useState(0) // Initial value
 //  get pagination func 
-const [totalPage,pages]=usePagination(10,6)
+const [totalPage,pages]=usePagination(count,6)
 
 // get user
   const user = useGetUser()
   // console.log(rating);
-const axiosHook = useAxios()
 
 // handler to post user review
   const handleReview =async(e)=>{
@@ -75,7 +85,14 @@ const axiosHook = useAxios()
   });
 };
 
-
+  // effect to call reviews count
+  useEffect(() => {
+    const loader = async () => {
+      const reviewsCount = await loadReviews();
+      setCount(reviewsCount);
+    };
+    loader();
+  }, []);
   
   return (
     <div className=" flex flex-col mt-5 gap-5 md:flex-row">

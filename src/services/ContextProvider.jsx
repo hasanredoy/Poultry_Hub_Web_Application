@@ -12,7 +12,7 @@ const loadCart = async (email) => {
   return data?.count;
 };
 // function to load reviews
-const loadReviews = async () => {
+const loadReviews = async (size,page) => {
   const { data } = await axiosHook.get(`/api/reviews?size=${size}&page=${page}`);
   console.log(data);
   return data?.result;
