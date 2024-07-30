@@ -1,13 +1,15 @@
 'use client'
 import Heading from "@/components/custom/Heading/Heading";
 import { FaLocationArrow } from "react-icons/fa";
-import seller from '../../../public/seller/happy-farmer-hens-organic-eggs-600nw-2317428329.webp'
+import Seller from '../../../public/seller/happy-farmer-hens-organic-eggs-600nw-2317428329.webp'
 import seller2 from '../../../public/seller/seller-image.jpg'
 import Image from "next/image";
 import useGetUser from "@/hooks/useGetUser";
 import useAxios from "@/hooks/useAxios";
 import toast, { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
 
+const axiosHook = useAxios()
 // function to load cart
 const loadSeller = async (email) => {
   const { data } = await axiosHook.get(`/api/seller?email=${email}`);
@@ -16,11 +18,19 @@ const loadSeller = async (email) => {
 };
 
 const BecomeSeller = () => {
-  // get user 
-  const user = useGetUser()
-  // get axiosHook
-  const axiosHook = useAxios()
+    // state to handle pagination page
+    const [seller, setSeller] = useState({});
 
+    const user = useGetUser();
+    // effect to call cart
+    useEffect(() => {
+      const loader = async () => {
+        const sellerData = await loadSeller(user?.email);
+        setSeller(sellerData);
+      };
+      loader();
+    }, [user]);
+console.log(seller);
   // handler for post seller req 
   const handleSeller=async(e)=>{
      e.preventDefault()
@@ -49,7 +59,7 @@ const BecomeSeller = () => {
             alt="contact us"
             height={600}
             width={600}
-            src={seller}
+            src={Seller}
             className=" w-full  md:w-2/3 mx-auto lg:w-full "
           />
          </div>
@@ -97,7 +107,7 @@ const BecomeSeller = () => {
                 </label>
                 <input
                   type="text"
-                  defaultValue={user?.name}
+                  defaultValue={user?user?.name:"Jhon Doe"}
                   placeholder="Full Name "
                   className="input "
                   required
@@ -111,7 +121,7 @@ const BecomeSeller = () => {
                   </span>
                 </label>
                 <input
-                defaultValue={user?.email}
+                defaultValue={user?user?.email:"jhondoe@gmail.com"}
                   type="email"
                   placeholder="Email"
                   className="input "
@@ -148,8 +158,8 @@ const BecomeSeller = () => {
                 ></textarea>
               </div>
               <div className="form-control mt-6">
-                <button className="btn flex items-center gap-2 btn-primary">
-                  Send <FaLocationArrow></FaLocationArrow>
+                <button disabled={seller?.status==='pending'} className="btn flex items-center gap-2 btn-primary">
+                {seller?.status=='pending'?<div className=" flex justify-center items-center"><h3 className=" text-xl font-semibold text-black">Your request is under process.</h3></div>:<span>Send <FaLocationArrow></FaLocationArrow></span>}
                 </button>
               </div>
             </form>
