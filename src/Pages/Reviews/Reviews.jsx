@@ -14,13 +14,18 @@ import useAxios from "@/hooks/useAxios";
 import toast, { Toaster } from "react-hot-toast";
 import Skeleton from "@/components/custom/Skeleton/Skeleton";
 import swal from "sweetalert";
+import usePagination from "@/hooks/usePagination";
+import Pagination from "@/components/custom/Pagination/Pagination";
 
 const Reviews = () => {
   // get reviews 
-  const {reviews,refetchReview, setRefetchReview} = useContext(GeneralContext)
-  // console.log(reviews);
+  const {reviews,refetchReview, setRefetchReview,currentPage,setCurrentPage} = useContext(GeneralContext)
+
   // handler for star rating
   const [rating, setRating] = useState(0) // Initial value
+//  get pagination func 
+const [totalPage,pages]=usePagination(10,6)
+
 // get user
   const user = useGetUser()
   // console.log(rating);
@@ -190,6 +195,7 @@ const axiosHook = useAxios()
           ))}
         </div>:<Skeleton></Skeleton>
         }
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages} totalPage={totalPage}/>
       </section>
       <Toaster></Toaster>
     </div>

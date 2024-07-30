@@ -13,8 +13,8 @@ const loadCart = async (email) => {
 };
 // function to load reviews
 const loadReviews = async () => {
-  const { data } = await axiosHook.get(`/api/reviews`);
-   console.log(data);
+  const { data } = await axiosHook.get(`/api/reviews?size=${size}&page=${page}`);
+  console.log(data);
   return data?.result;
 };
 
@@ -27,6 +27,8 @@ const ContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   // reviews state
   const [reviews, setReviews] = useState([]);
+  // state to handle pagination page
+  const [currentPage, setCurrentPage] = useState(0);
 
   const user = useGetUser();
   // effect to call cart
@@ -40,18 +42,23 @@ const ContextProvider = ({ children }) => {
   // effect to call reviews
   useEffect(() => {
     const loader = async () => {
-      const reviewsData = await loadReviews();
+      const reviewsData = await loadReviews(6 , currentPage);
       setReviews(reviewsData);
     };
     loader();
-  }, [refetchReview]);
+  }, [refetchReview,currentPage]);
   // console.log(reviews);
+
   const contextInfo = {
     carts: cart,
     refetch,
     setRefetch,
     user,
-    reviews,refetchReview, setRefetchReview
+    reviews,
+    refetchReview,
+    setRefetchReview,
+    currentPage,
+    setCurrentPage,
   };
   return (
     <GeneralContext.Provider value={contextInfo}>

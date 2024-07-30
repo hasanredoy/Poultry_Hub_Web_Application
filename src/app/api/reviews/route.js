@@ -2,13 +2,20 @@ import { connectDB } from "@/lib/connectDB"
 import { ObjectId } from "mongodb"
 import { NextResponse } from "next/server"
 
-export const GET=async()=>{
+export const GET=async(request)=>{
+    // get queries
+    const page = (await request.nextUrl.searchParams.get("page"));
+  
+    const size = (await request.nextUrl.searchParams.get("size")) ;
+    // console.log({size,page});
+    const parsedPage = parseInt(page);
+    const parsedSize = parseInt(size);
   try {
     const db = await connectDB()
     // console.log('hello');
   const reviewsCollections = await db.collection('reviews')
   // console.log({reviewsCollections});
-  const result = await reviewsCollections.find().sort({postedDate:-1}).toArray()
+  const result = await reviewsCollections.find().sort({postedDate:-1}).limit(parsedSize).skip(parsedPage*parsedSize).toArray()
   // console.log({result},'hello2');
   return NextResponse.json({result})
 } catch (error) {
