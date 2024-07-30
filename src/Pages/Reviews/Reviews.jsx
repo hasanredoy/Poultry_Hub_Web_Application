@@ -2,19 +2,45 @@
 import Heading from "@/components/custom/Heading/Heading";
 import moment from "moment";
 import Image from "next/image";
-import { FaLocationArrow, FaQuoteLeft, FaQuoteRight, FaStar } from "react-icons/fa";
+import { FaChessKing, FaLocationArrow, FaQuoteLeft, FaQuoteRight, FaStar } from "react-icons/fa";
 // import star rating
 import { Rating } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GeneralContext } from "@/services/ContextProvider";
+import useGetUser from "@/hooks/useGetUser";
+import useAxios from "@/hooks/useAxios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Reviews = () => {
-  const reviews = [1, 1, 11, 1, 1, 1];
+  // get reviews 
+  const {reviews} = useContext(GeneralContext)
+  console.log(reviews);
   // handler for star rating
   const [rating, setRating] = useState(0) // Initial value
-
+// get user
+  const user = useGetUser()
   console.log(rating);
+const axiosHook = useAxios()
+  const handleReview =async(e)=>{
+   e.preventDefault()
+    const reviewData ={
+      username:user?.name,
+      email:user?.email,
+      image:user?.image,
+      postedDate:new Date(),
+      rating,
+      tags:[e.target?.satisfied?.value],
+      description:e.target?.description?.value
+    }
+    console.log(reviewData);
+    const res = await axiosHook.post('/api/reviews',reviewData)
+    console.log(res.data);
+    if(res.data?.result?.insertedId){
+      toast.success('Thank you for your feedback')
+    }
+  }
   
   return (
     <div className=" flex flex-col gap-5 md:flex-row">
@@ -23,7 +49,7 @@ const Reviews = () => {
          {/* form div  */}
          <div className="card bg-base-200 w-full max-w-md shrink-0 ">
             <h3 className="subtitle text-center pt-2">Leave a Feedback</h3>
-            <form className="card-body">
+            <form onSubmit={handleReview} className="card-body">
               {/* subject div  */}
               <div className="form-control">
                 <label className="label">
@@ -35,6 +61,18 @@ const Reviews = () => {
                 <Rating style={{ maxWidth: 250 }}  isRequired value={rating} onChange={setRating} />
                 </div>
               </div> 
+              {/* dropdown div  */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="text-sm lg:text-base font-bold">
+                    Are you satisfied with our service*
+                  </span>
+                </label>
+                <select name="satisfied" >
+                  <option value="satisfied">Yes</option>
+                  <option value="Not Satisfied">No</option>
+                  </select>
+              </div>
               {/* message div  */}
               <div className="form-control">
                 <label className="label">
@@ -43,7 +81,7 @@ const Reviews = () => {
                   </span>
                 </label>
                 <textarea
-                  name="message"
+                  name="description"
                   className=" textarea "
                   id=""
                 ></textarea>
@@ -67,7 +105,7 @@ const Reviews = () => {
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="max-w-2xl rounded-md h-[335px]rounded-md bg-gray-400   p-8 sm:flex sm:space-x-6"
+              className="max-w-2xl h-[300px] rounded-md bg-base-100 border-gray-400 border  p-8 sm:flex sm:space-x-6"
             >
               <div className="flex-shrink-0 rounded-full w-14  h-14 ">
                 <Image
@@ -85,7 +123,7 @@ const Reviews = () => {
                       {review?.username}
                     </h2>
                     <span className="text-base text-green-600  ">
-                      {moment(review?.postedTime).startOf("day").fromNow()}
+                      {moment(review?.postedDate).startOf("day").fromNow()}
                     </span>
                   </div>
                   <h2 className=" text-2xl gap-2 font-bold flex ">
@@ -118,6 +156,7 @@ const Reviews = () => {
           ))}
         </div>
       </section>
+      <Toaster></Toaster>
     </div>
   );
 };
