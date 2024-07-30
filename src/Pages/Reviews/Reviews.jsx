@@ -172,9 +172,9 @@ const [totalPage,pages]=usePagination(count,6)
               {review?.email==user?.email&&<button onClick={()=>handleDelete(review?._id)} title="delete" className=" btn text-red-500"><FaTrashAlt></FaTrashAlt></button>}
               </div>
               </div>
-              <div className="flex flex-col space-y-3">
-                <section className=" flex justify-between">
-                  <div className=" flex flex-col gap-2 text-start ">
+              <div className="flex w-full flex-col space-y-3">
+                <section className=" w-full min-w-full flex justify-between">
+                  <div className=" flex flex-1 flex-col gap-2 text-start ">
                     <h2 className="text-xl font-semibold">
                       {review?.username} <span className=" text-base font-normal">{user?.name==review?.username&&"(you)"}</span>
                     </h2>

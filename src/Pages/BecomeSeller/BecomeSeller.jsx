@@ -4,13 +4,19 @@ import { FaLocationArrow } from "react-icons/fa";
 import seller from '../../../public/seller/happy-farmer-hens-organic-eggs-600nw-2317428329.webp'
 import seller2 from '../../../public/seller/seller-image.jpg'
 import Image from "next/image";
+import useGetUser from "@/hooks/useGetUser";
 
 const BecomeSeller = () => {
+  const user = useGetUser()
+
+  const handleSeller=()=>{
+    
+  }
   return (
     <div>
           {/* banner section  */}
           <section className="">
-        <div className=" mt-10 mb-20 flex flex-col lg:flex-row-reverse">
+        <div className=" mt-10 mb-20 flex flex-col lg:flex-row-reverse items-center">
          <div className=" flex-1 flex justify-center ">
          <Image
             alt="contact us"
@@ -40,7 +46,7 @@ const BecomeSeller = () => {
           title={"Start Selling"}
         ></Heading>
         <div className=" flex gap-5 mt-10 justify-between flex-col lg:flex-row">
-          {/* message image  */}
+          {/* form banner  image  */}
           <div className="  w-full">
           <Image 
           
@@ -52,7 +58,7 @@ const BecomeSeller = () => {
         />
           </div>
           {/* form div  */}
-          <div id="seller" className="card bg-base-200 w-full rounded-none max-w-md shrink-0 ">
+          <div id="seller" className="card bg-base-200 w-full rounded-none max-w-xl border border-gray-300 shrink-0 ">
             <h3 className="subtitle text-center pt-2">Fill the form</h3>
             <form className="card-body">
               {/* name div  */}
@@ -64,6 +70,7 @@ const BecomeSeller = () => {
                 </label>
                 <input
                   type="text"
+                  defaultValue={user?.name}
                   placeholder="Full Name "
                   className="input "
                   required
@@ -77,6 +84,7 @@ const BecomeSeller = () => {
                   </span>
                 </label>
                 <input
+                defaultValue={user?.email}
                   type="email"
                   placeholder="Email"
                   className="input "
@@ -94,6 +102,7 @@ const BecomeSeller = () => {
                   type="text"
                   placeholder="Farm / Factory"
                   className="input "
+                  name='company'
                   required
                 />
               </div> 
@@ -105,7 +114,7 @@ const BecomeSeller = () => {
                   </span>
                 </label>
                 <textarea
-                  name="message"
+                  name="description"
                   className=" textarea "
                   id=""
                 ></textarea>
