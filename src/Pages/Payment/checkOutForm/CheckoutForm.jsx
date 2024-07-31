@@ -1,211 +1,239 @@
 'use client'
-import Heading from '@/components/custom/Heading/Heading';
-import useAxios from '@/hooks/useAxios';
-import useGetUser from '@/hooks/useGetUser';
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { useState, useEffect } from "react";
 
-import { useState } from 'react';
+// react number
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import swal from "sweetalert";
+import "@stripe/stripe-js";
+import moment from "moment";
+import useAxios from "@/hooks/useAxios";
+import useGetUser from "@/hooks/useGetUser";
+import Heading from "@/components/custom/Heading/Heading";
 
-const CheckoutForm = () => {
-  const stripe = useStripe(); // get stripe 
-  const elements = useElements();// get elements
-//  error state 
-const [error ,setError]=useState('')
-//  payment intent state 
-const [paymentIntent ,setPaymentIntent]=useState('')
-// get user 
-const user = useGetUser()
-const [phoneNumber ,setPhoneNumber]=useState(null)
+const CheckOutForm = () => {
+  const axiosHook = useAxios();
+  const user = useGetUser();
 
-// get axios
-const axiosHook = useAxios()
-const handleDelivery=async(e)=>{
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [showPaymentInput, setShowPaymentInput] = useState(false);
+  const [error, setError] = useState("");
+  const [clientSecret, setClientSecret] = useState(null);
+  const [transactionID, setTransactionID] = useState("");
+  const [delivery, setDelivery] = useState();
 
-}
+  const totalPrice = 100; // Example total price
 
+  const stripe = useStripe();
+  const elements = useElements();
+
+  // useEffect(() => {
+  //   if (clientSecret) {
+  //     console.log("Client secret obtained:", clientSecret);
+  //   }
+  // }, [clientSecret]);
+
+  const handleDelivery = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const house = form.house.value;
+    const location = form.location.value;
+    const date = form.date.value;
+    const newDate = moment(new Date()).format().split("T")[0];
+
+    if (date < newDate) {
+      swal({
+        text: "Invalid Date",
+        icon: "error",
+      });
+      return;
+    }
+
+    const deliveryInfo = {
+      phone: phoneNumber,
+      location: location,
+      house: house,
+      date: date,
+    };
+
+    if (house && location && date) {
+      setShowPaymentInput(true);
+      setDelivery(deliveryInfo);
+
+      try {
+        const res = await axiosHook.post("/api/create-payment-intent", {
+          price: totalPrice,
+        });
+        console.log(res.data,'hello');
+        setClientSecret(res.data?.paymentIntent?.client_secret);
+      } catch (error) {
+        console.error("Error creating payment intent:", error);
+      }
+    }
+  };
+console.log(clientSecret);
+// console.log(clientSecret.paymentIntent?.client_secret);
   const handleSubmit = async (event) => {
-   
     event.preventDefault();
 
-    // return if no stripe and elements
     if (!stripe || !elements) {
-      return ;
-    }
- // return if elements is null
-    if(elements==null){
-      return
+      return;
     }
 
-    // get card 
-    const card = elements.getElement(CardElement)
-    //return if card is null
+    const card = elements.getElement(CardElement);
     if (card == null) {
       return;
     }
 
-  //create payment method
-  const { error, paymentMethod } = await stripe.createPaymentMethod({
-    type: "card",
-    card,
-  });
+    const { error: paymentMethodError, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card,
+    });
 
-  if (error) {
-    console.log("error", error);
-    setError(error.message);
-  } else {
-    // console.log("payment", paymentMethod);
-    setError("");
-  }
+    if (paymentMethodError) {
+      console.log("Payment method error:", paymentMethodError);
+      setError(paymentMethodError.message);
+      return;
+    }
 
-    const result = await stripe.confirmPayment({
-      //`Elements` instance that was used to create the Payment Element
-      elements,
-      confirmParams: {
-        return_url: "https://example.com/order/123/complete",
+    const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: card,
+        billing_details: {
+          email: user?.email || 'anonymous',
+          name: user?.displayName || 'anonymous',
+        },
       },
     });
 
-    if (result.error) {
-      // Show error to your customer (for example, payment details incomplete)
-      console.log(result.error.message);
-    } else {
-      // Your customer will be redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer will be redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
+    if (confirmError) {
+      console.log("Payment confirmation error:", confirmError);
+      setError(confirmError.message);
+      return;
+    }
+
+    if (paymentIntent?.status === 'succeeded') {
+      setTransactionID(paymentIntent.id);
+      const payment = {
+        transactionID: paymentIntent.id,
+        email: user?.email,
+        name: user?.displayName,
+        totalPrice,
+        delivery,
+        status: "order received"
+      };
+      console.log("Payment successful:", payment);
+
+      swal({
+        text: "Payment Successfully",
+        icon: "success",
+      });
     }
   };
 
   return (
-   <main className='mt-10'>
-  <Heading subHeading={`Welcome ${user?.name?user?.name:'back'}`} title={'Please fill up the form'}></Heading>
+    <div className="mt-[5%]">
+      <div>
+        <Heading subHeading={`Welcome ${user?user?.name:"back"}`} title={'Please fill the form and pay...'}></Heading>
+      </div>
+      <div className="bg-base-200 rounded-xl p-5 lg:p-10 shadow-lg">
+        <h1 className="text-lg md:text-lg font-bold text-center mb-5">
+          {!showPaymentInput
+            ? "Please Provide your delivery information below..."
+            : "Please give your card info below and pay..."}
+        </h1>
 
-    {/* delivery info form  */}
-    <section className=' hidden'>
-    <form
-              className=" grid grid-cols-1 lg:grid-cols-2 gap-4"
-              onSubmit={handleDelivery}
-            >
-              {/* Phone Number  */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="text-lg ">Your Phone Number</span>
-                </label>
-                <PhoneInput
-                  className="input input-bordered bg-white text-black"
-                  international
-                  countryCallingCodeEditable={false}
-                  placeholder="Enter phone number"
-                  value={phoneNumber}
-                  onChange={setPhoneNumber}
-                />
-              </div>
-              {/* Location*/}
-              <div className="form-control">
-                <label className="label">
-                  <span className=" text-base md:text-lg ">
-                    Delivery Location
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="location"
-                  className="input input-bordered bg-white text-black focus:outline-sky-200"
-                  required
-                  name="location"
-                />
-              </div>
-              {/* House Number  */}
-              <div className="form-control">
-                <label className="label">
-                  <span className=" text-base md:text-lg ">House Number</span>
-                </label>
-                <input
-                  type="number"
-                  placeholder="House Number"
-                  className="input input-bordered bg-white text-black focus:outline-sky-200"
-                  required
-                  name="house"
-                />
-              </div>
-              {/* delivery date  */}
-              <div className="form-control">
-                <label className="label">
-                  <span className=" text-base md:text-lg ">Delivery Date</span>
-                </label>
-                <input
-                  type="date"
-                  className="input input-bordered bg-white text-black focus:outline-sky-200"
-                  required
-                  name="date"
-                />
-              </div>
-
-              <button
-                // onClick={()=>{setShowPaymentInput(!showPaymentInput)}}
-                className=" col-span-2 font-bold text-lg btn bg-sky-500 text-white"
-                type="submit"
-              >
-                Next
-              </button>
-            </form>
-    </section>
-    {/* payment form  */}
-    <section>
-    <form className="  w-10/12 max-w-[600px] mx-auto  p-5" onSubmit={handleSubmit}>
-              <CardElement
-                options={{
-                  style: {
-                    base: {
-                      fontSize: "16px",
-                      backgroundColor:"#fff",
+        {!showPaymentInput && (
+          <form className=" flex flex-col" onSubmit={handleDelivery}>
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="form-control">
+              <label className="label">
+                <span className="text-lg">Your Phone Number</span>
+              </label>
+              <PhoneInput
+                className="input input-bordered bg-white text-black"
+                international
+                countryCallingCodeEditable={false}
+                placeholder="Enter phone number"
+                value={phoneNumber}
+                onChange={setPhoneNumber}
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="text-base md:text-lg">Delivery Location</span>
+              </label>
+              <input
+                type="text"
+                placeholder="location"
+                className="input input-bordered bg-white text-black focus:outline-sky-200"
+                required
+                name="location"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="text-base md:text-lg">House Number</span>
+              </label>
+              <input
+                type="number"
+                placeholder="House Number"
+                className="input input-bordered bg-white text-black focus:outline-sky-200"
+                required
+                name="house"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="text-base md:text-lg">Delivery Date</span>
+              </label>
+              <input
+                type="date"
+                className="input input-bordered bg-white text-black focus:outline-sky-200"
+                required
+                name="date"
+              />
+            </div> 
+          </section>
+           <div className=" flex justify-center w-full mt-5">
+           <button className=" btn-primary" type="submit">
+              Next
+            </button>
+           </div>
+          </form>
+        )}
+        {showPaymentInput && (
+          <form className="bg-base-100 w-10/12 mx-auto p-5" onSubmit={handleSubmit}>
+            <CardElement
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    backgroundColor: "#fff",
+                    color: "#171414",
+                    "::placeholder": {
                       color: "#171414",
-                      "::placeholder": {
-                        color: "#171414",
-                      },
-                    },
-                    invalid: {
-                      color: "#9e214",
                     },
                   },
-                }}
-              />
-              <div className=" flex mt-5 justify-center ">
-                <button
-                  className=" font-bold text-lg btn bg-sky-500 text-white"
-                  type="submit"
-                  // disabled={!stripe || !elements || !clientSecret}
-                >
-                  Pay
-                </button>
-              </div>
-              {/* show payment error 
-              <p className=" text-lg font-semibold text-red-700">{error}</p>
-              <p className=" text-lg font-semibold text-green-700">{transectionID}</p> */}
-            </form>
-    </section>
-    <CardElement
-  id="my-card"
-  // onChange={handleChange}
-  // {/* Options are passed in on their own prop. */}
-  options={{
-    iconStyle: 'solid',
-    style: {
-      base: {
-        iconColor: '#c4f0ff',
-        color: '#fff',
-        fontSize: '16px',
-      },
-      invalid: {
-        iconColor: '#FFC7EE',
-        color: '#FFC7EE',
-      },
-    },
-  }}
-/>
-   </main>
+                  invalid: {
+                    color: "#9e2146",
+                  },
+                },
+              }}
+            />
+            <div className="flex mt-5 justify-center">
+              <button className="font-bold text-lg btn bg-sky-500 text-white" type="submit" disabled={!stripe || !elements || !clientSecret}>
+                Pay
+              </button>
+            </div>
+            <p className="text-lg font-semibold text-red-700">{error}</p>
+            <p className="text-lg font-semibold text-green-700">{transactionID}</p>
+          </form>
+        )}
+      </div>
+    </div>
   );
 };
 
-export default CheckoutForm;
+export default CheckOutForm;
