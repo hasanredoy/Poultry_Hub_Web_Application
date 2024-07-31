@@ -9,7 +9,7 @@ const loadUserRole =async(email)=>{
       console.log({data});
       return data?.role
 }
-const useGetUserRole = (email) => {
+const useGetUserRole = () => {
   const user=useGetUser()
   // state user role 
   const [role, setRole ]=useState()
@@ -21,7 +21,7 @@ const useGetUserRole = (email) => {
       setRole(userRole)
     }
     loader()
-  },[user?.email,user])
+  },[user?.email])
   console.log(role);
   return [role]
 };
