@@ -19,7 +19,7 @@ const useGetUserRole =() => {
     //make loader to call user role func
     const loader =async ()=>{
       const userRole = await loadUserRole(user?.email);
-      console.log(userRole);
+      // console.log(userRole);
      await  setRole(userRole)
     }
     loader()

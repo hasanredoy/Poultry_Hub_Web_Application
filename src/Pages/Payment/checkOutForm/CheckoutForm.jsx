@@ -11,9 +11,19 @@ import moment from "moment";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import Heading from "@/components/custom/Heading/Heading";
+import { dataLoader } from "@/lib/loader";
+
+
+const axiosHook = useAxios();
+const loadCartCount = async (email) => {
+  const { data } = await axiosHook.get(`/api/count/cart?email=${email}`);
+  //  console.log(data);
+  return data;
+};
 
 const CheckOutForm = () => {
-  const axiosHook = useAxios();
+  const stripe = useStripe();
+  const elements = useElements();
   const user = useGetUser();
 
   const [phoneNumber, setPhoneNumber] = useState();
@@ -22,17 +32,19 @@ const CheckOutForm = () => {
   const [clientSecret, setClientSecret] = useState(null);
   const [transactionID, setTransactionID] = useState("");
   const [delivery, setDelivery] = useState();
-
-  const totalPrice = 100; // Example total price
-
-  const stripe = useStripe();
-  const elements = useElements();
-
-  // useEffect(() => {
-  //   if (clientSecret) {
-  //     console.log("Client secret obtained:", clientSecret);
-  //   }
-  // }, [clientSecret]);
+  const [ price, setPrice]=useState(0)
+  useEffect(()=>{
+    const loader = async()=>{
+      const cartData = await loadCartCount(user?.email)
+      console.log({cartData});
+      setPrice(cartData?.price)
+    }
+    loader()
+  },[user])
+  // console.log({cart});
+  const totalPrice = parseInt(price)
+  console.log(totalPrice);
+ 
 
   const handleDelivery = async (e) => {
     e.preventDefault();
@@ -60,10 +72,10 @@ const CheckOutForm = () => {
     if (house && location && date) {
       setShowPaymentInput(true);
       setDelivery(deliveryInfo);
-
+  
       try {
         const res = await axiosHook.post("/api/create-payment-intent", {
-          price: totalPrice,
+           price:totalPrice
         });
         console.log(res.data,'hello');
         setClientSecret(res.data?.paymentIntent?.client_secret);
@@ -72,7 +84,7 @@ const CheckOutForm = () => {
       }
     }
   };
-console.log(clientSecret);
+// console.log(clientSecret);
 // console.log(clientSecret.paymentIntent?.client_secret);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -124,11 +136,14 @@ console.log(clientSecret);
         status: "order received"
       };
       console.log("Payment successful:", payment);
+      const res = await axiosHook.post('/api/payment',payment)
+      if(res.data?.result?.insertedId){
+        swal({
+          text: "Payment Successfully",
+          icon: "success",
+        });
 
-      swal({
-        text: "Payment Successfully",
-        icon: "success",
-      });
+      }
     }
   };
 
