@@ -6,7 +6,7 @@ export default function DashboardLayout({ children }) {
   return(
     <main className=" m-0 p-0 bg-base-200 ">
       
-      <section className="flex  max-w-[95%] overflow-hidden lg:max-w-[90%] mx-auto ">
+      <section className="flex  max-w-[95%]  lg:max-w-[90%] mx-auto ">
           <sidebar className={' w-0 lg:w-[25%]'}>
      <DashboardSidebar></DashboardSidebar>
      </sidebar>

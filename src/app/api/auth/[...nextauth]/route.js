@@ -58,11 +58,12 @@ const handler = NextAuth({
   callbacks:{
     async signIn({ user, account}) {
        if(account.provider ==='google'){
-        const {name , image , email}=user;
+        const {name , image , email,type}=user;
+        console.log(user);
         const userData = {
           name,
           image,email,
-          role:"user"
+          type:"user"
         }
         try  {
          const db = await connectDB()

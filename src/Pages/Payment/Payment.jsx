@@ -1,3 +1,4 @@
+'use client'
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import CheckoutForm from './checkOutForm/CheckoutForm';
@@ -8,7 +9,7 @@ console.log({pk:process.env.NEXT_STRIPE_PK});
 
 const Payment = () => {
   return (
-    <Elements stripe={stripePromise} options={options}>
+    <Elements stripe={stripePromise}>
     <CheckoutForm />
   </Elements>
   );

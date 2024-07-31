@@ -1,15 +1,15 @@
 import { connectDB } from "@/lib/connectDB"
 import { NextResponse } from "next/server"
 
-export const GET=async(request)=>{
- const email = await request.nextUrl.searchParams.get('email')
-//  console.log(email,'role route');
+export const GET=async(request,{params})=>{
+//  const email = await request.nextUrl.searchParams.get('email')
+//  console.log(params.email,'role route');
   try {
     const db = await connectDB()
     const usersCollection = await db.collection('users')
-    const result = await usersCollection.findOne({email})
-    const role = await result?.role
-    console.log({role});
+    const result = await usersCollection.findOne({email:params?.email})
+    const role =  result?.type
+    // console.log({role});
     // console.log({result});
     return NextResponse.json({role})
   } catch (error) {

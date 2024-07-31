@@ -5,6 +5,8 @@ import Skeleton from "@/components/custom/Skeleton/Skeleton";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import usePagination from "@/hooks/usePagination";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
@@ -36,6 +38,8 @@ const UserCart = () => {
 	const [price , setPrice] =useState(0)
 	  // call pagination
 		const [totalPage,pages] = usePagination(count, 6);
+    const session = useSession()
+    console.log(session);
   
   //  get user
   const user = useGetUser();
@@ -94,7 +98,9 @@ const UserCart = () => {
      <h1 className="text-xl ml-8 my-5 font-bold ">
         Total Price: {price} $
       </h1>
+      <Link href={'/dashboard/payment'}>
       <button className="btn btn-primary">Pay Now</button>
+      </Link>
      </section>
       {/* table section  */}
       <section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto px-5 ">
