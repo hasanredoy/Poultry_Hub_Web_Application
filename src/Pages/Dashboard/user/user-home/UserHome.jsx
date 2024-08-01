@@ -14,29 +14,57 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GeneralContext } from "@/services/ContextProvider";
 import useAxios from "@/hooks/useAxios";
+import useGetUser from "@/hooks/useGetUser";
 
 const axiosHook =useAxios()
 // function to load reviews
-const loadReviews = async (size,page) => {
+const loadReviews = async (email) => {
   const { data } = await axiosHook.get(`/api/reviews/${email}`);
   console.log(data);
   return data?.result;
 };
 
-const UserHome = () => {
-  const {carts,user}=useContext(GeneralContext)
-  //  get user
+const paymentLoader = async (email) => {
+  const { data } = await axiosHook.get(`/api/payment?email=${email}`);
+   console.log(data);
+  return data?.result;
+};
 
+const UserHome = () => {
+  const {carts}=useContext(GeneralContext)
+
+  const [userReviews , setUserReviews]=useState([])
+  const [userPayments,setUserPayments] = useState([])
   // get user stats
   const userStats = {
     cart: carts,
-    reviews: 2,
-    payments: 3,
-    decline: 2,
+    reviews: userReviews?.length,
+    payments: userPayments?.length,
   };
+
+
+  const user = useGetUser();
+  // get payments
+  useEffect(()=>{ 
+    const loader = async()=>{
+      const payment =await paymentLoader(user?.email)
+      console.log(payment);
+      setUserPayments(payment)
+    }
+    loader()
+  },[user])
+
+  // effect to call cart
+  useEffect(() => {
+    const loader = async () => {
+      const reviewsData = await loadReviews(user?.email);
+      setUserReviews(reviewsData);
+    };
+    loader();
+  }, [user]);
 
   // chart data 
   const chartData = [
@@ -51,10 +79,6 @@ const UserHome = () => {
     {
       name: "Payments",
       count: userStats?.payments,
-    },
-    {
-      name: "Order Declines",
-      count: userStats?.decline,
     },
   ];
 
