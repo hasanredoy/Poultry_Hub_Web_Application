@@ -1,3 +1,4 @@
+import { FaSearch } from "react-icons/fa";
 
 
 const Banner = ({setSearch}) => {
@@ -15,13 +16,13 @@ const Banner = ({setSearch}) => {
         <p className="mb-5 text-white">
          Hello there, we are providing fresh chicken from 100% organic farms. And we're also selling poultry feed that came from organic factories.
         </p>
-        <div className="join">
+        <div className="join border">
         <input
           onBlur={(e)=>setSearch(e.target?.value)}
           type="text"
           placeholder="search your wisdom.."
-          className="input input-bordered join-item bg-white text-black font-bold" />
-        <button className="btn btn-info join-item">Search</button>
+          className="input  join-item bg-white text-black font-bold" />
+        <button className="btn flex items-center gap-2  join-item">Search<FaSearch></FaSearch></button>
       </div>
       </div>
     </div>

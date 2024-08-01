@@ -10,15 +10,15 @@ import usePagination from "@/hooks/usePagination";
 import { GeneralContext } from "@/services/ContextProvider";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
-import {  FaTrash } from "react-icons/fa";
+import {  FaSearch, FaTrash } from "react-icons/fa";
 import { IoMdPersonAdd } from "react-icons/io";
 import swal from "sweetalert";
 
 // get custom axios hook
 const axiosHook = useAxios();
 // load all user
-const loadUsers = async (page,size) => {
-  const res = await axiosHook.get(`/api/user?size=${size}&page=${page}`);
+const loadUsers = async (page,size,search) => {
+  const res = await axiosHook.get(`/api/user?size=${size}&page=${page}&search=${search}`);
   console.log(res?.data?.result);
   return res?.data?.result;
 };
@@ -39,6 +39,9 @@ const AllUsers = () => {
 //  get pagination hook 
 const [totalPage,pages]=usePagination(userCount,8)
 
+// search state 
+const [search , setSearch]=useState('')
+
  // get user role 
  const role = useGetUserRole(user?.email)
  
@@ -47,13 +50,13 @@ const [totalPage,pages]=usePagination(userCount,8)
     //function for call loadAllUsers
     const loader = async () => {
       setLoading(true)
-      const data = await loadUsers(currentPage,8);
+      const data = await loadUsers(currentPage,8,search);
       console.log(data);
       setAllUsers(data);
       setLoading(false)
     };
     loader();
-  }, [refetch,currentPage]);
+  }, [refetch,currentPage,search]);
 
   // handler to make admin 
   const handleMakeAdmin = async(name,email)=>{
@@ -120,8 +123,17 @@ const [totalPage,pages]=usePagination(userCount,8)
       subHeading={"Welcome Back"}
       title={"Here are all users"}
     ></Heading>
-  <section className=" flex justify-between  mx-8 my-5">
+    {/* total user and search inp section */}
+  <section className=" flex justify-between items-center  mx-8 my-5">
   <h1 className="text-xl font-bold ">Total Users: {userCount}</h1>
+  <div className="join border">
+        <input
+          onBlur={(e)=>setSearch(e.target?.value)}
+          type="text"
+          placeholder="search user"
+          className="input outline-none  join-item bg-base-100  font-bold" />
+        <button className="btn  join-item flex items-center gap-2">Search <FaSearch></FaSearch></button>
+      </div>
   </section>
     {/* table section  */}
     <section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto ">
