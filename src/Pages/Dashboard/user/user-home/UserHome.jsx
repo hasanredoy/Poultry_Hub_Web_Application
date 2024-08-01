@@ -16,6 +16,15 @@ import {
 } from "recharts";
 import { useContext } from "react";
 import { GeneralContext } from "@/services/ContextProvider";
+import useAxios from "@/hooks/useAxios";
+
+const axiosHook =useAxios()
+// function to load reviews
+const loadReviews = async (size,page) => {
+  const { data } = await axiosHook.get(`/api/reviews/${email}`);
+  console.log(data);
+  return data?.result;
+};
 
 const UserHome = () => {
   const {carts,user}=useContext(GeneralContext)
