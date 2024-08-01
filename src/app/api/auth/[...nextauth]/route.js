@@ -63,7 +63,8 @@ const handler = NextAuth({
         const userData = {
           name,
           image,email,
-          type:"user"
+          type:"user",
+          registerDate:new Date(),
         }
         try  {
          const db = await connectDB()
