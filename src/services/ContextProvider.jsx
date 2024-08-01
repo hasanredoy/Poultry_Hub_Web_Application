@@ -24,6 +24,12 @@ const loadUsersCount = async () => {
   console.log(res?.data);
   return res?.data?.count;
 };
+// load all seller count
+const loadSellersCount = async () => {
+  const res = await axiosHook.get(`/api/count/seller`);
+  console.log(res?.data);
+  return res?.data?.count;
+};
 
 const ContextProvider = ({ children }) => {
   //  state to handle cart refetch
