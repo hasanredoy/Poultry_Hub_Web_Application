@@ -26,6 +26,8 @@ import swal from "sweetalert";
 import useGetUser from "@/hooks/useGetUser";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
+import { FaUsersRectangle } from "react-icons/fa6";
+
 
 const LinksForLargeDevice = () => {
   const pathname = usePathname();
@@ -201,6 +203,16 @@ const LinksForLargeDevice = () => {
                 }`}
               >
                 <FaUsers></FaUsers>All Users{" "}
+              </Link>
+              <Link
+                href={"/dashboard/all_seller"}
+                className={`flex items-center my-3 font-bold gap-2 hover:text-[#f86502]   hover:rounded-r-md px-5 mr-4 ${
+                  pathname == "/dashboard/all_seller"
+                    ? " text-primary  bg-white rounded-r-md"
+                    : "  "
+                }`}
+              >
+                <FaUsersRectangle></FaUsersRectangle> All Seller{" "}
               </Link>
               <Link
                 href={"/dashboard/all_items"}

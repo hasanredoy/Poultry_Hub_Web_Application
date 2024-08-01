@@ -27,6 +27,8 @@ import useGetUser from "@/hooks/useGetUser";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import swal from "sweetalert";
+import { FaUsersRectangle } from "react-icons/fa6";
+
 
 
 const LinksForSmallDevice = () => {
@@ -215,6 +217,26 @@ const LinksForSmallDevice = () => {
               }`}
             >
               <FaUsers></FaUsers>All Users{" "}
+            </Link>
+            <Link
+              href={"/dashboard/all_users"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/all_users"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
+              }`}
+            >
+              <FaUsers></FaUsers>All Users{" "}
+            </Link>
+            <Link
+              href={"/dashboard/all_seller"}
+              className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
+                pathname == "/dashboard/all_seller"
+                   ? " text-black bg-white rounded-r-md"
+                  : " "
+              }`}
+            >
+              <FaUsersRectangle></FaUsersRectangle> All Seller{" "}
             </Link>
             <Link
               href={"/dashboard/all_items"}
