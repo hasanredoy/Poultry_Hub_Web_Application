@@ -35,3 +35,17 @@ export const PATCH=async(request,{params})=>{
     
   }
 }
+export const DELETE=async(request,{params})=>{
+//  const email = await request.nextUrl.searchParams.get('email')
+//  console.log(params.email,'role route');
+  try {
+    const db = await connectDB()
+    const usersCollection = await db.collection('users')
+
+    const result = await usersCollection.deleteOne({email:params?.email})
+    return NextResponse.json({result})
+  } catch (error) {
+    return NextResponse.json({error})
+    
+  }
+}
