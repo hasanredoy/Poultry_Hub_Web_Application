@@ -21,7 +21,10 @@ const loadUsers = async () => {
 const AllUsers = () => {
   // state for all chicken and feed
   const [allUsers, setAllUsers] = useState([]);
+ // loading state
  const [loading, setLoading]=useState(false)
+ // refetch state
+ const [refetch, setRefetch]=useState(false)
  
   const user = useGetUser()
 
@@ -35,25 +38,38 @@ const AllUsers = () => {
       setLoading(false)
     };
     loader();
-  }, []);
+  }, [refetch]);
   // get user role 
   const role = useGetUserRole(user?.email)
 
   // handler to make admin 
   const handleMakeAdmin = async(name,email)=>{
-    const {data}= axiosHook.patch(`/api/user/${email}`)
-    console.log(data);
-    if(data.result.modifiedCont>0){
-      swal({
-        text: `${name} is now admin`,
-        icon: "success",
-      }); 
+  
+    swal({
+      title: "Are you sure?",
+      text: "You wanna make this user admin",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then(async (willDelete) => {
+      if (willDelete) {
+        const {data}=await axiosHook.patch(`/api/user/${email}`)
+        console.log(data);
+      if(data?.result?.modifiedCount>0){
+        setRefetch(!refetch)
+       swal(`${name} is admin from now`, {
+          icon: "success",
+        });
     }
+       
+      } else {
+        swal("canceled!");
+      }
+    });
+ 
   }
-  console.log(role);
-  if(loading){
-    return <Skeleton/>
-  }
+
   return (
     <main className=" my-10">
     <Heading
@@ -76,6 +92,7 @@ const AllUsers = () => {
             <th className="p-3">Actions</th>
           </tr>
         </thead>
+          {loading&&<Skeleton/>}
         <tbody className="border-b text-sm ">
           {allUsers.map((userData, index) => (
             <tr className="border-b" key={index}>

@@ -16,12 +16,12 @@ export const POST=async(request)=>{
   let salt = bcrypt.genSaltSync(10);
   let hashedPass = bcrypt.hashSync(userData.password, salt);
   const userWithHashedPass = {
-    name:userData.name,
-    email:userData.email,
-    phone:userData.phone,
-    registerDate:userData.registerDate,
-    role:userData.role,
-    image:userData.imageURL,
+    name:userData?.name,
+    email:userData?.email,
+    phone:userData?.phone,
+    registerDate:userData?.registerDate,
+    type:userData?.type,
+    image:userData?.imageURL,
     password:hashedPass
   }
   if(checkUser){
