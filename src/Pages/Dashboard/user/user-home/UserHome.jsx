@@ -69,7 +69,7 @@ const UserHome = () => {
   // chart data 
   const chartData = [
     {
-      name: "Cart",
+      name: "Carts",
       count: userStats?.cart,
     },
     {
@@ -161,7 +161,7 @@ const UserHome = () => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis />
+          <YAxis dataKey='name' />
           <Tooltip />
           <Legend />
           <Bar dataKey="count" stackId="a" fill="#fe6702" />

@@ -21,7 +21,7 @@ const loadReviews = async (size,page) => {
 // load all user count
 const loadUsersCount = async () => {
   const res = await axiosHook.get(`/api/count/user`);
-  // console.log(res?.data?.result);
+  console.log(res?.data);
   return res?.data?.count;
 };
 
@@ -64,6 +64,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const loader = async () => {
       const countUser = await loadUsersCount();
+      console.log(countUser);
       setUserCount(countUser);
 
     };

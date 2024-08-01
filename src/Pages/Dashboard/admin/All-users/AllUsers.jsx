@@ -2,6 +2,7 @@
 import Heading from "@/components/custom/Heading/Heading";
 import Pagination from "@/components/custom/Pagination/Pagination";
 import Skeleton from "@/components/custom/Skeleton/Skeleton";
+import SkeletonTable from "@/components/custom/Skeleton/SkeletonTable";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import useGetUserRole from "@/hooks/useGetUserRole";
@@ -16,42 +17,43 @@ import swal from "sweetalert";
 // get custom axios hook
 const axiosHook = useAxios();
 // load all user
-const loadUsers = async () => {
-  const res = await axiosHook.get(`/api/user`);
-  // console.log(res?.data?.result);
+const loadUsers = async (page,size) => {
+  const res = await axiosHook.get(`/api/user?size=${size}&page=${page}`);
+  console.log(res?.data?.result);
   return res?.data?.result;
 };
 
 const AllUsers = () => {
+  const user = useGetUser()
   // state for all chicken and feed
   const [allUsers, setAllUsers] = useState([]);
  // loading state
  const [loading, setLoading]=useState(false)
  // refetch state
  const [refetch, setRefetch]=useState(false)
-
+ 
  // current page state 
+ const {userCount}=useContext(GeneralContext)
+ console.log(userCount);
  const [currentPage,setCurrentPage]=useState(0)
 //  get pagination hook 
-const [totalPage,pages]=usePagination()
+const [totalPage,pages]=usePagination(userCount,8)
 
- const {userCount}=useContext(GeneralContext)
  // get user role 
  const role = useGetUserRole(user?.email)
  
-  const user = useGetUser()
 
   useEffect(() => {
     //function for call loadAllUsers
     const loader = async () => {
       setLoading(true)
-      const data = await loadUsers();
+      const data = await loadUsers(currentPage,8);
       console.log(data);
       setAllUsers(data);
       setLoading(false)
     };
     loader();
-  }, [refetch]);
+  }, [refetch,currentPage]);
 
   // handler to make admin 
   const handleMakeAdmin = async(name,email)=>{
@@ -135,8 +137,8 @@ const [totalPage,pages]=usePagination()
           </tr>
         </thead>
         <tbody className="border-b text-sm ">
-          {loading&&<Skeleton/>}
-          {allUsers.map((userData, index) => (
+          {loading&&<SkeletonTable/>}
+          {loading||allUsers.map((userData, index) => (
             <tr className="border-b" key={index}>
               <td className="px-3 w-16 h-16 rounded-full border-r border-gray-400">
                 <Image
