@@ -69,6 +69,37 @@ const AllUsers = () => {
     });
  
   }
+  // handler to make admin 
+  const handleDeleteUser = async(name,email,type)=>{
+   if(type=='admin'){
+    return   swal(`${name} is an admin, you can't delete an admin from this website`, {
+      icon: "error",
+    });
+   }
+    swal({
+      title: "Are you sure?",
+      text: "You wanna make this user admin",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then(async (willDelete) => {
+      if (willDelete) {
+        const {data}=await axiosHook.delete(`/api/user/${email}`)
+        console.log(data);
+      if(data?.result?.deletedCount>0){
+        setRefetch(!refetch)
+       swal(`${name} is admin from now`, {
+          icon: "success",
+        });
+    }
+       
+      } else {
+        swal("canceled!");
+      }
+    });
+ 
+  }
 
   return (
     <main className=" my-10">
@@ -92,8 +123,8 @@ const AllUsers = () => {
             <th className="p-3">Actions</th>
           </tr>
         </thead>
-          {loading&&<Skeleton/>}
         <tbody className="border-b text-sm ">
+          {loading&&<Skeleton/>}
           {allUsers.map((userData, index) => (
             <tr className="border-b" key={index}>
               <td className="px-3 w-16 h-16 rounded-full border-r border-gray-400">
@@ -118,8 +149,9 @@ const AllUsers = () => {
                
                  {userData.type=='user'&& <button onClick={()=>handleMakeAdmin(userData?.name,userData?.email)} title="Make Admin" className="btn-primary flex items-center gap-2"> <IoMdPersonAdd></IoMdPersonAdd> Make Admin </button>} 
                  {userData.type=='seller'&&<span className=" btn flex items-center gap-2"> Seller </span>} 
-                 {userData.type=='admin'&&<span className=" btn flex items-center gap-2"> Admin </span>} 
-                <button title="Delete" className="btn text-red-600">
+                 {userData.type=='admin'&&userData?.isOwner!=='true'&&<span className=" btn flex items-center gap-2"> Admin </span>} 
+                 {userData.type=='admin'&&userData?.isOwner=='true'&&<span className=" btn bg-green-700 text-white hover:text-black flex items-center gap-2"> Owner </span>} 
+                <button onClick={()=>handleDeleteUser(userData?.name,userData?.email,userData?.type)} title="Delete" className="btn text-red-600">
                   <FaTrash></FaTrash>
                 </button>
               </td>
