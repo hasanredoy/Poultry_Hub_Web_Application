@@ -1,4 +1,3 @@
-import React from 'react';
 
 const usePagination = (count,itemsPerPage) => {
   const pages = Math.ceil(count/itemsPerPage)

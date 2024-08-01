@@ -18,6 +18,13 @@ const loadReviews = async (size,page) => {
   return data?.result;
 };
 
+// load all user count
+const loadUsersCount = async () => {
+  const res = await axiosHook.get(`/api/count/user`);
+  // console.log(res?.data?.result);
+  return res?.data?.count;
+};
+
 const ContextProvider = ({ children }) => {
   //  state to handle cart refetch
   const [refetch, setRefetch] = useState(0);
@@ -29,6 +36,8 @@ const ContextProvider = ({ children }) => {
   const [reviews, setReviews] = useState([]);
   // state to handle pagination page
   const [currentPage, setCurrentPage] = useState(0);
+  // state to handle user count
+  const [userCount, setUserCount] = useState(0);
 
   const [totalCartItem , setTotalCartItem]=useState([])
 
@@ -51,6 +60,15 @@ const ContextProvider = ({ children }) => {
     };
     loader();
   }, [refetchReview,currentPage]);
+  // effect to call user count
+  useEffect(() => {
+    const loader = async () => {
+      const countUser = await loadUsersCount();
+      setUserCount(countUser);
+
+    };
+    loader();
+  }, []);
   // console.log(reviews);
 
   const contextInfo = {
@@ -63,7 +81,8 @@ const ContextProvider = ({ children }) => {
     setRefetchReview,
     currentPage,
     setCurrentPage,
-    totalCartItem
+    totalCartItem,
+    userCount
   };
   return (
     <GeneralContext.Provider value={contextInfo}>

@@ -1,23 +1,27 @@
 'use client'
 import Heading from "@/components/custom/Heading/Heading";
+import Pagination from "@/components/custom/Pagination/Pagination";
 import Skeleton from "@/components/custom/Skeleton/Skeleton";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import useGetUserRole from "@/hooks/useGetUserRole";
+import usePagination from "@/hooks/usePagination";
+import { GeneralContext } from "@/services/ContextProvider";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {  FaTrash } from "react-icons/fa";
 import { IoMdPersonAdd } from "react-icons/io";
 import swal from "sweetalert";
 
 // get custom axios hook
 const axiosHook = useAxios();
-// load all chicken and feeds data
+// load all user
 const loadUsers = async () => {
   const res = await axiosHook.get(`/api/user`);
   // console.log(res?.data?.result);
   return res?.data?.result;
 };
+
 const AllUsers = () => {
   // state for all chicken and feed
   const [allUsers, setAllUsers] = useState([]);
@@ -25,6 +29,15 @@ const AllUsers = () => {
  const [loading, setLoading]=useState(false)
  // refetch state
  const [refetch, setRefetch]=useState(false)
+
+ // current page state 
+ const [currentPage,setCurrentPage]=useState(0)
+//  get pagination hook 
+const [totalPage,pages]=usePagination()
+
+ const {userCount}=useContext(GeneralContext)
+ // get user role 
+ const role = useGetUserRole(user?.email)
  
   const user = useGetUser()
 
@@ -39,8 +52,6 @@ const AllUsers = () => {
     };
     loader();
   }, [refetch]);
-  // get user role 
-  const role = useGetUserRole(user?.email)
 
   // handler to make admin 
   const handleMakeAdmin = async(name,email)=>{
@@ -108,7 +119,7 @@ const AllUsers = () => {
       title={"Here are all users"}
     ></Heading>
   <section className=" flex justify-between  mx-8 my-5">
-  <h1 className="text-xl font-bold ">Total Users: {allUsers?.length}</h1>
+  <h1 className="text-xl font-bold ">Total Users: {userCount}</h1>
   </section>
     {/* table section  */}
     <section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto ">
@@ -159,6 +170,7 @@ const AllUsers = () => {
           ))}
         </tbody>
       </table>
+      <Pagination currentPage={currentPage} totalPage={totalPage} setCurrentPage={setCurrentPage} pages={pages} />
     </section>
   </main>
   );
