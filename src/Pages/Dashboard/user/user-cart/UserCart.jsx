@@ -85,6 +85,12 @@ const UserCart = () => {
       }
     });
   };
+  if(!price){
+    return<div className=" flex justify-center items-center flex-col gap-5 w-full h-[calc(100dvh-100px)] ">
+      <h1 className=" text-xl font-bold">Your Cart Is Empty Please Add Something To Your Cart</h1>
+      <Link href={'/chicken_and_feeds'} className="btn-primary">Add</Link >
+    </div>
+  }
   if(!cart){
     return <Skeleton></Skeleton>
   }
@@ -98,7 +104,7 @@ const UserCart = () => {
      <h1 className="text-xl ml-8 my-5 font-bold ">
         Total Price: {price} $
       </h1>
-      <Link href={'/dashboard/payment'}>
+      <Link  href={'/dashboard/payment'}>
       <button className="btn btn-primary">Pay Now</button>
       </Link>
      </section>

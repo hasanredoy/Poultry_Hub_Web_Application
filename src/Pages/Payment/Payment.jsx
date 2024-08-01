@@ -4,11 +4,11 @@ import {loadStripe} from '@stripe/stripe-js';
 import "@stripe/stripe-js";
 import CheckOutForm from './checkOutForm/CheckOutForm';
 // load stipe with pk./checkOutForm/CheckOutForm
+const pk= process.env.NEXT_PUBLIC_STRIPE_PK
+// console.log({pk});
 
-const stripePromise = loadStripe('');
+const stripePromise = loadStripe(`${pk}`);
 const Payment =() => {
-  const pk= process.env.NEXT_STRIPE_PK
-  console.log({pk});
   
 
   return (
@@ -19,3 +19,4 @@ const Payment =() => {
 };
 
 export default Payment;
+

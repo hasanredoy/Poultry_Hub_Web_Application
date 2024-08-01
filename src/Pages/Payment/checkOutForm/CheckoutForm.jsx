@@ -1,6 +1,6 @@
 'use client'
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 // react number
 import "react-phone-number-input/style.css";
@@ -11,7 +11,9 @@ import moment from "moment";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import Heading from "@/components/custom/Heading/Heading";
-import { dataLoader } from "@/lib/loader";
+import { useRouter } from "next/navigation";
+import { GeneralContext } from "@/services/ContextProvider";
+
 
 
 const axiosHook = useAxios();
@@ -25,6 +27,7 @@ const CheckOutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const user = useGetUser();
+  const router = useRouter()
 
   const [phoneNumber, setPhoneNumber] = useState();
   const [showPaymentInput, setShowPaymentInput] = useState(false);
@@ -33,6 +36,11 @@ const CheckOutForm = () => {
   const [transactionID, setTransactionID] = useState("");
   const [delivery, setDelivery] = useState();
   const [ price, setPrice]=useState(0)
+   const {totalCartItem}=useContext(GeneralContext)
+
+   const itemsName = totalCartItem.map(name => name?.itemName)
+  console.log({itemsName});
+
   useEffect(()=>{
     const loader = async()=>{
       const cartData = await loadCartCount(user?.email)
@@ -77,7 +85,7 @@ const CheckOutForm = () => {
         const res = await axiosHook.post("/api/create-payment-intent", {
            price:totalPrice
         });
-        console.log(res.data,'hello');
+        // console.log(res.data,'hello');
         setClientSecret(res.data?.paymentIntent?.client_secret);
       } catch (error) {
         console.error("Error creating payment intent:", error);
@@ -132,18 +140,24 @@ const CheckOutForm = () => {
         transactionID: paymentIntent.id,
         email: user?.email,
         name: user?.displayName,
+        itemsName,
         totalPrice,
         delivery,
         status: "order received"
       };
-      console.log("Payment successful:", payment);
+      // console.log("Payment successful:", payment);
       const res = await axiosHook.post('/api/payment',payment)
-      console.log(res?.data);
+      // console.log(res?.data);
       if(res.data?.result?.insertedId){
-        swal({
+        const deleteResponse = await axiosHook.delete(`/api/delete_cart?email=${user?.email}`)
+        console.log(deleteResponse);
+        if(deleteResponse.data?.result?.deletedCount>0)
+       { swal({
           text: "Payment Successfully",
           icon: "success",
         });
+      router.push("/dashboard/payment_history")
+      }
 
       }
     }

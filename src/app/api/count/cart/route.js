@@ -18,7 +18,7 @@ export const GET = async (request) => {
       const price = result.reduce((a,b)=> parseInt(a)+ parseInt(b.price),0)
       // console.log(result,'server');
     // console.log({price},'from server');
-    return NextResponse.json({ count,price });
+    return NextResponse.json({ count,price,result });
   } catch (error) {
     return NextResponse.json({ error });
   }
