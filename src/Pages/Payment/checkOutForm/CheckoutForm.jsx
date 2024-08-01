@@ -143,6 +143,7 @@ const CheckOutForm = () => {
         itemsName,
         totalPrice,
         delivery,
+        paymentData:new Date(),
         status: "order received"
       };
       // console.log("Payment successful:", payment);

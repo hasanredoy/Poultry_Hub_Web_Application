@@ -1,28 +1,39 @@
+'use client'
 import Heading from "@/components/custom/Heading/Heading";
-import Image from "next/image";
-import React from "react";
+import Skeleton from "@/components/custom/Skeleton/Skeleton";
+import useAxios from "@/hooks/useAxios";
+import useGetUser from "@/hooks/useGetUser";
+import React, {  useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
+
+const axiosHook = useAxios()
+
+const paymentLoader = async (email) => {
+  const { data } = await axiosHook.get(`/api/payment?email=${email}`);
+   console.log(data);
+  return data?.result;
+};
 
 const PaymentHistory = () => {
   //  get user
-  const user = {
-    name: "Mr X",
-    email: "hello@gmail.com",
-    phone: "+934990898",
-    image: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-  };
-
+  const user = useGetUser()
   // get payments
-  const payments = [
-    {
-      items: ["Organic Free-Range Chicken", "helloe afidsajkhkj"],
-      itemsId: ["5445", "8555"],
-      totalPrice: 22.99,
-      paymentDate: "2024-07-01",
-      transactionId: "5654685a5235",
-      email: user?.email,
-    },
-  ];
+  const [payments,setPayments] = useState([])
+  useEffect(()=>{ 
+    const loader = async()=>{
+      const payment =await paymentLoader(user?.email)
+      console.log(payment);
+      setPayments(payment)
+    }
+    loader()
+  },[user])
+  console.log(payments);
+
+
+  
+if(!payments){
+  return <Skeleton></Skeleton>
+}
   return (
     <main className=" mt-10">
       <Heading
@@ -42,20 +53,21 @@ const PaymentHistory = () => {
               <th className="p-3 border-r border-gray-300">Total Price</th>
               <th className="p-3 border-r border-gray-300">Payment Date</th>
               <th className="p-3 border-r border-gray-300">TransactionId</th>
-              <th className="p-3 border-r border-gray-300">Email</th>
-              <th className="p-3">Action</th>
+              <th className="p-3 border-r border-gray-300">Email</th> 
+              <th className="p-3 border-r border-gray-300">Delivery Date</th>
+              <th className="p-3 ">Status</th> 
             </tr>
           </thead>
           <tbody className="border-b text-sm ">
-            {payments.map((data, index) => (
+            {payments?.map((data, index) => (
               <tr className="border-b" key={index}>
                 <td className="px-3 border-r border-gray-400">
                   <p>{index + 1}</p>
                 </td>
                 <td className="px-3 py-2 border-r border-gray-400">
                   <ul className="flex flex-col gap-1">
-                    {data?.items?.map((item) => (
-                      <li className=" ml-2 list-disc" key={item}>
+                    {data?.itemsName?.map((item,index) => (
+                      <li className=" ml-2 list-disc" key={index}>
                         {item}
                       </li>
                     ))}
@@ -68,15 +80,18 @@ const PaymentHistory = () => {
                   <p>{data?.paymentDate}</p>
                 </td>
                 <td className="px-3 py-2 border-r border-gray-400">
-                  <p>{data?.transactionId}</p>
+                  <p>{data?.transactionID}</p>
                 </td>
                 <td className="px-3 py-2 border-r border-gray-400">
                   <p>{data?.email}</p>
                 </td>
                 <td className="px-3 py-2">
-                  <button className="btn text-red-600">
-                    <FaTrash></FaTrash>
-                  </button>
+              <h4 >{data?.delivery?.date}</h4>
+                 
+                </td>
+                <td className="px-3 py-2">
+              <h4 >{data?.status}</h4>
+                 
                 </td>
               </tr>
             ))}
