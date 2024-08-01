@@ -43,7 +43,6 @@ const router = useRouter()
     const email = form.email.value;
     const password = form.password.value;
     if (!phone||phone.length<5) {
-      console.log('jekjhf');
       return toast.error("Number is not valid");
       
     }
@@ -56,7 +55,7 @@ const router = useRouter()
       phone,
       imageURL,
       password,
-      role: "user",
+      type: "user",
       registerDate: new Date(),
     };
     console.log(userData);

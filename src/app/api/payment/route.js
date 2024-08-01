@@ -3,6 +3,7 @@ import { NextResponse } from "next/server"
 
 export const POST=async(request)=>{
   const paymentData = await request.json()
+  console.log({paymentData});
   try {
     const db = await connectDB()
     // console.log('hello');

@@ -43,7 +43,7 @@ const CheckOutForm = () => {
   },[user])
   // console.log({cart});
   const totalPrice = parseInt(price)
-  console.log(totalPrice);
+  // console.log(totalPrice);
  
 
   const handleDelivery = async (e) => {
@@ -102,6 +102,7 @@ const CheckOutForm = () => {
       type: "card",
       card,
     });
+    console.log(paymentMethod);
 
     if (paymentMethodError) {
       console.log("Payment method error:", paymentMethodError);
@@ -137,6 +138,7 @@ const CheckOutForm = () => {
       };
       console.log("Payment successful:", payment);
       const res = await axiosHook.post('/api/payment',payment)
+      console.log(res?.data);
       if(res.data?.result?.insertedId){
         swal({
           text: "Payment Successfully",
