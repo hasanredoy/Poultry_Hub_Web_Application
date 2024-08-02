@@ -1,10 +1,13 @@
 'use client'
 import Heading from "@/components/custom/Heading/Heading";
+import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 import Pagination from "@/components/custom/Pagination/Pagination";
+import SkeletonTable from "@/components/custom/Skeleton/SkeletonTable";
 import useAxios from "@/hooks/useAxios";
 import usePagination from "@/hooks/usePagination";
 import { all } from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
 
@@ -28,6 +31,8 @@ const loadAllItemsCount = async () => {
 
 
 const AllItems = () => {
+
+  const [loader,setLoader]=useState(true)
   // state for all chicken and feed
   const [allChickenAndFeeds, setAllChickenAndFeeds] = useState([]);
   
@@ -35,15 +40,19 @@ const AllItems = () => {
   const [count,setCount]=useState(0)
   // state to handle price 
   const [price,setPrice]=useState(0)
+  const [loading, setLoading]=useState(false)
 
   const [currentPage,setCurrentPage]=useState(0)
     const [totalPage,pages]=usePagination(count,8)
   useEffect(() => {
     //function for call loadAllItems
     const loader = async () => {
+      setLoading(true)
       const data = await loadAllItems(currentPage,8);
       console.log(data);
       setAllChickenAndFeeds(data);
+      setLoading(false)
+      setLoader(false)
     };
     loader();
   }, [currentPage]);
@@ -55,12 +64,22 @@ const AllItems = () => {
       // console.log(data);
       setCount(data?.count);
       setPrice(data?.totalPrice)
+      setLoader(false)
     };
     loader();
   }, []);
-  console.log({price});
+  // console.log({price});
+ 
+if(loader){
+  return <LoadingSpinner></LoadingSpinner>
+}
   
-
+  if(allChickenAndFeeds.length<1){
+    return<div className=" flex justify-center items-center flex-col gap-5 w-full h-[calc(100dvh-100px)] ">
+      <h1 className=" text-xl font-bold">There is no item available at this time</h1>
+      <Link href={'/'} className="btn-primary">Back Home</Link >
+    </div>
+  }
   return (
     <main className=" my-10">
     <Heading
@@ -115,18 +134,22 @@ const AllItems = () => {
               <td className="px-3 py-2 border-r border-gray-400">
                 <p>{data?.totalSell}</p>
               </td>
-              <td className="px-3 py-2 flex gap-2">
+              <td className="px-3 py-2 flex gap-3">
                 <button title="Delete" className="btn text-red-600">
                   <FaTrash></FaTrash>
                 </button>
-                <button title="Edit" className="btn text-green-600">
+                <Link href={`/dashboard/${data?._id}`} title="Edit" className="btn text-green-600">
                   <FaPen></FaPen>
-                </button>
+                </Link>
+                <Link href={`/chicken_and_feeds/${data?._id}`} title="View Details" className="btn btn-primary">
+                  View Details
+                </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {loading&&<div className=" flex w-full min-w-full"><SkeletonTable></SkeletonTable></div>}
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPage={totalPage} pages={pages} ></Pagination>
     </section>
   </main>

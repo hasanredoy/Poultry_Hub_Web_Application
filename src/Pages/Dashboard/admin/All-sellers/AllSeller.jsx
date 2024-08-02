@@ -9,6 +9,7 @@ import useGetUserRole from "@/hooks/useGetUserRole";
 import usePagination from "@/hooks/usePagination";
 import { GeneralContext } from "@/services/ContextProvider";
 import Image from "next/image";
+import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { FaCross, FaSearch, FaTrash } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
@@ -110,6 +111,15 @@ const AllSeller = () => {
       }
     });
   };
+
+  if(allSellers.length<1){
+    return<div className=" flex justify-center items-center flex-col gap-5 w-full h-[calc(100dvh-100px)] ">
+      <h1 className=" text-xl font-bold">No seller request at this time </h1>
+      <Link href={'/'} className="btn-primary">Back Home</Link >
+
+     
+    </div>
+  }
 
   return (
     <main className=" my-10">

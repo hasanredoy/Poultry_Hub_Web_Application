@@ -2,6 +2,7 @@
 import Heading from "@/components/custom/Heading/Heading";
 import Pagination from "@/components/custom/Pagination/Pagination";
 import Skeleton from "@/components/custom/Skeleton/Skeleton";
+import SkeletonTable from "@/components/custom/Skeleton/SkeletonTable";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import usePagination from "@/hooks/usePagination";
@@ -36,6 +37,8 @@ const UserCart = () => {
 	// cart count state 
 	const [count , setCount] =useState(0)
 	const [price , setPrice] =useState(0)
+
+  const [loading ,setLoading]=useState(false)
 	  // call pagination
 		const [totalPage,pages] = usePagination(count, 6);
     const session = useSession()
@@ -45,11 +48,15 @@ const UserCart = () => {
   const user = useGetUser();
 	// effect to call cart 
   useEffect(() => {
+    setLoading(true)
     const loader = async () => {
+      setLoading(true)
       const cartData = await loadCart(user?.email,currentPage);
       // console.log(cartData);
       setCart(cartData);
+      setLoading(false)
     };
+    setLoading(false)
     loader();
   }, [user, refetch,currentPage]);
 	// effect to call cart count 
@@ -91,9 +98,7 @@ const UserCart = () => {
       <Link href={'/chicken_and_feeds'} className="btn-primary">Add</Link >
     </div>
   }
-  if(!cart){
-    return <Skeleton></Skeleton>
-  }
+
   return (
     <main className=" my-10">
       <Heading
@@ -157,6 +162,7 @@ const UserCart = () => {
           </tbody>
         </table>
       </section>
+      {loading&&<div className=" flex w-full min-w-full"><SkeletonTable></SkeletonTable></div>}
 		 {cart&&	<Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages}></Pagination>}
     </main> 
   );
