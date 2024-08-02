@@ -1,5 +1,6 @@
 'use client'
 import Heading from "@/components/custom/Heading/Heading";
+import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 import Pagination from "@/components/custom/Pagination/Pagination";
 import Skeleton from "@/components/custom/Skeleton/Skeleton";
 import SkeletonTable from "@/components/custom/Skeleton/SkeletonTable";
@@ -25,6 +26,8 @@ const loadUsers = async (page,size,search) => {
 
 const AllUsers = () => {
   const user = useGetUser()
+  const [loader,setLoader]=useState(true)
+
   // state for all chicken and feed
   const [allUsers, setAllUsers] = useState([]);
  // loading state
@@ -54,6 +57,7 @@ const [search , setSearch]=useState('')
       console.log(data);
       setAllUsers(data);
       setLoading(false)
+      setLoader(false)
     };
     loader();
   }, [refetch,currentPage,search]);
@@ -116,7 +120,9 @@ const [search , setSearch]=useState('')
     });
  
   }
-
+  if(loader){
+    return <LoadingSpinner></LoadingSpinner>
+  }
   return (
     <main className=" my-10">
     <Heading

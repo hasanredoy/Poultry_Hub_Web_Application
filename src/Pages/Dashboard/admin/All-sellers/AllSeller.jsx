@@ -1,5 +1,6 @@
 "use client";
 import Heading from "@/components/custom/Heading/Heading";
+import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 import Pagination from "@/components/custom/Pagination/Pagination";
 import Skeleton from "@/components/custom/Skeleton/Skeleton";
 import SkeletonTable from "@/components/custom/Skeleton/SkeletonTable";
@@ -30,6 +31,8 @@ const loadSellers = async (page, size, search) => {
 
 const AllSeller = () => {
   const user = useGetUser();
+const [loader,setLoader]=useState(true)
+
   // state for all chicken and feed
   const [allSellers, setAllSellers] = useState([]);
   // loading state
@@ -58,6 +61,7 @@ const AllSeller = () => {
       console.log(data);
       setAllSellers(data);
       setLoading(false);
+      setLoader(false)
     };
     loader();
   }, [refetch, currentPage, search]);
@@ -111,6 +115,9 @@ const AllSeller = () => {
       }
     });
   };
+  if(loader){
+    return <LoadingSpinner></LoadingSpinner>
+  }
 
   if(allSellers.length<1){
     return<div className=" flex justify-center items-center flex-col gap-5 w-full h-[calc(100dvh-100px)] ">
