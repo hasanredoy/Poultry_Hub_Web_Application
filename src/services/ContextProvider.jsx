@@ -44,6 +44,8 @@ const ContextProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(0);
   // state to handle user count
   const [userCount, setUserCount] = useState(0);
+  // state to handle seller count
+  const [sellerCount, setSellerCount] = useState(0);
 
   const [totalCartItem , setTotalCartItem]=useState([])
 
@@ -76,6 +78,16 @@ const ContextProvider = ({ children }) => {
     };
     loader();
   }, []);
+  // effect to call seller count
+  useEffect(() => {
+    const loader = async () => {
+      const countSellers = await loadSellersCount();
+      console.log(countSellers);
+      setSellerCount(countSellers);
+
+    };
+    loader();
+  }, []);
   // console.log(reviews);
 
   const contextInfo = {
@@ -89,7 +101,8 @@ const ContextProvider = ({ children }) => {
     currentPage,
     setCurrentPage,
     totalCartItem,
-    userCount
+    userCount,
+    sellerCount
   };
   return (
     <GeneralContext.Provider value={contextInfo}>

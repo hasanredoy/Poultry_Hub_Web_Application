@@ -34,11 +34,11 @@ const AllSeller = () => {
  const [refetch, setRefetch]=useState(false)
  
  // current page state 
- const {userCount}=useContext(GeneralContext)
- console.log(userCount);
+ const {sellerCount}=useContext(GeneralContext)
+ console.log(sellerCount);
  const [currentPage,setCurrentPage]=useState(0)
 //  get pagination hook 
-const [totalPage,pages]=usePagination(13,8)
+const [totalPage,pages]=usePagination(sellerCount,8)
 
 // search state 
 const [search , setSearch]=useState('')
@@ -59,8 +59,8 @@ const [search , setSearch]=useState('')
     loader();
   }, [refetch,currentPage,search]);
 
-  // handler to make admin 
-  const handleMakeAdmin = async(name,email)=>{
+  // handler to make seller 
+  const handleMakeSeller = async(name,email)=>{
   
     swal({
       title: "Are you sure?",
@@ -86,8 +86,8 @@ const [search , setSearch]=useState('')
     });
  
   }
-  // handler to make admin 
-  const handleDeleteUser = async(name,email,type)=>{
+  // handler to reject seller 
+  const handleRejectSeller = async(name,email,type)=>{
    if(type=='admin'){
     return   swal(`${name} is an admin, you can't delete an admin from this website`, {
       icon: "error",
@@ -126,7 +126,7 @@ const [search , setSearch]=useState('')
     ></Heading>
     {/* total user and search inp section */}
   <section className=" flex justify-between items-center  mx-8 my-5">
-  <h1 className="text-xl font-bold ">Total Sellers: {userCount}</h1>
+  <h1 className="text-xl font-bold ">Total Sellers: {sellerCount}</h1>
   <div className="join border">
         <input
           onBlur={(e)=>setSearch(e.target?.value)}
@@ -177,8 +177,8 @@ const [search , setSearch]=useState('')
               </td>
               <td className="px-3 py-2 flex gap-4">
                
-                  <button onClick={()=>handleMakeAdmin(sellerData?.name,sellerData?.email)} title="Approve" className="btn-primary flex items-center gap-2"> <IoMdPersonAdd></IoMdPersonAdd> Approve</button>
-                <button onClick={()=>handleDeleteUser(sellerData?.name,sellerData?.email,sellerData?.type)} title="Delete" className="btn flex items-center gap-2 text-red-600">
+                  <button onClick={()=>handleMakeSeller(sellerData?.name,sellerData?.email)} title="Approve" className="btn-primary flex items-center gap-2"> <IoMdPersonAdd></IoMdPersonAdd> Approve</button>
+                <button onClick={()=>handleRejectSeller(sellerData?.name,sellerData?.email,sellerData?.type)} title="Delete" className="btn flex items-center gap-2 text-red-600">
                  <FaX></FaX> Reject 
                 </button>
               </td>
