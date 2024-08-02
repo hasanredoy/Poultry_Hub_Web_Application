@@ -1,6 +1,8 @@
 "use client";
+import { postImage } from "@/hooks/postImage";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 // get custom axios hook
@@ -13,11 +15,15 @@ const loadSingleItem = async (id) => {
 };
 
 const UpdateItem = ({ id }) => {
-  console.log(id);
+  // console.log(id);
   // getUser
   const user = useGetUser();
   // single item state
   const [singleItem, setSingleItem] = useState();
+const [imgFile ,setImgFile]=useState()
+// console.log(imgFile);
+const image = postImage(imgFile)
+// console.log(image);
   useEffect(() => {
     //function for call loadAllItems
     const loader = async () => {
@@ -28,7 +34,7 @@ const UpdateItem = ({ id }) => {
     loader();
   }, []);
 
- const handlerToUpdate = (e)=>{
+ const handlerToUpdate = async (e)=>{
  e.preventDefault()
  const form = e.target
  const KG_PCS = form.weight.value+form.kg_pcs.value
@@ -39,7 +45,7 @@ const UpdateItem = ({ id }) => {
   description:form?.description?.value,
   availability: form.availability.value,
   seller:form.seller.value,
-  // image
+  image,
   listingDate:new Date(),
   expireDate: form.expireDate.value,
   category:form.category.value,
@@ -48,7 +54,12 @@ const UpdateItem = ({ id }) => {
   totalSell:singleItem.totalSell
 }
   console.log(updateDoc);
-    
+    if(!image)return swal(`An error happened please update your image again!`, {
+      icon: "error",
+    });
+  if(image){
+    const {data}=await axiosHook.put(``)
+  }
  }
   // console.log(singleItem);
   return (
@@ -127,7 +138,7 @@ const UpdateItem = ({ id }) => {
                   type="number"
                   placeholder=""
                   className="input input-bordered"
-                  name="name"
+                  name="weight"
                   defaultValue={singleItem?.weight?.split("k" || "p")[0]}
                   required
                 />
@@ -138,7 +149,7 @@ const UpdateItem = ({ id }) => {
               </div>
             </div>
           </section>
-          {/* sect for seller and image */}
+          {/* sect for seller and status */}
           <section className=" flex flex-col md:flex-row  w-full gap-5">
             {/* seller div  */}
             <div className="form-control flex-1">
@@ -175,6 +186,7 @@ const UpdateItem = ({ id }) => {
               </select>
             </div>
           </section>
+          <section className=" flex  flex-col md:flex-row w-full gap-5">
            {/* image div  */}
            <div className="form-control">
               <label className="label">
@@ -184,11 +196,21 @@ const UpdateItem = ({ id }) => {
               </label>
               <input
                 type="file"
+                onChange={(e)=>setImgFile(e?.target?.files[0])}
                 name="image"
-                defaultValue={singleItem?.image}
                 className="file-input file-input-bordered w-full max-w-xs"
               />
             </div>
+           {/* image preview  */}
+           <div className="form-control">
+              <label className="label">
+                <span className="   text-sm font-bold lg:text-base ">
+                  Current Image
+                </span>
+              </label>
+              <Image src={image?image:singleItem?.image} width={60} height={60} alt="preview image"></Image>
+            </div>
+            </section>
           {/* sect for expire date and email  */}
           <section className=" flex flex-col md:flex-row  w-full gap-5">
             {/* email div  */}

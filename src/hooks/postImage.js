@@ -2,9 +2,9 @@
 import axios from "axios";
 import { useState } from "react";
 
-// const API = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
-// console.log({API}); 
-export const postImage = (image,API,setLoading) => {
+const API = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
+export const postImage = (image,setLoading) => {
+  // console.log({API}); 
   // console.log(image);
   const [imageURL , setImageURL]=useState(null)
 

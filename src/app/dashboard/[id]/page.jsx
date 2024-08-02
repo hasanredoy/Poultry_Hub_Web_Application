@@ -5,7 +5,7 @@ import { useParams} from "next/navigation";
 const page = () => {
   // NOTE: this is for update user
   const {id} = useParams()
-  console.log(id);
+  // console.log(id);
   return (
    <UpdateItem id={id}></UpdateItem>
   );

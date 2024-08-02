@@ -32,3 +32,18 @@ export const PATCH=async(request,{params})=>{
     return Response.json({error})
   }
 }
+export const PUT=async(request,{params})=>{
+//  console.log(params.id);
+const data = await request.json()
+  try {
+   const db = await connectDB()
+   const itemsCollection = await db.collection('All_Items')
+
+    const result = await itemsCollection.updateOne({_id :new ObjectId(params.id)},data,{upsert:true})
+    // console.log(result);
+    return Response.json({result})   
+
+  } catch (error) {
+    return Response.json({error})
+  }
+}
