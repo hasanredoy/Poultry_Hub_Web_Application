@@ -149,8 +149,7 @@ const AllSeller = () => {
             </tr>
           </thead>
           <tbody className="border-b text-sm ">
-            {/* {loading&&<SkeletonTable/>} */}
-            {allSellers.map((sellerData, index) => (
+            {allSellers?.map((sellerData, index) => (
               <tr className="border-b" key={index}>
                 <td className="px-3 w-16 h-16 rounded-full border-r border-gray-400">
                   <Image

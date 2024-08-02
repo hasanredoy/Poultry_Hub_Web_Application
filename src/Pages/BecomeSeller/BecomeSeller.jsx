@@ -21,6 +21,7 @@ const loadSeller = async (email) => {
 const BecomeSeller = () => {
   // state to handle pagination page
   const [seller, setSeller] = useState({});
+  const [refetch, setRefetch] = useState(0);
   const user = useGetUser();
   const role = useGetUserRole();
   console.log({ role });
@@ -32,11 +33,20 @@ const BecomeSeller = () => {
       setSeller(sellerData);
     };
     loader();
-  }, [user]);
+  }, [user,refetch]);
   console.log(seller);
   // handler for post seller req
   const handleSeller = async (e) => {
+
     e.preventDefault();
+    if(seller?.status=='rejected'){
+     return  axiosHook.patch(`/api/seller/all_sellers?email=${user?.email}`).then(res=>{
+       if(res?.data?.result?.modifiedCount>0){
+        setRefetch(refetch+1)
+        toast.success("Request sent!");
+      }})
+      
+    }
     const sellerInfo = {
       name: user?.name,
       email: user?.email,
@@ -48,7 +58,8 @@ const BecomeSeller = () => {
     };
     const res = await axiosHook.post("/api/seller", sellerInfo);
     console.log(res.data);
-    if (res.data.result.insertedId) {
+    if (res?.data?.result?.insertedId) {
+      setRefetch(refetch+1)
       toast.success("Your request is under process, please wait!");
     }
   };
@@ -57,7 +68,7 @@ const BecomeSeller = () => {
   const handleRequestAgain=async(email)=>{
     const {data}=await axiosHook.patch(`/api/seller/all_sellers?email=${email}`)
     if(data?.result?.modifiedCount>0){
-
+      toast.success("Request sent!");
     }
   }
 
@@ -187,23 +198,23 @@ const BecomeSeller = () => {
                     <div>
                       {seller?.status == "pending" && (
                         <div className=" flex justify-center items-center">
-                          <h3 className=" text-xl font-semibold text-black">
+                          <h3 className=" text-lg font-semibold text-black">
                             Your request is under process.
                           </h3>
                         </div>
                       )}
                       {seller?.status == "rejected" && (
                         <div className=" flex justify-center items-center">
-                          <h3 className=" text-xl font-semibold text-white">
+                          <a  className=" text-lg font-semibold hover:text-black text-white">
                             Request again.
-                          </h3>
+                          </a>
                         </div>
                       )}
                       {!seller && (
                         <div >
-                          <span className=" flex justify-center items-center gap-1">
+                          <a  className=" flex justify-center items-center gap-1">
                             Send <FaLocationArrow></FaLocationArrow>
-                          </span>
+                          </a>
                         </div>
                       )}
                     </div>

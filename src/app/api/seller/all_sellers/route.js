@@ -30,3 +30,23 @@ export const GET=async(request)=>{
     
   }
 }
+export const PATCH=async(request)=>{
+  const email = await request.nextUrl.searchParams.get('email')
+ //  console.log(params.email,'role route');
+   try {
+     const db = await connectDB()
+     const sellerCollection = await db.collection('sellers')
+
+     const updateDocForSellerCollection = {
+       $set:{
+         status:"pending"
+       }
+     }
+    
+     const result = await sellerCollection.updateOne({email},updateDocForSellerCollection)
+     return NextResponse.json({result})
+   } catch (error) {
+     return NextResponse.json({error})
+     
+   }
+ }
