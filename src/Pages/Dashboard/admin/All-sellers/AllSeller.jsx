@@ -124,7 +124,7 @@ const AllSeller = () => {
           <input
             onBlur={(e) => setSearch(e.target?.value)}
             type="text"
-            placeholder="search user"
+            placeholder="search seller"
             className="input outline-none  join-item bg-base-100  font-bold"
           />
           <button className="btn  join-item flex items-center gap-2">
