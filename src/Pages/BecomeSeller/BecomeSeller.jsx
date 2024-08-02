@@ -21,10 +21,10 @@ const loadSeller = async (email) => {
 const BecomeSeller = () => {
   // state to handle pagination page
   const [seller, setSeller] = useState({});
+  const user = useGetUser();
   const role = useGetUserRole();
   console.log({ role });
   // get user
-  const user = useGetUser();
   // effect to call cart
   useEffect(() => {
     const loader = async () => {
@@ -52,6 +52,14 @@ const BecomeSeller = () => {
       toast.success("Your request is under process, please wait!");
     }
   };
+
+  // handle req again 
+  const handleRequestAgain=async(email)=>{
+    const {data}=await axiosHook.patch(`/api/seller/all_sellers?email=${email}`)
+    if(data?.result?.modifiedCount>0){
+
+    }
+  }
 
   return (
     <div>
@@ -186,14 +194,14 @@ const BecomeSeller = () => {
                       )}
                       {seller?.status == "rejected" && (
                         <div className=" flex justify-center items-center">
-                          <h3 className=" text-xl font-semibold text-black">
+                          <h3 className=" text-xl font-semibold text-white">
                             Request again.
                           </h3>
                         </div>
                       )}
-                      {seller && (
-                        <div className=" flex justify-center items-center">
-                          <span>
+                      {!seller && (
+                        <div >
+                          <span className=" flex justify-center items-center gap-1">
                             Send <FaLocationArrow></FaLocationArrow>
                           </span>
                         </div>

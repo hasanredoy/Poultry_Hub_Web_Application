@@ -94,7 +94,7 @@ const [search , setSearch]=useState('')
    }
     swal({
       title: "Are you sure?",
-      text: "You wanna make this user admin",
+      text: "You wanna delete this user",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -105,7 +105,7 @@ const [search , setSearch]=useState('')
         console.log(data);
       if(data?.result?.deletedCount>0){
         setRefetch(!refetch)
-       swal(`${name} is admin from now`, {
+       swal(`${name} is deleted`, {
           icon: "success",
         });
     }
@@ -148,8 +148,8 @@ const [search , setSearch]=useState('')
             <th className="p-3">Actions</th>
           </tr>
         </thead>
+          
         <tbody className="border-b text-sm ">
-          {loading&&<SkeletonTable/>}
           {loading||allUsers.map((userData, index) => (
             <tr className="border-b" key={index}>
               <td className="px-3 w-16 h-16 rounded-full border-r border-gray-400">
@@ -184,6 +184,7 @@ const [search , setSearch]=useState('')
           ))}
         </tbody>
       </table>
+        {loading&&<div className=" flex w-full min-w-full"><SkeletonTable/></div>}
       <Pagination currentPage={currentPage} totalPage={totalPage} setCurrentPage={setCurrentPage} pages={pages} />
     </section>
   </main>
