@@ -66,7 +66,7 @@ const ChickenAndFeeds = () => {
       setCount(data);
     };
     loader();
-  }, [currentPage]);
+  }, []);
 
 // console.log(allChickenAndFeeds);
 

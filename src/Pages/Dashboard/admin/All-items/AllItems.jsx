@@ -1,6 +1,8 @@
 'use client'
 import Heading from "@/components/custom/Heading/Heading";
+import Pagination from "@/components/custom/Pagination/Pagination";
 import useAxios from "@/hooks/useAxios";
+import usePagination from "@/hooks/usePagination";
 import { all } from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -9,28 +11,56 @@ import { FaPen, FaTrash } from "react-icons/fa";
 // get custom axios hook
 const axiosHook = useAxios();
 // load all chicken and feeds data
-const loadAllItems = async () => {
-  const res = await axiosHook.get(`/api/all_items`);
+const loadAllItems = async (page,size) => {
+  const res = await axiosHook.get(
+    `/api/allItems?page=${page}&size=${size}`
+  );
   // console.log(res?.data?.result);
   return res?.data?.result;
 };
+const loadAllItemsCount = async () => {
+  const res = await axiosHook.get(
+    `/api/count/all_items`
+  );
+  // console.log(res?.data?.result);
+  return res?.data;
+};
+
+
 const AllItems = () => {
   // state for all chicken and feed
   const [allChickenAndFeeds, setAllChickenAndFeeds] = useState([]);
+  
+  // state to handle count 
+  const [count,setCount]=useState(0)
+  // state to handle price 
+  const [price,setPrice]=useState(0)
 
+  const [currentPage,setCurrentPage]=useState(0)
+    const [totalPage,pages]=usePagination(count,8)
   useEffect(() => {
     //function for call loadAllItems
     const loader = async () => {
-      const data = await loadAllItems();
+      const data = await loadAllItems(currentPage,8);
       console.log(data);
       setAllChickenAndFeeds(data);
     };
     loader();
+  }, [currentPage]);
+
+  useEffect(() => {
+    //function for call loadAllItemsCount
+    const loader = async () => {
+      const data = await loadAllItemsCount();
+      // console.log(data);
+      setCount(data?.count);
+      setPrice(data?.totalPrice)
+    };
+    loader();
   }, []);
-  console.log({allChickenAndFeeds});
+  console.log({price});
   
-  const revenue = allChickenAndFeeds?.reduce((a,b)=>a+b.price,0).toFixed(2)
-  console.log(revenue);
+
   return (
     <main className=" my-10">
     <Heading
@@ -38,8 +68,8 @@ const AllItems = () => {
       title={"Here are all items"}
     ></Heading>
   <section className=" flex justify-between  mx-8 my-5">
-  <h1 className="text-xl font-bold ">Total Items: {allChickenAndFeeds?.length}</h1>
-  <h1 className="text-xl font-bold ">Total Revenue: {revenue} $</h1>
+  <h1 className="text-xl font-bold ">Total Items: {count}</h1>
+  <h1 className="text-xl font-bold ">Total Revenue: {price.toFixed(2)} $</h1>
   </section>
     {/* table section  */}
     <section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto ">
@@ -97,6 +127,7 @@ const AllItems = () => {
           ))}
         </tbody>
       </table>
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPage={totalPage} pages={pages} ></Pagination>
     </section>
   </main>
   );
