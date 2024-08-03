@@ -54,3 +54,19 @@ console.log(data);
     return Response.json({error})
   }
 }
+export const DELETE=async(request,{params})=>{
+//  console.log(params.id);
+console.log(data);
+  try {
+   const db = await connectDB()
+   const itemsCollection = await db.collection('All_Items')
+
+  const options = { upsert: true };
+    const result = await itemsCollection.deleteOne({_id :new ObjectId(params.id)})
+    console.log({result});
+    return Response.json({result})   
+
+  } catch (error) {
+    return Response.json({error})
+  }
+}

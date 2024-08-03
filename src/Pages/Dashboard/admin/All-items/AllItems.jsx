@@ -72,15 +72,31 @@ const AllItems = () => {
   // console.log({price});
 
 
-  const handlerToDelete = async (id)=>{
+  const handlerToDelete = async (id,name)=>{
+    swal({
+      title: "Are you sure?",
+      text: `You Wanna delete ${name}`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+       axiosHook.delete(`/api/all_items/${id}`)
+       .then(res =>{
+         console.log(res.data);
+        if(res?.data?.result?.deletedCount>0){
+          swal(`${name} has been deleted Successfully!`, {
+            icon: "success",
+          });
+        }
+       })
+       
+      } else {
+        swal("canceled!");
+      }
+    });
    
-       const {data}=await axiosHook.delete(`/api/all_items/${id}`)
-       console.log(data);
-       if(data?.result?.deletedCount>0){
-         swal(`Updated Successfully!`, {
-           icon: "success",
-         });
-       }
      
     }
 
@@ -150,7 +166,7 @@ if(loader){
                 <p>{data?.totalSell}</p>
               </td>
               <td className="px-3 py-2 flex gap-3">
-                <button onClick={()=>handlerToDelete(data?._id)} title="Delete" className="btn text-red-600">
+                <button onClick={()=>handlerToDelete(data?._id,data?.name)} title="Delete" className="btn text-red-600">
                   <FaTrash></FaTrash>
                 </button>
                 <Link href={`/dashboard/${data?._id}`} title="Edit" className="btn text-green-600">
