@@ -150,9 +150,9 @@ const CheckOutForm = () => {
       const res = await axiosHook.post('/api/payment',payment)
       // console.log(res?.data);
       if(res.data?.result?.insertedId){
-        const deleteResponse = await axiosHook.delete(`/api/delete_cart?email=${user?.email}`)
-        console.log(deleteResponse);
-        if(deleteResponse.data?.result?.deletedCount>0)
+        const updateResponse = await axiosHook.patch(`/api/delete_cart?email=${user?.email}`)
+        console.log(updateResponse);
+        if(updateResponse.data?.result?.modifiedCount>0)
        { swal({
           text: "Payment Successfully",
           icon: "success",
@@ -255,7 +255,7 @@ const CheckOutForm = () => {
               }}
             />
             <div className="flex mt-5 justify-center">
-              <button className="font-bold text-lg btn bg-sky-500 text-white" type="submit" disabled={!stripe || !elements || !clientSecret}>
+              <button className="btn-primary" type="submit" disabled={!stripe || !elements || !clientSecret}>
                 Pay
               </button>
             </div>

@@ -18,16 +18,12 @@ import {
 
 // import pie chart 
 import { PieChart, Pie, Sector, Cell } from 'recharts';
+import useGetUser from "@/hooks/useGetUser";
 
 
 const SellerHome = () => {
   //  get user
-  const user = {
-    name: "Mr X",
-    email: "hello@gmail.com",
-    phone: "+934990898",
-    image: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-  };
+  const user = useGetUser()
   // get user stats
   const sellerStats = {
     listedItem: 5,

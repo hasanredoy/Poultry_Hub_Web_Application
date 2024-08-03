@@ -21,6 +21,7 @@ const PostOnCart = ({ cart}) => {
     itemName: cart?.name,
     bookingDate: new Date(),
     category: cart?.category,
+    sellerEmail:cart?.email
   };
   // console.log(cartData);
   const handlePost = () => {
