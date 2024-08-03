@@ -1,10 +1,12 @@
 "use client";
+import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 import { postImage } from "@/hooks/postImage";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaSpinner } from "react-icons/fa";
 import swal from "sweetalert";
 
 // get custom axios hook
@@ -17,6 +19,8 @@ const loadSingleItem = async (id) => {
 };
 
 const UpdateItem = ({ id }) => {
+  // loading state 
+  const [loading , setLoading]=useState(1)
 const router = useRouter()
   // getUser
   const user = useGetUser();
@@ -27,16 +31,19 @@ const [imgFile ,setImgFile]=useState()
 const image = postImage(imgFile)
 // console.log(image);
   useEffect(() => {
+    setLoading(1)
     //function for call loadAllItems
     const loader = async () => {
       const data = await loadSingleItem(id);
       // console.log(data);
       setSingleItem(data);
+      setLoading(0)
     };
     loader();
   }, []);
 
  const handlerToUpdate = async (e)=>{
+  setLoading(2)
  e.preventDefault()
  const form = e.target
  const KG_PCS = form.weight.value+form.kg_pcs.value
@@ -62,15 +69,20 @@ const image = postImage(imgFile)
   if(image){
     const {data}=await axiosHook.put(`/api/all_items/${singleItem?._id}`,updateDoc)
     console.log(data);
+    
     if(data?.result?.modifiedCount>0){
       router.push('/dashboard/all_items')
       swal(`Updated Successfully!`, {
         icon: "success",
       });
+      setLoading(0)
     }
   }
  }
 
+ if(loading==1){
+  return <LoadingSpinner/>
+ }
   // console.log(singleItem);
   return (
     <main className=" mt-10">
@@ -274,7 +286,7 @@ const image = postImage(imgFile)
             ></textarea>
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Update</button>
+            <button disabled={loading==2} className="btn btn-primary">{loading==2?<FaSpinner className=" animate-spin"></FaSpinner>:"Update"}</button>
           </div>
         </form>
       </section>

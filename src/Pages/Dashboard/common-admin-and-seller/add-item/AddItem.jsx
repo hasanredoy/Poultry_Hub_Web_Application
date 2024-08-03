@@ -36,6 +36,7 @@ const image = postImage(imgFile)
   listingDate:new Date(),
   expireDate: form.expireDate.value,
   category:form.category.value,
+  email:form.email.value,
   rating:3,
   totalRating:3,
   totalSell:1
@@ -58,7 +59,7 @@ if(form?.expireDate?.value<newDate){
     const {data}=await axiosHook.post(`/api/all_items`,itemInfo)
     console.log(data);
     if(data?.result?.insertedId){
-      router.push('/dashboard/all_items')
+      router.push('/dashboard/my_listed_item')
       swal(`Item Added Successfully!`, {
         icon: "success",
       });
@@ -179,7 +180,6 @@ if(form?.expireDate?.value<newDate){
                 required
               >
                 <option value="In Stock">In Stock</option>
-                <option value="Out of Stock">Out Of Stock</option>
                 
               </select>
             </div>
@@ -225,9 +225,10 @@ if(form?.expireDate?.value<newDate){
               <input
                 type="email"
                 placeholder="Email"
+                name="email"
                 className="input input-bordered"
-                checked
                 defaultValue={user?.email}
+                readOnly
               />
             </div>
             {/* Price div  */}

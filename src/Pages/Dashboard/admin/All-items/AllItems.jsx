@@ -74,7 +74,7 @@ const AllItems = () => {
   // console.log({price});
 
 
-  const handlerToDelete = async (id,name)=>{
+  const handlerForDeleteItem = async (id,name)=>{
     swal({
       title: "Are you sure?",
       text: `You Wanna delete ${name}`,
@@ -88,7 +88,7 @@ const AllItems = () => {
        .then(res =>{
          console.log(res.data);
         if(res?.data?.result?.deletedCount>0){
-          setRefetch(refetch+1mrsamsung65747@gmail.com)
+          // setRefetch(refetch+1)
           swal(`${name} has been deleted Successfully!`, {
             icon: "success",
           });
@@ -169,7 +169,7 @@ if(loader){
                 <p>{data?.totalSell}</p>
               </td>
               <td className="px-3 py-2 flex gap-3">
-                <button onClick={()=>handlerToDelete(data?._id,data?.name)} title="Delete" className="btn text-red-600">
+                <button onClick={()=>handlerForDeleteItem(data?._id,data?.name)} title="Delete" className="btn text-red-600">
                   <FaTrash></FaTrash>
                 </button>
                 <Link href={`/dashboard/${data?._id}`} title="Edit" className="btn text-green-600">
