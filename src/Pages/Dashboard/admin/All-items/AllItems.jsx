@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
+import swal from "sweetalert";
 
 // get custom axios hook
 const axiosHook = useAxios();
@@ -69,6 +70,20 @@ const AllItems = () => {
     loader();
   }, []);
   // console.log({price});
+
+
+  const handlerToDelete = async (id)=>{
+   
+       const {data}=await axiosHook.delete(`/api/all_items/${id}`)
+       console.log(data);
+       if(data?.result?.deletedCount>0){
+         swal(`Updated Successfully!`, {
+           icon: "success",
+         });
+       }
+     
+    }
+
  
 if(loader){
   return <LoadingSpinner></LoadingSpinner>
@@ -135,7 +150,7 @@ if(loader){
                 <p>{data?.totalSell}</p>
               </td>
               <td className="px-3 py-2 flex gap-3">
-                <button title="Delete" className="btn text-red-600">
+                <button onClick={()=>handlerToDelete(data?._id)} title="Delete" className="btn text-red-600">
                   <FaTrash></FaTrash>
                 </button>
                 <Link href={`/dashboard/${data?._id}`} title="Edit" className="btn text-green-600">

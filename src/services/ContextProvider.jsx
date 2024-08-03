@@ -14,20 +14,20 @@ const loadCart = async (email) => {
 // function to load reviews
 const loadReviews = async (size,page) => {
   const { data } = await axiosHook.get(`/api/reviews?size=${size}&page=${page}`);
-  console.log(data);
+  // console.log(data);
   return data?.result;
 };
 
 // load all user count
 const loadUsersCount = async () => {
   const res = await axiosHook.get(`/api/count/user`);
-  console.log(res?.data);
+  // console.log(res?.data);
   return res?.data?.count;
 };
 // load all seller count
 const loadSellersCount = async () => {
   const res = await axiosHook.get(`/api/count/seller`);
-  console.log(res?.data);
+  // console.log(res?.data);
   return res?.data?.count;
 };
 
@@ -72,7 +72,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const loader = async () => {
       const countUser = await loadUsersCount();
-      console.log(countUser);
+      // console.log(countUser);
       setUserCount(countUser);
 
     };
@@ -82,7 +82,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const loader = async () => {
       const countSellers = await loadSellersCount();
-      console.log(countSellers);
+      // console.log(countSellers);
       setSellerCount(countSellers);
 
     };

@@ -3,7 +3,9 @@ import { postImage } from "@/hooks/postImage";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import swal from "sweetalert";
 
 // get custom axios hook
 const axiosHook = useAxios();
@@ -15,7 +17,7 @@ const loadSingleItem = async (id) => {
 };
 
 const UpdateItem = ({ id }) => {
-  // console.log(id);
+const router = useRouter()
   // getUser
   const user = useGetUser();
   // single item state
@@ -28,7 +30,7 @@ const image = postImage(imgFile)
     //function for call loadAllItems
     const loader = async () => {
       const data = await loadSingleItem(id);
-      console.log(data);
+      // console.log(data);
       setSingleItem(data);
     };
     loader();
@@ -58,9 +60,17 @@ const image = postImage(imgFile)
       icon: "error",
     });
   if(image){
-    const {data}=await axiosHook.put(``)
+    const {data}=await axiosHook.put(`/api/all_items/${singleItem?._id}`,updateDoc)
+    console.log(data);
+    if(data?.result?.modifiedCount>0){
+      router.push('/dashboard/all_items')
+      swal(`Updated Successfully!`, {
+        icon: "success",
+      });
+    }
   }
  }
+
   // console.log(singleItem);
   return (
     <main className=" mt-10">
@@ -198,6 +208,8 @@ const image = postImage(imgFile)
                 type="file"
                 onChange={(e)=>setImgFile(e?.target?.files[0])}
                 name="image"
+                required
+                
                 className="file-input file-input-bordered w-full max-w-xs"
               />
             </div>
