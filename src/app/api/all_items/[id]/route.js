@@ -56,7 +56,6 @@ console.log(data);
 }
 export const DELETE=async(request,{params})=>{
 //  console.log(params.id);
-console.log(data);
   try {
    const db = await connectDB()
    const itemsCollection = await db.collection('All_Items')

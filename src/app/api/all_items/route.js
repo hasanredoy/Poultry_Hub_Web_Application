@@ -38,3 +38,21 @@ export const GET = async (request) => {
     return NextResponse.json({ error });
   }
 };
+export const POST = async (request) => {
+ const itemData= await request.json()
+
+  try {
+    const db = await connectDB();
+    const itemsCollection = await db.collection("All_Items");
+    const checkItem = await itemsCollection.findOne({name:itemData?.name})
+    if(checkItem){
+      return NextResponse.json({ message:'item exist' });
+
+    }
+    const result = await itemsCollection.insertOne(itemData)
+    // console.log({result},'from server');
+    return NextResponse.json({ result });
+  } catch (error) {
+    return NextResponse.json({ error });
+  }
+};

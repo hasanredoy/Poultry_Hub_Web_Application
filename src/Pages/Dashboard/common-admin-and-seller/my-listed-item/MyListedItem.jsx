@@ -1,95 +1,120 @@
+'use client'
 import Heading from "@/components/custom/Heading/Heading";
+import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
+import SkeletonTable from "@/components/custom/Skeleton/SkeletonTable";
+import useAxios from "@/hooks/useAxios";
+import useGetUser from "@/hooks/useGetUser";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
 
+// get custom axios hook
+const axiosHook = useAxios();
+// load all chicken and feeds data
+const loadAllItems = async (page,email) => {
+  const res = await axiosHook.get(
+    `/api/allItems?page=${page}&size=${50}&email=${email}`
+  );
+  // console.log(res?.data?.result);
+  return res?.data?.result;
+};
+if(loading){
+  return <LoadingSpinner></LoadingSpinner>
+}
 const MyListedItem = () => {
   //  get user
-  const user = {
-    name: "Mr X",
-    email: "hello@gmail.com",
-    phone: "+934990898",
-    image: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-  };
+  const user = useGetUser()
+  const [listedItem, setListedItem] = useState([]);
+  const[loading , setLoading]=useState(true)
 
-  const userData = [
-    {
-      name: "Organic Free-Range Chicken",
-      price: 12.99,
-      image: "https://i.postimg.cc/GpTjMRPk/2148315271.jpg",
-      listingDate: "2024-07-01",
-      expireDate: "2024-12-31",
-      category: "Chicken",
-      totalSell:'5',
-      rating:'4'
-    },
-  ];
+  useEffect(() => {
+    //function for call loadAllItems for user
+    const loader = async () => {
+      const data = await loadAllItems(currentPage,user?.email);
+      console.log(data);
+      setListedItem(data);
+      setLoading(false)
+    };
+    loader();
+  }, [user]);
+
 
   return (
     <main className=" my-10">
-      <Heading
-        subHeading={"Welcome Back"}
-        title={"Have a look at your listed item"}
-      ></Heading>
-      {/* table section  */}
-      <h1 className="text-xl ml-8 my-5 font-bold ">Total Items: {userData?.length}</h1>
-      <h1 className="text-xl font-bold ">Total Revenue: {revenue}</h1>
-      <section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto ">
-        <table className="w-full p-6 text-base text-center whitespace-nowrap">
-          <thead>
-            <tr className=" border-b border-gray-900">
-              <th className="p-3 border-r border-gray-300">Image</th>
-              <th className="p-3 border-r border-gray-300">Item Name</th>
-              <th className="p-3 border-r border-gray-300">Price</th>
-              <th className="p-3 border-r border-gray-300">Listing Date</th>
-              <th className="p-3 border-r border-gray-300">Valid Till</th>
-              <th className="p-3 border-r border-gray-300">Total Rating</th>
-              <th className="p-3 border-r border-gray-300">Total Sell</th>
-              <th className="p-3">Actions</th>
+    <Heading
+      subHeading={"Welcome Back"}
+      title={"Here are all items you listed..."}
+    ></Heading>
+  <section className=" flex justify-between  mx-8 my-5">
+  <h1 className="text-xl font-bold "></h1>
+  <h1 className="text-xl font-bold "></h1>
+  </section>
+    {/* table section  */}
+    <section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto ">
+      <table className="w-full p-6 text-base text-center whitespace-nowrap">
+        <thead>
+          <tr className=" border-b border-gray-900">
+            <th className="p-3 border-r border-gray-300">Image</th>
+            <th className="p-3 border-r border-gray-300">Item Name</th>
+            <th className="p-3 border-r border-gray-300">Price</th>
+            <th className="p-3 border-r border-gray-300">Listing Date</th>
+            <th className="p-3 border-r border-gray-300">Valid Till</th>
+            <th className="p-3 border-r border-gray-300">Total Rating</th>
+            <th className="p-3 border-r border-gray-300">Total Sell</th>
+            <th className="p-3">Actions</th>
+          </tr>
+        </thead>
+        <tbody className="border-b text-sm ">
+          {listedItem.map((data, index) => (
+            <tr key={index} className="border-b">
+              <td className="px-3 border-r border-gray-400">
+                <Image
+                  src={data?.image}
+                  width={40}
+                  height={40}
+                  alt={data?.name}
+                ></Image>
+              </td>
+              <td className="px-3 py-2 border-r border-gray-400">
+                <p>{data?.name}</p>
+              </td>
+              <td className="px-3 py-2 border-r border-gray-400">
+                <p className="">{data?.price}$</p>
+              </td>
+              <td className="px-3 py-2 border-r border-gray-400">
+                <p>{data?.listingDate?.split("T")[0]}</p>
+              </td>
+              <td className="px-3 py-2 border-r border-gray-400">
+                <p>{data?.expireDate}</p>
+              </td>
+              <td className="px-3 py-2 border-r border-gray-400">
+                <p>{data?.totalRating}</p>
+              </td>
+              <td className="px-3 py-2 border-r border-gray-400">
+                <p>{data?.totalSell}</p>
+              </td>
+              <td className="px-3 py-2 flex gap-3">
+                <button
+                //  onClick={()=>handlerToDelete(data?._id,data?.name)} 
+                 title="Delete" className="btn text-red-600">
+                  <FaTrash></FaTrash>
+                </button>
+                <Link href={`/dashboard/${data?._id}`} title="Edit" className="btn text-green-600">
+                  <FaPen></FaPen>
+                </Link>
+                <Link href={`/chicken_and_feeds/${data?._id}`} title="View Details" className="btn btn-primary">
+                  View Details
+                </Link>
+              </td>
             </tr>
-          </thead>
-          <tbody className="border-b text-sm ">
-            {userData.map((data, index) => (
-              <tr className="border-b" key={index}>
-                <td className="px-3 border-r border-gray-400">
-                  <Image
-                    src={data?.image}
-                    width={40}
-                    height={40}
-                    alt={data?.name}
-                  ></Image>
-                </td>
-                <td className="px-3 py-2 border-r border-gray-400">
-                  <p>{data?.name}</p>
-                </td>
-                <td className="px-3 py-2 border-r border-gray-400">
-                  <p className="">{data?.price}$</p>
-                </td>
-                <td className="px-3 py-2 border-r border-gray-400">
-                  <p>{data?.listingDate}</p>
-                </td>
-                <td className="px-3 py-2 border-r border-gray-400">
-                  <p>{data?.expireDate}</p>
-                </td>
-                <td className="px-3 py-2 border-r border-gray-400">
-                  <p>{data?.rating}</p>
-                </td>
-                <td className="px-3 py-2 border-r border-gray-400">
-                  <p>{data?.totalSell}</p>
-                </td>
-                <td className="px-3 py-2 flex gap-2">
-                  <button title="Delete" className="btn text-red-600">
-                    <FaTrash></FaTrash>
-                  </button>
-                  <button title="Edit" className="btn text-green-600">
-                    <FaPen></FaPen>
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
-    </main>
+          ))}
+        </tbody>
+      </table>
+      {loading&&<div className=" flex w-full min-w-full"><SkeletonTable></SkeletonTable></div>}
+
+    </section>
+  </main>
   );
 };
 

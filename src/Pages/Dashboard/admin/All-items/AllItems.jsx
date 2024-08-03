@@ -36,7 +36,9 @@ const AllItems = () => {
   const [loader,setLoader]=useState(true)
   // state for all chicken and feed
   const [allChickenAndFeeds, setAllChickenAndFeeds] = useState([]);
-  
+  // state to refetch 
+  const [refetch,setRefetch]=useState(0)
+
   // state to handle count 
   const [count,setCount]=useState(0)
   // state to handle price 
@@ -56,7 +58,7 @@ const AllItems = () => {
       setLoader(false)
     };
     loader();
-  }, [currentPage]);
+  }, [currentPage,refetch]);
 
   useEffect(() => {
     //function for call loadAllItemsCount
@@ -86,6 +88,7 @@ const AllItems = () => {
        .then(res =>{
          console.log(res.data);
         if(res?.data?.result?.deletedCount>0){
+          setRefetch(refetch+1mrsamsung65747@gmail.com)
           swal(`${name} has been deleted Successfully!`, {
             icon: "success",
           });
@@ -154,7 +157,7 @@ if(loader){
                 <p className="">{data?.price}$</p>
               </td>
               <td className="px-3 py-2 border-r border-gray-400">
-                <p>{data?.listingDate}</p>
+                <p>{data?.listingDate.split("T")[0]}</p>
               </td>
               <td className="px-3 py-2 border-r border-gray-400">
                 <p>{data?.expireDate}</p>

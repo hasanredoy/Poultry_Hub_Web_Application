@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export const GET = async (request) => {
   // get query
-
+   const email = await request.nextUrl.searchParams.get('email')
   const page = (await request.nextUrl.searchParams.get("page")) || "0";
 
   const size = (await request.nextUrl.searchParams.get("size")) || "8";
@@ -16,7 +16,7 @@ export const GET = async (request) => {
     const itemsCollection = await db.collection("All_Items");
  
     const result = await itemsCollection
-      .find()
+      .find({email})
       .limit(parsedSize)
       .skip(parsedPage * parsedSize)
       .toArray();
