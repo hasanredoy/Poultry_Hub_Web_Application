@@ -15,7 +15,8 @@ export const GET = async (request, { params }) => {
     const totalSell = await cartsCollection
       .find({ sellerEmail: email })
       .toArray();
-    const reviews = allListedItemByUser?.totalReviews;
+    const reviews = allListedItemByUser?.reduce((a,b) => parseInt(a)+ parseInt(b?.totalRating),0)
+    console.log(reviews);
     const itemListed = allListedItemByUser?.length;
     const sell = totalSell?.length;
     // find and delete cart

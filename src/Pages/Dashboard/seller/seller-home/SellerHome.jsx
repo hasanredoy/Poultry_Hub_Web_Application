@@ -19,18 +19,30 @@ import {
 // import pie chart 
 import { PieChart, Pie, Sector, Cell } from 'recharts';
 import useGetUser from "@/hooks/useGetUser";
+import useAxios from "@/hooks/useAxios";
+import { useEffect, useState } from "react";
+const axiosHook = useAxios()
+const loadStats = async (email)=>{
+  const {data} = await axiosHook.get(`/api/seller_stats/${email}`)
+  console.log(data);
+  return data?.result
+}
 
 
 const SellerHome = () => {
   //  get user
   const user = useGetUser()
   // get user stats
-  const sellerStats = {
-    listedItem: 5,
-    customerFeedback: 2,
-    totalSell: 3,
-    decline: 2,
-  };
+const [sellerStats,setSellerStats] = useState({})
+
+useEffect(()=>{
+  const loader = async()=>{
+    const stats = await loadStats(user?.email)
+    console.log(stats);
+    setSellerStats(stats)
+  }
+  loader()
+},[user])
 
   // chart data 
   const chartData = [
@@ -46,10 +58,7 @@ const SellerHome = () => {
       name: "Total Sell",
       count: sellerStats?.totalSell,
     },
-    {
-      name: "Order Declines",
-      count: sellerStats?.decline,
-    },
+
   ];
 const barChartLength =  parseInt(chartData.length)*150 
 // console.log(barChartLength);
