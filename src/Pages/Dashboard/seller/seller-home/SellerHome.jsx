@@ -21,6 +21,7 @@ import { PieChart, Pie, Sector, Cell } from 'recharts';
 import useGetUser from "@/hooks/useGetUser";
 import useAxios from "@/hooks/useAxios";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 const axiosHook = useAxios()
 const loadStats = async (email)=>{
   const {data} = await axiosHook.get(`/api/seller_stats/${email}`)
@@ -34,12 +35,14 @@ const SellerHome = () => {
   const user = useGetUser()
   // get user stats
 const [sellerStats,setSellerStats] = useState({})
+const [loading, setLoading]=useState(true)
 
 useEffect(()=>{
   const loader = async()=>{
     const stats = await loadStats(user?.email)
     console.log(stats);
     setSellerStats(stats)
+    setLoading(false)
   }
   loader()
 },[user])
@@ -79,7 +82,9 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
   );
 };
 
-
+if(loading){
+  return <LoadingSpinner/>
+}
 
   return (
     <main>
