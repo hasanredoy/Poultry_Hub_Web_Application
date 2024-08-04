@@ -22,6 +22,8 @@ import useGetUser from "@/hooks/useGetUser";
 import useAxios from "@/hooks/useAxios";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
+
+// get axios hook
 const axiosHook = useAxios()
 const loadStats = async (email)=>{
   const {data} = await axiosHook.get(`/api/seller_stats/${email}`)
@@ -33,7 +35,7 @@ const loadStats = async (email)=>{
 const SellerHome = () => {
   //  get user
   const user = useGetUser()
-  // get user stats
+  // get seller stats
 const [sellerStats,setSellerStats] = useState({})
 const [loading, setLoading]=useState(true)
 

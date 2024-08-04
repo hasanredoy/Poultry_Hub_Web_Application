@@ -22,55 +22,77 @@ import {
 
 // import pie chart 
 import { PieChart, Pie, Sector, Cell } from 'recharts';
+import useGetUser from "@/hooks/useGetUser";
+import useAxios from "@/hooks/useAxios";
+import { useEffect, useState } from "react";
+import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 
 
+// get axios hook
+const axiosHook = useAxios()
+const loadStats = async (email)=>{
+  const {data} = await axiosHook.get(`/api/admin_stats/${email}`)
+  console.log(data);
+  return data
+}
 const AdminHome = () => {
   //  get user
-  const user = {
-    name: "Mr X",
-    email: "hello@gmail.com",
-    phone: "+934990898",
-    image: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-  };
+  const user = useGetUser()
   // get user stats
-  const sellerStats = {
-    totalItem: 5,
-    totalReviews: 2,
-    totalSell: 10,
-    decline: 2,
-    totalUsers:10,
-    totalRevenue:300,
-    adminListedItem:3
-  };
+  // const adminStats = {
+  //   totalItem: 5,
+  //   totalReviews: 2,
+  //   totalSell: 10,
+  //   decline: 2,
+  //   totalUsers:10,
+  //   totalRevenue:300,
+  //   adminListedItem:3
+  // };
+    // get admin stats
+const [adminStats,setAdminStats] = useState({})
+const [loading, setLoading]=useState(true)
+const [chartData,setChartData ]=useState([0])
 
+useEffect(()=>{
+  const loader = async()=>{
+    const stats = await loadStats(user?.email)
+    console.log(stats);
+    setAdminStats(stats?.stats1)
+    setChartData(stats?.stats2)
+    setLoading(false)
+  }
+  loader()
+},[user])
+
+if(loading)return <LoadingSpinner></LoadingSpinner>
   // chart data 
-  const chartData = [
-    {
-      name: "Total Item",
-      count: sellerStats?.totalItem,
-    },
-    {
-      name: "Total Reviews",
-      count: sellerStats?.totalReviews,
-    },
-    {
-      name: "Total Sell",
-      count: sellerStats?.totalSell,
-    },
-    {
-      name: "Order Declines",
-      count: sellerStats?.decline,
-    },
-    {
-      name: "Your Item",
-      count: sellerStats?.adminListedItem,
-    },
-    {
-      name: "Total User",
-      count: sellerStats?.totalUsers,
-    },
+  // const chartData = [
+  //   {
+  //     name: "Total Item",
+  //     count: adminStats?.totalItem,
+  //   },
+  //   {
+  //     name: "Total Reviews",
+  //     count: adminStats?.totalReviews,
+  //   },
+  //   {
+  //     name: "Total Sell",
+  //     count: adminStats?.totalSell,
+  //   },
+  //   {
+  //     name: "Order Declines",
+  //     count: adminStats?.decline,
+  //   },
+  //   {
+  //     name: "Your Item",
+  //     count: adminStats?.adminListedItem,
+  //   },
+  //   {
+  //     name: "Total User",
+  //     count: adminStats?.totalUsers,
+  //   },
  
-  ];
+  // ];
 const barChartLength =  parseInt(chartData.length)*120 
 // console.log(barChartLength);
 
@@ -114,7 +136,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
             <div className="flex flex-col justify-center align-middle">
               <p className="capitalize"> Total item</p>
               <h1 className="text-3xl font-bold leading-none">
-                {sellerStats?.totalItem}
+                {adminStats?.totalItem}
               </h1>
             </div>
           </div>
@@ -131,7 +153,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
             <div className="flex flex-col justify-center align-middle">
               <p className="capitalize">Total Reviews</p>
               <h1 className="text-3xl font-bold leading-none">
-                {sellerStats?.totalReviews}
+                {adminStats?.totalReviews}
               </h1>
             </div>
           </div>
@@ -148,7 +170,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
             <div className="flex flex-col justify-center align-middle">
               <p className="capitalize">Total Sell</p>
               <h1 className="text-3xl font-bold leading-none">
-                {sellerStats?.totalSell}
+                {adminStats?.totalSell}
               </h1>
             </div>
           </div>
@@ -165,7 +187,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
             <div className="flex flex-col justify-center align-middle">
               <p className="capitalize">Your Listed Item</p>
               <h1 className="text-3xl font-bold leading-none">
-                {sellerStats?.adminListedItem}
+                {adminStats?.adminListedItem}
               </h1>
             </div>
           </div>
@@ -182,7 +204,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
             <div className="flex flex-col justify-center align-middle">
               <p className="capitalize">Total Users</p>
               <h1 className="text-3xl font-bold leading-none">
-                {sellerStats?.totalUsers}
+                {adminStats?.totalUsers}
               </h1>
             </div>
           </div>
@@ -199,7 +221,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
             <div className="flex flex-col justify-center align-middle">
               <p className="capitalize">Total Revenue</p>
               <h1 className="text-3xl font-bold leading-none">
-                {sellerStats?.totalRevenue} $
+                {adminStats?.totalRevenue} $
               </h1>
             </div>
           </div>
@@ -223,11 +245,11 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
         >
           
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="category" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="count" stackId="a" fill="#fe6702" />
+          <Bar dataKey="quantity" stackId="a" fill="#fe6702" />
         </BarChart></div>
         <div>
         <PieChart width={400} height={400}>
@@ -239,7 +261,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
             label={renderCustomizedLabel}
             outerRadius={80}
             fill="#8884d8"
-            dataKey="count"
+            dataKey="quantity"
           >
             
             {chartData.map((entry, index) => (

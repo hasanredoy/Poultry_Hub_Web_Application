@@ -3,30 +3,84 @@ import { NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {
   // get cart data
-  const email = await params?.email;
+  const adminEmail = await params?.email;
   try {
     const db = await connectDB();
-    const allListedItemByUser = await db
+    // all items collection
+    const allItemsCollection = await db.collection("All_Items");
+    // admin listed items
+    const allListedItemByAdmin = await db
       .collection("All_Items")
-      .find({ email })
+      .find({ email: adminEmail })
       .toArray();
-
+    // get all review count
+    const allReviews = await db.collection("reviews").estimatedDocumentCount();
+    // get all items count
+    const allItems = await allItemsCollection.estimatedDocumentCount();
+    // get cart collection
     const cartsCollection = await db.collection("carts");
-    const totalSell = await cartsCollection
-      .find({ sellerEmail: email })
+    // get total sell
+
+    const totalSell = await cartsCollection.find({ email: null }).toArray();
+    // count all  items price
+    const countAllRevenue = await allItemsCollection
+      .aggregate([
+        {
+          $group: {
+            _id: null,
+            totalPrice: { $sum: "$price" },
+          },
+        },
+      ])
       .toArray();
-    const reviews = allListedItemByUser?.reduce((a,b) => parseInt(a)+ parseInt(b?.totalRating),0)
-    console.log(reviews);
-    const itemListed = allListedItemByUser?.length;
-    const sell = totalSell?.length;
-    // find and delete cart
-    const result = {
-      listedItem: itemListed,
-      customerFeedback: reviews,
-      totalSell: sell,
+    // get revenue
+    const revenue = await countAllRevenue[0]?.totalPrice;
+    //  get all users count
+    const users = await db.collection("users").estimatedDocumentCount();
+
+    const sellStats = await db.collection("payments").aggregate([
+      { $unwind: "$itemsName" },
+      {
+        $lookup: {
+          from: "All_Items",
+          localField: "itemsName",
+          foreignField: "name",
+          as: "Items",
+        },
+      },
+      { $unwind: "$Items" },
+      {
+        $group:{
+          _id:"$Items.category",
+          quantity:{
+            $sum:1
+          },
+          revenue:{
+            $sum:"$Items.price"
+          }
+        }
+      },
+    {
+      $project:{
+        _id:0,
+        category:"$_id",
+        quantity:"$quantity",
+        revenue:"$revenue"
+      }
+    }
+
+    ]).toArray();
+    const stats1 = {
+      totalItem:allItems,
+      totalReviews:allReviews,
+      totalSell:totalSell?.length,
+      totalUsers:users,
+      totalRevenue:revenue,
+      adminListedItem:allListedItemByAdmin?.length
     };
+    const stats2=sellStats
     // console.log({result},'from server');
-    return NextResponse.json({ result });
+    return NextResponse.json({ stats1,stats2 });
   } catch (error) {
     return NextResponse.json({ error });
   }

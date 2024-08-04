@@ -27,7 +27,7 @@ const image = postImage(imgFile)
  const KG_PCS = form.weight.value+form.kg_pcs.value
   const itemInfo ={
     name:form?.name?.value,
-  price:form?.price?.value,
+  price:parseFloat(form?.price?.value),
   weight:KG_PCS,
   description:form?.description?.value,
   availability: form.availability.value,
