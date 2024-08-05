@@ -86,6 +86,14 @@ const handler = NextAuth({
        }
  
      },
+     jwt: async ({ token, user }) => {
+      // If the session has been updated with new first and last names
+      if (user?.firstname && user?.lastname) {
+        token.firstname = user.firstname;
+        token.lastname = user.lastname;
+      }
+      return token;
+    },
    },
   pages: {
     signIn: "/login",

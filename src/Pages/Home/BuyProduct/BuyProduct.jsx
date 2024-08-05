@@ -49,7 +49,7 @@ const BuyProduct = () => {
           <h3 className=' subtitle'> 100 % organic eggs and chicken </h3>
           <p>All of our chickens and eggs are came from neutral poultry farm. You can trust our sellers  100 % because we ensure the neutrality of our seller before we make theme seller.   </p>
          </div>
-         <div className=' bg-base-200 shadow shadow-gray-400  border-l-8  border-[#fe6702]   p-5 rounded-lg mt-4'>
+         <div className=' bg-base-200 shadow shadow-gray-400  border-l-8  border-[#fe6702] mb-5  p-5 rounded-lg mt-4'>
           <h3 className=' subtitle'>Chicken feed from nature base factory  </h3>
           <p> You can buy chicken feed from our store those feeds are came from nature base factory. We bet our feeds are best.   </p>
          </div>

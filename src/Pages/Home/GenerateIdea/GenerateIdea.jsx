@@ -7,13 +7,13 @@ const GenerateIdea = () => {
   return (
     <main className="my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
       <Heading subHeading={'Get a Idea'} title={"Build a Smart farm With Us"}></Heading>
-      <section className=" flex flex-col lg:flex-row gap-10 mt-10 mb-24">
+      <section className=" flex flex-col md:flex-row gap-5 lg:gap-10 mt-10 mb-24">
         {/* image div  */}
-        <div className=" relative flex-1   overflow-hidden  grid grid-cols-2">
-           <Image className=" w-[310px]   hidden lg:block " src={AI} height={500} width={600}  alt="AI"></Image>
-           <div className=" w-[310px] border-2 border-yellow-200 p-1   hidden lg:block "></div>
-           <div className=" w-[310px] border-2 border-yellow-200 p-1   hidden lg:block "></div>
-           <Image className=" w-[310px] bg-slate-200   " src={farm} height={400} width={400}  alt="Farm"></Image>
+        <div className=" relative flex-1   overflow-hidden ">
+           {/* <Image className=" w-full lg:w-[310px] h-[200px] md:h-[230px] lg:h-[250px]    " src={AI} height={500} width={600}  alt="AI"></Image>
+           <div className=" hidden lg:block w-[310px] border-2 border-yellow-200 p-1     "></div>
+           <div className=" w-[310px] border-2 border-yellow-200 p-1  hidden lg:block   "></div> */}
+           <Image className="" src={farm} height={400} width={400}  alt="Farm"></Image>
         </div>
         {/* text div */}
         <div className=" flex-1">

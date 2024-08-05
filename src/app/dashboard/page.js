@@ -5,6 +5,8 @@ import { FaEye, FaEyeSlash, FaPen } from "react-icons/fa";
 // import react number input
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { signIn, useSession } from "next-auth/react";
+import useAxios from "@/hooks/useAxios";
 
 const page = () => {
   // state for from modal
@@ -12,14 +14,22 @@ const page = () => {
   // state show and hide password
   const [showPass, setShowPass]=useState(false)
 
+  const axiosHook = useAxios()
   //  get user
-  const user = {
-    name: "Mr X",
-    email: "hello@gmail.com",
-    phone: "+934990898",
-    image: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-  };
+  const {data:session, update} = useSession()
+  console.log(session);
+  const user = session?.user
+  console.log(user);
   const [value, setValue] = useState(user?.phone);
+  const updateProfile=async(e)=>{
+    e.preventDefault()
+   const name = e.target?.name?.value
+   const {data}= await axiosHook.post('/api/update_profile',{name})
+   console.log(data?.result);
+   if(data?.result){
+    await signIn('credentials', { redirect: false, email, password });
+   }
+  }
   return (
     <section className="   flex flex-col justify-center items-center ">
       {/* avatar section  */} {/* from section  */}
@@ -63,22 +73,39 @@ const page = () => {
           >
             X
           </button>
-          <form className="card-body">
-            {/* Name div  */}
+          <form onSubmit={updateProfile} className="card-body">
+            {/* Name1 div  */}
             <div className="form-control">
               <label className="label">
                 <span className="   text-sm font-bold lg:text-base ">
-                  Full Name
+                  First Name
                 </span>
               </label>
               <input
                 type="text"
-                defaultValue={user?.name}
-                placeholder="Full Name"
+                // defaultValue={user?.name?.split(" ")[0]}
+                placeholder="First Name"
+                name="name"
                 className="input input-bordered"
                 required
               />
             </div>
+            {/* Name2 div  */}
+            {/* <div className="form-control">
+              <label className="label">
+                <span className="   text-sm font-bold lg:text-base ">
+                  Last Name
+                </span>
+              </label>
+              <input
+                type="text"
+                defaultValue={user?.name?.split(" ")[1]}
+                placeholder="Last Name"
+                name="name2"
+                className="input input-bordered"
+                required
+              />
+            </div> */}
             {/* Phone number div  */}
             <div className="form-control">
               <label className="label">

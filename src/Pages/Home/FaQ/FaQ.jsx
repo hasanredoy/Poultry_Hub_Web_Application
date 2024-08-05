@@ -5,8 +5,8 @@ import Image from "next/image";
 const FaQ = () => {
   return (
     <main className="my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
-      <section className="  my-10 rounded-md ">
-        <div className="container flex flex-col justify-center p-4 mx-auto md:p-8">
+      <section className="  mt-10 rounded-md ">
+       
           <div>
             <Heading
               subHeading={"Some Asked QnA About Gadgets Shop"}
@@ -14,10 +14,10 @@ const FaQ = () => {
             ></Heading>
           </div>
           {/* main content  */}
-          <div className=" mt-10 flex flex-col-reverse lg:flex-row-reverse gap-5 ">
-            <div className="flex flex-col w-full lg:w-[60%] divide-y sm:px-8 lg:px-10 divide-gray-600 gap-3">
-              <details className=" border border-gray-300 rounded-md pl-2">
-                <summary className="py-2 font-bold text-xl outline-none cursor-pointer hover:underline">
+          <div className=" mt-10 flex flex-col-reverse md:flex-row-reverse gap-5 ">
+            <div className="flex flex-col w-full lg:w-[50%] divide-y   gap-3">
+              <details className=" border border-b-0 border-gray-300 rounded-md pl-2">
+                <summary className="py-2 font-semibold text-base  lg:text-lg outline-none cursor-pointer hover:underline">
                   What is Poultry Hub?
                 </summary>
                 <div className="pl-7 pb-4">
@@ -30,7 +30,7 @@ const FaQ = () => {
                 </div>
               </details>
               <details className=" border border-gray-300 rounded-md pl-2">
-                <summary className="py-2 font-bold text-xl outline-none cursor-pointer hover:underline">
+                <summary className="py-2 font-semibold text-base  lg:text-lg outline-none cursor-pointer hover:underline">
                   How do I buy or sell chickens and feed on Poultry Hub?
                 </summary>
                 <div className="pl-7 pb-4">
@@ -40,7 +40,7 @@ const FaQ = () => {
                 </div>
               </details>
               <details className=" border border-gray-300 rounded-md pl-2">
-                <summary className="py-2 font-bold text-xl outline-none cursor-pointer hover:underline">
+                <summary className="py-2 font-semibold text-base  lg:text-lg outline-none cursor-pointer hover:underline">
                 Is there a fee for using Poultry Hub?
                 </summary>
                 <div className="pl-7 pb-4">
@@ -50,7 +50,7 @@ const FaQ = () => {
                 </div>
               </details>
               <details className=" border border-gray-300 rounded-md pl-2">
-                <summary className="py-2 font-bold text-xl outline-none cursor-pointer hover:underline">
+                <summary className="py-2 font-semibold text-base  lg:text-lg outline-none cursor-pointer hover:underline">
                 How can Poultry Hub help me in building a poultry farm?
                 </summary>
                 <div className="pl-7 pb-4">
@@ -60,7 +60,7 @@ const FaQ = () => {
                 </div>
               </details>
               <details className=" border border-gray-300 rounded-md pl-2">
-                <summary className="py-2 font-bold text-xl outline-none cursor-pointer hover:underline">
+                <summary className="py-2 font-semibold text-base  lg:text-lg outline-none cursor-pointer hover:underline">
                 What measures does Poultry Hub take to ensure the safety and quality of transactions?
                 </summary>
                 <div className="pl-7 pb-4">
@@ -70,7 +70,7 @@ const FaQ = () => {
                 </div>
               </details>
               <details className=" border border-gray-300 rounded-md pl-2">
-                <summary className="py-2 font-bold text-xl outline-none cursor-pointer hover:underline">
+                <summary className="py-2 font-semibold text-base  lg:text-lg outline-none cursor-pointer hover:underline">
                 How can I contact customer support if I have an issue?
                 </summary>
                 <div className="pl-7 pb-4">
@@ -81,7 +81,7 @@ const FaQ = () => {
               </details>
         
             </div>
-            <div className="w-full h-[400px] lg:w-[40%] ">
+            <div className="w-full h-[300px] lg:h-[400px] lg:w-[50%] ">
               <Image
                 src={FAQ}
                 alt="FaQ image"
@@ -91,7 +91,7 @@ const FaQ = () => {
               />
             </div>
           </div>
-        </div>
+        
       </section>
     </main>
   );

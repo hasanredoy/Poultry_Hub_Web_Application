@@ -6,7 +6,7 @@ const BecomeSeller = () => {
   return (
    <main  className="my-28 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
     <Heading subHeading={'Become Seller'} title={'Start Selling in Our Shop'}></Heading>
-  <section className=" flex flex-col gap-10 lg:flex-row mt-10">
+  <section className=" flex flex-col gap-5 lg:gap-10 md:flex-row mt-10">
       {/* image section  */}
       <section className=" flex-1 relative">
         <div className="w-full h-full absolute bg-green-800 bg-opacity-20"></div>

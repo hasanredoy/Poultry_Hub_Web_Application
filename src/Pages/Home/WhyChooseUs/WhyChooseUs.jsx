@@ -1,9 +1,11 @@
+'use client'
 import Heading from "@/components/custom/Heading/Heading";
 import "./whyChooseUs.css";
 import Image from "next/image";
 import useAxios from "@/hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import Skeleton from "@/components/custom/Skeleton/Skeleton";
 // get axios url from axios hook
 const axiosURL = useAxios();
 // func for load about us
@@ -16,24 +18,27 @@ const loadAboutUs = async () => {
 const WhyChooseUs = () => {
   // state for about us data  
   const [aboutUs, setAboutUs] = useState([]);
-  // useEffect(() => {
-  //   //load about us data
-  //   const funcForLoadAbout = async () => {
-  //     const loadedData = await loadAboutUs();
-  //     // setAboutUs loaded data
-  //     setAboutUs(loadedData);
-  //   };
-  //   // call funcForLoadAbout
-  //   funcForLoadAbout();
-  // }, []);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    //load about us data
+    const funcForLoadAbout = async () => {
+      const loadedData = await loadAboutUs();
+      // setAboutUs loaded data
+      setAboutUs(loadedData);
+      setLoading(false)
+    };
+    // call funcForLoadAbout
+    funcForLoadAbout();
+  }, []);
 
   return (
     <main className="my-28 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
       <div>
         <Heading subHeading={"Find Out"} title={"Why Choose Us.."}></Heading>
       </div>
+      {loading&&<Skeleton/>}
       <section className=" mt-10 flex flex-col lg:flex-row justify-center items-center lg:justify-evenly gap-5">
-        {aboutUs?.map((about, index) => (
+        {loading||aboutUs?.map((about, index) => (
           <div key={about?._id} id={"talkbubble"}>
             <div
               className={`  p-4 gap-2 flex-col flex justify-center items-center `}

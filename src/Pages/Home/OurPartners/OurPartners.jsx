@@ -1,3 +1,4 @@
+'use client'
 import Heading from "@/components/custom/Heading/Heading";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,10 +14,37 @@ import './ourPartner.css'
 
 // import required modules
 import { Autoplay, FreeMode, Pagination } from "swiper/modules";
+import useAxios from "@/hooks/useAxios";
+import { useEffect, useState } from "react";
+import Skeleton from "@/components/custom/Skeleton/Skeleton";
+
+//get axios hook 
+const axiosHook = useAxios()
+const loadPartners=async()=>{
+  const {data}=await axiosHook.get('/api/partners')
+   console.log( data);
+   return data?.result
+}
 
 const OurPartners = () => {
-  const partners = []
+  // partner state
+  const[ partners,setPartners ]=useState([])
+  const[ loading,setLoading ]=useState(true)
   // console.log(partners[0]);
+ useEffect(()=>{
+  // loader to call partners 
+  const loader = async()=>{
+    const partnersData = await loadPartners()
+    console.log(partnersData);
+    setPartners(partnersData)
+    setLoading(false)
+  }
+  // call loader
+  loader()
+ },[])
+ if(loading){
+  return <Skeleton></Skeleton>
+ }
   return (
     <main className="my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
       <Heading
@@ -40,7 +68,7 @@ const OurPartners = () => {
           modules={[FreeMode, Pagination,Autoplay]}
           className="mySwiper"
         >
-        {partners[0]?.map((partner) => (
+        {partners?.map((partner) => (
             <SwiperSlide>
                <div
             key={partner?._id}

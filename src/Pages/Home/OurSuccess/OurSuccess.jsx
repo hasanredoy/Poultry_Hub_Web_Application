@@ -17,7 +17,7 @@ const OurSuccess = () => {
           </div>
           
           <div className=" absolute top-[20%]  z-40  p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
-            <div className="bg-[#fe8334] h-full w-full text-black ">
+            <div className="bg-primary h-full w-full  ">
               <div className=" -rotate-45 flex pt-10 flex-col w-full h-full ">
                 <h3 className=" text-xl font-bold ">66+</h3>
                 <p className=" text-lg font-bold">Farmer and Client.</p>
@@ -35,7 +35,7 @@ const OurSuccess = () => {
           </div>
           
           <div className="  z-40  p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
-            <div className="bg-[#fe8334] h-full w-full text-black ">
+            <div className="bg-primary h-full w-full  ">
               <div className=" -rotate-45 flex pt-10 flex-col w-full h-full ">
                 <h3 className=" text-xl font-bold ">40+</h3>
                 <p className=" text-lg font-bold">Listed Item.</p>
@@ -49,11 +49,11 @@ const OurSuccess = () => {
         <div className=" mb-10 md:mb-0  relative mx-auto md:mx-0 w-44 h-44 md:h-56 md:w-56">
              {/* empty */}
           <div className=" p-3 border border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
-            <div className="bg-  bg-opacity-50 h-full w-full text-black "></div>
+            <div className="bg-  bg-opacity-50 h-full w-full "></div>
           </div>
           
           <div className=" absolute top-[20%]  z-40  p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
-            <div className="bg-[#fa8334] h-full w-full text-black ">
+            <div className="bg-primary h-full w-full  ">
               <div className=" -rotate-45  flex pt-10 flex-col w-full h-full ">
                 <h3 className=" text-xl font-bold ">100+</h3>
                 <p className=" text-lg font-bold">Monthly Sales</p>
