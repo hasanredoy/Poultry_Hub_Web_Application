@@ -146,7 +146,7 @@ const ChickenAndFeeds = () => {
           {/* return no data found image if no data founded */}
           {allChickenAndFeeds.length == 0 && <DataNotFound></DataNotFound>}
           {/* card section  */}
-          <section className=" my-10  grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[95%] lg:max-w-[85%] mx-auto">
+          <section className=" my-10  grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[95%] md:max-w-[75%] lg:max-w-[85%] mx-auto">
             {allChickenAndFeeds?.map((item, index) => (
               <Card key={item?._id} item={item}></Card>
             ))}

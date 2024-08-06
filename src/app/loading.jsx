@@ -1,3 +1,4 @@
+'use client'
 import { ImSpinner9 } from "react-icons/im";
 
 const loading = () => {
