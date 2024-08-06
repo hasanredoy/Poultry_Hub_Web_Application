@@ -28,6 +28,7 @@ const loadAllItemsCount = async (filter, search) => {
   return res?.data?.count;
 };
 const ChickenAndFeeds = () => {
+  
   // state to handleCurrent page 
   const [currentPage,setCurrentPage]=useState(0)
   // state to handle count 
@@ -37,13 +38,13 @@ const ChickenAndFeeds = () => {
   // state to control up arrow and down arrow
   const [arrowUp, setArrowUp] = useState(true);
   // state for all chicken and feed
-  const [allChickenAndFeeds, setAllChickenAndFeeds] = useState([
-    { name: "loading" },
-  ]);
+  const [allChickenAndFeeds, setAllChickenAndFeeds] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   // call pagination
   const [totalPage,pages] = usePagination(count, 8);
-  
+  // loading state 
+  const [loading , setLoading]=useState(true)
+
   // get user 
   const user = useGetUser()
 
@@ -54,6 +55,7 @@ const ChickenAndFeeds = () => {
       const data = await loadAllItems(filterValue,search,currentPage,8);
       // console.log(data);
       setAllChickenAndFeeds(data);
+      setLoading(false)
     };
     loader();
   }, [filterValue,search,currentPage]);
@@ -64,6 +66,7 @@ const ChickenAndFeeds = () => {
       const data = await loadAllItemsCount();
       // console.log(data);
       setCount(data);
+      setLoading(false)
     };
     loader();
   }, []);
@@ -139,12 +142,12 @@ const ChickenAndFeeds = () => {
         </details>
       </section>
       {/* if items in loading return skeleton */}
-      {allChickenAndFeeds[0]?.name == "loading" ? (
+      {loading ? (
         <Skeleton></Skeleton>
       ) : (
         <>
           {/* return no data found image if no data founded */}
-          {allChickenAndFeeds.length == 0 && <DataNotFound></DataNotFound>}
+          {allChickenAndFeeds?.length == 0 && <DataNotFound></DataNotFound>}
           {/* card section  */}
           <section className=" my-10  grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[95%] md:max-w-[75%] lg:max-w-[85%] mx-auto">
             {allChickenAndFeeds?.map((item, index) => (

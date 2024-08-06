@@ -12,8 +12,8 @@ const Banner = ({setSearch}) => {
     <div className="hero-overlay bg-black bg-opacity-50 dark:bg-white"></div>
     <div className="hero-content text-neutral-content text-center">
       <div className="max-w-xl">
-        <h1 className="mb-5 text-white text-5xl font-bold">Welcome To <span className=" text-primary">Poultry Hub</span></h1>
-        <p className="mb-5 text-white">
+        <h1 className="mb-5 text-white text-3xl xl:text-5xl font-bold">Welcome To <span className=" text-primary">Poultry Hub</span></h1>
+        <p className="mb-5 text-sm max-w-md lg:max-w-xl lg:text-base text-white">
          Hello there, we are providing fresh chicken from 100% organic farms. And we're also selling poultry feed that came from organic factories.
         </p>
         <div className="join border">

@@ -48,7 +48,7 @@ const DetailsPage = ({ id }) => {
 
   console.log({ singleItem });
   return (
-    <section className=" relative  flex flex-row bg-warning bg-opacity-5 shadow   my-20 max-w-[95%] lg:max-w-[85%] mx-auto ">
+    <section className=" relative  flex flex-col md:flex-row bg-warning bg-opacity-5 shadow   my-20 max-w-[95%] lg:max-w-[85%] mx-auto ">
       <figure className=" flex-1 flex justify-center  mt-10">
         <Link className=" absolute left-1 top-1" href={"/chicken_and_feeds"}>
           <GoArrowLeft className=" text-2xl font-bold cursor-pointer "></GoArrowLeft>
@@ -56,42 +56,42 @@ const DetailsPage = ({ id }) => {
         <Image
           width={500}
           height={500}
-          className=" w-[90%] h-[400px] rounded-md"
+          className=" w-full lg:w-[90%] h-auto lg:h-[400px] rounded-md"
           src={singleItem?.image}
           alt={singleItem?.name}
         />
       </figure>
-      <div className="card-body flex-1">
+      <div className=" p-2 md:p-4 md:pt-8 flex-1">
         <h2 className="text-xl font-bold">{singleItem?.name}</h2>
-        <p>{singleItem?.description} </p>
-        <h5 className=" my-3 text-base ">
+        <p className=" text-sm lg:text-base">{singleItem?.description} </p>
+        <h5 className=" my-3 text-base md:text-lg ">
           Listed By: <span className=" font-bold">{singleItem?.seller}</span>
         </h5>
 
         <div className="divider"></div>
         <div className=" flex justify-between my-1 ">
-          <h5 className=" flex-1">
+          <h5 className=" flex-1 text-xs lg:text-base">
             Price :{" "}
             <span className="    font-bold">
               {singleItem?.price} ${" "}
             </span>
           </h5>
-          <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
-            {singleItem.category == "Eggs" ? "Quantity" : "Weight"} :{" "}
+          <h5 className=" flex gap-2 justify-start  md:ml-8 text-xs lg:text-base  lg:ml-14 xl:ml-40 flex-1 ">
+            {singleItem?.category == "Eggs" ? "Quantity" : "Weight"} :{" "}
             <span className="   font-bold">
               {singleItem?.weight}
             </span>
           </h5>
         </div>
         <div className=" flex justify-between my-1 ">
-          <h5 className="flex flex-1 items-center gap-2">
+          <h5 className="flex flex-1 items-center gap-2 text-xs lg:text-base">
             Ratings :{" "}
             <span className="   font-bold flex single items-center gap-2">
               {singleItem?.rating}
               <FaStar className=" pb-1"></FaStar>
             </span>
           </h5>
-          <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
+          <h5 className=" flex gap-2 justify-start md:ml-8 text-xs lg:text-base  lg:ml-14 xl:ml-40 flex-1 ">
             Total Ratings :{" "}
             <span className="   gap-2 flex justify-center items-center font-bold">
               {singleItem?.totalRating} 
@@ -100,14 +100,14 @@ const DetailsPage = ({ id }) => {
           </h5>
         </div>
         <div className=" flex justify-between my-1 ">
-          <h5 className="  flex-1 flex gap-1 ">
+          <h5 className="  flex-1 flex gap-1  text-xs lg:text-base">
             Listed in :{" "}
             <span className=" gap-2 flex justify-center items-center font-bold">
               {singleItem?.listingDate}
               <FaRegCalendarPlus></FaRegCalendarPlus>
             </span>
           </h5>
-          <h5 className=" flex gap-2 justify-start ml-40 flex-1 ">
+          <h5 className=" flex gap-2 justify-start md:ml-8 text-xs lg:text-base  lg:ml-14 xl:ml-40 flex-1 ">
             Valid Till :{" "}
             <span className="  gap-2 flex justify-center items-center font-bold ">
               {singleItem?.expireDate}
@@ -116,7 +116,7 @@ const DetailsPage = ({ id }) => {
           </h5>
         </div>
         <div className=" flex justify-between my-1 ">
-          <h5 className="flex-1 flex gap-2 ">
+          <h5 className="flex-1 flex gap-2 text-xs lg:text-base ">
             Total Sell :{" "}
             <span className="gap-2 flex justify-center items-center font-bold">
               {singleItem?.totalSell}
