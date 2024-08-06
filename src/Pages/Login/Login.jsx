@@ -6,9 +6,10 @@ import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FiLoader } from "react-icons/fi";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
+import {useRouter, useSearchParams } from "next/navigation";
 import GoogleLogin from "@/components/custom/social-login/GoogleLogin";
+import useGetUser from "@/hooks/useGetUser";
 
 const Login = () => {
   // state to handle loading
@@ -17,30 +18,37 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const router = useRouter()
   const session = useSession()
-
+  const searchParams = useSearchParams()
+  const path = searchParams.get("redirect")||'/'
+  const user = useGetUser()
+  
 
   const handleLogin = async (e) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
     const email = e.target.email.value;
     const password = e.target.password.value;
     const res = await signIn("credentials", {
       email,
       password,
-      redirect: false,
+      redirect: true,
+      callbackUrl: path?path:"/"
     });
     if (res) {
       setLoading(false);
     }
-    if (session.data?.user?.email) {
-      router.push("/")
+    if(user){
+      router.push(path)
       toast.success('login successful')
-      console.log(res);
     }
+    // if (session.data?.user?.email) {
+    //   // router.push(path?.redirect)
+    //   console.log(res);
+    // }
   };
-  if (session.data?.user?.email) {
-    router.push("/")
-  }
+  // if (session.data?.user?.email) {
+  //   router.push(path?.redirect)
+  // }
   console.log(session);
   return (
     <Suspense fallback={<span>Loading</span>}>
@@ -118,6 +126,7 @@ const Login = () => {
           </Link>
         </div>
       </div>
+      <Toaster></Toaster>
     </main>
     </Suspense>
   );
