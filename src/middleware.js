@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const middleware= async(request)=>{
@@ -18,5 +19,5 @@ export const middleware= async(request)=>{
 }
 
 export const config={
-  matcher:["/dashboard/:path*",'/all_chicken_feeds/:path*','/become_seller/:path*','/generate_idea/:path*']
+  matcher:["/dashboard/:path*",'/chicken_and_feeds/:path*','/become_seller/:path*','/generate_idea/:path*']
 }
