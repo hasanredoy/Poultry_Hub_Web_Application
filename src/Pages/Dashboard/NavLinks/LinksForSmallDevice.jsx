@@ -34,7 +34,7 @@ import { FaUsersRectangle } from "react-icons/fa6";
 const LinksForSmallDevice = () => {
   const pathname = usePathname();
   const user = useGetUser()
-  const role = useGetUserRole()
+  const role = useGetUserRole(user?.email)
   const [menu, setMenu] = useState(false);
   
   const handleLogOut = ()=>{
@@ -70,7 +70,7 @@ const LinksForSmallDevice = () => {
       <div
         className={` ${
           menu ? "block" : "hidden"
-        } absolute z-40 w-[60%] md:w-[40%] min-h-svh pt-8 md:pt-11  bg-base-300 `}
+        } absolute z-40 w-[60%] md:w-[40%] h-[calc(100dvh+100px)] pt-8 md:pt-11  bg-base-300 `}
       >
         <div className=" h-full flex max-h-screen flex-col justify-evenly">
           <div className=" flex-1">
@@ -218,7 +218,7 @@ const LinksForSmallDevice = () => {
             >
               <FaUsers></FaUsers>All Users{" "}
             </Link>
-            <Link
+            {/* <Link
               href={"/dashboard/all_users"}
               className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${
                 pathname == "/dashboard/all_users"
@@ -226,8 +226,8 @@ const LinksForSmallDevice = () => {
                   : " "
               }`}
             >
-              <FaUsers></FaUsers>All Users{" "}
-            </Link>
+              <FaUsersRectangle></FaUsersRectangle>All Sellers{" "}
+            </Link> */}
             <Link
               href={"/dashboard/all_seller"}
               className={`flex items-center my-3 text-sm md:text-base font-semibold md:font-bold gap-2 hover:   hover:rounded-r-md px-5 mr-4 ${

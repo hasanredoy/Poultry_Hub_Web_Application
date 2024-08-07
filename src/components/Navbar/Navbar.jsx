@@ -202,8 +202,8 @@ const Navbar = () => {
        {
         user&&<Link
         href={"/dashboard/my_cart"}
-        className="text-xl bg-gray-100  text-black p-2 px-4 rounded-full hover:bg-gray-300 relative "
-      > <span className="text-red-600 font-bold text-sm -top-0 right-0 absolute">{carts}</span>
+        className="text-base lg:text-xl bg-gray-100  text-black p-2 px-2 lg:px-4 rounded-full hover:bg-gray-300 relative "
+      > <span className="text-red-600 font-bold text-xs md:text-sm -top-0 right-0 absolute">{carts}</span>
         <MdOutlineShoppingCart></MdOutlineShoppingCart>
       </Link>
        }

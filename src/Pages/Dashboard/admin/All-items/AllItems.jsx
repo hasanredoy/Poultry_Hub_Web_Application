@@ -120,9 +120,9 @@ if(loader){
       subHeading={"Welcome Back"}
       title={"Here are all items"}
     ></Heading>
-  <section className=" flex justify-between  mx-8 my-5">
-  <h1 className="text-xl font-bold ">Total Items: {count}</h1>
-  <h1 className="text-xl font-bold ">Total Revenue: {price.toFixed(2)} $</h1>
+  <section className=" flex flex-col lg:flex-row justify-between items-start gap-5 lg:items-center mx-1 lg:mx-8 my-5">
+  <h1 className=" text-base lg:text-xl font-bold ">Total Items: {count}</h1>
+  <h1 className=" text-base lg:text-xl font-bold ">Total Revenue: {price.toFixed(2)} $</h1>
   </section>
     {/* table section  */}
     <section className="overflow-x-auto mt-10 w-[90%] bg-base-100 mx-auto ">

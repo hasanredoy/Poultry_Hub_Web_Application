@@ -31,6 +31,7 @@ import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 // get axios hook
 const axiosHook = useAxios()
 const loadStats = async (email)=>{
+  console.log({email});
   const {data} = await axiosHook.get(`/api/admin_stats/${email}`)
   console.log(data);
   return data
@@ -40,16 +41,16 @@ const AdminHome = () => {
   const user = useGetUser()
   // get user stats
   // const adminStats = {
-  //   totalItem: 5,
-  //   totalReviews: 2,
-  //   totalSell: 10,
-  //   decline: 2,
-  //   totalUsers:10,
-  //   totalRevenue:300,
-  //   adminListedItem:3
+    //   totalItem: 5,
+    //   totalReviews: 2,
+    //   totalSell: 10,
+    //   decline: 2,
+    //   totalUsers:10,
+    //   totalRevenue:300,
+    //   adminListedItem:3
   // };
-    // get admin stats
-const [adminStats,setAdminStats] = useState({})
+  // get admin stats
+  const [adminStats,setAdminStats] = useState({})
 const [loading, setLoading]=useState(true)
 const [chartData,setChartData ]=useState([0])
 
@@ -93,7 +94,7 @@ if(loading)return <LoadingSpinner></LoadingSpinner>
   //   },
  
   // ];
-const barChartLength =  parseInt(chartData.length)*120 
+const barChartLength =  parseInt(chartData?.length)*120 
 // console.log(barChartLength);
 
 // pie chart 
@@ -115,7 +116,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 
   return (
-    <main>
+    <main className=" overflow-hidden">
       {" "}
       <h2 className=" text-2xl font-bold my-5 ml-6">
         Hi Welcome Back <span className=" text-primary">{user?.name}</span>
@@ -230,7 +231,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
       {/* user info section */}
       <h3 className=" my-5 text-xl font-bold text-center">All Activities</h3>
       {/* user order info charts  section */}
-      <section className=" text-black w-full flex items-center mx-5 overflow-auto justify-center pl-24">
+      <section className=" text-black w-full flex items-center mx-5 overflow-x-auto justify-center pl-56 md:pl-10 lg:pl-24 mb-5">
         <div>
         <BarChart
           width={barChartLength}
@@ -264,7 +265,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
             dataKey="quantity"
           >
             
-            {chartData.map((entry, index) => (
+            {chartData?.map((entry, index) => (
               <Cell key={`index`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>

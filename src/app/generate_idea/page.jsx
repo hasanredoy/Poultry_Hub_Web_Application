@@ -1,9 +1,9 @@
-import GenerateIdea from "@/Pages/Home/GenerateIdea/GenerateIdea";
+import Generate_Idea from "@/Pages/Generate_Idea/Generate_Idea";
 
 const page = () => {
   return (
     <div className="mt-[54px] lg:mt-[54px]  ">
-      <GenerateIdea></GenerateIdea>
+      <Generate_Idea></Generate_Idea>
     </div>
   );
 };

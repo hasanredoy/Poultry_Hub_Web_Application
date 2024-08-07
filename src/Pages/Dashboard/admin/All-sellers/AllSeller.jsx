@@ -135,8 +135,8 @@ const [loader,setLoader]=useState(true)
         title={"Here are all Sellers"}
       ></Heading>
       {/* total user and search inp section */}
-      <section className=" flex justify-between items-center  mx-8 my-5">
-        <h1 className="text-xl font-bold ">Total Sellers: {sellerCount}</h1>
+      <section className="flex flex-col lg:flex-row justify-between items-start gap-5 lg:items-center mx-1 lg:mx-8 my-5">
+        <h1 className="text-base lg:text-xl font-bold ">Total Sellers: {sellerCount}</h1>
         <div className="join border">
           <input
             onBlur={(e) => setSearch(e.target?.value)}

@@ -1,5 +1,6 @@
 "use client";
 import Heading from "@/components/custom/Heading/Heading";
+import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 import Pagination from "@/components/custom/Pagination/Pagination";
 import Skeleton from "@/components/custom/Skeleton/Skeleton";
 import SkeletonTable from "@/components/custom/Skeleton/SkeletonTable";
@@ -38,7 +39,7 @@ const UserCart = () => {
 	const [count , setCount] =useState(0)
 	const [price , setPrice] =useState(0)
 
-  const [loading ,setLoading]=useState(false)
+  const [loading ,setLoading]=useState(true)
 	  // call pagination
 		const [totalPage,pages] = usePagination(count, 6);
     const session = useSession()
@@ -65,6 +66,7 @@ const UserCart = () => {
       const cartCount = await loadCartCount(user?.email);
       setCount(cartCount?.count);
       setPrice(cartCount?.price)
+      setLoading(false)
     };
     loader();
   }, [user, refetch]);
@@ -92,9 +94,12 @@ const UserCart = () => {
       }
     });
   };
+  if(loading){
+    return <LoadingSpinner/>
+  }
   if(!price){
     return<div className=" flex justify-center items-center flex-col gap-5 w-full h-[calc(100dvh-100px)] ">
-      <h1 className=" text-xl font-bold">Your Cart Is Empty Please Add Something To Your Cart</h1>
+      <h1 className=" text-xl text-center font-bold">Your Cart Is Empty Please Add Something To Your Cart</h1>
       <Link href={'/chicken_and_feeds'} className="btn-primary">Add</Link >
     </div>
   }
@@ -105,12 +110,12 @@ const UserCart = () => {
         subHeading={"Welcome"}
         title={"Have a look at your cart"}
       ></Heading>
-     <section className=" flex justify-between my-5 px-5">
-     <h1 className="text-xl ml-8 my-5 font-bold ">
+     <section className=" flex items-center justify-between my-5  px-0 lg:px-5">
+     <h1 className=" text-base lg:text-xl ml-8 my-5 font-bold ">
         Total Price: {price} $
       </h1>
       <Link  href={'/dashboard/payment'}>
-      <button className="btn btn-primary">Pay Now</button>
+      <button className=" btn-primary">Pay Now</button>
       </Link>
      </section>
       {/* table section  */}

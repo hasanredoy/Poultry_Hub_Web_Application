@@ -9,14 +9,14 @@ const ContactUs = () => {
   return (
     <main className=" mt-[54px] lg:mt-[54px]  my-10 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
       {/* banner section  */}
-      <section className="hero ">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+      <section className=" ">
+        <div className="flex justify-between items-center flex-col lg:flex-row-reverse">
           <Image
             alt="contact us"
             height={600}
             width={600}
             src={contactUs}
-            className="max-w-md rounded-lg "
+            className=" max-w-full lg:max-w-md rounded-lg "
           />
           <div>
             <h1 className="title">Get in Touch with Poultry Hub</h1>
@@ -48,7 +48,7 @@ const ContactUs = () => {
             height={400}
             width={400}
             src={messageImage}
-            className="max-w-md rounded-lg "
+            className=" max-w-full lg:max-w-md rounded-lg "
           />
           {/* form div  */}
           <div className="card bg-base-200 w-full max-w-md shrink-0 ">

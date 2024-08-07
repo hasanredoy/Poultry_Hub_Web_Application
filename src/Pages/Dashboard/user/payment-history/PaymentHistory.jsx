@@ -1,8 +1,10 @@
 'use client'
 import Heading from "@/components/custom/Heading/Heading";
+import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 import Skeleton from "@/components/custom/Skeleton/Skeleton";
 import useAxios from "@/hooks/useAxios";
 import useGetUser from "@/hooks/useGetUser";
+import Link from "next/link";
 import React, {  useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
@@ -17,6 +19,7 @@ const paymentLoader = async (email) => {
 const PaymentHistory = () => {
   //  get user
   const user = useGetUser()
+  const [loading , setLoading]=useState(true)
   // get payments
   const [payments,setPayments] = useState([])
   useEffect(()=>{ 
@@ -24,6 +27,7 @@ const PaymentHistory = () => {
       const payment =await paymentLoader(user?.email)
       console.log(payment);
       setPayments(payment)
+      setLoading(false)
     }
     loader()
   },[user])
@@ -31,9 +35,16 @@ const PaymentHistory = () => {
 
 
   
-if(!payments){
-  return <Skeleton></Skeleton>
-}
+
+  if(loading){
+    return <LoadingSpinner/>
+  }
+  if(payments?.length<1){
+    return<div className=" flex justify-center items-center flex-col gap-5 w-full h-[calc(100dvh-100px)] ">
+      <h1 className=" text-xl text-center font-bold">You don't have any payment history.</h1>
+      <Link href={'/dashboard'} className="btn-primary">Go back</Link >
+    </div>
+  }
   return (
     <main className=" mt-10">
       <Heading

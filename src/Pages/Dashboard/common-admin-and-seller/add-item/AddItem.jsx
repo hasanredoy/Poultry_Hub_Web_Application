@@ -136,7 +136,7 @@ if(form?.expireDate?.value<newDate){
                   Weight/Pcs
                 </span>
               </label>
-              <div className=" flex gap-2">
+              <div className=" flex  gap-1 md:gap-2">
                 <input
                   type="number"
                   placeholder=""
@@ -144,8 +144,9 @@ if(form?.expireDate?.value<newDate){
                   name="weight"
                   required
                 />
-                <select className=" select select-bordered" name="kg_pcs">
+                <select className=" " name="kg_pcs">
                   <option value="kg">KG</option>
+                  <option value="kg">PCS</option>
                 </select>
               </div>
             </div>

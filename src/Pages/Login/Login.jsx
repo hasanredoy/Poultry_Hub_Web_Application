@@ -32,23 +32,25 @@ const Login = () => {
       email,
       password,
       redirect: true,
-      callbackUrl: path?path:"/"
+      // callbackUrl: path?path:"/"
     });
     if (res) {
       setLoading(false);
     }
     if(user){
-      router.push(path)
       toast.success('login successful')
     }
     // if (session.data?.user?.email) {
-    //   // router.push(path?.redirect)
-    //   console.log(res);
-    // }
-  };
-  // if (session.data?.user?.email) {
-  //   router.push(path?.redirect)
-  // }
+      //   // router.push(path?.redirect)
+      //   console.log(res);
+      // }
+    };
+    // if (session.data?.user?.email) {
+      //   router.push(path?.redirect)
+      // }
+     if(user){
+      router.push(path?path:'/')
+     }
   console.log(session);
   return (
     <Suspense fallback={<span>Loading</span>}>

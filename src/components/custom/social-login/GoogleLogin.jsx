@@ -22,7 +22,9 @@ const GoogleLogin = () => {
       toast.success('login successful')
     }
   }
-  router.push(path)
+ if(user){
+  router.push(path?path:"/")
+ }
 
   return (
     <div className=" flex justify-center my-5 ">

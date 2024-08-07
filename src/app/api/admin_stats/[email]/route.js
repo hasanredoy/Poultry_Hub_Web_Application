@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 export const GET = async (request, { params }) => {
   // get cart data
   const adminEmail = await params?.email;
+  console.log({adminEmail});
   try {
     const db = await connectDB();
     // all items collection

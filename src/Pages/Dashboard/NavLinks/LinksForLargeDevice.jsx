@@ -33,7 +33,7 @@ const LinksForLargeDevice = () => {
   const pathname = usePathname();
   const user = useGetUser()
   const role = useGetUserRole(user?.email)
-  // console.log(role);
+  console.log(role);
   const handleLogOut = ()=>{
     swal({
     title: "Are you sure?",
