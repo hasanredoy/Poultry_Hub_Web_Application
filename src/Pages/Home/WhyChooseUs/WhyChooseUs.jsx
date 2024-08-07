@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
   }, []);
 
   return (
-    <main className="my-28 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
+    <main className="my-28 max-w-[90%] overflow-hidden lg:max-w-[85%] mx-auto">
       <div>
         <Heading subHeading={"Find Out"} title={"Why Choose Us.."}></Heading>
       </div>

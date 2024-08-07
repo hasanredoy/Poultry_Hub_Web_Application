@@ -135,7 +135,7 @@ const Navbar = () => {
       }  mb-0`}
     >
       {/* nav bar start */}
-      <div className=" flex gap-10 items-center ">
+      <div className=" flex gap-2 lg:gap-10 items-center ">
         <div>
           <div className=" cursor-pointer ">
             {showLinks ? (

@@ -43,7 +43,20 @@ const OurPartners = () => {
   loader()
  },[])
  if(loading){
-  return <Skeleton></Skeleton>
+  return   <div className=" grid grid-cols-1 md:grid-cols-2 my-10 justify-center md:w-[80%] mx-auto gap-10">
+  <div className="flex w-full flex-col gap-4">
+    <div className="skeleton h-44 w-full"></div>
+    <div className="skeleton h-4 w-28"></div>
+    <div className="skeleton h-4 w-full"></div>
+    <div className="skeleton h-4 w-full"></div>
+  </div>
+  <div className="flex w-full flex-col gap-4">
+    <div className="skeleton h-44 w-full"></div>
+    <div className="skeleton h-4 w-28"></div>
+    <div className="skeleton h-4 w-full"></div>
+    <div className="skeleton h-4 w-full"></div>
+  </div>
+</div>
  }
   return (
     <main className="my-20 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
@@ -51,7 +64,7 @@ const OurPartners = () => {
         subHeading={"Our Partners"}
         title={"Here all of our loved Partners"}
       ></Heading>
-      <section className="mt-10 h-[320px] bg-base-100 ">
+      <section className="mt-10 overflow-auto h-auto md:h-[320px] bg-base-100 ">
         
       <Swiper
           slidesPerView={3}
@@ -72,9 +85,9 @@ const OurPartners = () => {
             <SwiperSlide>
                <div
             key={partner?._id}
-            className="flex relative flex-col p-3 bg-base-300 shadow rounded-lg max-h-[300px] min-h-[300px] text-start "
+            className="flex w-full min-w-[300px] relative flex-col p-3 bg-base-300 shadow rounded-lg max-h-[300px] min-h-[300px] text-start "
           >
-            <div className=" px-5 mb-5">
+            <div className=" px-2 lg:px-5 mb-5">
               <Image
                 src={partner?.image}
                 width={200}

@@ -6,7 +6,10 @@
 
 .swiper-slide {
   /* Center slide text vertically */
-  display: flex;
+  display: flex ;
+  gap: 10px;
+  overflow-x: auto;
+  min-width: 300px;
 
 }
 
