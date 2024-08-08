@@ -108,7 +108,7 @@ if(loader){
   return <LoadingSpinner></LoadingSpinner>
 }
   
-  if(allChickenAndFeeds.length<1){
+  if(allChickenAndFeeds?.length<1){
     return<div className=" flex justify-center items-center flex-col gap-5 w-full h-[calc(100dvh-100px)] ">
       <h1 className=" text-xl font-bold">There is no item available at this time</h1>
       <Link href={'/'} className="btn-primary">Back Home</Link >

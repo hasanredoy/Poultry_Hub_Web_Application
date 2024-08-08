@@ -36,7 +36,7 @@ const Navbar = () => {
   const user = useGetUser();
 
   //get cart 
-  const {carts} =useContext(GeneralContext)
+  const {carts} =useContext(GeneralContext)||{carts:0}
   // console.log(carts);
   // get path name
   const pathName = usePathname();

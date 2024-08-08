@@ -36,7 +36,7 @@ const CheckOutForm = () => {
   const [transactionID, setTransactionID] = useState("");
   const [delivery, setDelivery] = useState();
   const [ price, setPrice]=useState(0)
-   const {totalCartItem}=useContext(GeneralContext)
+   const {totalCartItem}=useContext(GeneralContext)||{}
 
    const itemsName = totalCartItem.map(name => name?.itemName)
   console.log({itemsName});

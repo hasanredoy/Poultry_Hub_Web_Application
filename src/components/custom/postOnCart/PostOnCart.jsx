@@ -11,7 +11,7 @@ const PostOnCart = ({ cart}) => {
   const user = useGetUser()
   const router = useRouter()
   const axiosHook = useAxios();
-  const {carts,refetch,setRefetch}=useContext(GeneralContext)
+  const {refetch,setRefetch}=useContext(GeneralContext)||{}
   // console.log({carts});
   const cartData = {
     name: user?.name,

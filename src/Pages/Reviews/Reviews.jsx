@@ -33,7 +33,7 @@ const Reviews = () => {
     setRefetchReview,
     currentPage,
     setCurrentPage,
-  } = useContext(GeneralContext);
+  } = useContext(GeneralContext) || {};
   // count state
   const [count, setCount] = useState(0);
 
@@ -161,9 +161,9 @@ const Reviews = () => {
           title={"Hear What Our Users Says!"}
         ></Heading>
         {/* map reviews    */}
-        {reviews.length > 0 ? (
+        {reviews?.length > 0 ? (
           <div className="grid mt-5 grid-cols-1 lg:grid-cols-2 gap-5">
-            {reviews.map((review, index) => (
+            {reviews?.map((review, index) => (
               <div
                 key={index}
                 className="relative max-w-2xl rounded-md bg-base-100 shadow-md border-gray-300 border  p-4 sm:flex sm:space-x-6"

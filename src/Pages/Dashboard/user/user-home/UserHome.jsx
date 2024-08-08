@@ -34,7 +34,7 @@ const paymentLoader = async (email) => {
 };
 
 const UserHome = () => {
-  const {carts}=useContext(GeneralContext)
+  const {carts}=useContext(GeneralContext)||{carts:0}
 
   const [userReviews , setUserReviews]=useState([])
   const [userPayments,setUserPayments] = useState([])

@@ -42,11 +42,11 @@ const router = useRouter()
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    if (!phone||phone.length<5) {
+    if (!phone||phone?.length<5) {
       return toast.error("Number is not valid");
       
     }
-    if (password.length < 6) {
+    if (password?.length < 6) {
       return toast.error("password must be 6 or more");
     }
     const userData = {

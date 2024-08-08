@@ -54,7 +54,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const loader = async () => {
       const cartData = await loadCart(user?.email);
-      setCart(cartData?.count);
+      setCart(cartData?.count?cartData?.count:0);
       setTotalCartItem(cartData?.result)
     };
     loader();
@@ -91,7 +91,7 @@ const ContextProvider = ({ children }) => {
   // console.log(reviews);
 
   const contextInfo = {
-    carts: cart,
+    carts: cart||"",
     refetch,
     setRefetch,
     user,

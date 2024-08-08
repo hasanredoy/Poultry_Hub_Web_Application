@@ -41,7 +41,7 @@ const [loader,setLoader]=useState(true)
   const [refetch, setRefetch] = useState(false);
 
   // current page state
-  const { sellerCount } = useContext(GeneralContext);
+  const { sellerCount } = useContext(GeneralContext)||{sellerCount:0}
   console.log(sellerCount);
   const [currentPage, setCurrentPage] = useState(0);
   //  get pagination hook
@@ -119,7 +119,7 @@ const [loader,setLoader]=useState(true)
     return <LoadingSpinner></LoadingSpinner>
   }
 
-  if(allSellers.length<1){
+  if(allSellers?.length<1){
     return<div className=" flex justify-center items-center flex-col gap-5 w-full h-[calc(100dvh-100px)] ">
       <h1 className=" text-xl font-bold">No seller request at this time </h1>
       <Link href={'/'} className="btn-primary">Back Home</Link >

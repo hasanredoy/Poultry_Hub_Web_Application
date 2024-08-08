@@ -36,7 +36,7 @@ const AllUsers = () => {
  const [refetch, setRefetch]=useState(false)
  
  // current page state 
- const {userCount}=useContext(GeneralContext)
+ const {userCount}=useContext(GeneralContext)||{userCount:0}
  console.log(userCount);
  const [currentPage,setCurrentPage]=useState(0)
 //  get pagination hook 

@@ -65,7 +65,7 @@ useEffect(()=>{
     },
 
   ];
-const barChartLength =  parseInt(chartData.length)*150 
+const barChartLength =  parseInt(chartData?.length)*150 
 // console.log(barChartLength);
 
 // pie chart 
@@ -187,7 +187,7 @@ if(loading){
           >
             
             {chartData.map((entry, index) => (
-              <Cell key={`index`} fill={COLORS[index % COLORS.length]} />
+              <Cell key={`index`} fill={COLORS[index % COLORS?.length]} />
             ))}
           </Pie>
           <Tooltip></Tooltip>

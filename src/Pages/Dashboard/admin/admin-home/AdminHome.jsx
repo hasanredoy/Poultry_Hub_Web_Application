@@ -266,7 +266,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
           >
             
             {chartData?.map((entry, index) => (
-              <Cell key={`index`} fill={COLORS[index % COLORS.length]} />
+              <Cell key={`index`} fill={COLORS[index % COLORS?.length]} />
             ))}
           </Pie>
           <Tooltip></Tooltip>

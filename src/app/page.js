@@ -1,3 +1,5 @@
+export const dynamic =  "force-dynamic"
+
 import Main from "@/layout/Main";
 
 export default function Home() {

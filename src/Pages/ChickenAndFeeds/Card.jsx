@@ -35,7 +35,7 @@ const Card = ({ item }) => {
             </span>
           </h5>
           <h5 className=" text-sm md:text-base  flex gap-2 justify-start md:ml-48 lg:ml-20 xl:ml-40 flex-1 ">
-            {item.category == "Eggs" ? "Quantity" : "Weight"} :{" "}
+            {item?.category == "Eggs" ? "Quantity" : "Weight"} :{" "}
             <span className="   font-bold">
               {item?.weight}
             </span>
