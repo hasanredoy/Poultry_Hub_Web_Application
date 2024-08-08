@@ -38,7 +38,7 @@ const CheckOutForm = () => {
   const [ price, setPrice]=useState(0)
    const {totalCartItem}=useContext(GeneralContext)||{}
 
-   const itemsName = totalCartItem.map(name => name?.itemName)
+   const itemsName = totalCartItem?.map(name => name?.itemName)
   console.log({itemsName});
 
   useEffect(()=>{
@@ -113,7 +113,7 @@ const CheckOutForm = () => {
     console.log(paymentMethod);
 
     if (paymentMethodError) {
-      console.log("Payment method error:", paymentMethodError);
+      // console.log("Payment method error:", paymentMethodError);
       setError(paymentMethodError.message);
       return;
     }
@@ -151,7 +151,7 @@ const CheckOutForm = () => {
       // console.log(res?.data);
       if(res.data?.result?.insertedId){
         const updateResponse = await axiosHook.patch(`/api/delete_cart?email=${user?.email}`)
-        console.log(updateResponse);
+        // console.log(updateResponse);
         if(updateResponse.data?.result?.modifiedCount>0)
        { swal({
           text: "Payment Successfully",
