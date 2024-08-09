@@ -58,44 +58,44 @@ const CheckOutForm = () => {
 //   // console.log(totalPrice);
  
 
-//   const handleDelivery = async (e) => {
-//     e.preventDefault();
-//     const form = e.target;
-//     const house = form.house.value;
-//     const location = form.location.value;
-//     const date = form.date.value;
-//     const newDate = moment(new Date()).format().split("T")[0];
+  // const handleDelivery = async (e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+  //   const house = form.house.value;
+  //   const location = form.location.value;
+  //   const date = form.date.value;
+  //   const newDate = moment(new Date()).format().split("T")[0];
 
-//     if (date < newDate) {
-//       swal({
-//         text: "Invalid Date",
-//         icon: "error",
-//       });
-//       return;
-//     }
+  //   if (date < newDate) {
+  //     swal({
+  //       text: "Invalid Date",
+  //       icon: "error",
+  //     });
+  //     return;
+  //   }
 
-//     const deliveryInfo = {
-//       phone: phoneNumber,
-//       location: location,
-//       house: house,
-//       date: date,
-//     };
+  //   const deliveryInfo = {
+  //     phone: phoneNumber,
+  //     location: location,
+  //     house: house,
+  //     date: date,
+  //   };
 
-//     if (house && location && date) {
-//       setShowPaymentInput(true);
-//       setDelivery(deliveryInfo);
+  //   if (house && location && date) {
+  //     setShowPaymentInput(true);
+  //     setDelivery(deliveryInfo);
   
-//       try {
-//         const res = await axiosHook.post("/api/create-payment-intent", {
-//            price:totalPrice
-//         });
-//         // console.log(res.data,'hello');
-//         setClientSecret(res.data?.paymentIntent?.client_secret);
-//       } catch (error) {
-//         console.error("Error creating payment intent:", error);
-//       }
-//     }
-//   };
+  //     try {
+  //       const res = await axiosHook.post("/api/create-payment-intent", {
+  //          price:totalPrice
+  //       });
+  //       // console.log(res.data,'hello');
+  //       setClientSecret(res.data?.paymentIntent?.client_secret);
+  //     } catch (error) {
+  //       console.error("Error creating payment intent:", error);
+  //     }
+  //   }
+  // };
 // // console.log(clientSecret);
 // // console.log(clientSecret.paymentIntent?.client_secret);
 //   const handleSubmit = async (event) => {

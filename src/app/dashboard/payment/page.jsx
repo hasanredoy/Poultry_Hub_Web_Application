@@ -62,7 +62,7 @@ export default function App() {
     <div className="App">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm clientS={clientSecret} />
         </Elements>
       )}
     </div>
