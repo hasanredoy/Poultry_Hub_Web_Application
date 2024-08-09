@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   PaymentElement,
   useStripe,
@@ -11,12 +11,20 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import swal from "sweetalert";
 import useAxios from "@/hooks/useAxios";
+import { ImSpinner9 } from "react-icons/im";
+import { GeneralContext } from "@/services/ContextProvider";
+import moment from "moment";
 
-const axiosHook = useAxios()
 
+const axiosHook = useAxios();
+const loadCartCount = async (email) => {
+  const { data } = await axiosHook.get(`/api/count/cart?email=${email}`);
+  //  console.log(data);
+  return data;
+};
 
 export default function CheckoutForm({ clientS }) {
-  console.log({ clientS });
+  // console.log({ clientS });
   const stripe = useStripe();
   const elements = useElements();
   // get user
@@ -24,15 +32,33 @@ export default function CheckoutForm({ clientS }) {
   // phone number input
   const [phoneNumber, setPhoneNumber] = useState();
   // state for show user payment input
-  const [showPaymentInput, setShowPaymentInput] = useState(false);
+  const [showPaymentInput, setShowPaymentInput] = useState(true);
 
   const [transactionID, setTransactionID] = useState("");
   const [message, setMessage] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-// state for delevery info 
+  // state for delevery info
   const [delivery, setDelivery] = useState();
 
+  // price state
+  const [price, setPrice] = useState(0);
+  // get total cart item
+  const { totalCartItem } = useContext(GeneralContext) || {};
+  // get items name by map total cart item
+  const itemsName = totalCartItem?.map((name) => name?.itemName);
+  //   console.log({itemsName});
 
+  useEffect(() => {
+    const loader = async () => {
+      // load cart price
+      const cartData = await loadCartCount(user?.email);
+      console.log({ cartData });
+      setPrice(cartData?.price);
+    };
+    loader();
+  }, [user]);
+  // parse int price
+  const totalPrice = parseInt(price);
 
   const handleDelivery = async (e) => {
     e.preventDefault();
@@ -42,7 +68,7 @@ export default function CheckoutForm({ clientS }) {
     const date = form.date.value;
     const newDate = moment(new Date()).format().split("T")[0];
 
-// show a error toast if data is invalid 
+    // show a error toast if data is invalid
     if (date < newDate) {
       swal({
         text: "Invalid Date",
@@ -58,12 +84,10 @@ export default function CheckoutForm({ clientS }) {
       date: date,
     };
 
-    // proceed use if hose , location and data is there 
+    // proceed use if hose , location and data is there
     if (house && location && date) {
-      setShowPaymentInput(true);
+      setShowPaymentInput(false);
       setDelivery(deliveryInfo);
-  
-      
     }
   };
 
@@ -82,35 +106,44 @@ export default function CheckoutForm({ clientS }) {
     }
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+       console.log({paymentIntent});
+       if(paymentIntent?.status){
+        const payment = {
+          transactionID: Math.random() * 3000,
+          intent: paymentIntent.id,
+          email: user?.email,
+          name: user?.displayName,
+          itemsName,
+          totalPrice,
+          delivery,
+          paymentDate: new Date(),
+          status: "order received",
+        };
+        // post payment info in monogo db
+        axiosHook.post("/api/payment", payment).then((res) => {
+          if (res.data?.result?.insertedId) {
+            // delete user email from carts collection 
+            axiosHook
+              .patch(`/api/delete_cart?email=${user?.email}`)
+              .then((updateResponse) => {
+                if (updateResponse?.data?.result?.modifiedCount > 0) {
+                  // if all ok then show a success message
+                  swal({
+                    text: "Payment Successfully",
+                    icon: "success",
+                  });
+                }
+              });
+            // console.log(updateResponse);
+          }
+        });
+       }
       switch (paymentIntent.status) {
         case "succeeded":
+          setTransactionID(paymentIntent?.id)
           setMessage("Payment succeeded!");
-          
-          const payment = {
-            transactionID: Math.random()*3000,
-            email: user?.email,
-            name: user?.displayName,
-            itemsName,
-            totalPrice,
-            delivery,
-            paymentDate:new Date(),
-            status: "order received"
-          };
-          // console.log("Payment successful:", payment);
-          const res =  axiosHook.post('/api/payment',payment)
-          // console.log(res?.data);
-          if(res.data?.result?.insertedId){
-            const updateResponse =  axiosHook.patch(`/api/delete_cart?email=${user?.email}`)
-            // console.log(updateResponse);
-            if(updateResponse.data?.result?.modifiedCount>0)
-           { swal({
-              text: "Payment Successfully",
-              icon: "success",
-            });
-          router.push("/dashboard/payment_history")
-          }
-        }
-          console.log({ paymentIntent });
+      
+
           break;
         case "processing":
           setMessage("Your payment is processing.");
@@ -136,6 +169,36 @@ export default function CheckoutForm({ clientS }) {
 
     setIsLoading(true);
 
+
+    const payment = {
+      transactionID:transactionID|| Math.random() * 3000,
+      email: user?.email,
+      name: user?.displayName,
+      itemsName,
+      totalPrice,
+      delivery,
+      paymentDate: new Date(),
+      status: "order received",
+    };
+    // post payment info in monogo db
+    axiosHook.post("/api/payment", payment).then((res) => {
+     
+        // delete user email from carts collection 
+        axiosHook
+          .patch(`/api/delete_cart?email=${user?.email}`)
+          .then((updateResponse) => {
+            if (updateResponse?.data?.result?.modifiedCount > 0) {
+              // if all ok then show a success message
+              swal({
+                text: "Payment Successfully",
+                icon: "success",
+              });
+            }
+          });
+        // console.log(updateResponse);
+      
+    });
+   
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
@@ -164,81 +227,90 @@ export default function CheckoutForm({ clientS }) {
 
   return (
     <>
-      {showPaymentInput?<form className=" flex flex-col" onSubmit={handleDelivery}>
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="form-control">
-            <label className="label">
-              <span className="text-lg">Your Phone Number</span>
-            </label>
-            <PhoneInput
-              className="input input-bordered bg-white text-black"
-              international
-              countryCallingCodeEditable={false}
-              placeholder="Enter phone number"
-              value={phoneNumber}
-              onChange={setPhoneNumber}
-            />
+    <h1 className="text-base text-center my-5 lg:text-xl font-bold ">Please provide your information blew </h1>
+      {showPaymentInput ? (
+        <form className=" flex flex-col p-4" onSubmit={handleDelivery}>
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="form-control">
+              <label className="label">
+                <span className="text-lg">Your Phone Number</span>
+              </label>
+              <PhoneInput
+                className="input input-bordered bg-white text-black"
+                international
+                countryCallingCodeEditable={false}
+                placeholder="Enter phone number"
+                value={phoneNumber}
+                onChange={setPhoneNumber}
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="text-base md:text-lg">Delivery Location</span>
+              </label>
+              <input
+                type="text"
+                placeholder="location"
+                className="input input-bordered bg-white text-black focus:outline-sky-200"
+                required
+                name="location"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="text-base md:text-lg">House Number</span>
+              </label>
+              <input
+                type="number"
+                placeholder="House Number"
+                className="input input-bordered bg-white text-black focus:outline-sky-200"
+                required
+                name="house"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="text-base md:text-lg">Delivery Date</span>
+              </label>
+              <input
+                type="date"
+                className="input input-bordered bg-white text-black focus:outline-sky-200"
+                required
+                name="date"
+              />
+            </div>
+          </section>
+          <div className=" flex justify-center w-full mt-5">
+            <button className=" btn-primary" type="submit">
+              Next
+            </button>
           </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="text-base md:text-lg">Delivery Location</span>
-            </label>
-            <input
-              type="text"
-              placeholder="location"
-              className="input input-bordered bg-white text-black focus:outline-sky-200"
-              required
-              name="location"
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="text-base md:text-lg">House Number</span>
-            </label>
-            <input
-              type="number"
-              placeholder="House Number"
-              className="input input-bordered bg-white text-black focus:outline-sky-200"
-              required
-              name="house"
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="text-base md:text-lg">Delivery Date</span>
-            </label>
-            <input
-              type="date"
-              className="input input-bordered bg-white text-black focus:outline-sky-200"
-              required
-              name="date"
-            />
-          </div>
-        </section>
-        <div className=" flex justify-center w-full mt-5">
-          <button className=" btn-primary" type="submit">
-            Next
+        </form>
+      ) : (
+        <form id="payment-form" className="p-5 " onSubmit={handleSubmit}>
+          <PaymentElement
+            id="payment-element"
+            options={paymentElementOptions}
+          />
+        <div className=" flex justify-center items-start mt-2">
+        <button
+            className="btn-primary"
+            disabled={isLoading || !stripe || !elements}
+            id="submit"
+          >
+            <span id="button-text">
+              {isLoading ? (
+                <div className="spinner" id="spinner"><ImSpinner9 className=" animate-spin"/></div>
+              ) : (
+                "Pay now"
+              )}
+            </span>
           </button>
         </div>
-      </form>:
-      <form id="payment-form" onSubmit={handleSubmit}>
-        <PaymentElement id="payment-element" options={paymentElementOptions} />
-        <button
-          className="btn-primary"
-          disabled={isLoading || !stripe || !elements}
-          id="submit"
-        >
-          <span id="button-text">
-            {isLoading ? (
-              <div className="spinner" id="spinner"></div>
-            ) : (
-              "Pay now"
-            )}
-          </span>
-        </button>
-        {/* Show any error or success messages */}
-        {message && <div id="payment-message">{message}</div>}
-      </form>}
+          {/* Show any error or success messages */}
+          {message && <div id="payment-message">{message}</div>}
+        </form>
+      )}
     </>
   );
 }

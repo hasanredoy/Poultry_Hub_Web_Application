@@ -46,7 +46,7 @@ export default function App() {
      axiosHook.post('/api/create_payment_intent',{ items: [{ id: "xl-tshirt" }]} )
   
       .then((data) => {
-        console.log(data?.data);
+        // console.log(data?.data);
         setClientSecret(data?.data?.clientSecret)});
   }, []);
 
