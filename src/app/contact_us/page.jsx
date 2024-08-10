@@ -5,6 +5,12 @@ import messageImage from "../../../public/contactus/message.png";
 import Heading from "@/components/custom/Heading/Heading";
 import { FaBuilding, FaClock, FaLocationArrow } from "react-icons/fa";
 import { MdHome, MdLocationPin, MdMail, MdPhone, MdStreetview } from "react-icons/md";
+
+export const metadata = {
+  title: "Contact Us",
+  description: "poultry hub contact us page ",
+};
+
 const ContactUs = () => {
   return (
     <main className=" mt-[54px] lg:mt-[54px]  my-10 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">

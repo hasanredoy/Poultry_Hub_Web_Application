@@ -14,6 +14,7 @@ import useAxios from "@/hooks/useAxios";
 import { ImSpinner9 } from "react-icons/im";
 import { GeneralContext } from "@/services/ContextProvider";
 import moment from "moment";
+import { useRouter } from "next/navigation";
 
 
 const axiosHook = useAxios();
@@ -39,6 +40,8 @@ export default function CheckoutForm({ clientS }) {
   const [isLoading, setIsLoading] = React.useState(false);
   // state for delevery info
   const [delivery, setDelivery] = useState();
+
+  const router = useRouter()
 
   // price state
   const [price, setPrice] = useState(0);
@@ -107,37 +110,8 @@ export default function CheckoutForm({ clientS }) {
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
        console.log({paymentIntent});
-       if(paymentIntent?.status){
-        const payment = {
-          transactionID: Math.random() * 3000,
-          intent: paymentIntent.id,
-          email: user?.email,
-          name: user?.displayName,
-          itemsName,
-          totalPrice,
-          delivery,
-          paymentDate: new Date(),
-          status: "order received",
-        };
-        // post payment info in monogo db
-        axiosHook.post("/api/payment", payment).then((res) => {
-          if (res.data?.result?.insertedId) {
-            // delete user email from carts collection 
-            axiosHook
-              .patch(`/api/delete_cart?email=${user?.email}`)
-              .then((updateResponse) => {
-                if (updateResponse?.data?.result?.modifiedCount > 0) {
-                  // if all ok then show a success message
-                  swal({
-                    text: "Payment Successfully",
-                    icon: "success",
-                  });
-                }
-              });
-            // console.log(updateResponse);
-          }
-        });
-       }
+       setTransactionID(paymentIntent?.id)
+    
       switch (paymentIntent.status) {
         case "succeeded":
           setTransactionID(paymentIntent?.id)
@@ -189,6 +163,7 @@ export default function CheckoutForm({ clientS }) {
           .then((updateResponse) => {
             if (updateResponse?.data?.result?.modifiedCount > 0) {
               // if all ok then show a success message
+              router.push('/dashboard/payment_history')
               swal({
                 text: "Payment Successfully",
                 icon: "success",

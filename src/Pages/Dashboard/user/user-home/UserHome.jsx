@@ -103,7 +103,7 @@ const UserHome = () => {
             </div>
             <div className="flex flex-col justify-center align-middle">
               <h1 className="text-3xl font-bold leading-none">
-                {userStats?.cart}
+                {userStats?.cart||0}
               </h1>
               <p className="capitalize">Cart item</p>
             </div>
@@ -120,7 +120,7 @@ const UserHome = () => {
             </div>
             <div className="flex flex-col justify-center align-middle">
               <h1 className="text-3xl font-bold leading-none">
-                {userStats?.reviews}
+                {userStats?.reviews||0}
               </h1>
               <p className="capitalize">Review</p>
             </div>
@@ -137,7 +137,7 @@ const UserHome = () => {
             </div>
             <div className="flex flex-col justify-center align-middle">
               <h1 className="text-3xl font-bold leading-none">
-                {userStats?.payments}
+                {userStats?.payments||0}
               </h1>
               <p className="capitalize">Payment</p>
             </div>
@@ -161,7 +161,7 @@ const UserHome = () => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis dataKey='name' />
+          <YAxis dataKey='count' />
           <Tooltip />
           <Legend />
           <Bar dataKey="count" stackId="a" fill="#fe6702" />

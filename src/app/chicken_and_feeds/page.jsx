@@ -1,4 +1,8 @@
 import ChickenAndFeeds from "@/Pages/ChickenAndFeeds/ChickenAndFeeds";
+export const metadata = {
+  title: "Chicken And Feeds",
+  description: "poultry hub chicken and feeds page, where user can buy any poultry product in cheap price . ",
+};
 
 const Chicken_and_feeds = () => {
   return (
