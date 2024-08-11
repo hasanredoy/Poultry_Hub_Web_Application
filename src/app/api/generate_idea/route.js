@@ -14,7 +14,13 @@ try {
   const resp = await result.response;
   const text = resp.text();
   console.log(text);
-  return NextResponse.json({text})
+      //  Remove special characters (*, etc.)
+      let normalizedText = text.replace(/[*]/g, '');
+
+      // Normalize white spaces
+      normalizedText = normalizedText.replace(/\s+/g, ' ').trim();
+  
+  return NextResponse.json({text:normalizedText})
 } catch (error) {
   return NextResponse.json({error})
   

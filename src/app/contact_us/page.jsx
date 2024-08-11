@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import contactUs from "../../../public/contactus/contact_us.png";
 import messageImage from "../../../public/contactus/message.png";

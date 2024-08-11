@@ -1,10 +1,7 @@
 'use client'
 import DetailsPage from "@/Pages/ChickenAndFeeds/DetailsPage/DetailsPage";
 import { useParams } from "next/navigation";
-export const metadata = {
-  title: " Details | Chicken And Feeds",
-  description: " ",
-};
+
 const page = () => {
   const {id} = useParams()
   return (

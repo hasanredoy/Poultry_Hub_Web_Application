@@ -1,33 +1,38 @@
 'use client'
 import Image from 'next/image';
 import bannerImage from '../../../public/generateIdea/ai-cloud-concept-with-robot-arm.jpg'
-import { FaArrowUp, FaLocationArrow } from 'react-icons/fa';
+import { FaArrowUp, FaLocationArrow, FaTrashAlt } from 'react-icons/fa';
 import aiIcon from '../../../public/generateIdea/chatbot-0.png'
 import useAxios from '@/hooks/useAxios';
 import axios from 'axios';
 import { useState } from 'react';
+import { ImSpinner9 } from 'react-icons/im';
 
 const Generate_Idea = () => {
   const [promptInput , setPromptInput]=useState('')
   const [generatedText, setGeneratedText]= useState('')
+  const [loading, setLoading]= useState(false)
   // get axios 
   const axiosHook= useAxios()
   const handlePrompt= async(e)=>{
     e.preventDefault()
+    setLoading(true)
+    setGeneratedText('')
     const prompt=e.target.text.value
     console.log(prompt);
     const res = await axiosHook.post('/api/generate_idea',{prompt})
     setGeneratedText(res?.data?.text)
-    console.log(res.data);
+    // console.log(res.data);
+    setLoading(false)
   }
   return (
     <main className='my-28 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto flex gap-10 '>
       {/* image section  */}
-      <section className='hidden lg:block'>
-        <Image src={bannerImage} className=' h-[500px]' alt='ai banner' width={500} height={800}></Image>
+      <section className='hidden lg:block flex-1'>
+        <Image src={bannerImage} className=' w-full h-[500px]' alt='ai banner' width={500} height={800}></Image>
       </section>
       {/* ai section  */}
-      <section>
+      <section className=' flex-1'>
          {/* prompt div  */}
          <div className='space-y-5 mx-auto'>
             <button onClick={()=>setPromptInput('How to Build A Chicken Farm')} className='btn-prompt'>How to Build A Chicken Farm?</button>
@@ -40,8 +45,11 @@ const Generate_Idea = () => {
 
          </div>
          {/* section for generated text  */}
-         <section>
-          <h2 className=' text-lg font-semibold p-5'>{generatedText?generatedText:''}</h2>
+         <section className={` ${generatedText?"block":"hidden"}  h-40 overflow-auto bg-slate-100 text-black mt-4 `}>
+          <h2 className=' text-base font-medium p-5'>{generatedText?generatedText:''}</h2>
+        <button onClick={()=>setGeneratedText('')} className=' text-red-600 text-lg btn'>
+        <FaTrashAlt ></FaTrashAlt>
+        </button>
          </section>
  {/* input section  */}
      <section className=' mt-14 flex gap-6  items-center '>
@@ -55,8 +63,8 @@ const Generate_Idea = () => {
          name='text'
          defaultValue={promptInput}
          placeholder="Ask Anything"
-         className=" px-3 pr-3 input border border-gray-400 outline-none  w-full min-w-[100%] " />
-       <button type='submit' className="right-0  absolute border-2 px-4 text-white py-4 -top-0.5 rounded-r-md bg-primary   flex items-center gap-2"><FaArrowUp/></button>
+         className=" px-3 pr-8 input border border-gray-400 outline-none  w-full min-w-[100%] " />
+       <button disabled={loading} type='submit' className="right-0  absolute border-2 px-4 text-white py-4 -top-0.5 rounded-r-md bg-primary   flex items-center gap-2">{loading?<ImSpinner9 className=' animate-spin' />:<FaArrowUp/>}</button>
      </div>  
       </form>
             </section> 
