@@ -15,6 +15,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "./banner.css";
 import Link from "next/link";
 
+
 const Banner = () => {
   return (
     <header className=" p-0 m-0 ">
@@ -57,7 +58,7 @@ const Banner = () => {
                   <p className="mb-5 description">
                   We take care of yor health buy fresh chickens and feed directly from trusted farms and suppliers. Enjoy peace of mind knowing your farm is equipped with the freshest products available
                   </p>
-                  <Link href={'/chicken_and_feeds'} className=" btn-primary">Buy NoW</Link>
+                 <Link href={'/chicken_and_feeds'} className=" btn-primary">Buy NoW</Link>
                 </div>
               </div>
             </div>
