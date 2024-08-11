@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image';
 import bannerImage from '../../../public/generateIdea/ai-cloud-concept-with-robot-arm.jpg'
-import { FaLocationArrow } from 'react-icons/fa';
+import { FaArrowUp, FaLocationArrow } from 'react-icons/fa';
 import aiIcon from '../../../public/generateIdea/chatbot-0.png'
 import useAxios from '@/hooks/useAxios';
 import axios from 'axios';
@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 const Generate_Idea = () => {
   const [promptInput , setPromptInput]=useState('')
+  const [generatedText, setGeneratedText]= useState('')
   // get axios 
   const axiosHook= useAxios()
   const handlePrompt= async(e)=>{
@@ -16,6 +17,7 @@ const Generate_Idea = () => {
     const prompt=e.target.text.value
     console.log(prompt);
     const res = await axiosHook.post('/api/generate_idea',{prompt})
+    setGeneratedText(res?.data?.text)
     console.log(res.data);
   }
   return (
@@ -37,21 +39,24 @@ const Generate_Idea = () => {
             <button onClick={()=>setPromptInput('How much money do I need to build a medium poultry feed factory')} className='btn-prompt'>How much money do I need to build a medium poultry feed factory?</button>
 
          </div>
+         {/* section for generated text  */}
+         <section>
+          <h2 className=' text-lg font-semibold p-5'>{generatedText?generatedText:''}</h2>
+         </section>
  {/* input section  */}
-     <section className=' mt-14 flex gap-6 items-center justify-center'>
-     <div className=' ='>
+     <section className=' mt-14 flex gap-6  items-center '>
+     <div className=''>
      <Image src={aiIcon} width={50} height={50} alt='ai chatbot icon' className=''></Image>
      </div>
-      <form onSubmit={handlePrompt}>
-      <div className="join flex-1">
+      <form className=' flex-1 w-full ' onSubmit={handlePrompt}>
+      <div className="flex gap-0 relative ">
        
-       <input
-         type="text"
+       <textarea
          name='text'
          defaultValue={promptInput}
          placeholder="Ask Anything"
-         className=" px-3 border border-gray-400 outline-none join-item w-full min-w-full " />
-       <button type='submit' className="btn border-2 btn-primary join-item  flex items-center gap-2">Ask</button>
+         className=" px-3 pr-3 input border border-gray-400 outline-none  w-full min-w-[100%] " />
+       <button type='submit' className="right-0  absolute border-2 px-4 text-white py-4 -top-0.5 rounded-r-md bg-primary   flex items-center gap-2"><FaArrowUp/></button>
      </div>  
       </form>
             </section> 
