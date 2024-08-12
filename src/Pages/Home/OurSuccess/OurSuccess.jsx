@@ -1,7 +1,12 @@
 import Heading from "@/components/custom/Heading/Heading";
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const OurSuccess = () => {
+  useEffect(()=>{
+AOS.init();
+  },[])
   return (
     <main className="my-20 h-auto mt-28 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto ">
       <header>
@@ -12,11 +17,21 @@ const OurSuccess = () => {
         {/* our users */}
         <div className="   mx-auto md:mx-0 relative w-44 h-44 md:h-56 md:w-56">
              {/* empty */}
-          <div className=" p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45  ">
+             <div data-aos="fade-down"
+             data-aos-duration="1500"
+             data-aos-delay="">
+          <div 
+              className=" p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45  ">
             <div className="bg-  bg-opacity-50 h-full w-full text-black "></div>
           </div>
-          
-          <div className=" absolute top-[20%]  z-40  p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
+          </div>
+          <div className="absolute top-[20%]" data-aos="fade-up"
+             data-aos-duration="1500"
+         
+             data-aos-delay="1000">
+
+         
+          <div  className="   z-40  p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
             <div className="bg-primary h-full w-full  ">
               <div className=" -rotate-45 flex pt-10 flex-col w-full h-full ">
                 <h3 className=" text-xl font-bold ">66+</h3>
@@ -24,15 +39,25 @@ const OurSuccess = () => {
               </div>
             </div>
           </div>
-       
+        </div>
         </div>
         
         {/* our listed item  */}
         <div className=" my-20 md:my-0 z-40 relative mx-auto md:mx-0 w-44 h-44 md:h-56 md:w-56">
              {/* empty */}
-          <div className=" absolute top-[20%] p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
+             <div className=" absolute top-[20%] "  data-aos="fade-down"
+             data-aos-duration="1500"
+             data-aos-delay="">
+
+             
+          <div className="p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
             <div className="bg-  bg-opacity-50 h-full w-full text-black "></div>
           </div>
+          </div>
+          <div  data-aos="fade-up"
+             data-aos-duration="1500"
+             data-aos-delay="1000">
+
           
           <div className="  z-40  p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
             <div className="bg-primary h-full w-full  ">
@@ -42,17 +67,27 @@ const OurSuccess = () => {
               </div>
             </div>
           </div>
-       
+       </div>
         </div>
       
         {/* our sales */}
         <div className=" mb-10 md:mb-0  relative mx-auto md:mx-0 w-44 h-44 md:h-56 md:w-56">
              {/* empty */}
+             <div  data-aos="fade-down"
+             data-aos-duration="1500"
+             data-aos-delay="">
+
+            
           <div className=" p-3 border border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
             <div className="bg-  bg-opacity-50 h-full w-full "></div>
           </div>
+           </div>
+           <div className="absolute top-[20%]"  data-aos="fade-up"
+             data-aos-duration="1500"
+             data-aos-delay="1000">
+
           
-          <div className=" absolute top-[20%]  z-40  p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
+          <div className="   z-40  p-3 border-2 border-[#fe6702] flex-col w-44 h-44  rotate-45 ">
             <div className="bg-primary h-full w-full  ">
               <div className=" -rotate-45  flex pt-10 flex-col w-full h-full ">
                 <h3 className=" text-xl font-bold ">100+</h3>
@@ -60,7 +95,7 @@ const OurSuccess = () => {
               </div>
             </div>
           </div>
-       
+        </div>
         </div>
 
         

@@ -14,10 +14,39 @@ import 'aos/dist/aos.css';
 
 
 const BuyProduct = () => {
+  const [large, setLarge]=useState(false)
+ 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 748) {
+        setLarge(true);
+      } else {
+        setLarge(false);
+      }
+    };
 
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+
+// Remove event listener on cleanup
+return () => {
+  window.removeEventListener('resize', handleResize);
+};
+    
+  }, []);
   useEffect(()=>{
-    AOS.init();
+     AOS.init();
   },[])
+  // console.log({large});
+  // if(!large){
+  //   document.querySelectorAll('[data-aos]').forEach((element) => {
+  //     element.removeAttribute('data-aos');
+   
+  //   });
+  // }
   return (
  <main className=' relative'>
      <section className={` my-20 py-3 max-w-[95%]  lg:max-w-[85%] mx-auto `}>
@@ -29,7 +58,7 @@ const BuyProduct = () => {
            <div>
             
            <Image
-            data-aos="fade-left"
+            data-aos={!large?'fade-left':''}
              data-aos-duration="1500"
              data-aos-anchor="#animate"
              data-aos-delay="300"
@@ -94,7 +123,7 @@ const BuyProduct = () => {
       </section>
 
     </section>
-    <div id='animate' className=' right-0 h-4 w-4 bg-gray-800 absolute bottom-10'></div>
+    <div id='animate' className=' absolute bottom-10'></div>
  </main>
   );
 };

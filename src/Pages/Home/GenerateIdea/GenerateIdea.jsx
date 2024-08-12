@@ -13,7 +13,7 @@ const GenerateIdea = () => {
            {/* <Image className=" w-full lg:w-[310px] h-[200px] md:h-[230px] lg:h-[250px]    " src={AI} height={500} width={600}  alt="AI"></Image>
            <div className=" hidden lg:block w-[310px] border-2 border-yellow-200 p-1     "></div>
            <div className=" w-[310px] border-2 border-yellow-200 p-1  hidden lg:block   "></div> */}
-           <Image className="" src={farm} height={400} width={400}  alt="Farm"></Image>
+           <Image className="w-full h-full" src={farm} height={400} width={400}  alt="Farm"></Image>
         </div>
         {/* text div */}
         <div className=" flex-1">
