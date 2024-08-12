@@ -111,15 +111,15 @@ p{
 
 .btn-prompt{
   padding: 5px 15px;
-  border: 2px solid grey;
+  border: 1px solid grey;
   border-radius: 20px;
   background-color: whitesmoke;
   color: black;
   display: flex;
   justify-items: center;
   align-items: center;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .btn-prompt:hover{

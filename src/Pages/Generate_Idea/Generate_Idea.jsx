@@ -5,8 +5,10 @@ import { FaArrowUp, FaLocationArrow, FaTrashAlt } from 'react-icons/fa';
 import aiIcon from '../../../public/generateIdea/chatbot-0.png'
 import useAxios from '@/hooks/useAxios';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ImSpinner9 } from 'react-icons/im';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Generate_Idea = () => {
   const [promptInput , setPromptInput]=useState('')
@@ -25,6 +27,10 @@ const Generate_Idea = () => {
     // console.log(res.data);
     setLoading(false)
   }
+    useEffect(()=>{
+       AOS.init();
+    },[])
+
   return (
     <main className='my-28 max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto flex gap-10 '>
       {/* image section  */}
@@ -35,13 +41,37 @@ const Generate_Idea = () => {
       <section className=' flex-1'>
          {/* prompt div  */}
          <div className='space-y-5 mx-auto'>
-            <button onClick={()=>setPromptInput('How to Build A Chicken Farm')} className='btn-prompt'>How to Build A Chicken Farm?</button>
+            <button
+                data-aos="fade-up"
+             data-aos-duration="1500"
+             data-aos-delay='2000'
+            onClick={()=>setPromptInput('How to Build A Chicken Farm')} className='btn-prompt'>How to Build A Chicken Farm?</button>
             
-            <button onClick={()=>setPromptInput('How can I optimize my chicken farm')} className='btn-prompt'>How can I optimize my chicken farm?</button>
-            <button onClick={()=>setPromptInput('What is the best time to start a Chicken farm')} className='btn-prompt'>What is the best time to start a Chicken farm?</button>
-            <button onClick={()=>setPromptInput('How can I build a chicken feed producing factory')} className='btn-prompt'>How can I build a chicken feed producing factory?</button>
-            <button onClick={()=>setPromptInput('How much money do I need to build a medium poultry farm ')} className='btn-prompt'>How much money do I need to build a medium poultry farm ?</button>
-            <button onClick={()=>setPromptInput('How much money do I need to build a medium poultry feed factory')} className='btn-prompt'>How much money do I need to build a medium poultry feed factory?</button>
+            <button
+            data-aos="fade-up"
+            data-aos-duration="1500"
+            data-aos-delay='1500'
+            onClick={()=>setPromptInput('How can I optimize my chicken farm')} className='btn-prompt'>How can I optimize my chicken farm?</button>
+
+            <button
+            data-aos="fade-up"
+            data-aos-duration="1500"
+            data-aos-delay='1200'
+            onClick={()=>setPromptInput('What is the best time to start a Chicken farm')} className='btn-prompt'>What is the best time to start a Chicken farm?</button>
+            <button 
+            data-aos="zoom-in"
+            data-aos-duration="1500"
+            onClick={()=>setPromptInput('How can I build a chicken feed producing factory')} className='btn-prompt'>How can I build a chicken feed producing factory?</button>
+            <button
+            data-aos="fade-down"
+            data-aos-duration="1500"
+            data-aos-delay='1100'
+            onClick={()=>setPromptInput('How much money do I need to build a medium poultry farm ')} className='btn-prompt'>How much money do I need to build a medium poultry farm ?</button>
+            <button
+            data-aos="fade-down"
+            data-aos-duration="1500"
+            data-aos-delay='1500'
+            onClick={()=>setPromptInput('How much money do I need to build a medium poultry feed factory')} className='btn-prompt'>How much money do I need to build a medium poultry feed factory?</button>
 
          </div>
          {/* section for generated text  */}

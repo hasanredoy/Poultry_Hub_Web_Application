@@ -58,7 +58,7 @@ return () => {
            <div>
             
            <Image
-            data-aos={!large?'fade-left':''}
+            data-aos={large?'fade-left':''}
              data-aos-duration="1500"
              data-aos-anchor="#animate"
              data-aos-delay="300"
@@ -123,7 +123,7 @@ return () => {
       </section>
 
     </section>
-    <div id='animate' className=' absolute bottom-10'></div>
+    <div id='animate' className=' absolute bottom-40'></div>
  </main>
   );
 };

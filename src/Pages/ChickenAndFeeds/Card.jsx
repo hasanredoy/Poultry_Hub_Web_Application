@@ -1,11 +1,24 @@
+'use client'
 import PostOnCart from "@/components/custom/postOnCart/PostOnCart";
 import Link from "next/link";
 import { FaChartLine, FaRegCalendarPlus, FaRegCalendarTimes, FaStar } from "react-icons/fa";
 import { MdOutlineReviews } from "react-icons/md";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
+
+
+
 
 const Card = ({ item }) => {
+    useEffect(()=>{
+     AOS.init();
+  },[])
   return (
-    <main  className=" md:hover:scale-105 hover:border-[#fe6702] card bg-base-200  shadow border ">
+    <main 
+        data-aos="zoom-in"
+             data-aos-duration="1500"
+    className=" md:hover:scale-105 hover:border-[#fe6702] card bg-base-200  shadow border ">
       <figure>
         <img
           className=" w-[90%] h-auto lg:h-[350px]"
