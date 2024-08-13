@@ -4,6 +4,7 @@ import BecomeSeller from "@/Pages/Home/BecomeSeller/BecomeSeller";
 import BuyProduct from "@/Pages/Home/BuyProduct/BuyProduct";
 import FaQ from "@/Pages/Home/FaQ/FaQ";
 import GenerateIdea from "@/Pages/Home/GenerateIdea/GenerateIdea";
+import Modal from "@/Pages/Home/Modal/Modal";
 import OurPartners from "@/Pages/Home/OurPartners/OurPartners";
 import OurSuccess from "@/Pages/Home/OurSuccess/OurSuccess";
 import Testimonial from "@/Pages/Home/Testimonial/Testimonial";
@@ -19,14 +20,15 @@ const queryClient = new QueryClient()
 export default function Main() {
 
   return (
-    <QueryClientProvider client={queryClient}>
-      
+ 
     
     <main className="">
+ 
       {/* banner  */}
       <section className=" w-full mb-20 ">
         <Banner></Banner>
       </section>
+  
       <section className="">
         <BuyProduct></BuyProduct>
       </section>
@@ -52,6 +54,5 @@ export default function Main() {
         <WhyChooseUs></WhyChooseUs>
       </section>
     </main>
-    </QueryClientProvider>
   );
 }

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import AuthProvider from "@/services/AuthProvider";
 import ContextProvider from "@/services/ContextProvider";
+import Modal from "@/Pages/Home/Modal/Modal";
 require("dotenv").config();
 
 const manrope = Roboto_Condensed({ subsets: ["latin"] });
@@ -19,12 +20,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${manrope.className}   min-h-screen p-0 m-0`}>
+      <body className={`${manrope.className} relative  min-h-screen p-0 m-0`}>
         <AuthProvider>
           <ContextProvider>
             <nav className=" bg-base-300 bg-opacity-80 fixed w-full z-50  top-0 shadow shadow-neutral-500">
               <Navbar></Navbar>
             </nav>
+               {/* modal */}
+     <section className=" absolute top-[400px] left-0  z-50 w-full ">
+  <Modal></Modal>
+</section>
+
             <main className="z-30">{children}</main>
             <footer className="z-50">
               <Footer></Footer>
