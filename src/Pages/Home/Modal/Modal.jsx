@@ -2,14 +2,16 @@
 import { useEffect, useState } from "react";
 
 const Modal = () => {
-  const [modal, setModal] = useState('true');
+  const [modal, setModal] = useState("true");
 
 
 
   useEffect(() => {
    
       const res = localStorage.getItem('modal')
-      setModal(res)
+      if(res=='false'){
+        setModal(res)
+      }
   }, []);
   console.log(modal);
 
