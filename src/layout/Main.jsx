@@ -3,6 +3,7 @@ import Banner from "@/Pages/Home/Banner/Banner";
 import BecomeSeller from "@/Pages/Home/BecomeSeller/BecomeSeller";
 import BuyProduct from "@/Pages/Home/BuyProduct/BuyProduct";
 import FaQ from "@/Pages/Home/FaQ/FaQ";
+import Featured from "@/Pages/Home/Featured/Featured";
 import GenerateIdea from "@/Pages/Home/GenerateIdea/GenerateIdea";
 import Modal from "@/Pages/Home/Modal/Modal";
 import OurPartners from "@/Pages/Home/OurPartners/OurPartners";
@@ -31,6 +32,9 @@ export default function Main() {
   
       <section className="">
         <BuyProduct></BuyProduct>
+      </section>
+      <section className="">
+        <Featured></Featured>
       </section>
       <section className="">
         <OurSuccess></OurSuccess>
