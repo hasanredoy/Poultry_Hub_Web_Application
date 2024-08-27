@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export const GET = async (request, { params }) => {
   // get cart data
   const adminEmail = await params?.email;
-  console.log({adminEmail});
+  //console.log({adminEmail});
   try {
     const db = await connectDB();
     // all items collection
@@ -80,7 +80,7 @@ export const GET = async (request, { params }) => {
       adminListedItem:allListedItemByAdmin?.length
     };
     const stats2=sellStats
-    // console.log({result},'from server');
+    // //console.log({result},'from server');
     return NextResponse.json({ stats1,stats2 });
   } catch (error) {
     return NextResponse.json({ error });

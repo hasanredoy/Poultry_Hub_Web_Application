@@ -6,7 +6,7 @@ export const GET = async (request) => {
   try {
     const db = await connectDB();
     const itemsCollection = await db.collection("All_Items");
-      const categories = ['Chicken','Chicks','Eggs','Feed']
+      const categories = ['Chicken','Baby Chicks','Eggs','Feed']
       for(const category of categories){
         const data = await itemsCollection.findOne({category})
        result.push(data) 

@@ -27,7 +27,7 @@ import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 const axiosHook = useAxios()
 const loadStats = async (email)=>{
   const {data} = await axiosHook.get(`/api/seller_stats/${email}`)
-  console.log(data);
+  //console.log(data);
   return data?.result
 }
 
@@ -42,7 +42,7 @@ const [loading, setLoading]=useState(true)
 useEffect(()=>{
   const loader = async()=>{
     const stats = await loadStats(user?.email)
-    console.log(stats);
+    //console.log(stats);
     setSellerStats(stats)
     setLoading(false)
   }
@@ -66,7 +66,7 @@ useEffect(()=>{
 
   ];
 const barChartLength =  parseInt(chartData?.length)*150 
-// console.log(barChartLength);
+// //console.log(barChartLength);
 
 // pie chart 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];

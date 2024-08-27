@@ -31,9 +31,9 @@ import LoadingSpinner from "@/components/custom/LoadingSpinner/LoadingSpinner";
 // get axios hook
 const axiosHook = useAxios()
 const loadStats = async (email)=>{
-  console.log({email});
+  //console.log({email});
   const {data} = await axiosHook.get(`/api/admin_stats/${email}`)
-  console.log(data);
+  //console.log(data);
   return data
 }
 const AdminHome = () => {
@@ -57,7 +57,7 @@ const [chartData,setChartData ]=useState([0])
 useEffect(()=>{
   const loader = async()=>{
     const stats = await loadStats(user?.email)
-    console.log(stats);
+    //console.log(stats);
     setAdminStats(stats?.stats1)
     setChartData(stats?.stats2)
     setLoading(false)
@@ -95,7 +95,7 @@ if(loading)return <LoadingSpinner></LoadingSpinner>
  
   // ];
 const barChartLength =  parseInt(chartData?.length)*120 
-// console.log(barChartLength);
+// //console.log(barChartLength);
 
 // pie chart 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];

@@ -7,7 +7,7 @@ export const GET=async()=>{
     const db = await connectDB()
     const reviewsCollection = await db.collection('reviews')
     const count = await reviewsCollection.estimatedDocumentCount()
-    // console.log({count});
+    // //console.log({count});
     return NextResponse.json({count})
   } catch (error) {
     return NextResponse.json({error})

@@ -43,7 +43,7 @@ const WhyChooseUs = () => {
     // call funcForLoadAbout
     funcForLoadAbout();
   }, []);
-console.log(aboutUs);
+//console.log(aboutUs);
   return (
     <main className="my-28 max-w-[90%] overflow-hidden lg:max-w-[85%] mx-auto">
       <div>

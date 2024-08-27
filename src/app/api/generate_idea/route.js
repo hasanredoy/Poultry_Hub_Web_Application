@@ -13,7 +13,7 @@ try {
   const result = await model.generateContent(prompt);
   const resp = await result.response;
   const text = resp.text();
-  console.log(text);
+  //console.log(text);
       //  Remove special characters (*, etc.)
       let normalizedText = text.replace(/[*]/g, '');
 

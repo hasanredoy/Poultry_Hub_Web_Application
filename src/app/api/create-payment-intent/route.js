@@ -5,7 +5,7 @@ const stripe = require("stripe")(process.env.NEXT_SK_Payment);
 
 export const POST=async(request)=>{
   const data = await request.json()
-  console.log(data,'from server');
+  //console.log(data,'from server');
   const price = data.price
   try {
         // create payment intent 

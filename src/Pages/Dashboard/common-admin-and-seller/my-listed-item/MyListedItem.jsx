@@ -17,7 +17,7 @@ const loadAllItems = async (email) => {
   const res = await axiosHook.get(
     `/api/allItems?page=${0}&size=${50}&email=${email}`
   );
-  // console.log(res?.data?.result);
+  // //console.log(res?.data?.result);
   return res?.data?.result;
 };
 
@@ -32,13 +32,13 @@ const MyListedItem = () => {
     //function for call loadAllItems for user
     const loader = async () => {
       const data = await loadAllItems(user?.email);
-      console.log(data);
+      //console.log(data);
       setListedItem(data);
       setLoading(false)
     };
     loader();
   }, [user,refetch]);
-// console.log(listedItem);
+// //console.log(listedItem);
 const handlerForDeleteItem = async (id,name)=>{
   swal({
     title: "Are you sure?",
@@ -51,7 +51,7 @@ const handlerForDeleteItem = async (id,name)=>{
     if (willDelete) {
      axiosHook.delete(`/api/all_items/${id}`)
      .then(res =>{
-       console.log(res.data);
+       //console.log(res.data);
       if(res?.data?.result?.deletedCount>0){
         setRefetch(refetch+1)
         swal(`${name} has been deleted Successfully!`, {

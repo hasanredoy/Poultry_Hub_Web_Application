@@ -23,13 +23,13 @@ const axiosHook =useAxios()
 // function to load reviews
 const loadReviews = async (email) => {
   const { data } = await axiosHook.get(`/api/reviews/${email}`);
-  console.log(data);
+  //console.log(data);
   return data?.result;
 };
 
 const paymentLoader = async (email) => {
   const { data } = await axiosHook.get(`/api/payment?email=${email}`);
-   console.log(data);
+   //console.log(data);
   return data?.result;
 };
 
@@ -51,7 +51,7 @@ const UserHome = () => {
   useEffect(()=>{ 
     const loader = async()=>{
       const payment =await paymentLoader(user?.email)
-      console.log(payment);
+      //console.log(payment);
       setUserPayments(payment)
     }
     loader()

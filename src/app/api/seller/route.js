@@ -5,13 +5,13 @@ export const GET=async(request)=>{
   const email = await request.nextUrl.searchParams.get('email')
   try {
     const db = await connectDB()
-    // console.log('hello');
+    // //console.log('hello');
     // connect usersCollection 
   const sellerCollection = await db.collection('sellers')
-  // console.log({usersCollection});
+  // //console.log({usersCollection});
   // check user exist or not
   const result= await sellerCollection.findOne({email})
-  // console.log({result},'hello2');
+  // //console.log({result},'hello2');
   return NextResponse.json({result})
 } catch (error) {
    return NextResponse.json({error})
@@ -22,10 +22,10 @@ export const POST=async(request)=>{
   const sellerData = await request.json()
   try {
     const db = await connectDB()
-    // console.log('hello');
+    // //console.log('hello');
     // connect usersCollection 
   const sellerCollection = await db.collection('sellers')
-  // console.log({usersCollection});
+  // //console.log({usersCollection});
   // check user exist or not
   const checkUser= await sellerCollection.findOne({email:sellerData.email})
 
@@ -33,7 +33,7 @@ export const POST=async(request)=>{
     return NextResponse.json({message:"user exist"})
   }
   const result = await sellerCollection.insertOne(sellerData)
-  // console.log({result},'hello2');
+  // //console.log({result},'hello2');
   return NextResponse.json({result})
 } catch (error) {
    return NextResponse.json({error})
@@ -43,7 +43,7 @@ export const POST=async(request)=>{
 
 export const PATCH=async(request)=>{
    const email = await request.nextUrl.searchParams.get('email')
-  //  console.log(params.email,'role route');
+  //  //console.log(params.email,'role route');
     try {
       const db = await connectDB()
       const usersCollection = await db.collection('users')
@@ -68,7 +68,7 @@ export const PATCH=async(request)=>{
   }
 export const DELETE=async(request)=>{
    const email = await request.nextUrl.searchParams.get('email')
-  //  console.log(params.email,'role route');
+  //  //console.log(params.email,'role route');
     try {
       const db = await connectDB()
       const sellerCollection = await db.collection('sellers')

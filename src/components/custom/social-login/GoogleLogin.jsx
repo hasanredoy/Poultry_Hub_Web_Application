@@ -10,7 +10,7 @@ const GoogleLogin = () => {
   const router = useRouter()
   const path = searchParams.get("redirect")
   const user = useGetUser()
-    console.log(path);
+    //console.log(path);
   const LoginWithGoogle= async()=>{
     
     const res = await signIn('google',{
@@ -18,7 +18,7 @@ const GoogleLogin = () => {
       //  callbackUrl: path?path:"/"
     })
     if(user){
-      console.log({path});
+      //console.log({path});
       toast.success('login successful')
     }
   }

@@ -12,7 +12,7 @@ const axiosHook = useAxios()
 
 const paymentLoader = async (email) => {
   const { data } = await axiosHook.get(`/api/payment?email=${email}`);
-   console.log(data);
+   //console.log(data);
   return data?.result;
 };
 
@@ -25,13 +25,13 @@ const PaymentHistory = () => {
   useEffect(()=>{ 
     const loader = async()=>{
       const payment =await paymentLoader(user?.email)
-      console.log(payment);
+      //console.log(payment);
       setPayments(payment)
       setLoading(false)
     }
     loader()
   },[user])
-  console.log(payments);
+  //console.log(payments);
 
 
   

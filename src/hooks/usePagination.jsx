@@ -1,12 +1,12 @@
 
 const usePagination = (count,itemsPerPage) => {
   const pages = Math.ceil(count/itemsPerPage)
-  // console.log(pages);
+  // //console.log(pages);
   let totalPage=[]
   for(let i =0; i<pages;i++ ) {
      totalPage.push(i)
   }
-  // console.log(totalPage);
+  // //console.log(totalPage);
   return [totalPage,pages]
 };
 

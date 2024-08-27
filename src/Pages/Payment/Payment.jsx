@@ -5,7 +5,7 @@
 // import CheckOutForm from "./CheckOutForm";
 // // load stipe with pk
 // const pk = process.env.NEXT_PUBLIC_STRIPE_PK;
-// // console.log({pk});
+// // //console.log({pk});
 
 // const stripePromise = loadStripe(`${pk}`);
 const Payment = () => {

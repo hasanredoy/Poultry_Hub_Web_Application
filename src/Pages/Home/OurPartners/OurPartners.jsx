@@ -22,7 +22,7 @@ import Skeleton from "@/components/custom/Skeleton/Skeleton";
 const axiosHook = useAxios()
 const loadPartners=async()=>{
   const {data}=await axiosHook.get('/api/partners')
-   console.log( data);
+   //console.log( data);
    return data?.result
 }
 
@@ -30,12 +30,12 @@ const OurPartners = () => {
   // partner state
   const[ partners,setPartners ]=useState([])
   const[ loading,setLoading ]=useState(true)
-  // console.log(partners[0]);
+  // //console.log(partners[0]);
  useEffect(()=>{
   // loader to call partners 
   const loader = async()=>{
     const partnersData = await loadPartners()
-    console.log(partnersData);
+    //console.log(partnersData);
     setPartners(partnersData)
     setLoading(false)
   }

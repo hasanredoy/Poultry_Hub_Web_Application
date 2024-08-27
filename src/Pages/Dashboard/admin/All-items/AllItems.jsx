@@ -19,14 +19,14 @@ const loadAllItems = async (page,size) => {
   const res = await axiosHook.get(
     `/api/allItems?page=${page}&size=${size}`
   );
-  // console.log(res?.data?.result);
+  // //console.log(res?.data?.result);
   return res?.data?.result;
 };
 const loadAllItemsCount = async () => {
   const res = await axiosHook.get(
     `/api/count/all_items`
   );
-  // console.log(res?.data?.result);
+  // //console.log(res?.data?.result);
   return res?.data;
 };
 
@@ -52,7 +52,7 @@ const AllItems = () => {
     const loader = async () => {
       setLoading(true)
       const data = await loadAllItems(currentPage,8);
-      console.log(data);
+      //console.log(data);
       setAllChickenAndFeeds(data);
       setLoading(false)
       setLoader(false)
@@ -64,14 +64,14 @@ const AllItems = () => {
     //function for call loadAllItemsCount
     const loader = async () => {
       const data = await loadAllItemsCount();
-      // console.log(data);
+      // //console.log(data);
       setCount(data?.count);
       setPrice(data?.totalPrice)
       setLoader(false)
     };
     loader();
   }, []);
-  // console.log({price});
+  // //console.log({price});
 
 
   const handlerForDeleteItem = async (id,name)=>{
@@ -86,7 +86,7 @@ const AllItems = () => {
       if (willDelete) {
        axiosHook.delete(`/api/all_items/${id}`)
        .then(res =>{
-         console.log(res.data);
+         //console.log(res.data);
         if(res?.data?.result?.deletedCount>0){
           // setRefetch(refetch+1)
           swal(`${name} has been deleted Successfully!`, {

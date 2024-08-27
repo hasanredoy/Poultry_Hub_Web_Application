@@ -5,9 +5,9 @@ import useGetUser from "./useGetUser";
 
 const axiosHook = useAxios()
 const loadUserRole =async(email)=>{
-  // console.log({email});
+  // //console.log({email});
       const {data}=await axiosHook.get(`/api/user/${email}`)
-      // console.log({data});
+      // //console.log({data});
       return data?.role
 }
 const useGetUserRole =() => {
@@ -19,12 +19,12 @@ const useGetUserRole =() => {
     //make loader to call user role func
     const loader =async ()=>{
       const userRole = await loadUserRole(user?.email);
-      // console.log(userRole);
+      // //console.log(userRole);
      await  setRole(userRole)
     }
     loader()
   },[user])
-  // console.log(role);
+  // //console.log(role);
   return role
 };
 

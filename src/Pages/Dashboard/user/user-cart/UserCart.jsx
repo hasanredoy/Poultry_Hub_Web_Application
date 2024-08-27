@@ -18,13 +18,13 @@ const axiosHook = useAxios();
 // function to load cart
 const loadCart = async (email,page) => {
   const { data } = await axiosHook.get(`/api/cart?email=${email}&size=${6}&page=${page}`);
-   console.log(data);
+   //console.log(data);
   return data?.result;
 };
 // function to load cart count
 const loadCartCount = async (email) => {
   const { data } = await axiosHook.get(`/api/count/cart?email=${email}`);
-  //  console.log(data);
+  //  //console.log(data);
   return data;
 };
 
@@ -43,7 +43,7 @@ const UserCart = () => {
 	  // call pagination
 		const [totalPage,pages] = usePagination(count, 6);
     const session = useSession()
-    console.log(session);
+    //console.log(session);
   
   //  get user
   const user = useGetUser();
@@ -53,7 +53,7 @@ const UserCart = () => {
     const loader = async () => {
       setLoading(true)
       const cartData = await loadCart(user?.email,currentPage);
-      // console.log(cartData);
+      // //console.log(cartData);
       setCart(cartData);
       setLoading(false)
     };
@@ -70,7 +70,7 @@ const UserCart = () => {
     };
     loader();
   }, [user, refetch]);
-  // console.log(price);
+  // //console.log(price);
   const handleDelete = (name, id) => {
     swal({
       title: "Are you sure?",
@@ -81,7 +81,7 @@ const UserCart = () => {
     }).then((willDelete) => {
       if (willDelete) {
         axiosHook.delete(`/api/cart?id=${id}`).then((res) => {
-          console.log(res?.data);
+          //console.log(res?.data);
           setRefetch(refetch + 1);
           if (res.data?.result?.deletedCount > 0) {
             swal(`${name} has been deleted!`, {

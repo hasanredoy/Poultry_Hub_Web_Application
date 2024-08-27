@@ -42,7 +42,7 @@ const Login = () => {
     }
     // if (session.data?.user?.email) {
       //   // router.push(path?.redirect)
-      //   console.log(res);
+      //   //console.log(res);
       // }
     };
     // if (session.data?.user?.email) {
@@ -51,7 +51,7 @@ const Login = () => {
      if(user){
       router.push(path?path:'/')
      }
-  console.log(session);
+  //console.log(session);
   return (
     <Suspense fallback={<span>Loading</span>}>
     <main className="hero  min-h-screen  max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">

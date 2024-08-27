@@ -29,7 +29,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 const axiosHook = useAxios();
 const loadReviews = async () => {
   const { data } = await axiosHook.get("/api/reviews");
-  console.log(data);
+  //console.log(data);
   return data?.result;
 };
 
@@ -37,12 +37,12 @@ const Testimonial = () => {
   // partner state
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  // console.log(reviews[0]);
+  // //console.log(reviews[0]);
   useEffect(() => {
     // loader to call reviews
     const loader = async () => {
       const reviewsData = await loadReviews();
-      console.log(reviewsData);
+      //console.log(reviewsData);
       setReviews(reviewsData);
       setLoading(false);
     };

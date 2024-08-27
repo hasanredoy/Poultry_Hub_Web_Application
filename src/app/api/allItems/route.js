@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 export const GET = async (request) => {
   // get query
    const email = await request.nextUrl.searchParams.get('email')
-   console.log({email});
+   //console.log({email});
   const page = (await request.nextUrl.searchParams.get("page")) || "0";
 
   const size = (await request.nextUrl.searchParams.get("size")) || "8";
-  // console.log({ queryFilter });
+  // //console.log({ queryFilter });
   const parsedPage = parseInt(page);
   const parsedSize = parseInt(size);
     let query ={}
@@ -23,7 +23,7 @@ export const GET = async (request) => {
       .limit(parsedSize)
       .skip(parsedPage * parsedSize)
       .toArray();
-    // console.log({result},'from server');
+    // //console.log({result},'from server');
     return NextResponse.json({ result });
   } catch (error) {
     return NextResponse.json({ error });

@@ -17,7 +17,7 @@ const axiosHook = useAxios();
 // load all chicken and feeds data
 const loadSingleItem = async (id) => {
   const res = await axiosHook.get(`/api/all_items/${id}`);
-  // console.log(res?.data?.result);
+  // //console.log(res?.data?.result);
   return res?.data?.result;
 };
 const DetailsPage = ({ id }) => {
@@ -29,7 +29,7 @@ const DetailsPage = ({ id }) => {
   const [refetch , setRefetch]=useState(false)
   const handleRating = () => {
     axiosHook.patch(`/api/all_items/${id}`).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       if(res.data.result.modifiedCount>0){
         toast('Thank you for your opinion')
         setRefetch(!refetch)
@@ -40,13 +40,13 @@ const DetailsPage = ({ id }) => {
     //function for call loadAllItems
     const loader = async () => {
       const data = await loadSingleItem(id);
-      console.log(data);
+      //console.log(data);
       setSingleItem(data);
     };
     loader();
   }, [refetch]);
 
-  console.log({ singleItem });
+  //console.log({ singleItem });
   return (
     <section className=" relative  flex flex-col md:flex-row bg-warning bg-opacity-5 shadow   my-20 max-w-[95%] lg:max-w-[85%] mx-auto ">
       <figure className=" flex-1 flex justify-center  mt-10">

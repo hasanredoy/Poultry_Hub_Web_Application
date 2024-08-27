@@ -14,7 +14,7 @@ const axiosHook = useAxios();
 // load all chicken and feeds data
 const loadSingleItem = async (id) => {
   const res = await axiosHook.get(`/api/all_items/${id}`);
-  // console.log(res?.data?.result);
+  // //console.log(res?.data?.result);
   return res?.data?.result;
 };
 
@@ -27,15 +27,15 @@ const router = useRouter()
   // single item state
   const [singleItem, setSingleItem] = useState();
 const [imgFile ,setImgFile]=useState()
-// console.log(imgFile);
+// //console.log(imgFile);
 const image = postImage(imgFile)
-// console.log(image);
+// //console.log(image);
   useEffect(() => {
     setLoading(1)
     //function for call loadAllItems
     const loader = async () => {
       const data = await loadSingleItem(id);
-      // console.log(data);
+      // //console.log(data);
       setSingleItem(data);
       setLoading(0)
     };
@@ -62,13 +62,13 @@ const image = postImage(imgFile)
   totalRating:singleItem.totalRating,
   totalSell:singleItem.totalSell
 }
-  console.log(updateDoc);
+  //console.log(updateDoc);
     if(!image)return swal(`An error happened please update your image again!`, {
       icon: "error",
     });
   if(image){
     const {data}=await axiosHook.put(`/api/all_items/${singleItem?._id}`,updateDoc)
-    console.log(data);
+    //console.log(data);
     
     if(data?.result?.modifiedCount>0){
       router.push('/dashboard/all_items')
@@ -83,7 +83,7 @@ const image = postImage(imgFile)
  if(loading==1){
   return <LoadingSpinner/>
  }
-  // console.log(singleItem);
+  // //console.log(singleItem);
   return (
     <main className=" mt-10">
       {/* from section  */}

@@ -21,18 +21,18 @@ const Register = () => {
   const [loading , setLoading]=useState(false)
   // get imgbb api key
   const API = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
-  // console.log({API});
+  // //console.log({API});
   // stat for phone number
   const [phone, setPhone] = useState();
   // stat for image url
   const [imageUrl, setImageUrl] = useState("");
-  // console.log(imageUrl);
+  // //console.log(imageUrl);
   // state show and hide password
   const [showPass, setShowPass] = useState(false);
 
   const imageURL = postImage(imageUrl, API,setLoading);
 
-  // console.log(imageURL);
+  // //console.log(imageURL);
 const router = useRouter()
   const handleRegister = (e) => {
    try {
@@ -58,10 +58,10 @@ const router = useRouter()
       type: "user",
       registerDate: new Date(),
     };
-    console.log(userData);
+    //console.log(userData);
     if (!imageURL) return;
     axiosHook.post("/api/register", userData).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       setLoading(false)
       if(res.data?.result?.message=='user exist'){
         toast.success("Email already in use")
@@ -73,7 +73,7 @@ const router = useRouter()
     });
    } catch (error) {
     setLoading(false)
-    console.log(error);
+    //console.log(error);
    }
   };
 

@@ -8,7 +8,7 @@ export const GET = async (request) => {
   const page = (await request.nextUrl.searchParams.get("page"));
 
   const size = (await request.nextUrl.searchParams.get("size")) ;
-  // console.log({size,page});
+  // //console.log({size,page});
   const parsedPage = parseInt(page);
   const parsedSize = parseInt(size);
 
@@ -20,7 +20,7 @@ export const GET = async (request) => {
       query = { email };
     }
     const result = await cartsCollection.find(query).limit(parsedSize).skip(parsedPage * parsedSize).toArray();
-    // console.log({result},'from server');
+    // //console.log({result},'from server');
     return NextResponse.json({ result });
   } catch (error) {
     return NextResponse.json({ error });
@@ -35,7 +35,7 @@ export const POST = async (request) => {
     const cartsCollection = await db.collection("carts");
     // send cart data to mongobd
     const result = await cartsCollection.insertOne(cartData);
-    // console.log({result},'from server');
+    // //console.log({result},'from server');
     return NextResponse.json({ result });
   } catch (error) {
     return NextResponse.json({ error });
@@ -49,7 +49,7 @@ export const DELETE = async (request) => {
     const cartsCollection = await db.collection("carts");
     // find and delete cart
     const result = await cartsCollection.deleteOne({ _id: new ObjectId(id) });
-    // console.log({result},'from server');
+    // //console.log({result},'from server');
     return NextResponse.json({ result });
   } catch (error) {
     return NextResponse.json({ error });

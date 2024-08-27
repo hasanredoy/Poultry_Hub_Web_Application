@@ -20,7 +20,7 @@ const axiosHook = useAxios();
 // load all user
 const loadUsers = async (page,size,search) => {
   const res = await axiosHook.get(`/api/user?size=${size}&page=${page}&search=${search}`);
-  console.log(res?.data?.result);
+  //console.log(res?.data?.result);
   return res?.data?.result;
 };
 
@@ -37,7 +37,7 @@ const AllUsers = () => {
  
  // current page state 
  const {userCount}=useContext(GeneralContext)||{userCount:0}
- console.log(userCount);
+ //console.log(userCount);
  const [currentPage,setCurrentPage]=useState(0)
 //  get pagination hook 
 const [totalPage,pages]=usePagination(userCount,8)
@@ -54,7 +54,7 @@ const [search , setSearch]=useState('')
     const loader = async () => {
       setLoading(true)
       const data = await loadUsers(currentPage,8,search);
-      console.log(data);
+      //console.log(data);
       setAllUsers(data);
       setLoading(false)
       setLoader(false)
@@ -75,7 +75,7 @@ const [search , setSearch]=useState('')
     .then(async (willDelete) => {
       if (willDelete) {
         const {data}=await axiosHook.patch(`/api/user/${email}`)
-        console.log(data);
+        //console.log(data);
       if(data?.result?.modifiedCount>0){
         setRefetch(!refetch)
        swal(`${name} is admin from now`, {
@@ -106,7 +106,7 @@ const [search , setSearch]=useState('')
     .then(async (willDelete) => {
       if (willDelete) {
         const {data}=await axiosHook.delete(`/api/user/${email}`)
-        console.log(data);
+        //console.log(data);
       if(data?.result?.deletedCount>0){
         setRefetch(!refetch)
        swal(`${name} is deleted`, {

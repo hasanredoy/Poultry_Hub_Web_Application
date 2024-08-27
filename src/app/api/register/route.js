@@ -4,13 +4,13 @@ const bcrypt = require('bcryptjs');
 
 export const POST=async(request)=>{
   const userData = await request.json()
-  // console.log(userData);
+  // //console.log(userData);
   try {
     const db = await connectDB()
-    // console.log('hello');
+    // //console.log('hello');
     // connect usersCollection 
   const usersCollection = await db.collection('users')
-  // console.log({usersCollection});
+  // //console.log({usersCollection});
   // check user exist or not
   const checkUser= await usersCollection.findOne({email:userData.email})
   let salt = bcrypt.genSaltSync(10);
@@ -28,7 +28,7 @@ export const POST=async(request)=>{
     return NextResponse.json({message:"user exist"})
   }
   const result = await usersCollection.insertOne(userWithHashedPass)
-  // console.log({result},'hello2');
+  // //console.log({result},'hello2');
   return NextResponse.json(result?{result}:{})
 } catch (error) {
    return NextResponse.json({error})

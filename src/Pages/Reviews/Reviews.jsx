@@ -21,7 +21,7 @@ import Pagination from "@/components/custom/Pagination/Pagination";
 const axiosHook = useAxios();
 const loadReviews = async (email) => {
   const { data } = await axiosHook.get(`/api/count/reviews`);
-  //  console.log(data);
+  //  //console.log(data);
   return data?.count;
 };
 
@@ -44,7 +44,7 @@ const Reviews = () => {
 
   // get user
   const user = useGetUser();
-  // console.log(rating);
+  // //console.log(rating);
 
   // handler to post user review
   const handleReview = async (e) => {
@@ -58,9 +58,9 @@ const Reviews = () => {
       tags: [e.target?.satisfied?.value],
       description: e.target?.description?.value,
     };
-    // console.log(reviewData);
+    // //console.log(reviewData);
     const res = await axiosHook.post("/api/reviews", reviewData);
-    // console.log(res.data);
+    // //console.log(res.data);
     if (res.data?.result?.insertedId) {
       setRefetchReview(refetchReview + 1);
       toast.success("Thank you for your feedback");

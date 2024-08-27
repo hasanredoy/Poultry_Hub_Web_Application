@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 const Modal = () => {
-  const [modal, setModal] = useState(localStorage.getItem('modal')||'true');
+  const [modal, setModal] = useState('true');
 
 
 

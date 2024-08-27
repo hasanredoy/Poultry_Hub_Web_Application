@@ -6,7 +6,7 @@ export const connectDB = async()=>{
   if(db)return db
   try {
   const uri = process.env.URI;
-  // console.log({uri});
+  // //console.log({uri});
 
 
 const client = new MongoClient(uri, {
@@ -19,7 +19,7 @@ const client = new MongoClient(uri, {
   db = client.db('Poultry_FarmDB')
   return db
 } catch (error) {
-  console.log(error);
+  //console.log(error);
  return []
 }
 }

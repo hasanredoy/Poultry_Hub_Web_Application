@@ -23,7 +23,7 @@ export async function POST(request) {
       enabled: true,
     },
   });
-  console.log({paymentIntent});
+  //console.log({paymentIntent});
 
  return NextResponse.json({
     clientSecret: paymentIntent?.client_secret,

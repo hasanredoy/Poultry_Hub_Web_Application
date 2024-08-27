@@ -12,7 +12,7 @@ const PostOnCart = ({ cart}) => {
   const router = useRouter()
   const axiosHook = useAxios();
   const {refetch,setRefetch}=useContext(GeneralContext)||{}
-  // console.log({carts});
+  // //console.log({carts});
   const cartData = {
     name: user?.name,
     email: user?.email,
@@ -23,14 +23,14 @@ const PostOnCart = ({ cart}) => {
     category: cart?.category,
     sellerEmail:cart?.email
   };
-  // console.log(cartData);
+  // //console.log(cartData);
   const handlePost = () => {
     if(!user){
       toast.error('Please login to make purchase')
       return router.push('/login')
     }
     axiosHook.post("/api/cart", cartData).then((res) => {
-      // console.log(res.data);
+      // //console.log(res.data);
       if(res?.data?.result?.insertedId){
         setRefetch(refetch+1)
         toast.success(`${cart?.name} added to cart`)

@@ -21,9 +21,9 @@ const handler = NextAuth({
       },
       // validate user
       async authorize(credentials) {
-        // console.log('hello');
+        // //console.log('hello');
         const { email, password } = credentials;
-        // console.log({email,password});
+        // //console.log({email,password});
         // check if not email or password return null
         if (!email || !password) {
           return null;
@@ -34,7 +34,7 @@ const handler = NextAuth({
         const usersCollection = await db.collection("users");
         // get current user
         const currentUser = await usersCollection.findOne({ email });
-        // console.log({currentUser});
+        // //console.log({currentUser});
         //return null if not user
         if (!currentUser) {
           return null;
@@ -59,7 +59,7 @@ const handler = NextAuth({
     async signIn({ user, account}) {
        if(account.provider ==='google'){
         const {name , image , email,type}=user;
-        console.log(user);
+        //console.log(user);
         const userData = {
           name,
           image,email,
@@ -72,7 +72,7 @@ const handler = NextAuth({
          const existingUser = await usesCollection.findOne({email})
          if(!existingUser){
           const res = await usesCollection.insertOne(userData)
-         //  console.log({"res===>":res});
+         //  //console.log({"res===>":res});
           return user
          }else{
            return user

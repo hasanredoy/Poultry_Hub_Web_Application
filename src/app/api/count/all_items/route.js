@@ -15,9 +15,9 @@ export const GET=async()=>{
       }
     ]).toArray();
     const totalPrice = price[0]?.totalPrice
-    console.log({totalPrice});
+    //console.log({totalPrice});
     const count = await allItemsCollection.estimatedDocumentCount()
-    // console.log({count});
+    // //console.log({count});
     return NextResponse.json({count,totalPrice})
   } catch (error) {
     return NextResponse.json({error})

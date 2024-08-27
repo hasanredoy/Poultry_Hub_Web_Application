@@ -14,7 +14,7 @@ const axiosHook = useAxios();
 // function to load cart
 const loadSeller = async (email) => {
   const { data } = await axiosHook.get(`/api/seller?email=${email}`);
-  //  console.log(data);
+  //  //console.log(data);
   return data?.result;
 };
 
@@ -24,7 +24,7 @@ const BecomeSeller = () => {
   const [refetch, setRefetch] = useState(0);
   const user = useGetUser();
   const role = useGetUserRole();
-  console.log({ role });
+  //console.log({ role });
   // get user
   // effect to call cart
   useEffect(() => {
@@ -34,7 +34,7 @@ const BecomeSeller = () => {
     };
     loader();
   }, [user,refetch]);
-  console.log(seller);
+  //console.log(seller);
   // handler for post seller req
   const handleSeller = async (e) => {
 
@@ -57,7 +57,7 @@ const BecomeSeller = () => {
       status: "pending",
     };
     const res = await axiosHook.post("/api/seller", sellerInfo);
-    console.log(res.data);
+    //console.log(res.data);
     if (res?.data?.result?.insertedId) {
       setRefetch(refetch+1)
       toast.success("Your request is under process, please wait!");

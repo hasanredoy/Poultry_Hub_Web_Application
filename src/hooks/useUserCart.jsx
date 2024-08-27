@@ -7,7 +7,7 @@ const axiosHook = useAxios()
 // function to load cart
 const loadCart= async(email)=>{
  const {data}=await axiosHook.get(`/api/cart?email=${email}`)
-//  console.log(data);
+//  //console.log(data);
  return data?.result
 }
 const useUserCart = (email) => {
@@ -23,7 +23,7 @@ const useUserCart = (email) => {
     }
     loader()
   },[user?.email])
-//  console.log(cart);
+//  //console.log(cart);
   return cart
 };
 

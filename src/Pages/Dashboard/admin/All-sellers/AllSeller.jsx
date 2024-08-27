@@ -25,7 +25,7 @@ const loadSellers = async (page, size, search) => {
   const res = await axiosHook.get(
     `/api/seller/all_sellers?size=${size}&page=${page}&search=${search}`
   );
-  console.log(res?.data?.result);
+  //console.log(res?.data?.result);
   return res?.data?.result;
 };
 
@@ -42,7 +42,7 @@ const [loader,setLoader]=useState(true)
 
   // current page state
   const { sellerCount } = useContext(GeneralContext)||{sellerCount:0}
-  console.log(sellerCount);
+  //console.log(sellerCount);
   const [currentPage, setCurrentPage] = useState(0);
   //  get pagination hook
   const [totalPage, pages] = usePagination(sellerCount, 8);
@@ -58,7 +58,7 @@ const [loader,setLoader]=useState(true)
     const loader = async () => {
       setLoading(true);
       const data = await loadSellers(currentPage, 8, search);
-      console.log(data);
+      //console.log(data);
       setAllSellers(data);
       setLoading(false);
       setLoader(false)
@@ -77,7 +77,7 @@ const [loader,setLoader]=useState(true)
     }).then(async (willDelete) => {
       if (willDelete) {
         const { data } = await axiosHook.patch(`/api/seller?email=${email}`);
-        console.log(data);
+        //console.log(data);
         if (
           data?.resultUserCollection?.modifiedCount > 0 ||
           data?.resultSellerCollection?.modifiedCount > 0
@@ -103,7 +103,7 @@ const [loader,setLoader]=useState(true)
     }).then(async (willDelete) => {
       if (willDelete) {
         const { data } = await axiosHook.delete(`/api/seller?email=${email}`);
-        console.log(data);
+        //console.log(data);
         if (data?.result?.modifiedCount > 0) {
           setRefetch(!refetch);
           swal("request rejected", {

@@ -21,10 +21,10 @@ const Generate_Idea = () => {
     setLoading(true)
     setGeneratedText('')
     const prompt=e.target.text.value
-    console.log(prompt);
+    //console.log(prompt);
     const res = await axiosHook.post('/api/generate_idea',{prompt})
     setGeneratedText(res?.data?.text)
-    // console.log(res.data);
+    // //console.log(res.data);
     setLoading(false)
   }
     useEffect(()=>{

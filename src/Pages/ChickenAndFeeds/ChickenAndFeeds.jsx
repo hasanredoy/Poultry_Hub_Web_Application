@@ -17,14 +17,14 @@ const loadAllItems = async (filter,search,page,size) => {
   const res = await axiosHook.get(
     `/api/all_items?filter=${filter}&search=${search}&page=${page}&size=${size}`
   );
-  // console.log(res?.data?.result);
+  // //console.log(res?.data?.result);
   return res?.data?.result;
 };
 const loadAllItemsCount = async (filter, search) => {
   const res = await axiosHook.get(
     `/api/count/all_items`
   );
-  // console.log(res?.data?.result);
+  // //console.log(res?.data?.result);
   return res?.data?.count;
 };
 const ChickenAndFeeds = () => {
@@ -53,7 +53,7 @@ const ChickenAndFeeds = () => {
     //function for call loadAllItems
     const loader = async () => {
       const data = await loadAllItems(filterValue,search,currentPage,8);
-      // console.log(data);
+      // //console.log(data);
       setAllChickenAndFeeds(data);
       setLoading(false)
     };
@@ -64,14 +64,14 @@ const ChickenAndFeeds = () => {
     //function for call loadAllItemsCount
     const loader = async () => {
       const data = await loadAllItemsCount();
-      // console.log(data);
+      // //console.log(data);
       setCount(data);
       setLoading(false)
     };
     loader();
   }, []);
 
-// console.log(allChickenAndFeeds);
+// //console.log(allChickenAndFeeds);
 
   
   return (

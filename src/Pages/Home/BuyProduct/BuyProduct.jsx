@@ -40,7 +40,7 @@ return () => {
   useEffect(()=>{
      AOS.init();
   },[])
-  // console.log({large});
+  // //console.log({large});
   // if(!large){
   //   document.querySelectorAll('[data-aos]').forEach((element) => {
   //     element.removeAttribute('data-aos');

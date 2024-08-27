@@ -19,7 +19,7 @@
 // const axiosHook = useAxios();
 // const loadCartCount = async (email) => {
 //   const { data } = await axiosHook.get(`/api/count/cart?email=${email}`);
-//   //  console.log(data);
+//   //  //console.log(data);
 //   return data;
 // };
 
@@ -43,19 +43,19 @@ const CheckOutForm = () => {
 //    const {totalCartItem}=useContext(GeneralContext)||{}
 
 //    const itemsName = totalCartItem?.map(name => name?.itemName)
-//   console.log({itemsName});
+//   //console.log({itemsName});
 
 //   useEffect(()=>{
 //     const loader = async()=>{
 //       const cartData = await loadCartCount(user?.email)
-//       console.log({cartData});
+//       //console.log({cartData});
 //       setPrice(cartData?.price)
 //     }
 //     loader()
 //   },[user])
-//   // console.log({cart});
+//   // //console.log({cart});
 //   const totalPrice = parseInt(price)
-//   // console.log(totalPrice);
+//   // //console.log(totalPrice);
  
 
   // const handleDelivery = async (e) => {
@@ -89,15 +89,15 @@ const CheckOutForm = () => {
   //       const res = await axiosHook.post("/api/create-payment-intent", {
   //          price:totalPrice
   //       });
-  //       // console.log(res.data,'hello');
+  //       // //console.log(res.data,'hello');
   //       setClientSecret(res.data?.paymentIntent?.client_secret);
   //     } catch (error) {
   //       console.error("Error creating payment intent:", error);
   //     }
   //   }
   // };
-// // console.log(clientSecret);
-// // console.log(clientSecret.paymentIntent?.client_secret);
+// // //console.log(clientSecret);
+// // //console.log(clientSecret.paymentIntent?.client_secret);
 //   const handleSubmit = async (event) => {
 //     event.preventDefault();
 
@@ -114,10 +114,10 @@ const CheckOutForm = () => {
 //       type: "card",
 //       card,
 //     });
-//     console.log(paymentMethod);
+//     //console.log(paymentMethod);
 
 //     if (paymentMethodError) {
-//       // console.log("Payment method error:", paymentMethodError);
+//       // //console.log("Payment method error:", paymentMethodError);
 //       setError(paymentMethodError.message);
 //       return;
 //     }
@@ -133,7 +133,7 @@ const CheckOutForm = () => {
 //     });
 
 //     if (confirmError) {
-//       console.log("Payment confirmation error:", confirmError);
+//       //console.log("Payment confirmation error:", confirmError);
 //       setError(confirmError.message);
 //       return;
 //     }
@@ -150,12 +150,12 @@ const CheckOutForm = () => {
 //         paymentDate:new Date(),
 //         status: "order received"
 //       };
-//       // console.log("Payment successful:", payment);
+//       // //console.log("Payment successful:", payment);
 //       const res = await axiosHook.post('/api/payment',payment)
-//       // console.log(res?.data);
+//       // //console.log(res?.data);
 //       if(res.data?.result?.insertedId){
 //         const updateResponse = await axiosHook.patch(`/api/delete_cart?email=${user?.email}`)
-//         // console.log(updateResponse);
+//         // //console.log(updateResponse);
 //         if(updateResponse.data?.result?.modifiedCount>0)
 //        { swal({
 //           text: "Payment Successfully",

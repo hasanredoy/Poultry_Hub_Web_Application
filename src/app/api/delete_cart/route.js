@@ -14,7 +14,7 @@ export const PATCH = async (request) => {
     }
     // find and delete cart
     const result = await cartsCollection.updateMany({email},updateDoc);
-    console.log({result},'from server');
+    //console.log({result},'from server');
     return NextResponse.json({ result });
   } catch (error) {
     return NextResponse.json({ error });

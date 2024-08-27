@@ -16,7 +16,7 @@ export const GET = async (request, { params }) => {
       .find({ sellerEmail: email })
       .toArray();
     const reviews = allListedItemByUser?.reduce((a,b) => parseInt(a)+ parseInt(b?.totalRating),0)
-    console.log(reviews);
+    //console.log(reviews);
     const itemListed = allListedItemByUser?.length;
     const sell = totalSell?.length;
     // find and delete cart
@@ -25,7 +25,7 @@ export const GET = async (request, { params }) => {
       customerFeedback: reviews,
       totalSell: sell,
     };
-    // console.log({result},'from server');
+    // //console.log({result},'from server');
     return NextResponse.json({ result });
   } catch (error) {
     return NextResponse.json({ error });

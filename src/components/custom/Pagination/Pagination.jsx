@@ -2,7 +2,7 @@ import React from "react";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 
 const Pagination = ({ totalPage, currentPage, setCurrentPage,pages }) => {
-  // console.log(totalPage);
+  // //console.log(totalPage);
   const handleNext=()=>{
     if(currentPage<pages-1){
       setCurrentPage(currentPage+1)

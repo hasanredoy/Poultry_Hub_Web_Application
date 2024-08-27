@@ -10,7 +10,7 @@ export const POST=async(request)=>{
     where:{id : session.user.id},
     data:{name}
   })
-  // console.log({result},'hello2');
+  // //console.log({result},'hello2');
   return NextResponse.json({result:updateUser})
 } catch (error) {
    return NextResponse.json({error})

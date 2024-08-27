@@ -18,7 +18,7 @@ const router = useRouter()
   // getUser
   const user = useGetUser();
 const [imgFile ,setImgFile]=useState()
-// console.log(imgFile);
+// //console.log(imgFile);
 const image = postImage(imgFile)
 
  const handlerForAddItem = async (e)=>{
@@ -51,13 +51,13 @@ if(form?.expireDate?.value<newDate){
   })
   return 
 }
-  console.log(itemInfo);
+  //console.log(itemInfo);
     if(!image)return swal(`An error happened please update your image again!`, {
       icon: "error",
     });
   if(image){
     const {data}=await axiosHook.post(`/api/all_items`,itemInfo)
-    console.log(data);
+    //console.log(data);
     if(data?.result?.insertedId){
       router.push('/dashboard/my_listed_item')
       swal(`Item Added Successfully!`, {
@@ -67,7 +67,7 @@ if(form?.expireDate?.value<newDate){
   }
  }
 
-  // console.log(singleItem);
+  // //console.log(singleItem);
   return (
     <main className=" mt-10">
       {/* from section  */}

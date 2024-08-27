@@ -37,7 +37,7 @@ const Navbar = () => {
 
   //get cart 
   const {carts} =useContext(GeneralContext)||{carts:0}
-  // console.log(carts);
+  // //console.log(carts);
   // get path name
   const pathName = usePathname();
   // links handler state

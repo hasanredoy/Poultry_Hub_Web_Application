@@ -20,12 +20,12 @@ import { useRouter } from "next/navigation";
 const axiosHook = useAxios();
 const loadCartCount = async (email) => {
   const { data } = await axiosHook.get(`/api/count/cart?email=${email}`);
-  //  console.log(data);
+  //  //console.log(data);
   return data;
 };
 
 export default function CheckoutForm({ clientS }) {
-  // console.log({ clientS });
+  // //console.log({ clientS });
   const stripe = useStripe();
   const elements = useElements();
   // get user
@@ -49,13 +49,13 @@ export default function CheckoutForm({ clientS }) {
   const { totalCartItem } = useContext(GeneralContext) || {};
   // get items name by map total cart item
   const itemsName = totalCartItem?.map((name) => name?.itemName);
-  //   console.log({itemsName});
+  //   //console.log({itemsName});
 
   useEffect(() => {
     const loader = async () => {
       // load cart price
       const cartData = await loadCartCount(user?.email);
-      console.log({ cartData });
+      //console.log({ cartData });
       setPrice(cartData?.price);
     };
     loader();
@@ -104,12 +104,12 @@ export default function CheckoutForm({ clientS }) {
     );
 
     if (!clientSecret) {
-      console.log("client secret not fount");
+      //console.log("client secret not fount");
       return;
     }
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-       console.log({paymentIntent});
+       //console.log({paymentIntent});
        setTransactionID(paymentIntent?.id)
     
       switch (paymentIntent.status) {
@@ -170,7 +170,7 @@ export default function CheckoutForm({ clientS }) {
               });
             }
           });
-        // console.log(updateResponse);
+        // //console.log(updateResponse);
       
     });
    

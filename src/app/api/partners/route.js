@@ -7,7 +7,7 @@ export const GET=async()=>{
     const db = await connectDB()
     const partnersCollection = await db.collection('partners')
     const result = await partnersCollection.find().toArray()
-    // console.log({result});
+    // //console.log({result});
     return NextResponse.json({result})
   } catch (error) {
     return NextResponse.json({error})

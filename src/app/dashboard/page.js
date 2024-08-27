@@ -18,15 +18,15 @@ const page = () => {
   const axiosHook = useAxios()
   //  get user
   const {data:session, update} = useSession()
-  console.log(session);
+  //console.log(session);
   const user = session?.user
-  console.log(user);
+  //console.log(user);
   const [value, setValue] = useState(user?.phone);
   const updateProfile=async(e)=>{
     e.preventDefault()
    const name = e.target?.name?.value
    const {data}= await axiosHook.post('/api/update_profile',{name})
-   console.log(data?.result);
+   //console.log(data?.result);
    if(data?.result){
     await signIn('credentials', { redirect: false, email, password });
    }

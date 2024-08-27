@@ -7,7 +7,7 @@ export const GET=async(request)=>{
   const page = await request.nextUrl.searchParams.get("page") 
 
   const size = await request.nextUrl.searchParams.get("size")
-  // console.log({ queryFilter });
+  // //console.log({ queryFilter });
   const parsedPage = parseInt(page);
   const parsedSize = parseInt(size);
   let query={}
@@ -20,9 +20,9 @@ export const GET=async(request)=>{
         { email: { $regex: search, $options: "i" } },
       ];
     }
-    // console.log({parsedPage,parsedSize});
+    // //console.log({parsedPage,parsedSize});
     const result = await usersCollection.find(query).limit(parsedSize).skip(parsedPage*parsedSize).sort({registerDate:-1}).toArray()
-    // console.log({result});
+    // //console.log({result});
     
     return NextResponse.json({result})
   } catch (error) {

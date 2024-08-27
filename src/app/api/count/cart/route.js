@@ -16,8 +16,8 @@ export const GET = async (request) => {
       .toArray();
       const count=  result?.length
       const price = result.reduce((a,b)=> parseInt(a)+ parseInt(b.price),0)
-      // console.log(result,'server');
-    // console.log({price},'from server');
+      // //console.log(result,'server');
+    // //console.log({price},'from server');
     return NextResponse.json({ count,price,result });
   } catch (error) {
     return NextResponse.json({ error });
