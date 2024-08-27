@@ -6,6 +6,8 @@ import useAxios from "@/hooks/useAxios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 // get axios url from axios hook
 const axiosURL = useAxios();
@@ -20,7 +22,9 @@ const Featured = () => {
   // featured state
   const [features , setFeatured] = useState([])
   const [loading , setLoading] = useState(true)
-
+  useEffect(()=>{
+    AOS.init();
+ },[])
   // effect to call featured data 
   useEffect(()=>{
     const loader =async()=>{
@@ -33,12 +37,13 @@ const Featured = () => {
   return (
 
     <section className=" my-20 py-3 max-w-[95%]  lg:max-w-[85%] mx-auto ">
-          <Heading subHeading={'Have a look'} title={"Henpicked Favorites!!"}></Heading>
+          <Heading subHeading={'Have a look at'} title={"Henpicked Favorites!!"}></Heading>
           {loading&&<Skeleton></Skeleton>}
         {/* cards section  */}
         <section className=" grid mt-10 grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
           {loading||features?.map((data)=> <div
-         
+         data-aos="fade-down"
+             data-aos-duration="1500"
             key={data?._id}
             className="card   shadow-lg px-2 bg-base-200  hover:scale-100 lg:hover:scale-100 border   hover:border-0 lg:hover:border-2  hover:border-orange-400"
           >

@@ -209,7 +209,7 @@ const Navbar = () => {
        }
       </div>
       {/* nav center */}
-      <div className="relative  flex justify-center flex-1">
+      <div className={` ${user?'lg:-ml-40':'ml-0' } relative  flex justify-center flex-1`}>
         <Link
           href={"/"}
           className="w-38 ml-0 md:ml-24 lg:ml-40 flex gap-2  bg-[#fa7b26] text-white py-1  px-2 rounded-full items-center "
