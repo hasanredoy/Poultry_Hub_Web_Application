@@ -79,24 +79,24 @@ const router = useRouter()
 
 
   return (
-    <main className="hero  min-h-screen  max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
-      <section className="hero-content flex-col w-full md:flex-row-reverse">
-        <div className=" flex-1 lg:text-left w-full min-h-screen h-full">
+    <main className="hero  min-h-screen  max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto my-5 lg:my-20">
+      <section className=" flex flex-col w-full md:flex-row-reverse">
+        <div className=" hidden lg:block lg:flex-1 lg:text-left w-full min-h-screen h-full">
           <Image
             src={signUp_banner}
-            className=" h-[400px] w-full lg:h-full"
+            className=" h-full w-[80%] mx-auto md:w-full md:h-full"
             alt="register banner image"
             height={700}
             width={800}
           />
         </div>
-        <div className="flex-1 card w-full bg-base-200 max-w-xl lg:max-w-xl shrink-0 ">
+        <div className="lg:flex-1  w-full bg-base-200 lg:max-w-xl shrink-0 ">
           <h3 className=" text-center text-base font-bold lg:text-xl pt-3">
             Please Register
           </h3>
-          <form onSubmit={handleRegister} className="card-body">
+          <form onSubmit={handleRegister} className="p-5">
             {/* Name div  */}
-            <div className="form-control">
+            <div className=" w-full">
               <label className="label">
                 <span className="   text-sm font-bold lg:text-base ">
                   Full Name
@@ -106,19 +106,19 @@ const router = useRouter()
                 type="text"
                 placeholder="Full Name"
                 name={"name"}
-                className="input input-bordered"
+                className=" w-full py-1 px-3 rounded-md  "
                 required
               />
             </div>
             {/* Phone number div  */}
-            <div className="form-control">
+            <div className=" ">
               <label className="label">
                 <span className="   text-sm font-bold lg:text-base ">
                   Phone Number
                 </span>
               </label>
               <PhoneInput
-                className=" input input-bordered"
+                className=" py-1 px-3 rounded-md"
                 placeholder="Enter phone number"
                 value={phone}
               
@@ -126,7 +126,7 @@ const router = useRouter()
               />
             </div>
             {/* photo div  */}
-            <div className="form-control">
+            <div className=" ">
               <label className="label">
                 <span className="   text-sm font-bold lg:text-base ">
                   Photo
@@ -136,11 +136,11 @@ const router = useRouter()
                 onChange={(event) => setImageUrl(event.target.files[0])}
                 type="file"
                 required
-                className=" file-input file-input-bordered"
+                className=""
               />
             </div>
             {/* email div  */}
-            <div className="form-control">
+            <div className=" ">
               <label className="label">
                 <span className="   text-sm font-bold lg:text-base ">
                   Email
@@ -149,13 +149,13 @@ const router = useRouter()
               <input
                 type="email"
                 placeholder="Email"
-                className="input input-bordered"
+                className="py-1 px-3 rounded-md"
                 required
                 name="email"
               />
             </div>
             {/* password div  */}
-            <div className="form-control relative">
+            <div className="  relative">
               <label className="label">
                 <span className="   text-sm font-bold lg:text-base ">
                   Password
@@ -164,13 +164,13 @@ const router = useRouter()
               <input
                 type={showPass ? "text" : "password"}
                 placeholder="Password"
-                className="input input-bordered"
+                className="py-1 px-3 rounded-md"
                 required
                 name="password"
               />
               <a
                 onClick={() => setShowPass(!showPass)}
-                className=" absolute top-14 right-5 "
+                className=" absolute top-11 right-5 "
               >
                 {showPass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
               </a>
@@ -186,8 +186,8 @@ const router = useRouter()
               />
               <h6 className=" text-sm">Accept Our Terms & Conditions </h6>
             </div>
-            <div className="form-control mt-6">
-              <button disabled={loading} className="btn btn-primary">{loading?<FiLoader className=" animate-spin   text-2xl font-bold text-black"></FiLoader>:"Register "}</button>
+            <div className="  flex justify-center mt-6">
+              <button disabled={loading} className=" mx-auto w-20 btn-primary">{loading?<FiLoader className=" animate-spin   text-2xl font-bold text-black"></FiLoader>:"Register "}</button>
             </div>
           </form>
           <Link
