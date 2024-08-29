@@ -54,8 +54,8 @@ const Login = () => {
   //console.log(session);
   return (
     <Suspense fallback={<span>Loading</span>}>
-    <main className="hero  min-h-screen  max-w-[95%] overflow-hidden lg:max-w-[85%] mx-auto">
-      <div className="hero-content flex-col md:flex-row">
+    <main className=" min-h-screen my-10  max-w-[90%]  lg:max-w-[85%] mx-auto">
+      <div className="flex flex-col items-center md:flex-row">
         <div className="text-center flex-1 lg:text-left">
           <Image
             src={login_banner}
@@ -65,7 +65,7 @@ const Login = () => {
             width={700}
           />
         </div>
-        <div className="flex-1 card bg-base-200 w-full max-w-md shrink-0 ">
+        <div className="flex-1 border border-gray-600 rounded-md  bg-base-200 w-full max-w-md shrink-0 ">
           <h3 className=" text-center subtitle pt-3">Please Login</h3>
 
           <form onSubmit={handleLogin} className="card-body">
@@ -97,7 +97,7 @@ const Login = () => {
               />
               <a
                 onClick={() => setShowPass(!showPass)}
-                className=" absolute top-14 right-5 "
+                className=" absolute top-[52px] right-5 "
               >
                 {showPass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
               </a>

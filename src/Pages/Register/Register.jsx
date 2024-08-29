@@ -79,8 +79,8 @@ const router = useRouter()
 
 
   return (
-    <main className="  min-h-screen  max-w-[90%] lg:max-w-[85%] mx-auto mb-10">
-      <section className=" flex-col w-full gap-0 md:flex-row-reverse">
+    <main className="  min-h-screen lg:my-20  max-w-[90%] lg:max-w-[85%] mx-auto mb-10">
+      <section className=" flex flex-col w-full gap-0 md:flex-row-reverse">
         <div className=" flex-1 lg:text-left w-full min-h-screen h-full">
           <Image
             src={signUp_banner}
@@ -90,7 +90,7 @@ const router = useRouter()
             width={800}
           />
         </div>
-        <div className="flex-1 card w-full bg-base-200 max-w-xl lg:max-w-xl shrink-0 ">
+        <div className="flex-1 border border-gray-600 rounded-md w-full bg-base-200 max-w-xl lg:max-w-xl shrink-0 ">
           <h3 className=" text-center text-base font-bold lg:text-xl pt-3">
             Please Register
           </h3>
