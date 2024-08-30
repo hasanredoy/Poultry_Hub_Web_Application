@@ -85,7 +85,7 @@ const router = useRouter()
           <Image
             src={signUp_banner}
             className=" h-[400px]  md:w-full md:h-full"
-            alt="register banner image"
+            alt="register banner"
             height={700}
             width={800}
           />
