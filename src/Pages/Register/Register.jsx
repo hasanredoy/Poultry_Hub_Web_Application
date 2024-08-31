@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import signUp_banner from "../../../public/sign-up.png";
+import signUp_banner_image from "../../../public/sign-up.png";
 import { useRef, useState } from "react";
 import Link from "next/link";
 // import react number input
@@ -83,7 +83,7 @@ const router = useRouter()
       <section className=" flex flex-col w-full gap-0 md:flex-row-reverse">
         <div className=" flex-1 lg:text-left w-full min-h-screen h-full">
           <Image
-            src={signUp_banner}
+            src={signUp_banner_image}
             className=" h-[400px]  md:w-full md:h-full"
             alt="register banner"
             height={700}
