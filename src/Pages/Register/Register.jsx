@@ -42,6 +42,7 @@ const router = useRouter()
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    
     if (!phone||phone?.length<5) {
       return toast.error("Number is not valid");
       

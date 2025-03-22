@@ -13,8 +13,7 @@ const Modal = () => {
         setModal(res)
       }
   }, []);
-  console.log(modal);
-
+  
   const handleClick =()=>{
     setModal(!modal)
     localStorage.setItem('modal',!modal)

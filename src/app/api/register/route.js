@@ -28,7 +28,6 @@ export const POST=async(request)=>{
     return NextResponse.json({message:"user exist"})
   }
   const result = await usersCollection.insertOne(userWithHashedPass)
-  // //console.log({result},'hello2');
   return NextResponse.json(result?{result}:{})
 } catch (error) {
    return NextResponse.json({error})

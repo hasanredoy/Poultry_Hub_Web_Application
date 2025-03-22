@@ -13,14 +13,19 @@ const GoogleLogin = () => {
     //console.log(path);
   const LoginWithGoogle= async()=>{
     
+   try {
     const res = await signIn('google',{
       redirect:true,
       //  callbackUrl: path?path:"/"
     })
+    console.log(res)
     if(user){
       //console.log({path});
       toast.success('login successful')
     }
+   } catch (error) {
+    console.log(error)
+   }
   }
  if(user){
   router.push(path?path:"/")
